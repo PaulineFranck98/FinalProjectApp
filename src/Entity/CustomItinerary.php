@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CustomItineraryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,14 @@ class CustomItinerary
 
     #[ORM\ManyToOne(inversedBy: 'customItineraries')]
     private ?User $user = null;
+
+    #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'customItineraries')]
+    private Collection $place;
+
+    public function __construct()
+    {
+        $this->place = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,30 @@ class CustomItinerary
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Place>
+     */
+    public function getPlace(): Collection
+    {
+        return $this->place;
+    }
+
+    public function addPlace(Place $place): static
+    {
+        if (!$this->place->contains($place)) {
+            $this->place->add($place);
+        }
+
+        return $this;
+    }
+
+    public function removePlace(Place $place): static
+    {
+        $this->place->removeElement($place);
 
         return $this;
     }

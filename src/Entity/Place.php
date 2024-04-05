@@ -70,6 +70,9 @@ class Place
     #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: 'place')]
     private Collection $ratings;
 
+    #[ORM\ManyToMany(targetEntity: CustomItinerary::class, mappedBy: 'place')]
+    private Collection $customItineraries;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -79,6 +82,7 @@ class Place
         $this->companions = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->ratings = new ArrayCollection();
+        $this->customItineraries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -418,6 +422,33 @@ class Place
 
     public function __toString(){
         return $this->getName();
+    }
+
+    /**
+     * @return Collection<int, CustomItinerary>
+     */
+    public function getCustomItineraries(): Collection
+    {
+        return $this->customItineraries;
+    }
+
+    public function addCustomItinerary(CustomItinerary $customItinerary): static
+    {
+        if (!$this->customItineraries->contains($customItinerary)) {
+            $this->customItineraries->add($customItinerary);
+            $customItinerary->addPlace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomItinerary(CustomItinerary $customItinerary): static
+    {
+        if ($this->customItineraries->removeElement($customItinerary)) {
+            $customItinerary->removePlace($this);
+        }
+
+        return $this;
     }
 }
 
