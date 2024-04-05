@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $profilePicture = null;
 
     #[ORM\Column]
-    private ?bool $isBanned = null;
+    private ?bool $isBanned = false;
 
     #[ORM\OneToMany(targetEntity: Commentary::class, mappedBy: 'user')]
     private Collection $commentaries;
