@@ -2,45 +2,40 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentaryRepository;
+use App\Repository\CustomItineraryRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CommentaryRepository::class)]
-class Commentary
+#[ORM\Entity(repositoryClass: CustomItineraryRepository::class)]
+class CustomItinerary
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $content = null;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationDate = null;
 
-    #[ORM\ManyToOne(inversedBy: 'commentaries')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'customItineraries')]
     private ?User $user = null;
-
-    #[ORM\ManyToOne(inversedBy: 'commentaries')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Post $post = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContent(): ?string
+    public function getName(): ?string
     {
-        return $this->content;
+        return $this->name;
     }
 
-    public function setContent(string $content): static
+    public function setName(string $name): static
     {
-        $this->content = $content;
+        $this->name = $name;
 
         return $this;
     }
@@ -67,21 +62,5 @@ class Commentary
         $this->user = $user;
 
         return $this;
-    }
-
-    public function getPost(): ?Post
-    {
-        return $this->post;
-    }
-
-    public function setPost(?Post $post): static
-    {
-        $this->post = $post;
-
-        return $this;
-    }
-
-    public function __toString(){
-        return $this->getContent();
     }
 }

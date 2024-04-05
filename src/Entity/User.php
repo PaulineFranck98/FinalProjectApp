@@ -59,12 +59,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: 'user')]
     private Collection $ratings;
 
+    #[ORM\OneToMany(targetEntity: CustomItinerary::class, mappedBy: 'user')]
+    private Collection $customItineraries;
+
     public function __construct()
     {
         $this->commentaries = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->favorite = new ArrayCollection();
         $this->ratings = new ArrayCollection();
+        $this->customItineraries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -298,6 +302,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($rating->getUser() === $this) {
                 $rating->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->getUsername();
+    }
+
+    /**
+     * @return Collection<int, CustomItinerary>
+     */
+    public function getCustomItineraries(): Collection
+    {
+        return $this->customItineraries;
+    }
+
+    public function addCustomItinerary(CustomItinerary $customItinerary): static
+    {
+        if (!$this->customItineraries->contains($customItinerary)) {
+            $this->customItineraries->add($customItinerary);
+            $customItinerary->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomItinerary(CustomItinerary $customItinerary): static
+    {
+        if ($this->customItineraries->removeElement($customItinerary)) {
+            // set the owning side to null (unless already changed)
+            if ($customItinerary->getUser() === $this) {
+                $customItinerary->setUser(null);
             }
         }
 

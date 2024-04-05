@@ -29,7 +29,7 @@ class Post
     private ?\DateTimeInterface $creationDate = null;
 
     #[ORM\Column]
-    private ?bool $isClosed = null;
+    private ?bool $isClosed = false;
 
     #[ORM\OneToMany(targetEntity: Commentary::class, mappedBy: 'post')]
     private Collection $commentaries;
@@ -164,5 +164,9 @@ class Post
         $this->place = $place;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->getContent();
     }
 }
