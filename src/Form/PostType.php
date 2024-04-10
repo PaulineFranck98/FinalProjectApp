@@ -36,6 +36,7 @@ class PostType extends AbstractType
                 // I define the 'label' attribute for the 'content' field
                 'label' => 'Contenu',
             ])
+            // FileType renders an input file field
             ->add('image', FileType::class, [
                 // I define the 'label' attribute for the 'image' field
                 'label'=> 'Image',
