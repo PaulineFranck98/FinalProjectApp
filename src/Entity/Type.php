@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\TypeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TypeRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
 class Type
@@ -18,12 +19,15 @@ class Type
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'types')]
-    private Collection $type_place;
+       /**
+     * @var Collection<int, Place>
+     */
+    #[ORM\OneToMany(targetEntity: Place::class, mappedBy: 'type')]
+    private Collection $places;
 
     public function __construct()
     {
-        $this->type_place = new ArrayCollection();
+        $this->places = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,23 +50,29 @@ class Type
     /**
      * @return Collection<int, Place>
      */
-    public function getTypePlace(): Collection
+    public function getPlaces(): Collection
     {
-        return $this->type_place;
+        return $this->places;
     }
 
-    public function addTypePlace(Place $typePlace): static
+    public function addPlace(Place $place): static
     {
-        if (!$this->type_place->contains($typePlace)) {
-            $this->type_place->add($typePlace);
+        if (!$this->places->contains($place)) {
+            $this->places->add($place);
+            $place->setType($this);
         }
 
         return $this;
     }
 
-    public function removeTypePlace(Place $typePlace): static
+    public function removePlace(Place $place): static
     {
-        $this->type_place->removeElement($typePlace);
+        if($this->places->removeElement($place)){
+
+            if($place->getType() === $this){
+                $place->setType(null);
+            }
+        }
 
         return $this;
     }

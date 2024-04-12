@@ -12,9 +12,11 @@ use App\Entity\CustomItinerary;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 // I create a new form class for the Place entity, which extends the AbstractType class
@@ -43,10 +45,22 @@ class PlaceType extends AbstractType
                 // I define the 'label' attribute for the 'city' field
                 'label' => 'Ville',
             ])
-            // TextType renders a basic input text field
-            ->add('zipcode', TextType::class, [
+            // zipcode is a number between 67000 and 68999 inclusive
+            ->add('zipcode', NumberType::class, [
                 // I define the 'label' attribute for the 'zipcode' field
                 'label' => 'Code postal',
+                // 'constraints' is an associative array containing one or more validation constraints
+                'constraints' => [
+                // I create a new instance of the 'Range' constraint, passing it an array of options
+                new Range([
+                    // minimum value allowed  
+                    'min' => 67000,
+                    // maximum value allowed
+                    'max' => 68999,
+                    // error message displayed if the value is not in range
+                    'notInRangeMessage' => 'Veuillez saisir un code postal entre {{ min }} et {{ max }}',
+                ])
+                ]
             ])
             // TextareaType renders a textarea HTML element
             ->add('openingHours', TextareaType::class, [
@@ -70,8 +84,18 @@ class PlaceType extends AbstractType
                 // I define the 'label' attribute for the 'description' field
                 'label' => 'Description',
             ])
-            ->add('latitude')
-            ->add('longitude')
+            ->add('latitude', NumberType::class, [
+                'scale' => 8,
+                'attr' => [
+                    'inputmode' => 'decimal',
+                ]
+            ])
+            ->add('longitude', NumberType::class,[
+                'scale' => 8,
+                'attr' => [
+                    'inputmode' => 'decimal',
+                ]
+            ])
             // ->add('isVerified')
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('types', EntityType::class, [
@@ -80,7 +104,7 @@ class PlaceType extends AbstractType
                 // I define the entity property to be used as the label for each choice in the list, here : name
                 'choice_label' => 'name',
                 // I set the value to 'true', which means that multiple options can be selected 
-                'multiple' => true,
+                // 'multiple' => true,
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('themes', EntityType::class, [
@@ -90,6 +114,7 @@ class PlaceType extends AbstractType
                 'choice_label' => 'name',
                 // I set the value to 'true', which means that multiple options can be selected 
                 'multiple' => true,
+                'expanded' => true,
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('companions', EntityType::class, [
@@ -99,6 +124,7 @@ class PlaceType extends AbstractType
                 'choice_label' => 'name',
                 // I set the value to 'true', which means that multiple options can be selected 
                 'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }

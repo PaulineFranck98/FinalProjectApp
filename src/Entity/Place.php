@@ -25,8 +25,8 @@ class Place
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $zipcode = null;
+    #[ORM\Column]
+    private ?int $zipcode = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $openingHours = null;
@@ -40,10 +40,10 @@ class Place
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type:"decimal", precision:10, scale:8)]
     private ?float $latitude = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type:"decimal", precision:11, scale:8)]
     private ?float $longitude = null;
 
     #[ORM\Column]
