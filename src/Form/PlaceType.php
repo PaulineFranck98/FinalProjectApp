@@ -17,6 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 // I create a new form class for the Place entity, which extends the AbstractType class
@@ -98,7 +99,7 @@ class PlaceType extends AbstractType
             ])
             // ->add('isVerified')
              // EntityType is a field that's designed to load options from a Doctrine entity
-            ->add('types', EntityType::class, [
+            ->add('type', EntityType::class, [
                 // defines the entity class to use, here : the entity Type
                 'class' => Type::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -126,6 +127,7 @@ class PlaceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
+            ->add('valider', SubmitType::class)
         ;
     }
 

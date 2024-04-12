@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<h1>Ajouter</h1>
+
+{{ form_start(formAddCompanion) }}
+
+{{ form_row(formAddCompanion.name) }}
+
+{{ form_row(formAddCompanion.valider) }}
+
+{{ form_end(formAddCompanion) }}
+
+{% endblock %}

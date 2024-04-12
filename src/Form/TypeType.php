@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 // I create a new form class for the Type entity, which extends the AbstractType class
 // I extend the AbstractType class to access protected and public methods and properties defined in this class
@@ -27,6 +28,7 @@ class TypeType extends AbstractType
                 // I define the 'label' attribute, which will be visible to the user to indicate the expected information
                 'label' => 'Nom',
             ])
+            ->add('valider', SubmitType::class)
         ;
     }
 

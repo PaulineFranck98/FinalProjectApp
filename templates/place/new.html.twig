@@ -4,4 +4,23 @@
 
 {% block body %}
 
+{{ form_start(formAddPlace) }}
+
+{{ form_row(formAddPlace.name) }}
+{{ form_row(formAddPlace.address) }}
+{{ form_row(formAddPlace.city) }}
+{{ form_row(formAddPlace.zipcode) }}
+{{ form_row(formAddPlace.openingHours) }}
+{{ form_row(formAddPlace.website) }}
+{{ form_row(formAddPlace.phoneNumber) }}
+{{ form_row(formAddPlace.description) }}
+{{ form_row(formAddPlace.latitude) }}
+{{ form_row(formAddPlace.longitude) }}
+{{ form_row(formAddPlace.type) }}
+{{ form_row(formAddPlace.themes) }}
+{{ form_row(formAddPlace.companions) }}
+{{ form_row(formAddPlace.valider) }}
+
+{{ form_end(formAddPlace) }}
+
 {% endblock %}

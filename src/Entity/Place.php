@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PlaceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ORM\Column;
+use App\Entity\Post;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PlaceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: PlaceRepository::class)]
 class Place
@@ -55,8 +57,9 @@ class Place
     #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'place')]
     private Collection $images;
 
-    #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'type_place')]
-    private Collection $types;
+    #[ORM\ManyToOne(inversedBy: 'places')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
 
     #[ORM\ManyToMany(targetEntity: Theme::class, mappedBy: 'theme_place')]
     private Collection $themes;
@@ -77,7 +80,6 @@ class Place
     {
         $this->posts = new ArrayCollection();
         $this->images = new ArrayCollection();
-        $this->types = new ArrayCollection();
         $this->themes = new ArrayCollection();
         $this->companions = new ArrayCollection();
         $this->users = new ArrayCollection();
@@ -222,6 +224,18 @@ class Place
         return $this;
     }
 
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Post>
      */
@@ -282,32 +296,8 @@ class Place
         return $this;
     }
 
-    /**
-     * @return Collection<int, Type>
-     */
-    public function getTypes(): Collection
-    {
-        return $this->types;
-    }
 
-    public function addType(Type $type): static
-    {
-        if (!$this->types->contains($type)) {
-            $this->types->add($type);
-            $type->addTypePlace($this);
-        }
-
-        return $this;
-    }
-
-    public function removeType(Type $type): static
-    {
-        if ($this->types->removeElement($type)) {
-            $type->removeTypePlace($this);
-        }
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, Theme>

@@ -1,20 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ThemeController!{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/laragon/www/FinalProjectApp/src/Controller/ThemeController.php</code></li>
-        <li>Your template at <code>C:/laragon/www/FinalProjectApp/templates/theme/index.html.twig</code></li>
-    </ul>
-</div>
+<a href=" {{ path('new_theme')}}">Ajouter</a>
+{% for theme in themes %}
+    {{ theme.name }}
+    <a href="{{ path('edit_theme', {'id' : theme.id})}}">Modifier</a>
+    <a href="{{ path('delete_theme', {'id' : theme.id})}}">Supprimer</a>
+{% endfor %}
 {% endblock %}
