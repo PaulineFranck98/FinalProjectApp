@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -126,6 +127,12 @@ class PlaceType extends AbstractType
                 // I set the value to 'true', which means that multiple options can be selected 
                 'multiple' => true,
                 'expanded' => true,
+            ])
+            ->add('images', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped'=> false,
+                'required' => false
             ])
             ->add('valider', SubmitType::class)
         ;
