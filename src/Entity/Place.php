@@ -49,22 +49,22 @@ class Place
     private ?float $longitude = null;
 
     #[ORM\Column]
-    private ?bool $isVerified = null;
+    private ?bool $isVerified = true;
 
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'place')]
     private Collection $posts;
 
-    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'place')]
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'place', cascade: ['persist'])]
     private Collection $images;
 
     #[ORM\ManyToOne(inversedBy: 'places')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
 
-    #[ORM\ManyToMany(targetEntity: Theme::class, mappedBy: 'theme_place')]
+    #[ORM\ManyToMany(targetEntity: Theme::class,  inversedBy: 'places')]
     private Collection $themes;
 
-    #[ORM\ManyToMany(targetEntity: Companion::class, mappedBy: 'companion_place')]
+    #[ORM\ManyToMany(targetEntity: Companion::class,  inversedBy: 'places')]
     private Collection $companions;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorite')]
@@ -311,7 +311,7 @@ class Place
     {
         if (!$this->themes->contains($theme)) {
             $this->themes->add($theme);
-            $theme->addThemePlace($this);
+            
         }
 
         return $this;
@@ -319,9 +319,7 @@ class Place
 
     public function removeTheme(Theme $theme): static
     {
-        if ($this->themes->removeElement($theme)) {
-            $theme->removeThemePlace($this);
-        }
+        $this->themes->removeElement($theme);
 
         return $this;
     }
@@ -338,7 +336,6 @@ class Place
     {
         if (!$this->companions->contains($companion)) {
             $this->companions->add($companion);
-            $companion->addCompanionPlace($this);
         }
 
         return $this;
@@ -346,10 +343,8 @@ class Place
 
     public function removeCompanion(Companion $companion): static
     {
-        if ($this->companions->removeElement($companion)) {
-            $companion->removeCompanionPlace($this);
-        }
-
+        $this->companions->removeElement($companion);
+    
         return $this;
     }
 

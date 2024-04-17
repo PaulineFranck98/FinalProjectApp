@@ -18,12 +18,12 @@ class Companion
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'companions')]
-    private Collection $companion_place;
+    #[ORM\ManyToMany(targetEntity: Place::class, mappedBy: 'companions')]
+    private Collection $places;
 
     public function __construct()
     {
-        $this->companion_place = new ArrayCollection();
+        $this->places = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,23 +46,26 @@ class Companion
     /**
      * @return Collection<int, Place>
      */
-    public function getCompanionPlace(): Collection
+    public function getPlaces(): Collection
     {
-        return $this->companion_place;
+        return $this->places;
     }
 
-    public function addCompanionPlace(Place $companionPlace): static
+    public function addPlace(Place $place): static
     {
-        if (!$this->companion_place->contains($companionPlace)) {
-            $this->companion_place->add($companionPlace);
+        if (!$this->places->contains($place)) {
+            $this->places->add($place);
+            $place->addCompanion($this);
         }
 
         return $this;
     }
 
-    public function removeCompanionPlace(Place $companionPlace): static
+    public function removePlace(Place $place): static
     {
-        $this->companion_place->removeElement($companionPlace);
+        if ($this->places->removeElement($place)) {
+            $place->removeCompanion($this);
+        }
 
         return $this;
     }

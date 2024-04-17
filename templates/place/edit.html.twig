@@ -20,23 +20,22 @@
 {{ form_row(formAddPlace.themes) }}
 {{ form_row(formAddPlace.companions) }}
 {{ form_row(formAddPlace.valider) }}
-Si la route est "place_edit" on affiche les images
-{% if app.request.attributes.get('_route') == 'place_edit' %}
+{# Si la route est "place_edit" on affiche les images #}
+{% if app.request.attributes.get('_route') == 'edit_place' %}
     <h2>Images</h2>
-   {# Affichage des images existantes #}
-<ul class="images">
     {% for image in place.images %}
-        <li>
-            <img src="{{ asset('images/' ~ image.name) }}" alt="{{ image.name }}">
-            <button type="button" class="delete-image-button" data-image-id="{{ image.id }}">Supprimer</button>
-        </li>
-    {% endfor %}
-</ul>
+        <div>
+            <img src="{{ asset('/images/'~image.name) }}" alt="" width="150">
 
-{# Ajout d'une nouvelle image #}
-<button type="button" class="add-image-button">Ajouter une image</button>
+            {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+            <a href="{{ path('delete_image_place', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" method="DELETE">Supprimer</a>
+
+        </div>
+    {% endfor %}
 {% endif %}
 
 {{ form_end(formAddPlace) }}
-
+{% block javascripts %}
+    <script src="{{ asset('js/images.js') }}"></script>
+{% endblock %}
 {% endblock %}

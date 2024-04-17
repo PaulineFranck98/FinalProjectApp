@@ -1,6 +1,3 @@
-// import './bootstrap.js';
-// import './styles/app.css';
-
 window.onload = () => {
     // Gestion des boutons "Supprimer"
     let links = document.querySelectorAll("[data-delete]")
@@ -38,4 +35,3 @@ window.onload = () => {
         })
     }
 }
-

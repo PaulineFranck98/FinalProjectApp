@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 // I create a new form class for the Place entity, which extends the AbstractType class
 // I extend the AbstractType class to access protected and public methods and properties defined in this class
@@ -128,11 +129,12 @@ class PlaceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('images', FileType::class, [
-                'label' => false,
-                'multiple' => true,
-                'mapped'=> false,
-                'required' => false
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
             ])
             ->add('valider', SubmitType::class)
         ;

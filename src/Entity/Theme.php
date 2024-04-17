@@ -18,12 +18,12 @@ class Theme
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'themes')]
-    private Collection $theme_place;
+    #[ORM\ManyToMany(targetEntity: Place::class, mappedBy: 'themes')]
+    private Collection $places;
 
     public function __construct()
     {
-        $this->theme_place = new ArrayCollection();
+        $this->places = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,23 +46,26 @@ class Theme
     /**
      * @return Collection<int, Place>
      */
-    public function getThemePlace(): Collection
+    public function getPlaces(): Collection
     {
-        return $this->theme_place;
+        return $this->places;
     }
 
-    public function addThemePlace(Place $themePlace): static
+    public function addPlace(Place $place): static
     {
-        if (!$this->theme_place->contains($themePlace)) {
-            $this->theme_place->add($themePlace);
+        if (!$this->places->contains($place)) {
+            $this->places->add($place);
+            $place->addTheme($this);
         }
 
         return $this;
     }
 
-    public function removeThemePlace(Place $themePlace): static
+    public function removePlace(Place $place): static
     {
-        $this->theme_place->removeElement($themePlace);
+       if ($this->places->removeElement($place)){
+        $place->removeTheme($this);
+       }
 
         return $this;
     }
