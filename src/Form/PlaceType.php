@@ -152,3 +152,4 @@ class PlaceType extends AbstractType
         ]);
     }
 }
+

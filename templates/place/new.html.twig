@@ -1,42 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Ajout d'un nouveau lieu d'intérêt{% endblock %}
 
 {% block body %}
 
 {{ form_start(formAddPlace) }}
 
 {{ form_row(formAddPlace.name) }}
-{{ form_row(formAddPlace.address) }}
-{{ form_row(formAddPlace.city) }}
+{# {{ form_row(formAddPlace.address) }} #}
+<div>
+    {{ form_label(formAddPlace.address) }}
+    {{ form_widget(formAddPlace.address ) }}
+    <ul id="address-suggestions"></ul>
+</div>
+{{ form_row(formAddPlace.latitude) }}
+{{ form_row(formAddPlace.longitude) }}
+{# {{ form_row(formAddPlace.city) }} #}
+<div>
+    {{ form_label(formAddPlace.city) }}
+    {{ form_widget(formAddPlace.city) }}
+    <ul id="commune-suggestions"></ul>
+</div>
 {{ form_row(formAddPlace.zipcode) }}
 {{ form_row(formAddPlace.openingHours) }}
 {{ form_row(formAddPlace.website) }}
 {{ form_row(formAddPlace.phoneNumber) }}
 {{ form_row(formAddPlace.description) }}
-{{ form_row(formAddPlace.latitude) }}
-{{ form_row(formAddPlace.longitude) }}
 {{ form_row(formAddPlace.type) }}
 {{ form_row(formAddPlace.themes) }}
 {{ form_row(formAddPlace.companions) }}
 {{ form_row(formAddPlace.valider) }}
-Si la route est "place_edit" on affiche les images
-{% if app.request.attributes.get('_route') == 'place_edit' %}
-    <h2>Images</h2>
-   {# Affichage des images existantes #}
-<ul class="images">
-    {% for image in place.images %}
-        <li>
-            <img src="{{ asset('images/' ~ image.name) }}" alt="{{ image.name }}">
-            <button type="button" class="delete-image-button" data-image-id="{{ image.id }}">Supprimer</button>
-        </li>
-    {% endfor %}
-</ul>
-
-{# Ajout d'une nouvelle image #}
-<button type="button" class="add-image-button">Ajouter une image</button>
-{% endif %}
 
 {{ form_end(formAddPlace) }}
 
+
+{% block javascripts %}
+<script src="{{ asset('js/api.js')}}"></script>
+{% endblock %}
 {% endblock %}

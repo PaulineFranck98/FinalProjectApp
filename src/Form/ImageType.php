@@ -22,9 +22,9 @@ class ImageType extends AbstractType
                 'readonly' => true,
             ]
         ])
-        ->add('file', FileType::class, [
-            'required' => false,
+        ->add('images', FileType::class, [
             'label' => 'Image',
+            'required' => false,
             'mapped' => false,
         ])
         ;
