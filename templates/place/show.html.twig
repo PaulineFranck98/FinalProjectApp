@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<a href=" {{ path('new_place')}}">Ajouter</a>
+{% for image in place.images %}
+    <img src="{{ asset('images/places/mini/300x300-') ~ image.name }}" alt="{{ place.name }}">
+    
+{% endfor %}
+    {{ place.name }}
+    {# {{dump(place.images)}} #}
+    
+
+{% endblock %}

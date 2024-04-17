@@ -49,42 +49,42 @@ function initCommmune(){
 
 // ------- Address suggestions + autocomplete zipcode, latitude, longitude -------------------
 
-function initAddress(){
-const inputAddress = document.querySelector('#place_address');
-const inputLatitude = document.querySelector('#place_latitude');
-const inputLongitude = document.querySelector('#place_longitude');
-const inputSuggestions = document.querySelector('#address-suggestions');
+// function initAddress(){
+// const inputAddress = document.querySelector('#place_address');
+// const inputLatitude = document.querySelector('#place_latitude');
+// const inputLongitude = document.querySelector('#place_longitude');
+// const inputSuggestions = document.querySelector('#address-suggestions');
 
-inputAddress.addEventListener('input', () => {
-    const searchTerm = inputAddress.value.trim();
+// inputAddress.addEventListener('input', () => {
+//     const searchTerm = inputAddress.value.trim();
 
-    if (searchTerm.length >= 3) {
-        fetch(`https://nominatim.openstreetmap.org/search?q=${searchTerm}&format=json&countrycodes=fr`)
-            .then(response => response.json())
-            .then(data => {
-                inputSuggestions.innerHTML = '';
+//     if (searchTerm.length >= 3) {
+//         fetch(`https://nominatim.openstreetmap.org/search?q=${searchTerm}&format=json&countrycodes=fr`)
+//             .then(response => response.json())
+//             .then(data => {
+//                 inputSuggestions.innerHTML = '';
 
-                data.forEach(result => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = result.display_name;
+//                 data.forEach(result => {
+//                     const listItem = document.createElement('li');
+//                     listItem.textContent = result.display_name;
 
-                    listItem.addEventListener('click', () => {
-                        inputAddress.value = result.display_name;
-                        inputLatitude.value = result.lat;
-                        inputLongitude.value = result.lon;
+//                     listItem.addEventListener('click', () => {
+//                         inputAddress.value = result.display_name;
+//                         inputLatitude.value = result.lat;
+//                         inputLongitude.value = result.lon;
 
-                        inputSuggestions.innerHTML = '';
-                    });
-                    inputSuggestions.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error(error));
-    } else {
-        inputSuggestions.innerHTML = '';
-    }
-});
-}
+//                         inputSuggestions.innerHTML = '';
+//                     });
+//                     inputSuggestions.appendChild(listItem);
+//                 });
+//             })
+//             .catch(error => console.error(error));
+//     } else {
+//         inputSuggestions.innerHTML = '';
+//     }
+// });
+// }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initAddress();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     initAddress();
+// });

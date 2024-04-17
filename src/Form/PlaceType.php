@@ -129,12 +129,12 @@ class PlaceType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('images', CollectionType::class, [
-                'entry_type' => ImageType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'prototype' => true,
+            ->add('images', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                // ne va pas vérifier si j'ai l'équivalent dans mon entité
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('valider', SubmitType::class)
         ;

@@ -54,8 +54,9 @@ class Place
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'place')]
     private Collection $posts;
 
-    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'place', cascade: ['persist'])]
-    private Collection $images;
+    // en créant un lieu, il faut également persist les images
+    #[ORM\OneToMany(targetEntity: Image::class, mappedBy: 'place', orphanRemoval: true, cascade:['persist'] )]
+    private $images;
 
     #[ORM\ManyToOne(inversedBy: 'places')]
     #[ORM\JoinColumn(nullable: false)]
@@ -277,7 +278,8 @@ class Place
     public function addImage(Image $image): static
     {
         if (!$this->images->contains($image)) {
-            $this->images->add($image);
+            // $this->images->add($image);
+            $this->images[] = $image;
             $image->setPlace($this);
         }
 

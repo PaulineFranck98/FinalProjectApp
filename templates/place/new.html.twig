@@ -29,6 +29,23 @@
 {{ form_row(formAddPlace.type) }}
 {{ form_row(formAddPlace.themes) }}
 {{ form_row(formAddPlace.companions) }}
+
+
+{# On affiche les images si on est en édition #}
+{# Si dans ma requête, dans les attributs, avec le get je vais chercher la route #}
+{% if app.request.attributes.get('_route') == 'edit_place' %}
+    <h2>Images</h2>
+    {% for image in place.images %}
+        <div>
+            <img src="{{ asset(asset('images/places/') ~ image.name) }}" alt="Image" width="150">
+            {# avec data-token je vérifie que le delete vient bien de mon formulaire #}
+            {# génère un token de sécurité qui va me permettre dans le controller de vérifier que le formulaire est bien valide #}
+            <a href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete'~ image.id) }}">Supprimer</a>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{{ form_row(formAddPlace.images) }}
 {{ form_row(formAddPlace.valider) }}
 
 {{ form_end(formAddPlace) }}
@@ -36,5 +53,7 @@
 
 {% block javascripts %}
 <script src="{{ asset('js/api.js')}}"></script>
+{# defer pour que le script soit chargé après le contenu de la page #}
+<script src="{{ asset('js/images.js')}}" defer></script>
 {% endblock %}
 {% endblock %}

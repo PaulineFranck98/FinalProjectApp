@@ -6,6 +6,7 @@ use App\Entity\Image;
 use App\Entity\Place;
 use App\Form\PlaceType;
 use App\Repository\PlaceRepository;
+use App\Service\PictureService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,40 +28,44 @@ class PlaceController extends AbstractController
     }
 
     #[Route('/place/new', name:'new_place')]
-    public function new(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService): Response
     {
         $place = new Place();
 
+        // On crée le formulaire
         $form = $this->createForm(PlaceType::class, $place);
 
+        // On traite la requête du formulaire
         $form->handleRequest($request);
 
+        // On vérifie si le formulaire est soumis ET valide
         if($form->isSubmitted() && $form->isValid())
-        {
+        {   
+            // On récupère les images : doit faire un get dans le formulaire
             $images = $form->get('images')->getData();
+            // dd($images);
+            
+            // On boucle sur les images
+            foreach($images as $image)
+            {
+                // On définit le dossier de destination
+                $folder = 'places';
 
-            foreach($images as $image){
-                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                // This is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+                // On appelle le service d'ajout 
+                // On récupère le nom du fichier
+                $file = $pictureService->add($image, $folder, 300, 300);
+                // die; //Pour tester et ne pas aller plus loin dans la génération du formulaire
 
-                // move the file to the directory where uploaded pictures are stored
-                try{
-                    $image->move(
-                        $this->getParameter('images_directory'),
-                        $newFilename
-                    );
-
-                } catch(FileException $e){
-                    // handle exception if something happens during file upload 
-                    dd('Could not move uploaded picture to directory');
-                }
+                // Instanciation de mon entité Image
                 $img = new Image();
-                $img->setName($newFilename);
+
+                // $file est renvoyé par mon service
+                $img->setName($file);
                 $place->addImage($img);
-                
+
+                // On doit persister l'image dans le lieu
             }
+         
 
             $place = $form->getData();
             // dd($place);
@@ -78,7 +83,7 @@ class PlaceController extends AbstractController
     }
 
     #[Route('/place/{id}/edit', name:'edit_place')]
-    public function edit(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService): Response
     {
     $form = $this->createForm(PlaceType::class, $place);
 
@@ -86,29 +91,29 @@ class PlaceController extends AbstractController
 
     if($form->isSubmitted() && $form->isValid())
     {
-        // Gérer les nouvelles images
+        // On récupère les images : doit faire un get dans le formulaire
         $images = $form->get('images')->getData();
+        // dd($images);
+        
+        // On boucle sur les images
+        foreach($images as $image)
+        {
+            // On définit le dossier de destination
+            $folder = 'places';
 
-        foreach($images as $image){
-            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-            // This is needed to safely include the file name as part of the URL
-            $safeFilename = $slugger->slug($originalFilename);
-            $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+            // On appelle le service d'ajout 
+            // On récupère le nom du fichier
+            $file = $pictureService->add($image, $folder, 300, 300);
+            // die; //Pour tester et ne pas aller plus loin dans la génération du formulaire
 
-            // move the file to the directory where uploaded pictures are stored
-            try{
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $newFilename
-                );
-
-            } catch(FileException $e){
-                // handle exception if something happens during file upload
-                dd('Could not move uploaded picture to directory');
-            }
+            // Instanciation de mon entité Image
             $img = new Image();
-            $img->setName($newFilename);
+
+            // $file est renvoyé par mon service
+            $img->setName($file);
             $place->addImage($img);
+
+            // On doit persister l'image dans le lieu
         }
         $place = $form->getData();
         $entityManager->persist($place);
@@ -119,27 +124,75 @@ class PlaceController extends AbstractController
 
     return $this->render('place/new.html.twig', [
         'formAddPlace' => $form,
-        'edit' => $place->getId()
+        'edit' => $place->getId(),
+        'place' => $place
     ]);
 }
 
-    #[Route('/image/{id}/delete', name:'delete_image_place')]
-    public function delete(Image $image, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    {
-        $data = json_encode($request->getContent(), true);
+    // #[Route('/place/image/{id}/delete', name:'delete_image')]
+    // public function deleteImage(Image $image, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    // {
+    //     $data = json_encode($request->getContent(), true);
 
-        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
+    //     if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
+    //         $name = $image->getName();
+
+    //         unlink($this->getParameter('images_directory').'/'.$name);
+
+    //         $entityManager->remove($image);
+    //         $entityManager->flush();
+
+    //         return new JsonResponse(['success'=> 1]);
+    //     } else {
+    //         return new JsonResponse(['error'=> 'Token Invalide'], 400);
+    //     }
+    // }
+
+    // ---------------------------------------------------------------
+    #[Route('/place/image/{id}/delete', name:'delete_image', methods:['DELETE'])]
+    public function deleteImg(Image $image, Request $request, EntityManagerInterface $entityManager, PictureService $pictureService): JsonResponse
+    {
+        // On récupère le contenu de la requête
+        // Le contenu sera en json donc on utilise json_decode
+        // True pour faire un tableau associatif
+        $data = json_decode($request->getContent(), true);
+
+        // On récupère le token dans $data, et on vérifie s'il est valide
+        // Le nom du token doit être le même que celui du data-token
+        // On le compare au token qui est dans $data
+        // On l'envoie sous le nom '_token'
+        if($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])){
+            // Le token csrf est valide
+            // On récupère le nom de l'image
             $name = $image->getName();
 
-            unlink($this->getParameter('images_directory').'/'.$name);
+            // On supprime l'image : on encapsule dans un if parce que ça va retourner un booléen
+            // Si ça fonctionne, on entre dans le if
+            if($pictureService->delete($name, 'places', 300, 300)){
 
-            $entityManager->remove($image);
-            $entityManager->flush();
+                // On supprime l'image de la base de données
+                $entityManager->remove($image);
+                $entityManager->flush();
 
-            return new JsonResponse(['success'=> 1]);
-        } else {
-            return new JsonResponse(['error'=> 'Token Invalide'], 400);
+                return new JsonResponse(['success' => true], 200);
+            }
+
+            // La suppression a échoué
+            return new JsonResponse(['error' => 'Erreur de suppression'], 400);
+
         }
+
+        return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
+    // ---------------------------------------------------------------
+
+    #[Route('/place/{id}', name: 'show_place')]
+    // retrieve the 'place' corresponding to the id thanks to paramconverter tool
+    public function show(Place $place) : Response {
+        //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
+        return $this->render('place/show.html.twig', [
+            'place' => $place
+        ]);
     }
 
 }
