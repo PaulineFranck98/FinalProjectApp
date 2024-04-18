@@ -1,56 +1,82 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/map-form.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+{% endblock %}
 {% block title %}Ajout d'un nouveau lieu d'intérêt{% endblock %}
 
 {% block body %}
-
-{{ form_start(formAddPlace) }}
-
-{{ form_row(formAddPlace.name) }}
-{# {{ form_row(formAddPlace.address) }} #}
-{{ form_row(formAddPlace.address) }}
-<p><a href="https://www.coordonnees-gps.fr/" target="_blank">Obtenir les coordonnées GPS</a></p>
-{{ form_row(formAddPlace.latitude) }}
-{{ form_row(formAddPlace.longitude) }}
-{# {{ form_row(formAddPlace.city) }} #}
-<div>
-    {{ form_label(formAddPlace.city) }}
-    {{ form_widget(formAddPlace.city) }}
-    <ul id="commune-suggestions"></ul>
-</div>
-{{ form_row(formAddPlace.zipcode) }}
-{{ form_row(formAddPlace.openingHours) }}
-{{ form_row(formAddPlace.website) }}
-{{ form_row(formAddPlace.phoneNumber) }}
-{{ form_row(formAddPlace.description) }}
-{{ form_row(formAddPlace.type) }}
-{{ form_row(formAddPlace.themes) }}
-{{ form_row(formAddPlace.companions) }}
-
-
-{# On affiche les images si on est en édition #}
-{# Si dans ma requête, dans les attributs, avec le get je vais chercher la route #}
-{% if app.request.attributes.get('_route') == 'edit_place' %}
-    <h2>Images</h2>
-    {% for image in place.images %}
-        <div>
-            <img src="{{ asset(asset('images/place/') ~ image.name) }}" alt="Image" width="150">
-            {# avec data-token je vérifie que le delete vient bien de mon formulaire #}
-            {# génère un token de sécurité qui va me permettre dans le controller de vérifier que le formulaire est bien valide #}
-            <a href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete'~ image.id) }}">Supprimer</a>
+<main>
+    <section class="place-form">
+        <h1>NOUVEAU LIEU</h1>
+        <div class="location-container">
+            <div>
+                {{ form_start(formAddPlace) }}
+                {{ form_row(formAddPlace.name) }}
+                {# Gestion de l'affichage des suggestions de communes #}
+                <div>
+                    {{ form_label(formAddPlace.city) }}
+                    {{ form_widget(formAddPlace.city) }}
+                    <ul id="commune-suggestions"></ul>
+                </div>
+                {{ form_row(formAddPlace.zipcode) }}
+            </div>
+            <div>
+                {{ form_row(formAddPlace.address) }}
+                {{ form_row(formAddPlace.latitude) }}
+                {{ form_row(formAddPlace.longitude) }}
+                {# Lien permettant d'obtenir les coordonnées gps à partir de l'adresse #}
+                <p><a href="https://www.coordonnees-gps.fr/" target="_blank">Coordonnées GPS de l'adresse</a></p>
+            </div>
         </div>
-    {% endfor %}
-{% endif %}
+        {# Affichage de la map et du marqueur placé suite à la récupération des coordonnées #}
+        <div id="map-new"></div>
+        <div class="location-container">
+            <div>
+                {{ form_row(formAddPlace.phoneNumber) }}
+                {{ form_row(formAddPlace.website) }}
+                {{ form_row(formAddPlace.openingHours) }}
+            </div>
+            <div>
+                {{ form_row(formAddPlace.description) }}
+                {{ form_row(formAddPlace.type) }}
+            </div>
+        </div>
+        <div class="choice-container">
+            {{ form_row(formAddPlace.themes) }}
+            {{ form_row(formAddPlace.companions) }}
+        </div>
 
-{{ form_row(formAddPlace.images) }}
-{{ form_row(formAddPlace.valider) }}
+        {# On affiche les images si on est en édition #}
+        {# Dans ma requête, dans les attributs, je vais chercher la route avec get #}
+        {% if app.request.attributes.get('_route') == 'edit_place' %}
+            <h2>Images</h2>
+            {% for image in place.images %}
+                <div>
+                    <img src="{{ asset(asset('images/place/') ~ image.name) }}" alt="Image" width="150">
+                    {# avec data-token je vérifie que le delete vient bien de mon formulaire #}
+                    {# génère un token de sécurité qui va me permettre dans le controller de vérifier que le formulaire est bien valide #}
+                    <a href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete'~ image.id) }}">Supprimer</a>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-{{ form_end(formAddPlace) }}
+        {{ form_row(formAddPlace.images) }}
+        {{ form_row(formAddPlace.valider) }}
+
+        {{ form_end(formAddPlace) }}
+    </section>
+</main>
 
 
-{% block javascripts %}
-<script src="{{ asset('js/api.js')}}"></script>
-{# defer pour que le script soit chargé après le contenu de la page #}
-<script src="{{ asset('js/images.js')}}" defer></script>
-{% endblock %}
+    {% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="{{ asset('js/api.js')}}" defer></script>
+    {# defer pour que le script soit chargé après le contenu de la page #}
+    <script src="{{ asset('js/images.js')}}" defer></script>
+    {% endblock %}
 {% endblock %}

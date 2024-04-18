@@ -1,0 +1,74 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+
+    font-family: "Poppins", sans-serif;
+}
+
+#map-new{
+    height:200px; 
+    max-width: 635px;
+}
+
+.place-form{
+    width:40vw;
+    min-width:635px;
+    margin: 0 auto;
+}
+
+.place-form h1{
+    text-align: center;
+}
+
+.location-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.location-container label{
+    display: block;
+    margin : 0.2rem 0;
+}
+
+.location-container input {
+    width:250px;
+    padding:5px;
+}
+
+#place_openingHours{
+    resize:none;
+    width:250px;
+    font-family: "Poppins", sans-serif;
+    scrollbar-width: none;
+    padding-left:0.2rem;
+}
+
+.location-container textarea{
+    resize:none;
+    width:250px;
+    height:150px;
+    scrollbar-width: none;
+}
+
+.choice-container {
+    margin-top:1rem;
+}
+
+#place_themes, #place_companions{
+    margin: 0.5rem 0 0.5rem;
+}
+
+.choice-container input[type="checkbox"]{
+    margin-right:0.5rem;
+    margin-left: 1rem;
+}
+

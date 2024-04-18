@@ -69,6 +69,12 @@ class PlaceType extends AbstractType
             ->add('openingHours', TextareaType::class, [
                 // I define the 'label' attribute for the 'openingHours' field
                 'label' => 'Horaires d\'ouverture',
+                'attr' => [
+                    'rows' => 8,
+                    'cols' => 30,
+                ],
+                    'data' => "Lundi :\nMardi :\nMercredi :\nJeudi :\nVendredi :\nSamedi :\nDimanche :\n",
+                
             ])
             // UrlType avoids input errors and ensures that links to websites are functional
             ->add('website', UrlType::class, [
@@ -111,6 +117,7 @@ class PlaceType extends AbstractType
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('themes', EntityType::class, [
+                'label' => 'A quel thème appartient ce lieu ? (plusieurs thèmes peuvent être sélectionnés)',
                 // defines the entity class to use, here : the entity Theme
                 'class' => Theme::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -121,6 +128,7 @@ class PlaceType extends AbstractType
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('companions', EntityType::class, [
+                'label' => 'Quelle situation correspond le plus à ce lieu ? (plusieurs situations peuvent être sélectionnées)',
                 // defines the entity class to use, here : the entity Companion
                 'class' => Companion::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name

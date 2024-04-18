@@ -3,48 +3,57 @@
 {% block title %}Détails d'un lieu{% endblock %}
 
 {% block body %}
-<main>
-    <section>
-        <h1>{{ place.name }}</h1>
-        <div>
-            <h2>Localisation</h2>
-            <p>Adresse : {{ place.address }}</p>
-            <p>Commune : {{ place.city }}</p>
-            <p>Code Postal : {{ place.zipcode }}</p>
-        </div>
-        <div>
-            <h2>Contact</h2>
-            <p>Horaires d'ouverture :{{ place.openingHours }}</p>
-            <p>Site web : {{ place.website }}</p>
-            <p>Téléphone{{ place.phoneNumber }}</p>
-        </div>
-        <div>
-            <h2>Catégorie</h2>
-            <p>Type : {{ place.type }}</p>
-            <p>Thème :
-                {% for theme in place.themes %}
-                    {{ theme }}
-                {% endfor %}
-            </p>
-            <p>Companion :
-                {% for companion in place.companions %}
-                    {{ companion }}
-                {% endfor %}
-            </p>
-            <p>Description : {{ place.description }}</p>
-        </div>
+    <main>
+        <section>
+            <h1>{{ place.name }}</h1>
+            <div>
+                <h2>Localisation</h2>
+                <p>Adresse : {{ place.address }}</p>
+                <p>Commune : {{ place.city }}</p>
+                <p>Code Postal : {{ place.zipcode }}</p>
+            </div>
+            <div>
+                <h2>Contact</h2>
+                <p>Horaires d'ouverture :{{ place.openingHours }}</p>
+                {# <p>Site web : {{ place.website }}</p> #}
+                <p>
+                    Site web :
+                    {% if place.website %}
+                        <a href="{{ place.website }}" target="_blank">{{ place.website }}</a>
+                    {% else %}
+                        Pas de site web
+                    {% endif %}
+                </p>        
+                <p>Téléphone : {{ place.phoneNumber }}</p>
+            </div>
+            <div>
+                <h2>Catégorie</h2>
+                <p>Type : {{ place.type }}</p>
+                <p>Thème :
+                    {% for theme in place.themes %}
+                        {{ theme }}
+                    {% endfor %}
+                </p>
+                <p>Companion :
+                    {% for companion in place.companions %}
+                        {{ companion }}
+                    {% endfor %}
+                </p>
+                <p>Description : {{ place.description }}</p>
+            </div>
 
-    
-        {% for image in place.images %}
-            <figure>
-                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}" width="150">
-            </figure>
-        {% endfor %}
+        
+            {% for image in place.images %}
+                <figure>
+                    <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}" width="150">
+                </figure>
+            {% endfor %}
 
-        {# Réservé à l'Admin #}
-        <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
-    </section>
-</main>
+            {# A modifier pour réserver à l'Admin #}
+            <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
+            <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>
+        </section>
+    </main>
     {# {{dump(place.images)}} #}
     
 

@@ -9,11 +9,11 @@ window.onload = () => {
         // On met un écouteur d'évènements
         link.addEventListener("click", function(e){
 
-            // On empêche la navigation : je ne veux pas envoyer directement vers la page du delete, je veux utiliser ajax
-            // je dis mon évènement e de ne paspas le faire 
+            // On empêche la navigation : 
+            // je dis à mon évènement e de ne pas envoyer directement vers la page du delete, je veux utiliser ajax
             e.preventDefault()
 
-            // On demande confirmation
+            // On demande confirmation avant de supprimer l'image
             if(confirm("Voulez-vous supprimer cette image ?")){
 
                 // On envoie une requête Ajax vers le href du lien avec la méthode correspondante
@@ -29,8 +29,8 @@ window.onload = () => {
                         // On précise qu'on envoie du json
                         "Content-Type": "application/json"
                     },
-                    // On envoie body -> on envoie le token
-                    // On prend sur le lien qui a été cliqué  le dataset.token
+                    // On envoie le token
+                    // On prend sur le lien qui a été cliqué le dataset.token
                     // cette partie envoie la requête
                     body: JSON.stringify({"_token": this.dataset.token})
                 }).then(

@@ -128,9 +128,34 @@ class PlaceController extends AbstractController
         'place' => $place
     ]);
 }
+    #[Route('/place/{id}/delete', name:'delete_place')]
+    public function deletePlace(Place $place, EntityManagerInterface $entityManager, PictureService $pictureService)
+    {
+        // Je récupère toutes les images associées au lieu
+        $images = $place->getImages();
+
+        // Je boucle sur les images et je les supprime une à une
+        foreach ($images as $image) {
+
+            // Je récupère le nom de l'image
+            $name = $image->getName();
+
+            // Je supprime l'image du dossier grâce à mon pictureService
+            $pictureService->delete($name, 'place');
+
+            // Je supprime l'image de la base de données
+            $entityManager->remove($image);
+        }
+
+        //Je supprime le lieu de la base de données
+        $entityManager->remove($place);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_place');
+        
+    }
 
 
-    // ---------------------------------------------------------------
     #[Route('/place/image/{id}/delete', name:'delete_image', methods:['DELETE'])]
     public function deleteImg(Image $image, Request $request, EntityManagerInterface $entityManager, PictureService $pictureService): JsonResponse
     {
@@ -148,7 +173,7 @@ class PlaceController extends AbstractController
             // On récupère le nom de l'image
             $name = $image->getName();
 
-            // On supprime l'image : on encapsule dans un if parce que ça va retourner un booléen
+            // On supprime l'image : on encapsule dans un if car va retourner un booléen
             // Si ça fonctionne, on entre dans le if
             if($pictureService->delete($name, 'place')){
 
@@ -166,7 +191,8 @@ class PlaceController extends AbstractController
 
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }
-    // ---------------------------------------------------------------
+
+
 
     #[Route('/place/{id}', name: 'show_place')]
     // retrieve the 'place' corresponding to the id thanks to paramconverter tool

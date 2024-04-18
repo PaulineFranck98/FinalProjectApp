@@ -52,18 +52,16 @@ class PictureService
         $path = $this->params->get('images_directory') . $folder;
 
         // On crée le dossier de destination s'il n'existe pas
-        // Un dossier 'mini' contiendra les images resized
         // Si le dossier n'existe pas
-        if(!file_exists($path)){ // = /place/mini
+        if(!file_exists($path)){ 
             // 0755 : pour les permissions
             // $recursive = true --> si pas de parent, alors va tout créer : fait l'arborescence complète
             mkdir($path, 0755, true);
         }
 
-        // On stocke l'image originake
+        // On stocke l'image originale
         imagewebp($picture_source, $path . '/' .  $file);
 
-        // C'est un fichier donc je peux le déplacer (move())
         // Je déplace le fichier dans mon path
         // J'ajoute le / pour éviter d'éventuels problèmes avec windows
         $picture->move($path . '/' , $file);
@@ -74,16 +72,15 @@ class PictureService
 
     // On gère la suppression
     // On prend par défaut le file, le folder sera vide par défaut
-    // On prend les dimensions pour savoir quelles dimensions on supprime
     public function delete(string $file, ?string $folder = '')
     {   
         // Je ne veux pas supprimer le fichier par défaut
         if($file !== 'default.webp'){
+
             // J'initialise $success à false pour dire si ça a fonctionné ou non
             $success = false;
             $path = $this->params->get('images_directory') . $folder;
 
-    
             // chemin original
             $original = $path . '/' . $file;
 
@@ -94,10 +91,10 @@ class PictureService
                 unlink($original);
                 $success = true;
             }
-            // return true ou false si le unlink n'a pas fonctionné
+            // return true si le unlink a fonctionné 
             return $success;
         }
-
+        // return false si le unlink n'a pas fonctionné
         return false;
     } 
 }
