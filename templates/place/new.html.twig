@@ -8,11 +8,8 @@
 
 {{ form_row(formAddPlace.name) }}
 {# {{ form_row(formAddPlace.address) }} #}
-<div>
-    {{ form_label(formAddPlace.address) }}
-    {{ form_widget(formAddPlace.address ) }}
-    <ul id="address-suggestions"></ul>
-</div>
+{{ form_row(formAddPlace.address) }}
+<p><a href="https://www.coordonnees-gps.fr/" target="_blank">Obtenir les coordonnées GPS</a></p>
 {{ form_row(formAddPlace.latitude) }}
 {{ form_row(formAddPlace.longitude) }}
 {# {{ form_row(formAddPlace.city) }} #}
@@ -37,7 +34,7 @@
     <h2>Images</h2>
     {% for image in place.images %}
         <div>
-            <img src="{{ asset(asset('images/places/') ~ image.name) }}" alt="Image" width="150">
+            <img src="{{ asset(asset('images/place/') ~ image.name) }}" alt="Image" width="150">
             {# avec data-token je vérifie que le delete vient bien de mon formulaire #}
             {# génère un token de sécurité qui va me permettre dans le controller de vérifier que le formulaire est bien valide #}
             <a href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete'~ image.id) }}">Supprimer</a>

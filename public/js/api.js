@@ -24,11 +24,27 @@ function initCommmune(){
                         listItem.addEventListener('click', () => {
                             communeInput.value = commune.nom;
     
-                             // Vérifie la longueur du tableau 'codesPostaux' --> select le bon cp
-                            if (commune.codesPostaux.length === 1) {
+                             // Vérifie la longueur du tableau 'codesPostaux' 
+                             if (commune.codesPostaux.length === 1) {
+                                // Si unique, alors j'ajoute sa valeur dans l'input du code postal
                                 document.querySelector('#place_zipcode').value = commune.codesPostaux[0];
                             } else {
-                                document.querySelector('#place_zipcode').value = '';
+                                // Je crée un élément sélecteur pour sélectionner le bon code postal
+                                const select = document.createElement('select');
+                                select.name = 'place[zipcode]';
+                                select.id = 'place_zipcode';
+                            
+                                // J'ajoute les options de codes postaux en parcourant le tableau
+                                commune.codesPostaux.forEach(codePostal => {
+                                    const option = document.createElement('option');
+                                    option.value = codePostal;
+                                    option.textContent = codePostal;
+                                    select.appendChild(option);
+                                });
+                            
+                                // Remplacer l'élément input existant par le nouvel élément sélecteur
+                                const zipcodeInput = document.querySelector('#place_zipcode');
+                                zipcodeInput.parentNode.replaceChild(select, zipcodeInput);
                             }
                         
                             communeSuggestions.innerHTML = '';

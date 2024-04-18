@@ -6,7 +6,7 @@
 <a href=" {{ path('new_place')}}">Ajouter</a>
 {% for place in places %}
     {{ place.name }}
-    <a href="{{ path('show_place', {'id': place.id}) }}">Détail</a>
+    <a href="{{ path('show_place', {'id': place.id}) }}">Détails</a>
     <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier</a>
     {# <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer</a> #}
 {% endfor %}

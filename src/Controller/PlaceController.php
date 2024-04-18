@@ -49,11 +49,11 @@ class PlaceController extends AbstractController
             foreach($images as $image)
             {
                 // On définit le dossier de destination
-                $folder = 'places';
+                $folder = 'place';
 
                 // On appelle le service d'ajout 
                 // On récupère le nom du fichier
-                $file = $pictureService->add($image, $folder, 300, 300);
+                $file = $pictureService->add($image, $folder);
                 // die; //Pour tester et ne pas aller plus loin dans la génération du formulaire
 
                 // Instanciation de mon entité Image
@@ -99,11 +99,11 @@ class PlaceController extends AbstractController
         foreach($images as $image)
         {
             // On définit le dossier de destination
-            $folder = 'places';
+            $folder = 'place';
 
             // On appelle le service d'ajout 
             // On récupère le nom du fichier
-            $file = $pictureService->add($image, $folder, 300, 300);
+            $file = $pictureService->add($image, $folder);
             // die; //Pour tester et ne pas aller plus loin dans la génération du formulaire
 
             // Instanciation de mon entité Image
@@ -119,7 +119,7 @@ class PlaceController extends AbstractController
         $entityManager->persist($place);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_place');
+        return $this->redirectToRoute('show_place', ['id' => $place->getId()]);
     }
 
     return $this->render('place/new.html.twig', [
@@ -129,24 +129,6 @@ class PlaceController extends AbstractController
     ]);
 }
 
-    // #[Route('/place/image/{id}/delete', name:'delete_image')]
-    // public function deleteImage(Image $image, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
-    // {
-    //     $data = json_encode($request->getContent(), true);
-
-    //     if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
-    //         $name = $image->getName();
-
-    //         unlink($this->getParameter('images_directory').'/'.$name);
-
-    //         $entityManager->remove($image);
-    //         $entityManager->flush();
-
-    //         return new JsonResponse(['success'=> 1]);
-    //     } else {
-    //         return new JsonResponse(['error'=> 'Token Invalide'], 400);
-    //     }
-    // }
 
     // ---------------------------------------------------------------
     #[Route('/place/image/{id}/delete', name:'delete_image', methods:['DELETE'])]
@@ -168,7 +150,7 @@ class PlaceController extends AbstractController
 
             // On supprime l'image : on encapsule dans un if parce que ça va retourner un booléen
             // Si ça fonctionne, on entre dans le if
-            if($pictureService->delete($name, 'places', 300, 300)){
+            if($pictureService->delete($name, 'place')){
 
                 // On supprime l'image de la base de données
                 $entityManager->remove($image);
