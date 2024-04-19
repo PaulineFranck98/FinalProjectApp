@@ -2,7 +2,7 @@
 
 // ------------------ Commune suggestions --------------------
 
-// Je déclare la fonction InitCommune pour l'appeler après et permettre le chargement complet 
+// Je déclare la fonction InitCommune pour l'appeler après et permettre le chargement complet du DOM
 function initCommmune(){
     // Je récupère l'élément input où l'utilisateur entre le nom de la commune
     const communeInput = document.querySelector('#place_city');

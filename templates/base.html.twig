@@ -20,6 +20,7 @@
                     <a href="#"><i class="fa-solid fa-user"></i>&nbsp;{{app.user}}</a>
                     <a href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
+                    <a href="{{ path('app_home') }}">Home</a>
                     <a href="{{ path('app_login') }}">Connexion</a>
                     <a href="{{ path('app_place')}} ">Lieux</a>
                 {% endif %}

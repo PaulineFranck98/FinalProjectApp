@@ -21,6 +21,19 @@ class PlaceRepository extends ServiceEntityRepository
         parent::__construct($registry, Place::class);
     }
 
+    public function findByThemeAndCompanion($themeId, $companionId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.themes', 't')
+            ->join('p.companions', 'c')
+            ->where('t.id = :themeId')
+            ->andWhere('c.id = :companionId')
+            ->setParameter('themeId', $themeId)
+            ->setParameter('companionId', $companionId)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     //    /**
     //     * @return Place[] Returns an array of Place objects
     //     */
