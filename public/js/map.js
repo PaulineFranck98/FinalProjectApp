@@ -17,6 +17,7 @@ const displayPlaces = (placesData) => {
             <p>${place.companions.join(', ')}</p>
             <p>${place.themes.join(', ')}</p>
             <div class="place-img">${placeImages}</div>
+            <button id="hide">Masquer</button>
             <p class="border"></p>
         </div>`;
         // console.log(placeImages);
@@ -130,3 +131,6 @@ hotelRestaurantLayer.addTo(map);
 activityLayer.addTo(map);
 
 
+
+
+// ---------------Masquer les marqueurs -----------------------
