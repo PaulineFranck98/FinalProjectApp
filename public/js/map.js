@@ -17,7 +17,7 @@ const displayPlaces = (placesData) => {
             <p>${place.companions.join(', ')}</p>
             <p>${place.themes.join(', ')}</p>
             <div class="place-img">${placeImages}</div>
-            <button id="hide">Masquer</button>
+            <button id="hide-button">Masquer</button>
             <p class="border"></p>
         </div>`;
         // console.log(placeImages);
@@ -134,3 +134,10 @@ activityLayer.addTo(map);
 
 
 // ---------------Masquer les marqueurs -----------------------
+
+const hideButton = document.getElementById('hide-button');
+// console.log(hideButton);
+
+    hideButton.addEventListener('click', () =>{
+        maker
+    })
