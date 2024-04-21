@@ -8,9 +8,14 @@
 {% block title %}Map{% endblock %}
 
 {% block body %}
-
-<div id="map"></div>
-
+<main>
+    <section>
+        <aside>
+            <div id='places-container'></div>
+        </aside>    
+        <div id="map"></div>
+    </section>    
+</main>
 {% block javascripts %}
     <script>window.placesData = JSON.parse('{{ placesData|e('js') }}') || [];</script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

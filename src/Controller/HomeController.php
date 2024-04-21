@@ -30,6 +30,21 @@ class HomeController extends AbstractController
             $data= [];
             foreach($places as $place)
             {
+                $companions = [];
+                foreach( $place->getCompanions() as $companion){
+                    $companions[] = $companion->getName();
+                }
+
+                $themes = [];
+                foreach($place->getThemes() as $theme){
+                    $themes[] = $theme->getName();
+                }
+
+                $images = [];
+                foreach($place->getImages() as $image){
+                    $images[] = $image->getName();
+                }
+                // dd($images);
                 $data[] = [
                     'id' => $place->getId(),
                     'name' => $place->getName(),
@@ -38,6 +53,9 @@ class HomeController extends AbstractController
                     'latitude' => $place->getLatitude(),
                     'longitude' => $place->getLongitude(),
                     'type' => $place->getType()->getName(),
+                    'companions' => $companions,
+                    'themes' => $themes,
+                    'images' => $images,
                 ];
             }
 

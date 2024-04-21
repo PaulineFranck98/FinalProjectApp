@@ -13,7 +13,7 @@ class MapController extends AbstractController
     public function index(Request $request)
     {
         // Je récupère les données des lieux à partir de la sessions
-        $placesData = $request->getSession()->get('placesData', []);
+        $placesData = $request->getSession()->get('placesData');
 
         return $this->render('map/index.html.twig', [
             'placesData' => json_encode($placesData),

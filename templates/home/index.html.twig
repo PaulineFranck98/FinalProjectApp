@@ -3,9 +3,13 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-{{ form_start(formFindPlace)}}
-{{ form_row(formFindPlace.themes)}}
-{{ form_row(formFindPlace.companions)}}
-{{ form_row(formFindPlace.valider)}}
-{{ form_end(formFindPlace)}}
+<main id="main">
+    <section>
+    {{ form_start(formFindPlace)}}
+    {{ form_row(formFindPlace.themes)}}
+    {{ form_row(formFindPlace.companions)}}
+    {{ form_row(formFindPlace.valider)}}
+    {{ form_end(formFindPlace)}}
+    </section>
+</main>
 {% endblock %}

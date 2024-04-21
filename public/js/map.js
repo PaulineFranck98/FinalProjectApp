@@ -1,3 +1,32 @@
+// ------------ Affichage de la liste des lieux ----------------
+
+
+const placesContainer = document.getElementById('places-container');
+// console.log(placesContainer);
+
+const displayPlaces = (placesData) => {
+    // console.log(placesData);
+    placesData.forEach(place => {
+        let placeImages = place.images.map(image => `<figure><img src="/images/place/${image}"></figure>`).join('');
+        
+        placesContainer.innerHTML += `
+        <div id="${place.id}">
+            <h2>${place.name}</h2>
+            <p>${place.address}</p>
+            <p>${place.city}</p>
+            <p>${place.companions.join(', ')}</p>
+            <p>${place.themes.join(', ')}</p>
+            <div class="place-img">${placeImages}</div>
+            <p class="border"></p>
+        </div>`;
+        // console.log(placeImages);
+    });
+}
+displayPlaces(placesData);
+
+
+// ------------ Affichage des marqueurs sur la map ----------------
+
 
 // J'initialise la carte Leaflet
 const map = L.map('map').setView([48.267, 7.45], 9);
@@ -82,7 +111,7 @@ placesData.forEach(place => {
     marker.addTo(layerGroups[place.type]);
 
     // J'ajoute un popup au marqueur avec le nom et l'adresse du lieu
-    marker.bindPopup(`<strong>${place.name}</strong><br>${place.address}`);
+    marker.bindPopup(`<strong>${place.name}</strong><br>${place.address}<br><img src="/images/place/${place.images[0]}" width=100>`);
 
 });
 
