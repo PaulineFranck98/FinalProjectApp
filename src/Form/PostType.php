@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 // I create a new form class for the Post entity, which extends the AbstractType class
@@ -71,10 +72,11 @@ class PostType extends AbstractType
             //     'class' => User::class,
             //     'choice_label' => 'id',
             // ])
-            // ->add('place', EntityType::class, [
-            //     'class' => Place::class,
-            //     'choice_label' => 'name',
-            // ])
+            ->add('place', EntityType::class, [
+                'class' => Place::class,
+                'choice_label' => 'name',
+            ])
+            ->add('valider', SubmitType::class)
         ;
     }
 

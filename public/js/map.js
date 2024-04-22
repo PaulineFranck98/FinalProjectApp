@@ -1,5 +1,5 @@
 // ------------ Affichage de la liste des lieux ----------------
-
+// const placesData = JSON.parse() 
 
 const placesContainer = document.getElementById('places-container');
 // console.log(placesContainer);
@@ -135,9 +135,9 @@ activityLayer.addTo(map);
 
 // ---------------Masquer les marqueurs -----------------------
 
-const hideButton = document.getElementById('hide-button');
-// console.log(hideButton);
+// const hideButton = document.getElementById('hide-button');
+// // console.log(hideButton);
 
-    hideButton.addEventListener('click', () =>{
-        maker
-    })
+//     hideButton.addEventListener('click', () =>{
+//         maker
+//     })

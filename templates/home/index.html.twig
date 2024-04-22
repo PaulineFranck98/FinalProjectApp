@@ -4,12 +4,139 @@
 
 {% block body %}
 <main id="main">
-    <section>
-    {{ form_start(formFindPlace)}}
-    {{ form_row(formFindPlace.themes)}}
-    {{ form_row(formFindPlace.companions)}}
-    {{ form_row(formFindPlace.valider)}}
-    {{ form_end(formFindPlace)}}
+    <!-- =========================== PRESENTATION / VIDEO  =========================== -->
+
+    <section id="presentation">
+        <!-- video : drone shots of Alsatian landscapes-->
+        <video id="video-presentation" loop autoplay muted>
+            <source src="{{ asset('img-source/presentation.mp4') }}">
+        </video>
+        <div>
+            <h1>Lorem ipsum dolor, sit amet !</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
+            </p>
+            <button id="discover">Découvrir</button>
+            <!-- arrow icon -->
+            <i class="#" id="arrow-down"></i>
+        </div>
+    </section>
+     <!-- =========================== SELECT THEME / COMPANION  =========================== -->
+    <section id="choose-theme">
+        {{ form_start(formFindPlace)}}
+        
+        {{ form_row(formFindPlace.themes)}}
+        {{ form_row(formFindPlace.companions)}}
+        {{ form_row(formFindPlace.valider)}}
+        {{ form_end(formFindPlace)}}
+    </section>
+    <!-- =========================== HOW IT WORKS SECTION =========================== -->
+    <section id="how-it-works">
+        <h2>Comment ça fonctionne ?</h2>
+        <!-- =============== step 1 : choose theme =============== -->
+        <article>
+            <!-- left side : illustration of the theme choice process -->
+            <figure>
+                <img src="#" alt="">
+            </figure>
+            <!-- right side : explanation -->
+            <div>
+                <h3>Choisissez un thème</h3>
+                <!-- small text explanation-->
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                <!-- link that leads to the choice theme  -->
+                <a href="#choose-theme">Découvrir mon itinéraire</a>
+            </div>
+        </article>
+        <!-- =============== step 2 : choose companion / with who? =============== -->
+        <article>
+            <!-- left side : explanation -->
+            <div>
+                <h3>Choisissez avec qui vous voyagez</h3>
+                <!-- small text explanation-->
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                <!-- link that leads to the choice theme  -->
+                <a href="#choose-theme">Découvrir mon itinéraire</a>
+            </div>
+            <!-- right side : illustration of the 'with who?' choice process -->
+            <figure>
+                <img src="#" alt="">
+            </figure>
+        </article>
+        <!-- =============== step 3 : discover the map with personalized itinerary =================== -->
+        <article>
+            <!-- left side : illustration of the theme choice process -->
+            <figure>
+                <img src="#" alt="">
+            </figure>
+            <!-- right side : explanation -->
+            <div>
+                <h3>Découvrez votre itinéraire !</h3>
+                <!-- small text explanation-->
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                <!-- link that leads to the choice theme  -->
+                <a href="#choose-theme">Découvrir mon itinéraire</a>
+            </div>
+        </article>
+    </section>
+     <!-- =========================== JOIN COMMUNITY SECTION =========================== -->
+    <section id="join-community">
+        <!-- benefits/advantages when a user is registered -->
+        <h2>Rejoignez la communauté</h2>
+        <!-- first advantage -->
+        <div>
+            <article>
+                <h3>lorem</h3>
+                <!-- small text explanation-->
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                <figure>
+                    <img src="" alt="">
+                </figure>
+            </article>
+            <!-- second advantage -->
+            <article>
+                <h3>lorem</h3>
+                <!-- small text explanation-->
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                <figure>
+                    <img src="" alt="">
+                </figure>
+            </article>
+            <!-- third advantage -->
+            <article>
+                <h3>lorem</h3>
+                <!-- small text explanation-->
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                <figure>
+                    <img src="" alt="">
+                </figure>
+            </article>
+        </div>
+    </section>
+     <!-- =========================== SHARE EXPERIENCE SECTION =========================== -->
+    <section id="share-experience">
+        <article>
+            <div>
+                <h3>Partagez vos expériences...</h3>
+            </div>
+            <div>
+                <h3>et découvrez celles des autres</h3>
+            </div>
+            <div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, odio.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, officiis.</p>
+            </div>
+            <div class="socials">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-x-twitter"></i>
+            </div>
+        </article>
+        <aside>
+            <figure><img src="" alt=""></figure>
+            <figure><img src="" alt=""></figure>
+            <figure><img src="" alt=""></figure>
+        </aside>
     </section>
 </main>
 {% endblock %}

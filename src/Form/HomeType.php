@@ -17,7 +17,7 @@ class HomeType extends AbstractType
         $builder
              // EntityType is a field that's designed to load options from a Doctrine entity
              ->add('themes', EntityType::class, [
-                'label' => 'Quel thème choisissez-vous?',
+                // 'label' => 'Quel thème choisissez-vous?',
                 // defines the entity class to use, here : the entity Theme
                 'class' => Theme::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -28,7 +28,7 @@ class HomeType extends AbstractType
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('companions', EntityType::class, [
-                'label' => 'Avec qui partez-vous?',
+                // 'label' => 'Avec qui partez-vous?',
                 // defines the entity class to use, here : the entity Companion
                 'class' => Companion::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name

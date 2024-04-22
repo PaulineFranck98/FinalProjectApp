@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -45,6 +46,7 @@ class RatingType extends AbstractType
                 // I set 'required' to 'false' to make it optional
                 'required' => false,
             ])
+            ->add('valider', SubmitType::class)
             // ->add('ratingDate', null, [
             //     'widget' => 'single_text',
             // ])

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau post{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+    <h1>Ajouter un post</h1>
+
+
+    {{ form_start(formAddPost) }}
+
+    {{ form_row(formAddPost.title) }}
+    {{ form_row(formAddPost.content) }}
+    {{ form_row(formAddPost.image) }}
+    {{ form_row(formAddPost.place) }}
+    
+    {{ form_row(formAddPost.valider) }}
+    
+    {{ form_end(formAddPost) }}
+    </section>
+</main>
+{% endblock %}

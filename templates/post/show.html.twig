@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau post{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        <h1>{{post.title}}</h1>
+        <p>{{post.place}}</p>
+        <p>{{post.content}}</p>
+        <figure>
+            <img src="{{ asset('uploads/'~ post.image)}}">
+        </figure>
+        <small>{{post.user}}</small>
+        <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+    </section>
+</main>
+{% endblock %}
