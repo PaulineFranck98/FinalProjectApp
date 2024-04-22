@@ -1,0 +1,12 @@
+{% block theme_widget %}
+    {% spaceless %}
+        {% for child in form %}
+            <div class="theme-choice">
+                <input type="radio" name="{{ form.vars.full_name }}" id="{{ child.vars.id }}" value="{{ child.vars.value }}"{% if child.vars.checked %} checked="checked"{% endif %} />
+                <label for="{{ child.vars.id }}">
+                    <img src="{{ asset(themeImages[child.vars.label]) }}" alt="{{ child.vars.label }}" />
+                </label>
+            </div>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock theme_widget %}

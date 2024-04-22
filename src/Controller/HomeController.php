@@ -66,8 +66,16 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_map');
         }
 
+        // $themeImages = [
+        //     'Gastronomie' => 'img-source/gastronomie.webp',
+        //     'Histoire' => 'img-source/history.webp',
+        //     'Art' => 'img-source/art.webp',
+        //     'Aventure' => 'img-source/aventure.webp'
+        // ];
+        
         return $this->render('home/index.html.twig', [
             'formFindPlace' => $form,
+            // 'themeImages' => $themeImages,
         ]);
     }
 

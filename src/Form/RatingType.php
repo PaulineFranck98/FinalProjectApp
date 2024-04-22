@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -25,34 +26,27 @@ class RatingType extends AbstractType
     {
         $builder
             // rating is a number between 1 and 5 inclusive
-            ->add('rating', IntegerType::class, [
-                // 'constraints' is an associative array containing one or more validation constraints
-                'constraints' => [
-                    // I create a new instance of the 'Range' constraint, passing it an array of options
-                    new Range([
-                        // minimum value allowed  
-                        'min' => 1,
-                        // maximum value allowed
-                        'max' => 5,
-                        // error message displayed if the value is less than the minimum value allowed
-                        'minMessage' => 'La note doit être comprise entre 1 et 5',
-                        // error message displayed if the value is greater than the maximum value allowed
-                        'maxMessage' => 'La note doit être comprise entre 1 et 5',
-                    ])
-                ]
+            ->add('rating', TextType::class, [
+                'attr' => [
+                    'data-toggle' => 'rating',
+                    'data-min' => 1,
+                    'data-max' => 5,
+                    'data-step' => 1,
+                    'data-size' => 'sm',
+                ],
             ])
             //the rating is mandatory, but the associated comment is optional
             ->add('comment', TextareaType::class, [
                 // I set 'required' to 'false' to make it optional
                 'required' => false,
             ])
+            ->add('place', EntityType::class, [
+                'class' => Place::class,
+                'choice_label' => 'name',
+            ])
             ->add('valider', SubmitType::class)
             // ->add('ratingDate', null, [
             //     'widget' => 'single_text',
-            // ])
-            // ->add('place', EntityType::class, [
-            //     'class' => Place::class,
-            //     'choice_label' => 'id',
             // ])
             // ->add('user', EntityType::class, [
             //     'class' => User::class,

@@ -23,9 +23,9 @@ nav a{
     color: white;
 }
 
-/* main{
+main{
   padding-top:3rem;  
-} */
+}
 
 #video-presentation{
     height:100vh;
@@ -98,3 +98,13 @@ nav a{
     text-align: end;
 }
 
+/* ---- Rating ------------------ */
+/* .caption-badge {
+    display: none !important;
+}
+
+.krajee-icon-clear{
+    display: none !important;
+} */
+
+/* -------------------------------- */

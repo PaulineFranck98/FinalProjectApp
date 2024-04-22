@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello HomeController!{% endblock %}
-
 {% block body %}
+{% if themeImages is defined and themeImages|length > 0 %}
+    {% dump(themeImages) %}
+{% else %}
+    <p>La variable themeImages n'est pas définie ou est vide.</p>
+{% endif %}
 <main id="main">
     <!-- =========================== PRESENTATION / VIDEO  =========================== -->
 
@@ -23,9 +27,10 @@
     </section>
      <!-- =========================== SELECT THEME / COMPANION  =========================== -->
     <section id="choose-theme">
-        {{ form_start(formFindPlace)}}
         
+        {{ form_start(formFindPlace)}}
         {{ form_row(formFindPlace.themes)}}
+        {# {{ form_row(formFindPlace.themes, {'form_theme': 'form/theme_radio_row.html.twig', 'themeImages': themeImages}) }} #}
         {{ form_row(formFindPlace.companions)}}
         {{ form_row(formFindPlace.valider)}}
         {{ form_end(formFindPlace)}}
