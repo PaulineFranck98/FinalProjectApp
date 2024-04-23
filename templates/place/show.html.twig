@@ -6,11 +6,10 @@
     <main>
         <section>
             <h1>{{ place.name }}</h1>
+            <div>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
             <div>
                 <h2>Localisation</h2>
-                <p>Adresse : {{ place.address }}</p>
-                <p>Commune : {{ place.city }}</p>
-                <p>Code Postal : {{ place.zipcode }}</p>
+                <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
             </div>
             <div>
                 <h2>Contact</h2>
@@ -43,14 +42,23 @@
             </div>
 
             <p>Notes et commentaires :</p>
-            <div>
+            
                 {% for rating in place.ratings %}
-                <small>{{ rating.user }}</small>
-                <small>{{ rating.ratingDate|date("d/m/Y, H:i")}}</small>
-                    <div>{{ rating.rating|stars|raw}}</div>
+                <div>
+                    <div>
+                        <figure class="rating-profile">
+                            <img src="{{ '/uploads/'~ rating.user.profilePicture}}">
+                        </figure>
+                        <div>
+                            <small>{{ rating.user }}</small>
+                            <small>{{ rating.ratingDate|date("d/m/Y, H:i")}}</small>
+                            <div>{{ rating.rating|stars|raw}}</div>
+                        </div>
+                    </div>
                     <p>{{ rating.comment }}</p>
+                </div>
                 {% endfor %}
-            </div>
+            
 
          
             {% for image in place.images %}

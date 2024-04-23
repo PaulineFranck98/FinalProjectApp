@@ -77,7 +77,7 @@ class PlaceType extends AbstractType
                 
             ])
             // UrlType avoids input errors and ensures that links to websites are functional
-            ->add('website', UrlType::class, [
+            ->add('website', TextType::class, [
                 // I define the 'label' attribute for the 'website' field
                 'label' => 'Site web',
                 // I set 'required' to 'false' to make the website optional if the Place doesn't have one

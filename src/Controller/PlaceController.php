@@ -196,10 +196,13 @@ class PlaceController extends AbstractController
 
     #[Route('/place/{id}', name: 'show_place')]
     // retrieve the 'place' corresponding to the id thanks to paramconverter tool
-    public function show(Place $place) : Response {
+    public function show(Place $place, PlaceRepository $placeRepository, $id) : Response {
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
+        $averageRating = $placeRepository->getAverageRating($id);
+        // dd($averageRating);
         return $this->render('place/show.html.twig', [
-            'place' => $place
+            'place' => $place,
+            'averageRating' => $averageRating
         ]);
     }
 

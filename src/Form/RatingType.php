@@ -40,18 +40,9 @@ class RatingType extends AbstractType
                 // I set 'required' to 'false' to make it optional
                 'required' => false,
             ])
-            ->add('place', EntityType::class, [
-                'class' => Place::class,
-                'choice_label' => 'name',
-            ])
+    
             ->add('valider', SubmitType::class)
-            // ->add('ratingDate', null, [
-            //     'widget' => 'single_text',
-            // ])
-            // ->add('user', EntityType::class, [
-            //     'class' => User::class,
-            //     'choice_label' => 'id',
-            // ])
+         
         ;
     }
 

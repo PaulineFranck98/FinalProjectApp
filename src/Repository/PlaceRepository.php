@@ -34,6 +34,19 @@ class PlaceRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function getAverageRating($placeId)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('AVG(r.rating) as averageRating')
+            ->join('p.ratings', 'r')
+            ->where('p.id = :placeId')
+            ->setParameter('placeId', $placeId)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+
+    }
     //    /**
     //     * @return Place[] Returns an array of Place objects
     //     */
