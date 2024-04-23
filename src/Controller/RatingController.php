@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Rating;
 use App\Form\RatingType;
+use App\Repository\PlaceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,21 +21,27 @@ class RatingController extends AbstractController
         ]);
     }
 
-    #[Route('rating/new', name: 'new_rating')]
-    public function new(Rating $rating, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('rating/new/{placeId}', name: 'new_rating')]
+    public function new(Rating $rating, Request $request, EntityManagerInterface $entityManager, PlaceRepository $placeRepository, $placeId): Response
     {
 
         $rating = new Rating();
 
+        $place = $placeRepository->findOneById(['id' => $placeId]);
+
         $form = $this->createForm(RatingType::class, $rating);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
             $rating = $form->getData();
             // $ratingValue = $rating->getRating();
             $rating->setRatingDate(new \DateTime());
             $user = $this->getUser();
             $rating->setUser($user);
+
+            $rating->setPlace($place);
             // dd($rating);
 
             $entityManager->persist($rating);
@@ -45,6 +52,7 @@ class RatingController extends AbstractController
         }
         return $this->render('rating/new.html.twig', [
             'formAddRating' => $form,
+            'placeId' => $place->getId(),
         ]);
     }
 }
