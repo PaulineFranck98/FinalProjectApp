@@ -16,9 +16,7 @@ class RatingController extends AbstractController
     #[Route('/rating', name: 'app_rating')]
     public function index(): Response
     {
-        return $this->render('rating/index.html.twig', [
-            'controller_name' => 'RatingController',
-        ]);
+        return $this->render('rating/index.html.twig');
     }
 
     #[Route('rating/new/{placeId}', name: 'new_rating')]

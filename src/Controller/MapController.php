@@ -17,6 +17,7 @@ class MapController extends AbstractController
 
         return $this->render('map/index.html.twig', [
             'placesData' => json_encode($placesData),
+            'places' => $placesData
         ]);
     }
 }

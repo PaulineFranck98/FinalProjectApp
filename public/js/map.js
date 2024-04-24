@@ -1,29 +1,29 @@
 // ------------ Affichage de la liste des lieux ----------------
 // const placesData = JSON.parse() 
 
-const placesContainer = document.getElementById('places-container');
-// console.log(placesContainer);
+// const placesContainer = document.getElementById('places-container');
+// // console.log(placesContainer);
 
-const displayPlaces = (placesData) => {
-    // console.log(placesData);
-    placesData.forEach(place => {
-        let placeImages = place.images.map(image => `<figure><img src="/images/place/${image}"></figure>`).join('');
+// const displayPlaces = (placesData) => {
+//     // console.log(placesData);
+//     placesData.forEach(place => {
+//         let placeImages = place.images.map(image => `<figure><img src="/images/place/${image}"></figure>`).join('');
         
-        placesContainer.innerHTML += `
-        <div id="${place.id}">
-            <h2>${place.name}</h2>
-            <p>${place.address}</p>
-            <p>${place.city}</p>
-            <p>${place.companions.join(', ')}</p>
-            <p>${place.themes.join(', ')}</p>
-            <div class="place-img">${placeImages}</div>
-            <button id="hide-button">Masquer</button>
-            <p class="border"></p>
-        </div>`;
-        // console.log(placeImages);
-    });
-}
-displayPlaces(placesData);
+//         placesContainer.innerHTML += `
+//         <div id="${place.id}">
+//             <h2>${place.name}</h2>
+//             <p>${place.address}</p>
+//             <p>${place.city}</p>
+//             <p>${place.companions.join(', ')}</p>
+//             <p>${place.themes.join(', ')}</p>
+//             <div class="place-img">${placeImages}</div>
+//             <button id="hide-button">Masquer</button>
+//             <p class="border"></p>
+//         </div>`;
+//         // console.log(placeImages);
+//     });
+// }
+// displayPlaces(placesData);
 
 
 // ------------ Affichage des marqueurs sur la map ----------------

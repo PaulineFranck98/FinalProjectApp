@@ -44,19 +44,31 @@ class HomeController extends AbstractController
                 foreach($place->getImages() as $image){
                     $images[] = $image->getName();
                 }
+
+                $ratings = [];
+                foreach($place->getRatings() as $rating){
+                    $ratings[] = $rating->getRating();
+                }
+
+                $averageRating = $placeRepository->getAverageRating($place->getId());
                 // dd($images);
+                // dd($averageRating);
                 $data[] = [
                     'id' => $place->getId(),
                     'name' => $place->getName(),
                     'address' => $place->getAddress(),
                     'city' => $place->getCity(),
+                    'zipcode' => $place->getZipcode(),
                     'latitude' => $place->getLatitude(),
                     'longitude' => $place->getLongitude(),
                     'type' => $place->getType()->getName(),
+                    'averageRating' => $averageRating,
+                    'ratings' => $ratings,
                     'companions' => $companions,
                     'themes' => $themes,
                     'images' => $images,
                 ];
+                // dd($data);
             }
 
             // Je stocke les données en sessions
@@ -65,18 +77,12 @@ class HomeController extends AbstractController
             // Je redirige vers la page de la map
             return $this->redirectToRoute('app_map');
         }
-
-        // $themeImages = [
-        //     'Gastronomie' => 'img-source/gastronomie.webp',
-        //     'Histoire' => 'img-source/history.webp',
-        //     'Art' => 'img-source/art.webp',
-        //     'Aventure' => 'img-source/aventure.webp'
-        // ];
         
         return $this->render('home/index.html.twig', [
             'formFindPlace' => $form,
-            // 'themeImages' => $themeImages,
         ]);
     }
+
+    
 
 }

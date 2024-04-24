@@ -26,11 +26,20 @@
         </div>
     </section>
      <!-- =========================== SELECT THEME / COMPANION  =========================== -->
-    <section id="choose-theme">
+    <section id="choose">
         
         {{ form_start(formFindPlace)}}
-        {{ form_row(formFindPlace.themes)}}
-        {# {{ form_row(formFindPlace.themes, {'form_theme': 'form/theme_radio_row.html.twig', 'themeImages': themeImages}) }} #}
+        {% for theme in formFindPlace.themes.vars.choices %}
+        <input type="radio"
+            id="home_themes_{{ theme.data.id }}"
+            name="home[themes]"
+            required="required"
+            value="{{ theme.data.id }}"
+        >
+        <label for="home_themes_{{ theme.data.id }}">
+            <img src="{{ asset('img-source/' ~ theme.data.name ~ '.webp') }}" alt="{{ theme.data.name }}">
+        </label>
+        {% endfor %}
         {{ form_row(formFindPlace.companions)}}
         {{ form_row(formFindPlace.valider)}}
         {{ form_end(formFindPlace)}}

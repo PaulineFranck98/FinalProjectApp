@@ -48,8 +48,13 @@ main{
     border-radius: 5px;
 }
 
-#choose-theme{
+#choose{
     height:100vh;
+}
+
+#home_themes_1 input{
+    width:2rem;
+    height:2rem;
 }
 
 #how-it-works{
@@ -113,3 +118,37 @@ main{
 }
 
 /* -------------------------------- */
+
+/*  Radio input HomePage */
+
+/* input#home_themes_1:checked + label {
+    opacity: 1;
+}
+
+input#home_themes_1 + label {
+    opacity: 0.5;
+}
+input#home_themes_1 + label{
+    background: url('../img-source/gastronomie.webp');
+    display: block;
+    width: 10rem;
+    height: 10rem;
+    background-size: cover;
+} */
+
+input[type="radio"] {
+    display: none;
+  }
+  
+  /* Styliser les images de boutons radio */
+  input[type="radio"] + label > img {
+    cursor: pointer;
+    filter: brightness(0.8);
+    transition: all 0.3s ease;
+  }
+  
+  /* Modifier l'état des images sélectionnées */
+  input[type="radio"]:checked + label > img {
+    transform: translateY(-5%);
+    filter: brightness(1);
+  }
