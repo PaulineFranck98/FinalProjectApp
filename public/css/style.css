@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body{
@@ -25,7 +26,10 @@ nav a{
 
 main{
   padding-top:3rem;  
+  /* max-width:1024px; */
+  margin: 0 auto;
 }
+
 
 #video-presentation{
     height:100vh;
@@ -48,8 +52,28 @@ main{
     border-radius: 5px;
 }
 
-#choose{
+#choice,
+#how-it-works{
+    width:60%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#choice{
     height:100vh;
+}
+
+#how-it-works h3{
+    text-align: left;
+}
+
+#how-it-works span{
+    font-size:3rem;
+    margin-right: 5rem;
+}
+
+#choice h2:first-of-type {
+    font-size: 2rem;
 }
 
 #home_themes_1 input{
@@ -58,39 +82,74 @@ main{
 }
 
 #how-it-works{
-    height:100vh;
+    height:150vh;
 }
 
 #how-it-works > h2{
     text-align:center;
+    font-size:2rem;
     margin: 1rem 0 3rem;
 }
 
 #how-it-works article{
     display:flex;
-    height:30vh;
+    justify-content: space-between;
+    height:35vh;
+    margin-top: 4rem;
 }
 
-#how-it-works figure{
-    width:50%;
+.side-illustration{
+    width: 50%;
 }
+
+.side-illustration figure {
+    width:90%;
+    height:100%;
+    background: #8080808a;
+    border-radius: 1rem;
+}
+
+/* #how-it-works figure{
+    width:50%;
+} */
 
 #join-community {
-    height:50vh;
+    height:55vh;
     text-align: center;
+    width:60%;
+    margin: 0 auto;
+    /* background: #80808017; */
+    /* padding: 1.5rem; */
 }
 
-#join-community > div {
+#join-community  div {
     display:grid;
     grid-template-columns: repeat(3, 1fr);
+    height:70%;
 }
 
-#join-community > h2{
+#join-community h2{
     margin: 1rem 0 3rem;
+    font-size: 2rem;
+}
+
+#join-community h3{
+    margin-bottom:1.2rem;
+}
+
+#join-community article{
+    background: #80808024;
+    border-radius: 0.5rem;
+    padding-top:1rem;
+    margin:1rem;
 }
 
 #join-community figure{
     width: 80%;
+    height: 50%;
+    background: #5757573d;
+    margin: 1rem auto 0;
+    border-radius: 0.5rem;
 }
 
 #share-experience{
@@ -120,47 +179,71 @@ main{
 /* -------------------------------- */
 
 /*  Radio input HomePage */
-
-/* input#home_themes_1:checked + label {
-    opacity: 1;
+.radio-choice-container{
+    display: flex;
+    justify-content: center;
+    width:80%;
+    margin: 2rem auto 2.5rem;
+    gap: 0.5rem;
 }
 
-input#home_themes_1 + label {
-    opacity: 0.5;
+.companion-choice {
+    width:65%;
+    margin:0 auto;
+    background-color: #6b6b6b49;
+    padding: 1rem 0;
+    border-radius: 1rem;
 }
-input#home_themes_1 + label{
-    background: url('../img-source/gastronomie.webp');
-    display: block;
-    width: 10rem;
-    height: 10rem;
-    background-size: cover;
-} */
+.swiper{
+    margin-top:1rem;
+    width:80%;
+    min-height:300px;
+    padding:1rem !important;
+
+}
+
+.swiper-slide{
+    width:15%;
+}
+.radio-choice-container:first-child{
+    margin-bottom: 6rem;
+}
 
 input[type="radio"] {
     display: none;
-  }
-  input[type="radio"] + label > figure{
-    width:20%;
-  }
-  
-  /* Styliser les images de boutons radio */
-  input[type="radio"] + label > figure > img {
-    cursor: pointer;
-    filter: brightness(0.8);
-    transition: all 0.3s ease;
-    width:100%;
-  }
-  
-  /* Modifier l'état des images sélectionnées */
-  input[type="radio"]:checked + label > figure > img {
-    transform: translateY(-5%);
-    filter: brightness(1);
-  }
+}
 
-  /* .choice-radio{
-    width:20%;
-  }
-
-  .choice-radio img{
+input[type="radio"] + label > figure{
     width:100%;
-  } */
+}
+/* input[type="radio"] + label {
+    display: block;
+    /* width:15%; 
+} */
+  
+
+input[type="radio"] + label > figure > img {
+cursor: pointer;
+filter: brightness(0.9);
+transition: all 0.3s ease;
+width:100%;
+border-radius: 1.3rem;
+}
+ 
+input[type="radio"]:checked + label > figure > img {
+transform: translateY(-5%);
+filter: brightness(1.7);
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    font-family: 'Poppins';
+    font-weight: 500;
+    border: none;
+    background: RGB(57, 57, 57);
+    color: white;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+

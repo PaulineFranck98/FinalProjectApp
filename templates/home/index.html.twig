@@ -2,181 +2,197 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 {% block body %}
-{% if themeImages is defined and themeImages|length > 0 %}
-    {% dump(themeImages) %}
-{% else %}
-    <p>La variable themeImages n'est pas définie ou est vide.</p>
-{% endif %}
-<main id="main">
-    <!-- =========================== PRESENTATION / VIDEO  =========================== -->
+    {% block stylesheets %}
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    {% endblock %}
 
-    <section id="presentation">
-        <!-- video : drone shots of Alsatian landscapes-->
-        <video id="video-presentation" loop autoplay muted>
-            <source src="{{ asset('img-source/presentation.mp4') }}">
-        </video>
-        <div>
-            <h1>Lorem ipsum dolor, sit amet !</h1>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
-            </p>
-            <button id="discover">Découvrir</button>
-            <!-- arrow icon -->
-            <i class="#" id="arrow-down"></i>
-        </div>
-    </section>
-     <!-- =========================== SELECT THEME / COMPANION  =========================== -->
-    <section id="choose">
-        <form method="POST" enctype="application/x-www-form-urlencoded">
-            {% for theme in themes %}
-                <input type="radio"
-                    id="themes_{{ theme.id }}"
-                    name="themes"
-                    required="required"
-                    value="{{ theme.id }}">
-                <label for="themes_{{ theme.id }}">
+    <main id="main">
+        <!-- =========================== PRESENTATION / VIDEO  =========================== -->
+
+        <section id="presentation">
+            <!-- video : drone shots of Alsatian landscapes-->
+            <video id="video-presentation" loop autoplay muted>
+                <source src="{{ asset('img-source/presentation.mp4') }}">
+            </video>
+            <div>
+                <h1>Lorem ipsum dolor, sit amet !</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
+                </p>
+                <button id="discover">Découvrir</button>
+                <!-- arrow icon -->
+                <i class="#" id="arrow-down"></i>
+            </div>
+        </section>
+        <!-- =========================== SELECT THEME / COMPANION  =========================== -->
+        <section id="choice">
+            <form method="POST" enctype="application/x-www-form-urlencoded">
+               <h2>Choissisez le thème de votre séjour</h2>
+
+                <div class="radio-choice-container">
+                    {% for theme in themes %}
+                        <input type="radio"
+                            id="themes_{{ theme.id }}"
+                            name="themes"
+                            required="required"
+                            value="{{ theme.id }}">
+                        <label for="themes_{{ theme.id }}">
+                            <figure>
+                                <img src="{{ asset('img-source/' ~ theme.name ~ '.webp') }}" alt="{{ theme.name }}">
+                            </figure>
+                        </label>
+                    {% endfor %}
+                </div>
+                <div class="companion-choice">
+                    <h2>Vous voyagez ... </h2>
+                    <div class="swiper">
+                        <div class="swiper-wrapper" space-between="10">
+                            {% for companion in companions %}
+                                <div class="swiper-slide">
+                                    <input type="radio"
+                                        id="companions_{{ companion.id }}"
+                                        name="companions"
+                                        required="required"
+                                        value="{{ companion.id }}">
+                                    <label for="companions_{{ companion.id }}">
+                                        <figure>
+                                            <img src="{{ asset('img-source/' ~ companion.name ~ '.webp') }}" alt="{{ companion.name }}">
+                                        </figure>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn">C'est parti !</button>
+            </form>
+        </section>
+        <!-- =========================== HOW IT WORKS SECTION =========================== -->
+        <section id="how-it-works">
+            <h2>Comment ça fonctionne ?</h2>
+            <!-- =============== step 1 : choose theme =============== -->
+            <article>
+                <div class="side-illustration">
+                <!-- left side : illustration of the theme choice process -->
                     <figure>
-                        <img src="{{ asset('img-source/' ~ theme.name ~ '.webp') }}" alt="{{ theme.name }}">
+                        <img src="#" alt="">
                     </figure>
-                </label>
-            {% endfor %}
-            {% for companion in companions %}
-                <input type="radio"
-                    id="companions_{{ companion.id }}"
-                    name="companions"
-                    required="required"
-                    value="{{ companion.id }}">
-                <label for="companions_{{ companion.id }}">
+                <!-- right side : explanation -->
+                </div>
+                <div>
+                    <h3><span>1.</span>Choisissez un thème</h3>
+                    <!-- small text explanation-->
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                    <!-- link that leads to the choice theme  -->
+                    <a href="#choice">Découvrir mon itinéraire</a>
+                </div>
+            </article>
+            <!-- =============== step 2 : choose companion / with who? =============== -->
+            <article>
+                <!-- left side : explanation -->
+                <div>
+                    <h3><span>2.</span>Choisissez avec qui vous voyagez</h3>
+                    <!-- small text explanation-->
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                    <!-- link that leads to the choice theme  -->
+                    <a href="#choice">Découvrir mon itinéraire</a>
+                </div>
+                <!-- right side : illustration of the 'with who?' choice process -->
+                <div class="side-illustration">
+                    <!-- left side : illustration of the theme choice process -->
                     <figure>
-                        <img src="{{ asset('img-source/' ~ companion.name ~ '.webp') }}" alt="{{ companion.name }}">
+                        <img src="#" alt="">
                     </figure>
-                </label>
-            {% endfor %}
-            <button type="submit" class="btn">Valider</button>
-        </form>
-        {# {{ form_start(formFindPlace)}}
-            {% for theme in formFindPlace.themes.vars.choices %}
-                <input type="radio"
-                    id="home_themes_{{ theme.data.id }}"
-                    name="home[themes]"
-                    required="required"
-                    value="{{ theme.data.id }}"
-                >
-                <label for="home_themes_{{ theme.data.id }}">
-                    <img src="{{ asset('img-source/' ~ theme.data.name ~ '.webp') }}" alt="{{ theme.data.name }}">
-                </label>
-            {% endfor %}
-            {{ form_row(formFindPlace.companions)}}
-            {{ form_row(formFindPlace.valider)}}
-        {{ form_end(formFindPlace)}} #}
-    </section>
-    <!-- =========================== HOW IT WORKS SECTION =========================== -->
-    <section id="how-it-works">
-        <h2>Comment ça fonctionne ?</h2>
-        <!-- =============== step 1 : choose theme =============== -->
-        <article>
-            <!-- left side : illustration of the theme choice process -->
-            <figure>
-                <img src="#" alt="">
-            </figure>
-            <!-- right side : explanation -->
-            <div>
-                <h3>Choisissez un thème</h3>
-                <!-- small text explanation-->
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
-                <!-- link that leads to the choice theme  -->
-                <a href="#choose-theme">Découvrir mon itinéraire</a>
-            </div>
-        </article>
-        <!-- =============== step 2 : choose companion / with who? =============== -->
-        <article>
-            <!-- left side : explanation -->
-            <div>
-                <h3>Choisissez avec qui vous voyagez</h3>
-                <!-- small text explanation-->
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
-                <!-- link that leads to the choice theme  -->
-                <a href="#choose-theme">Découvrir mon itinéraire</a>
-            </div>
-            <!-- right side : illustration of the 'with who?' choice process -->
-            <figure>
-                <img src="#" alt="">
-            </figure>
-        </article>
-        <!-- =============== step 3 : discover the map with personalized itinerary =================== -->
-        <article>
-            <!-- left side : illustration of the theme choice process -->
-            <figure>
-                <img src="#" alt="">
-            </figure>
-            <!-- right side : explanation -->
-            <div>
-                <h3>Découvrez votre itinéraire !</h3>
-                <!-- small text explanation-->
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
-                <!-- link that leads to the choice theme  -->
-                <a href="#choose-theme">Découvrir mon itinéraire</a>
-            </div>
-        </article>
-    </section>
-     <!-- =========================== JOIN COMMUNITY SECTION =========================== -->
-    <section id="join-community">
-        <!-- benefits/advantages when a user is registered -->
-        <h2>Rejoignez la communauté</h2>
-        <!-- first advantage -->
-        <div>
-            <article>
-                <h3>lorem</h3>
-                <!-- small text explanation-->
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
-                <figure>
-                    <img src="" alt="">
-                </figure>
+                </div>
             </article>
-            <!-- second advantage -->
+            <!-- =============== step 3 : discover the map with personalized itinerary =================== -->
             <article>
-                <h3>lorem</h3>
-                <!-- small text explanation-->
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
-                <figure>
-                    <img src="" alt="">
-                </figure>
+                <div class="side-illustration">
+                    <!-- left side : illustration of the theme choice process -->
+                    <figure>
+                        <img src="#" alt="">
+                    </figure>
+                </div>
+                <!-- right side : explanation -->
+                <div>
+                    <h3><span>3.</span>Découvrez votre itinéraire !</h3>
+                    <!-- small text explanation-->
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                    <!-- link that leads to the choice theme  -->
+                    <a href="#choice">Découvrir mon itinéraire</a>
+                </div>
             </article>
-            <!-- third advantage -->
+        </section>
+        <!-- =========================== JOIN COMMUNITY SECTION =========================== -->
+        <section id="join-community">
+            <!-- benefits/advantages when a user is registered -->
+            <h2>Rejoignez la communauté</h2>
+            <!-- first advantage -->
+            <div>
+                <article>
+                    <h3>Apportez votre contribution</h3>
+                    <!-- small text explanation-->
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                </article>
+                <!-- second advantage -->
+                <article>
+                    <h3>Personnalisez votre itinéraire</h3>
+                    <!-- small text explanation-->
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                </article>
+                <!-- third advantage -->
+                <article>
+                    <h3>Et le dernier avantage</h3>
+                    <!-- small text explanation-->
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                </article>
+            </div>
+        </section>
+        <!-- =========================== SHARE EXPERIENCE SECTION =========================== -->
+        <section id="share-experience">
             <article>
-                <h3>lorem</h3>
-                <!-- small text explanation-->
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
-                <figure>
-                    <img src="" alt="">
-                </figure>
+                <div>
+                    <h3>Partagez vos expériences...</h3>
+                </div>
+                <div>
+                    <h3>et découvrez celles des autres</h3>
+                </div>
+                <div>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, odio.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, officiis.</p>
+                </div>
+                <div class="socials">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
+                </div>
             </article>
-        </div>
-    </section>
-     <!-- =========================== SHARE EXPERIENCE SECTION =========================== -->
-    <section id="share-experience">
-        <article>
-            <div>
-                <h3>Partagez vos expériences...</h3>
-            </div>
-            <div>
-                <h3>et découvrez celles des autres</h3>
-            </div>
-            <div>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, odio.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, officiis.</p>
-            </div>
-            <div class="socials">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-x-twitter"></i>
-            </div>
-        </article>
-        <aside>
-            <figure><img src="" alt=""></figure>
-            <figure><img src="" alt=""></figure>
-            <figure><img src="" alt=""></figure>
-        </aside>
-    </section>
-</main>
+            <aside>
+                <figure><img src="" alt=""></figure>
+                <figure><img src="" alt=""></figure>
+                <figure><img src="" alt=""></figure>
+            </aside>
+        </section>
+    </main>
+
+    {% block javascripts %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const swiper = new Swiper('.swiper', {
+                        loop: true,
+                        slidesPerView: 3,
+                        });
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {% endblock %}
 {% endblock %}
