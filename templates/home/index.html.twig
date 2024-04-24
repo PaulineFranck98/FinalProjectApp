@@ -27,22 +27,48 @@
     </section>
      <!-- =========================== SELECT THEME / COMPANION  =========================== -->
     <section id="choose">
-        
-        {{ form_start(formFindPlace)}}
-        {% for theme in formFindPlace.themes.vars.choices %}
-        <input type="radio"
-            id="home_themes_{{ theme.data.id }}"
-            name="home[themes]"
-            required="required"
-            value="{{ theme.data.id }}"
-        >
-        <label for="home_themes_{{ theme.data.id }}">
-            <img src="{{ asset('img-source/' ~ theme.data.name ~ '.webp') }}" alt="{{ theme.data.name }}">
-        </label>
-        {% endfor %}
-        {{ form_row(formFindPlace.companions)}}
-        {{ form_row(formFindPlace.valider)}}
-        {{ form_end(formFindPlace)}}
+        <form method="POST" enctype="application/x-www-form-urlencoded">
+            {% for theme in themes %}
+                <input type="radio"
+                    id="themes_{{ theme.id }}"
+                    name="themes"
+                    required="required"
+                    value="{{ theme.id }}">
+                <label for="themes_{{ theme.id }}">
+                    <figure>
+                        <img src="{{ asset('img-source/' ~ theme.name ~ '.webp') }}" alt="{{ theme.name }}">
+                    </figure>
+                </label>
+            {% endfor %}
+            {% for companion in companions %}
+                <input type="radio"
+                    id="companions_{{ companion.id }}"
+                    name="companions"
+                    required="required"
+                    value="{{ companion.id }}">
+                <label for="companions_{{ companion.id }}">
+                    <figure>
+                        <img src="{{ asset('img-source/' ~ companion.name ~ '.webp') }}" alt="{{ companion.name }}">
+                    </figure>
+                </label>
+            {% endfor %}
+            <button type="submit" class="btn">Valider</button>
+        </form>
+        {# {{ form_start(formFindPlace)}}
+            {% for theme in formFindPlace.themes.vars.choices %}
+                <input type="radio"
+                    id="home_themes_{{ theme.data.id }}"
+                    name="home[themes]"
+                    required="required"
+                    value="{{ theme.data.id }}"
+                >
+                <label for="home_themes_{{ theme.data.id }}">
+                    <img src="{{ asset('img-source/' ~ theme.data.name ~ '.webp') }}" alt="{{ theme.data.name }}">
+                </label>
+            {% endfor %}
+            {{ form_row(formFindPlace.companions)}}
+            {{ form_row(formFindPlace.valider)}}
+        {{ form_end(formFindPlace)}} #}
     </section>
     <!-- =========================== HOW IT WORKS SECTION =========================== -->
     <section id="how-it-works">

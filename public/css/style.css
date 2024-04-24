@@ -139,16 +139,28 @@ input#home_themes_1 + label{
 input[type="radio"] {
     display: none;
   }
+  input[type="radio"] + label > figure{
+    width:20%;
+  }
   
   /* Styliser les images de boutons radio */
-  input[type="radio"] + label > img {
+  input[type="radio"] + label > figure > img {
     cursor: pointer;
     filter: brightness(0.8);
     transition: all 0.3s ease;
+    width:100%;
   }
   
   /* Modifier l'état des images sélectionnées */
-  input[type="radio"]:checked + label > img {
+  input[type="radio"]:checked + label > figure > img {
     transform: translateY(-5%);
     filter: brightness(1);
   }
+
+  /* .choice-radio{
+    width:20%;
+  }
+
+  .choice-radio img{
+    width:100%;
+  } */

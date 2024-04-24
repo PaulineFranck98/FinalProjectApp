@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Theme;
 use App\Form\HomeType;
 use App\Entity\Companion;
+use App\Repository\CompanionRepository;
 use App\Repository\PlaceRepository;
+use App\Repository\ThemeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,74 +17,80 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(Request $request, PlaceRepository $placeRepository): Response
+    public function index(Request $request, PlaceRepository $placeRepository,ThemeRepository $themeRepository, CompanionRepository $companionRepository): Response
     {
-        $form = $this->createForm(HomeType::class);
-        $form->handleRequest($request);
 
-        if( $form->isSubmitted() && $form->isValid())
+        $themes = $themeRepository->findAll();
+        $companions = $companionRepository->findAll();
+        // dd($themes, $companions);
+
+        
+        if( $request->isMethod('POST'))
         {
-            $theme = $form->get('themes')->getData();
-            $companion = $form->get('companions')->getData();
+            $theme = $request->request->get('themes');
 
-            $places = $placeRepository->findByThemeAndCompanion($theme, $companion);
-            // dd($places);
-            $data= [];
-            foreach($places as $place)
-            {
-                $companions = [];
-                foreach( $place->getCompanions() as $companion){
-                    $companions[] = $companion->getName();
+            $companion = $request->request->get('companions');
+            // dd($theme, $companion);
+
+            if($theme && $companion){
+                $places = $placeRepository->findByThemeAndCompanion($theme, $companion);
+                // dd($places);
+                $data= [];
+                foreach($places as $place)
+                {
+                    $companions = [];
+                    foreach( $place->getCompanions() as $companion){
+                        $companions[] = $companion->getName();
+                    }
+
+                    $themes = [];
+                    foreach($place->getThemes() as $theme){
+                        $themes[] = $theme->getName();
+                    }
+
+                    $images = [];
+                    foreach($place->getImages() as $image){
+                        $images[] = $image->getName();
+                    }
+
+                    $ratings = [];
+                    foreach($place->getRatings() as $rating){
+                        $ratings[] = $rating->getRating();
+                    }
+
+                    $averageRating = $placeRepository->getAverageRating($place->getId());
+                    // dd($images);
+                    // dd($averageRating);
+                    $data[] = [
+                        'id' => $place->getId(),
+                        'name' => $place->getName(),
+                        'address' => $place->getAddress(),
+                        'city' => $place->getCity(),
+                        'zipcode' => $place->getZipcode(),
+                        'latitude' => $place->getLatitude(),
+                        'longitude' => $place->getLongitude(),
+                        'type' => $place->getType()->getName(),
+                        'averageRating' => $averageRating,
+                        'ratings' => $ratings,
+                        'companions' => $companions,
+                        'themes' => $themes,
+                        'images' => $images,
+                    ];
+                    // dd($data);
                 }
 
-                $themes = [];
-                foreach($place->getThemes() as $theme){
-                    $themes[] = $theme->getName();
-                }
+                // Je stocke les données en sessions
+                $request->getSession()->set('placesData', $data);
 
-                $images = [];
-                foreach($place->getImages() as $image){
-                    $images[] = $image->getName();
-                }
-
-                $ratings = [];
-                foreach($place->getRatings() as $rating){
-                    $ratings[] = $rating->getRating();
-                }
-
-                $averageRating = $placeRepository->getAverageRating($place->getId());
-                // dd($images);
-                // dd($averageRating);
-                $data[] = [
-                    'id' => $place->getId(),
-                    'name' => $place->getName(),
-                    'address' => $place->getAddress(),
-                    'city' => $place->getCity(),
-                    'zipcode' => $place->getZipcode(),
-                    'latitude' => $place->getLatitude(),
-                    'longitude' => $place->getLongitude(),
-                    'type' => $place->getType()->getName(),
-                    'averageRating' => $averageRating,
-                    'ratings' => $ratings,
-                    'companions' => $companions,
-                    'themes' => $themes,
-                    'images' => $images,
-                ];
-                // dd($data);
+                // Je redirige vers la page de la map
+                return $this->redirectToRoute('app_map');
             }
-
-            // Je stocke les données en sessions
-            $request->getSession()->set('placesData', $data);
-
-            // Je redirige vers la page de la map
-            return $this->redirectToRoute('app_map');
         }
         
         return $this->render('home/index.html.twig', [
-            'formFindPlace' => $form,
+            'themes'=> $themes,
+            'companions'=> $companions,
         ]);
     }
-
     
-
 }
