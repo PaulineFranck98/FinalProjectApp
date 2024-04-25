@@ -16,8 +16,12 @@
         <header>
             <nav>
                 {% if app.user %}
-                    <a href="#"><i class="fa-solid fa-user"></i>&nbsp;{{app.user}}</a>
-                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    {# <a href="#"><i class="fa-solid fa-user"></i>&nbsp;{{app.user}}</a> #}
+                    <a href="">Contribuer <span>|</span></a>
+                    <a href="">Forum <span>|</span></a>
+                    <a href="">Itinéraires <span>|</span></a>
+                    <a href="">Profil <span>|</span></a>
+                    <a href="{{ path('app_logout') }}">Déconnexion <span>|</span></a>
                 {% else %}
                     <a href="{{ path('app_home') }}">Home</a>
                     <a href="{{ path('app_login') }}">Connexion</a>
@@ -26,11 +30,11 @@
             </nav>
         </header>
         {% block body %}{% endblock %}
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}
-   
+            {% block javascripts %}
+                {% block importmap %}{{ importmap('app') }}
+    
+            {% endblock %}
+        <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
         {% endblock %}
-    {% endblock %}
-    <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
     </body>
 </html>
