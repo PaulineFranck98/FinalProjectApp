@@ -83,12 +83,26 @@ main{
 
 #how-it-works{
     height:150vh;
+    position: relative;
+    margin-top:6rem;
+}
+
+#how-it-works .looking-down{
+    position: absolute;
+    left:38%;
+    width:8%;
+    top:7.3%;
+    filter: saturate(0.8);
+}
+
+.looking-down img{
+    width:100%;
 }
 
 #how-it-works > h2{
     text-align:center;
     font-size:2rem;
-    margin: 1rem 0 3rem;
+    margin: 1rem 0 8rem;
 }
 
 #how-it-works article{
@@ -153,14 +167,118 @@ main{
 }
 
 #share-experience{
-    height:60vh;
+    height:75vh;
     display:flex;
+    margin: 0 auto;
+    width:60%;
+    position: relative;
+}
+
+#share-experience article {
+    width:50%;
+    height:90%;
+    text-align: center;
 }
 
 
-#share-experience div:nth-child(2) {
-    text-align: end;
+.share-message{
+    position:relative;
+    height:50%;
+    margin-top:8rem;
 }
+
+.share-message h3:first-of-type{
+    position:absolute;
+}
+
+
+.share-message h3:last-of-type{
+    position: absolute;
+    top:44%;
+    left:31%;
+}
+
+.share-message figure{
+    position:absolute;
+}
+
+.share-message figure img{
+    width:100%;
+}
+
+.share-message figure:first-of-type{
+    top:-12%;
+    left:-5%;
+    width:60%;
+}
+.share-message figure:last-of-type{
+    top:31%;
+    left:26%;
+    width:66%;
+}
+
+#share-experience aside{
+    width:50%;
+    position:relative;
+}
+
+#share-experience aside figure{
+    position:relative;
+    width:30%;
+    height:30%;
+    background:grey;
+    border-radius: 1rem;
+}
+
+#share-experience aside figure:first-of-type{
+    left: 58%;
+    top: 13%;
+    width:40%;
+}
+
+#share-experience aside figure:last-of-type{
+    left: 58%;
+    bottom: 14%;
+    height: 35%; 
+}
+
+#share-experience aside figure:nth-of-type(2){
+    left:17%;
+    top:4%;
+    height:40%;
+    width:36%;
+}
+
+#share-experience .standing-stork {
+    width: 15%;
+    right: 20%;
+    bottom: 64.5%;
+    filter: saturate(0.8);
+}
+
+.straight-stork{
+    position:absolute;
+    width:7%;
+    top:4%;
+    left:20%;
+    filter: saturate(0.8);
+}
+
+.straight-stork img{
+    width:100%;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.socials i {
+    font-size: 2rem;
+}
+
 
 /* ---- Rating ------------------ */
 
