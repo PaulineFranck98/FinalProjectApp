@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}HomePage{% endblock %}
 {% block body %}
     {% block stylesheets %}
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -10,30 +10,28 @@
         <!-- =========================== PRESENTATION / VIDEO  =========================== -->
 
         <section id="presentation">
-            <!-- video : drone shots of Alsatian landscapes-->
-            {# <video id="video-presentation" loop autoplay muted>
-                <source src="{{ asset('img-source/presentation.mp4') }}">
-            </video> #}
-            <figure class="flying-stork">
-                <img src="img-source/flying-stork.webp">
-            </figure>
-            <div>
-                <h1>Visitez l'Alsace<br><span>autrement</span></h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
-                </p>
-                <button id="discover" class="home-btn">Découvrir</button>
-                <!-- arrow icon -->
-                <i class="#" id="arrow-down"></i>
-            </div>
+            <div class="parallax" aria-label="Paysage, vignes Alsace" role="img"></div>
+                <figure class="flying-stork">
+                    <img src="img-source/flying-stork.webp" alt="Icône représentant une cigogne en vol">
+                </figure>
+                <div class="presentation">
+                    <h1>Visitez l'Alsace<br><span>autrement</span></h1>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
+                    </p>
+                    <button id="discover" class="home-btn" aria-label="Envoie au formulaire initial en haut de page">Découvrir</button>
+                    <!-- arrow icon -->
+                    <i class="#" id="arrow-down"></i>
+                </div>
+                <div class="parallax" aria-label="Paysage, vignes Alsace" role="img"></div>
+            
         </section>
         <!-- =========================== SELECT THEME / COMPANION  =========================== -->
         <div class="bcg-choice">
             <section id="choice">
                 <form method="POST" enctype="application/x-www-form-urlencoded">
-                <h2>Choisissez le <span>thème</span> de votre séjour</h2>
-
-                    <div class="radio-choice-container">
+                    <h2>Choisissez le <span>thème</span> de votre séjour</h2>
+                    <div class="choice-theme-container">
                         {% for theme in themes %}
                             <input type="radio"
                                 id="themes_{{ theme.id }}"
@@ -42,12 +40,12 @@
                                 value="{{ theme.id }}">
                             <label for="themes_{{ theme.id }}">
                                 <figure>
-                                    <img src="{{ asset('img-source/' ~ theme.name ~ '.webp') }}" alt="{{ theme.name }}">
+                                    <img src="{{ asset('img-source/' ~ theme.name ~ '.webp') }}" alt="Illustration représentant le thème {{ theme.name }}">
                                 </figure>
                             </label>
                         {% endfor %}
                     </div>
-                    <div class="companion-choice">
+                    <div class="choice-companion-container">
                         <h2>Vous voyagez ... </h2>
                         <div class="swiper">
                             <div class="swiper-wrapper" space-between="10">
@@ -60,7 +58,7 @@
                                             value="{{ companion.id }}">
                                         <label for="companions_{{ companion.id }}">
                                             <figure>
-                                                <img src="{{ asset('img-source/' ~ companion.name ~ '.webp') }}" alt="{{ companion.name }}">
+                                                <img src="{{ asset('img-source/' ~ companion.name ~ '.webp') }}" alt="Illusration représentant le choix {{ companion.name }}">
                                             </figure>
                                         </label>
                                     </div>
@@ -79,24 +77,24 @@
                 <!-- =============== step 1 : choose theme =============== -->
                 <article>
                     <figure class="looking-down">
-                        <img src="img-source/looking-straight-stork.webp">
+                        <img src="img-source/looking-straight-stork.webp" alt="Illustration représentant une cigogne regardant en bas">
                     </figure>
                     <div class="side-illustration">
                     <!-- left side : illustration of the theme choice process -->
                         <figure>
-                            <img src="#" alt="">
+                            <img src="#" alt="Description illustration étape 1">
                         </figure>
-                    <!-- right side : explanation -->
                     </div>
+                    <!-- right side : explanation -->
                     <div>
                         <figure class="arrow-icon">
-                            <img src="img-source/straight-arrow.webp">
+                            <img src="img-source/straight-arrow.webp" alt="Icone représentant une flèche rouge pointée vers le bas">
                         </figure>
                         <h3><span>1.</span>Choisissez un thème</h3>
                         <!-- small text explanation-->
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
                         <!-- link that leads to the choice theme  -->
-                        <a href="#choice">Découvrir mon itinéraire</a>
+                        <a href="#choice" aria-label="Renvoie au formulaire initial en haut de page">Découvrir mon itinéraire</a>
                     </div>
                 </article>
                 <!-- =============== step 2 : choose companion / with who? =============== -->
@@ -104,19 +102,19 @@
                     <!-- left side : explanation -->
                     <div>
                          {# <figure class="arrow-icon">
-                            <img src="img-source/straight-arrow.webp">
+                            <img src="img-source/straight-arrow.webp" alt="Icone représentant une flèche rouge pointée vers le bas">
                         </figure> #}
                         <h3><span>2.</span>Choisissez avec qui vous voyagez</h3>
                         <!-- small text explanation-->
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
                         <!-- link that leads to the choice theme  -->
-                        <a href="#choice">Découvrir mon itinéraire</a>
+                        <a href="#choice" aria-label="Renvoie au formulaire initial en haut de page">Découvrir mon itinéraire</a>
                     </div>
                     <!-- right side : illustration of the 'with who?' choice process -->
                     <div class="side-illustration">
                         <!-- left side : illustration of the theme choice process -->
                         <figure>
-                            <img src="#" alt="">
+                            <img src="#" alt="Description illustration étape 2">
                         </figure>
                     </div>
                 </article>
@@ -125,28 +123,25 @@
                     <div class="side-illustration">
                         <!-- left side : illustration of the theme choice process -->
                         <figure>
-                            <img src="#" alt="">
+                            <img src="#" alt="Description illustration étape 3">
                         </figure>
                     </div>
                     <!-- right side : explanation -->
                     <div>
                          {# <figure class="arrow-icon">
-                            <img src="img-source/loop-arrow.webp">
+                            <img src="img-source/loop-arrow.webp" alt="Icone représentant une flèche rouge, bouclée,  vers le bas">
                         </figure> #}
                         <h3><span>3.</span>Découvrez votre itinéraire !</h3>
                         <!-- small text explanation-->
                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
                         <!-- link that leads to the choice theme  -->
-                        <a href="#choice">Découvrir mon itinéraire</a>
+                        <a href="#choice" aria-label="Renvoie au formulaire initial en haut de page">Découvrir mon itinéraire</a>
                     </div>
                 </article>
             </section>
         </div>
         <!-- =========================== JOIN COMMUNITY SECTION =========================== -->
         <section id="join-community">
-            {# <figure class="alsace-bcg">
-                <img src="img-source/alsace-bcg1.jpg">
-            </figure> #}
             <!-- benefits/advantages when a user is registered -->
             <h2>Rejoignez la communauté</h2>
             <!-- first advantage -->
@@ -156,7 +151,7 @@
                     <!-- small text explanation-->
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
                     <figure>
-                        <img src="" alt="">
+                        <img src="" alt="Description premier avantage">
                     </figure>
                 </article>
                 <!-- second advantage -->
@@ -165,7 +160,7 @@
                     <!-- small text explanation-->
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
                     <figure>
-                        <img src="" alt="">
+                        <img src="" alt="Description deuxième avantage">
                     </figure>
                 </article>
                 <!-- third advantage -->
@@ -174,30 +169,30 @@
                     <!-- small text explanation-->
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque, aperiam.</p>
                     <figure>
-                        <img src="" alt="">
+                        <img src="" alt="Description troisième avantage">
                     </figure>
                 </article>
             </div>
         </section>
         <!-- =========================== SHARE EXPERIENCE SECTION =========================== -->
-        <div class="bcg-share">
+        <div class="bcg-share" aria-label="Photographie représentant les vignes Alsaciennes">
             <section id="share-experience">
                 <article>
                     <figure class="straight-stork">
-                        <img src="img-source/looking-straight-stork.webp">
+                        <img src="img-source/looking-straight-stork.webp" alt="Illustration représentant une cigogne regardant en bas">
                     </figure>
                     <div class="share-message">
                         <h3>Partagez vos expériences...</h3>
                         <figure>
-                            <img src="img-source/left-speech-bubble.webp" alt="">
+                            <img src="img-source/left-speech-bubble.webp" alt="Illustration représentant une bulle de discussion orientée à gauche">
                         </figure>
                     
                         <figure class="standing-stork">
-                            <img src="img-source/stork-looking-up.webp">
+                            <img src="img-source/stork-looking-up.webp" alt="Illustration représentant une cigogne regardant en l'air">
                         </figure>
                         <h3>...et découvrez celles des autres</h3>
                         <figure>
-                            <img src="img-source/right-speech-bubble.webp" alt="">
+                            <img src="img-source/right-speech-bubble.webp" alt="Illustration représentant une bulle de discussion orientée à droite">
                         </figure>
                     </div>
                     <div>
@@ -211,9 +206,9 @@
                     </div>
                 </article>
                 <aside>
-                    <figure><img src="" alt=""></figure>
-                    <figure><img src="" alt=""></figure>
-                    <figure><img src="" alt=""></figure>
+                    <figure><img src="#" alt="Description de la première illustration"></figure>
+                    <figure><img src="#" alt="Description de la deuxième illustration"></figure>
+                    <figure><img src="#" alt="Description de la troisième illustration"></figure>
                 </aside>
             </section>
         </div>

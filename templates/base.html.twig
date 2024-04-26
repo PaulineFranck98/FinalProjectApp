@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -23,9 +23,9 @@
                     <a href="">Profil <span>|</span></a>
                     <a href="{{ path('app_logout') }}">Déconnexion <span>|</span></a>
                 {% else %}
-                    <a href="{{ path('app_home') }}">Home</a>
-                    <a href="{{ path('app_login') }}">Connexion</a>
-                    <a href="{{ path('app_place')}} ">Lieux</a>
+                    <a href="{{ path('app_home') }}">Home <span>|</span></a>
+                    <a href="{{ path('app_login') }}">Connexion <span>|</span></a>
+                    <a href="{{ path('app_place')}} ">Lieux <span>|</span></a>
                 {% endif %}
             </nav>
         </header>
