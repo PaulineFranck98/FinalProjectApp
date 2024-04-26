@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notes{% endblock %}
+
+{% block body %}
+<main>
+    <section id="dashboard">
+        <aside>
+            <ul>
+                <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil</a></li>
+                <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}">Posts</a></li>
+                <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}">Avis</a></li>
+                <li><a href="#">Favoris</a></li>
+                <li><a href="#">Itinéraires</a></li>
+            </ul>
+        </aside>
+        <section>
+            <h1>Notes et Avis</h1>
+            {% if app.user.ratings %}
+            <ul>
+                {% for rating in ratings %}
+                <li>
+                    <p>{{ rating.place}}</p>
+                    <p>{{ rating.rating|stars|raw}}</p>
+                    <p>{{ rating.ratingDate|date("d/m/Y, H:i")}}</p>
+                    <p>{{ rating.comment }}</p>
+                </li>
+    
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>Vous n'avez pas encore laissé d'avis.</p>
+            {% endif %}
+            
+        </section>
+    </section>
+</main>
+{% endblock %}

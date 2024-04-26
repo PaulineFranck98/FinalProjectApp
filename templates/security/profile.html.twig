@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<main>
+    <section id="dashboard">
+        <aside>
+            <ul>
+                <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil</a></li>
+                <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}">Posts</a></li>
+                <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}">Avis</a></li>
+                <li><a href="#">Favoris</a></li>
+                <li><a href="#">Itinéraires</a></li>
+            </ul>
+        </aside>
+        <section id="profile">
+            <h1>Infos Profil</h1>
+            <p>{{ app.user}}</p>
+            <p>{{ app.user.email}}</p>
+            {# <figure>
+                <img src="{{ asset('uploads/' ~ app.user.profilePicture)}}" alt="">
+            </figure> #}
+        </section>
+    </section>
+</main>
+{% endblock %}

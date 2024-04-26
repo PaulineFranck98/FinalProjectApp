@@ -15,15 +15,15 @@
     <body>
         <header>
             <nav>
+                    <a href="{{ path('app_home') }}">Home <span>|</span></a>
                 {% if app.user %}
                     {# <a href="#"><i class="fa-solid fa-user"></i>&nbsp;{{app.user}}</a> #}
                     <a href="">Contribuer <span>|</span></a>
                     <a href="">Forum <span>|</span></a>
                     <a href="">Itinéraires <span>|</span></a>
-                    <a href="">Profil <span>|</span></a>
+                    <a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil <span>|</span></a>
                     <a href="{{ path('app_logout') }}">Déconnexion <span>|</span></a>
                 {% else %}
-                    <a href="{{ path('app_home') }}">Home <span>|</span></a>
                     <a href="{{ path('app_login') }}">Connexion <span>|</span></a>
                     <a href="{{ path('app_place')}} ">Lieux <span>|</span></a>
                 {% endif %}

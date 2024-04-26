@@ -29,4 +29,50 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    #[Route(path: '/profile/{id}', name: 'show_profile')]
+    public function showProfile(): Response
+    {
+        if ($this->getUser()) {
+            $id = $this->getUser()->getId();
+            
+            // dump($id); 
+            return $this->render('security/profile.html.twig', ['id' => $id]);
+        }
+
+        return $this->redirectToRoute('app_home');
+    }
+
+    #[Route(path: '/posts/{id}', name: 'show_posts')]
+    public function showPosts(): Response
+    {
+        if ($this->getUser()) {
+            $id = $this->getUser()->getId();
+            $posts = $this->getuser()->getPosts();
+            // dump($id); 
+            return $this->render('security/posts.html.twig', [
+                'id' => $id,
+                'posts' => $posts,
+            ]);
+        }
+
+        return $this->redirectToRoute('app_home');
+    }
+
+    #[Route(path: '/ratings/{id}', name: 'show_ratings')]
+    public function showRatings(): Response
+    {
+        if ($this->getUser()) {
+            $id = $this->getUser()->getId();
+            $ratings = $this->getuser()->getRatings();
+            // dump($id); 
+            return $this->render('security/ratings.html.twig', [
+                'id' => $id,
+                'ratings' => $ratings,
+            ]);
+        }
+
+        return $this->redirectToRoute('app_home');
+    }
+
 }

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+<main>
+    <section id="dashboard">
+        <aside>
+            <ul>
+                <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil</a></li>
+                <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}">Posts</a></li>
+                <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}">Avis</a></li>
+                <li><a href="#">Favoris</a></li>
+                <li><a href="#">Itinéraires</a></li>
+            </ul>
+        </aside>
+        <section id="profile">
+            <h1>Vos posts</h1>
+            {% if app.user.posts %}
+            <ul>
+                {% for post in posts %}
+                    <li>{{ post.title}} &nbsp;<a href="{{ path('show_post', {'id' : post.id}) }}">Voir le post</a></li>
+                    {# <p>{{ post.content}}</p>
+                    <figure>
+                        <img src="{{ asset('uploads/'~ post.image)}}" alt="">
+                    </figure>
+                    <small>{{post.creationDate | date("d/m/Y, H:i")}}</small> #}
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>Vous n'avez pas encore créé de post.</p>
+            {% endif %}
+            
+        </section>
+    </section>
+</main>
+{% endblock %}

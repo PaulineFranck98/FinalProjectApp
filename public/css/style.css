@@ -14,12 +14,14 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    list-style: none;
 }
 
 
 body{
     font-family: 'Poppins', sans-serif;
     margin: 0 auto;
+    /* list-style: none; */
 
 }
 
@@ -477,6 +479,33 @@ input[type="radio"]:checked + label > figure > img {
     margin-top: 1rem;
     font-size: 1.1rem;
 }
+
+
+#dashboard{
+    /* padding-top: 3rem; */
+    display: flex;
+    align-items :center;
+    width:50vw;
+    height:80vh;
+    margin:auto;
+}
+
+#dashboard aside{
+    width:40%;
+    /* height:50%;
+    margin: auto 1rem; */
+}
+
+
+#dashboard aside ul li a {
+    text-decoration: none;
+    border: 1px solid grey;
+    width:60%;
+    display:block;
+    padding:1rem;
+    color:black;
+}
+
 
 
 
