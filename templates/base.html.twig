@@ -24,8 +24,8 @@
                     <a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil <span>|</span></a>
                     <a href="{{ path('app_logout') }}">Déconnexion <span>|</span></a>
                 {% else %}
+                    <a href="{{ path('app_register') }}">Inscription <span>|</span></a>
                     <a href="{{ path('app_login') }}">Connexion <span>|</span></a>
-                    <a href="{{ path('app_place')}} ">Lieux <span>|</span></a>
                 {% endif %}
             </nav>
         </header>
