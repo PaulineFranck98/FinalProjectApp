@@ -236,14 +236,30 @@ nav span{
 }
 
 #join-community article{
-    background: #d3d3d399;
+    /* background: #d5d5d5de; */
     border-radius: 0.5rem;
     padding-top: 1rem;
     margin: 1rem;
-    position: absolute;
-    width:30%;
-    height:50%;
-    left:10%;
+    position: relative;
+    width: 56%;
+    height: 70%;
+    left: -10%;
+    top: 9%;
+    /* filter: drop-shadow(2px 2px 2px grey); */
+    /* box-shadow: 0.2rem 0.2rem 0.2rem rgb(0 0 0 / 16%); */
+}
+
+#blur-bcg{
+    z-index: 2;
+    /* position: absolute; */
+    width: 49%;
+    /* height: 73%; */
+    top: -66%;
+    right: -44%;
+    background: #87878742;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgb(0 0 0 / 10%);
+    backdrop-filter: blur(13px);
+    border-radius: 1rem;
 }
 
 #join-community article:nth-last-of-type(2){
@@ -257,13 +273,25 @@ nav span{
 
 
 #join-community figure{
-    width: 80%;
+    /* width: 80%; */
     height: 50%;
-    background: #5757573d;
+    /* background: #5757573d; */
     margin: 1rem auto 0;
     border-radius: 0.5rem;
 }
 
+#reviews-phone{
+    width: 136%;
+    left: -5%;
+    top: -24%;
+    position: absolute;
+    background: none;
+    filter: drop-shadow(2px 2px 2px grey);
+}
+
+.front{
+    z-index: 3;
+}
 .bcg-share{
     background : url('/img-source/bcg-vignes-bottom.webp');
     width:100%;
@@ -505,6 +533,7 @@ input[type="radio"]:checked + label > figure > img {
     padding:1rem;
     color:black;
 }
+
 
 
 
