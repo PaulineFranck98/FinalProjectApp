@@ -213,7 +213,7 @@ nav span{
 
 
 #join-community {
-    height:175vh;
+    height:250vh;
     margin:0 auto;
     padding : 4rem 0;
     border-radius: var(--lg-border-radius);
@@ -223,7 +223,7 @@ nav span{
 #join-community  div {
     /* display:grid;
     grid-template-columns: repeat(3, 1fr); */
-    height:57%;
+    height:47%;
     position: relative;
 }
 
@@ -262,19 +262,26 @@ nav span{
     right:-9%;
 }
 
-.bottom{
+.middle{
     top:-123%;
     left:5%;
 }
+
+.bottom{
+    bottom: 180%;
+    left: 10%;
+}
+
+
 
 /* #join-community article:nth-last-of-type(2){
     top:36%;
     left:50%;
 } */
-#join-community article:last-of-type{
+/* #join-community article:last-of-type{
     top: 73%;
     left: 10%;
-}
+} */
 
 
 #join-community figure{
@@ -285,7 +292,7 @@ nav span{
 }
 
 .bcg-join-community{
-    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/bcg-map.webp);
+    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/bcg-map-large.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
@@ -307,6 +314,14 @@ nav span{
     left: 83%;
     width: 134%;
     z-index: 3;
+}
+
+#share-posts{
+    top: -178%;
+    z-index: 3;
+    /* right: -22%; */
+    width: 122%;
+    left: 90%;  
 }
 
 /* .front{
