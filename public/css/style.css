@@ -213,8 +213,9 @@ nav span{
 
 
 #join-community {
-    height:100vh;
-    margin:4rem auto;
+    height:175vh;
+    margin:0 auto;
+    padding : 4rem 0;
     border-radius: var(--lg-border-radius);
 }
 
@@ -222,7 +223,7 @@ nav span{
 #join-community  div {
     /* display:grid;
     grid-template-columns: repeat(3, 1fr); */
-    height:70%;
+    height:57%;
     position: relative;
 }
 
@@ -236,7 +237,6 @@ nav span{
 }
 
 #join-community article{
-    /* background: #d5d5d5de; */
     border-radius: 0.5rem;
     padding-top: 1rem;
     margin: 1rem;
@@ -245,27 +245,32 @@ nav span{
     height: 70%;
     left: -10%;
     top: 9%;
-    /* filter: drop-shadow(2px 2px 2px grey); */
-    /* box-shadow: 0.2rem 0.2rem 0.2rem rgb(0 0 0 / 16%); */
+
 }
 
 #blur-bcg{
     z-index: 2;
-    /* position: absolute; */
-    width: 49%;
-    /* height: 73%; */
-    top: -66%;
-    right: -44%;
-    background: #87878742;
-    box-shadow: 0.2rem 0.2rem 0.2rem rgb(0 0 0 / 10%);
+    width: 69%;
+    background: #ffffff94;
+    box-shadow: 0.2rem 0.2rem 10rem rgb(0 0 0 / 13%);
     backdrop-filter: blur(13px);
     border-radius: 1rem;
 }
 
-#join-community article:nth-last-of-type(2){
+.top{
+    top: -66%;
+    right:-9%;
+}
+
+.bottom{
+    top:-123%;
+    left:5%;
+}
+
+/* #join-community article:nth-last-of-type(2){
     top:36%;
     left:50%;
-}
+} */
 #join-community article:last-of-type{
     top: 73%;
     left: 10%;
@@ -273,25 +278,40 @@ nav span{
 
 
 #join-community figure{
-    /* width: 80%; */
-    height: 50%;
-    /* background: #5757573d; */
-    margin: 1rem auto 0;
-    border-radius: 0.5rem;
+      height: 50%;
+      position: absolute;
+      margin: 1rem auto 0;
+      border-radius: 0.5rem;
+}
+
+.bcg-join-community{
+    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/bcg-map.webp);
+    background-position-y: 59%;
+    box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
+    background-size: cover;
 }
 
 #reviews-phone{
-    width: 136%;
+    width: 100%;
+    z-index: 3;
     left: -5%;
-    top: -24%;
-    position: absolute;
+    top: -102%;
+    /* position: absolute; */
     background: none;
-    filter: drop-shadow(2px 2px 2px grey);
+    filter: drop-shadow(2px 2px 2px lightgrey);
 }
 
-.front{
+#itinerary-phone{
+    top: -16%;
+    /* bottom: 162%; */
+    left: 83%;
+    width: 134%;
     z-index: 3;
 }
+
+/* .front{
+    z-index: 3;
+} */
 .bcg-share{
     background : url('/img-source/bcg-vignes-bottom.webp');
     width:100%;
