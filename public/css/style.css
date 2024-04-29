@@ -205,11 +205,16 @@ nav span{
 }
 
 .side-illustration figure {
-    width:90%;
-    height:100%;
-    background: #ffffffe0;
-    border-radius: var(--lg-border-radius);
+    position: absolute;
 }
+
+/* .theme{
+
+}
+
+.history-castle{
+    
+} */
 
 
 #join-community {
