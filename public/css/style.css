@@ -21,12 +21,15 @@
 body{
     font-family: 'Poppins', sans-serif;
     margin: 0 auto;
-    /* list-style: none; */
 
 }
 
 img{
     width: 100%;
+}
+
+a{
+    text-decoration: none;
 }
 
 
@@ -36,12 +39,11 @@ nav{
     justify-content: space-evenly;
     width: 100%;
     z-index: 2;
-    /* backdrop-filter: blur(18px); */
     padding: 0.3rem;
 }
 
 nav a{
-    text-decoration: none;
+    /* text-decoration: none; */
     color: black;
     font-size: 1.4rem;
     font-weight: 300;
@@ -84,16 +86,23 @@ nav span{
 }
 
 
-.presentation{
+.presentation, 
+.discover{
     position: absolute;
+    
+}
+
+.presentation{
     top: 54%;
     left:50%;
     transform: translate(-50%,-50%);
     text-align: center;
     color:white;
     width:60%;
+    height:41%;
     padding:2rem;
     border-radius: 5px;
+
 }
 
 .home-btn{
@@ -103,8 +112,14 @@ nav span{
     color: var(--white-color);
     font-family: 'Poppins', sans-serif;
     border: none;
-    margin-top: 3rem;
+    font-size:1.3rem;
 }
+
+.discover{
+    left: 40%;
+    transform: translate(40%, 50%);
+}
+
 
 #choice,
 #how-it-works,
@@ -145,6 +160,7 @@ nav span{
     width: 7%;
 }
 
+/* ================================   HOW IT WORKS SECTION   ================================ */
 
 #how-it-works h3{
     text-align: left;
@@ -216,18 +232,16 @@ nav span{
     
 } */
 
+/* ================================   JOIN COMMUNITY SECTION   ================================ */
 
 #join-community {
     height:250vh;
-    margin:0 auto;
     padding : 4rem 0;
     border-radius: var(--lg-border-radius);
 }
 
 
 #join-community  div {
-    /* display:grid;
-    grid-template-columns: repeat(3, 1fr); */
     height:47%;
     position: relative;
 }
@@ -241,6 +255,7 @@ nav span{
     margin-bottom: 1.2rem;
 }
 
+
 #join-community article{
     border-radius: 0.5rem;
     padding-top: 1rem;
@@ -250,7 +265,6 @@ nav span{
     height: 70%;
     left: -10%;
     top: 9%;
-
 }
 
 #blur-bcg{
@@ -276,17 +290,6 @@ nav span{
     bottom: 180%;
     left: 10%;
 }
-
-
-
-/* #join-community article:nth-last-of-type(2){
-    top:36%;
-    left:50%;
-} */
-/* #join-community article:last-of-type{
-    top: 73%;
-    left: 10%;
-} */
 
 
 #join-community figure{
@@ -572,6 +575,68 @@ input[type="radio"]:checked + label > figure > img {
     display:block;
     padding:1rem;
     color:black;
+}
+
+
+/*  ====================== NEW PLACE MAP FORM  ++++++++++++++++++*/
+
+#map-new{
+    height:200px; 
+    max-width: 635px;
+}
+
+.place-form{
+    width:40vw;
+    min-width:635px;
+    margin: 0 auto;
+}
+
+.place-form h1{
+    text-align: center;
+}
+
+.location-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.location-container label{
+    display: block;
+    margin : 0.2rem 0;
+}
+
+.location-container input {
+    width:250px;
+    padding:5px;
+}
+
+
+#place_openingHours{
+    resize:none;
+    width:250px;
+    font-family: "Poppins", sans-serif;
+    scrollbar-width: none;
+    padding-left:0.2rem;
+}
+
+.location-container textarea{
+    resize:none;
+    width:250px;
+    height:150px;
+    scrollbar-width: none;
+}
+
+.choice-container {
+    margin-top:1rem;
+}
+
+#place_themes, #place_companions{
+    margin: 0.5rem 0 0.5rem;
+}
+
+.choice-container input[type="checkbox"]{
+    margin-right:0.5rem;
+    margin-left: 1rem;
 }
 
 
