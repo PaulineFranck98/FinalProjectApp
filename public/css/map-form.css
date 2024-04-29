@@ -49,12 +49,20 @@
     margin-top:1rem;
 }
 
-#place_themes, #place_companions{
+.choice-container #place_themes, 
+.choice-container #place_companions{
     margin: 0.5rem 0 0.5rem;
 }
 
 .choice-container input[type="checkbox"]{
     margin-right:0.5rem;
     margin-left: 1rem;
+}
+
+.form-container-top{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 7rem;
 }
 

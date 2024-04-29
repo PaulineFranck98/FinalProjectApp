@@ -1,47 +1,46 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-{# <link rel="stylesheet" href="{{ asset('css/map-form.css')}}"> #}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-crossorigin=""/>
-{% endblock %}
+
 {% block title %}Ajout d'un nouveau lieu d'intérêt{% endblock %}
 
 {% block body %}
-<main>
+<main class="new-place-form">
     <section class="place-form">
         <h1>NOUVEAU LIEU</h1>
-        <div class="location-container">
+        <div class="form-container-top">
             <div>
-                {{ form_start(formAddPlace) }}
-                {{ form_row(formAddPlace.name) }}
-                {# Gestion de l'affichage des suggestions de communes #}
-                <div>
-                    {{ form_label(formAddPlace.city) }}
-                    {{ form_widget(formAddPlace.city) }}
-                    <ul id="commune-suggestions"></ul>
+                <div class="location-container">
+                    <div>
+                        {{ form_start(formAddPlace) }}
+                        {{ form_row(formAddPlace.name) }}
+                        {# Gestion de l'affichage des suggestions de communes #}
+                        <div>
+                            {{ form_label(formAddPlace.city) }}
+                            {{ form_widget(formAddPlace.city) }}
+                            <ul id="commune-suggestions"></ul>
+                        </div>
+                        {{ form_row(formAddPlace.zipcode) }}
+                    </div>
+                    <div>
+                        {{ form_row(formAddPlace.address) }}
+                        {{ form_row(formAddPlace.latitude) }}
+                        {{ form_row(formAddPlace.longitude) }}
+                        {# Lien permettant d'obtenir les coordonnées gps à partir de l'adresse #}
+                        <p><a href="https://www.coordonnees-gps.fr/" target="_blank">Coordonnées GPS de l'adresse</a></p>
+                    </div>
                 </div>
-                {{ form_row(formAddPlace.zipcode) }}
+                {# Affichage de la map et du marqueur placé suite à la récupération des coordonnées #}
+                <div id="map-new"></div>
             </div>
-            <div>
-                {{ form_row(formAddPlace.address) }}
-                {{ form_row(formAddPlace.latitude) }}
-                {{ form_row(formAddPlace.longitude) }}
-                {# Lien permettant d'obtenir les coordonnées gps à partir de l'adresse #}
-                <p><a href="https://www.coordonnees-gps.fr/" target="_blank">Coordonnées GPS de l'adresse</a></p>
-            </div>
-        </div>
-        {# Affichage de la map et du marqueur placé suite à la récupération des coordonnées #}
-        <div id="map-new"></div>
-        <div class="location-container">
-            <div>
-                {{ form_row(formAddPlace.phoneNumber) }}
-                {{ form_row(formAddPlace.website) }}
-                {{ form_row(formAddPlace.openingHours) }}
-            </div>
-            <div>
-                {{ form_row(formAddPlace.description) }}
-                {{ form_row(formAddPlace.type) }}
+            <div class="location-container">
+                <div>
+                    {{ form_row(formAddPlace.phoneNumber) }}
+                    {{ form_row(formAddPlace.website) }}
+                    {{ form_row(formAddPlace.openingHours) }}
+                </div>
+                <div>
+                    {{ form_row(formAddPlace.description) }}
+                    {{ form_row(formAddPlace.type) }}
+                </div>
             </div>
         </div>
         <div class="choice-container">
@@ -75,8 +74,8 @@ crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
-    <script src="{{ asset('js/api.js')}}" defer></script>
-    {# defer pour que le script soit chargé après le contenu de la page #}
-    <script src="{{ asset('js/images.js')}}" defer></script>
+    <script src="{{ asset('js/api.js')}}"></script>
+    {# defer pour que le script soit chargé après le contenu de la page ? #}
+    <script src="{{ asset('js/images.js')}}"></script>
     {% endblock %}
 {% endblock %}

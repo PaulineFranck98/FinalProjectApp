@@ -582,13 +582,16 @@ input[type="radio"]:checked + label > figure > img {
 
 #map-new{
     height:200px; 
+    width:33vw;
     max-width: 635px;
 }
 
 .place-form{
-    width:40vw;
-    min-width:635px;
+    width: 40vw;
+    min-width: 635px;
     margin: 0 auto;
+    padding: 5rem 3rem 2rem;
+    background: #ffffffb0;
 }
 
 .place-form h1{
@@ -598,6 +601,7 @@ input[type="radio"]:checked + label > figure > img {
 .location-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap:5rem;
 }
 
 .location-container label{
@@ -611,7 +615,7 @@ input[type="radio"]:checked + label > figure > img {
 }
 
 
-#place_openingHours{
+.location-container #place_openingHours{
     resize:none;
     width:250px;
     font-family: "Poppins", sans-serif;
@@ -638,6 +642,22 @@ input[type="radio"]:checked + label > figure > img {
     margin-right:0.5rem;
     margin-left: 1rem;
 }
+
+.new-place-form{
+    background : linear-gradient(#daeccd, #ffffff7a, #daeccdb0), url(/img-source/bcg-map-large.webp);
+    background-position-y: 59%;
+    box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* .form-container-top{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3rem;
+} */
+
 
 
 
