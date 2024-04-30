@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Itinéraire personnalisé{% endblock %}
+
+{% block body %}
+
+<h1>Ajouter un itinéraire</h1>
+
+{{ form_start(formAddItinerary) }}
+
+{{ form_row(formAddItinerary.name) }}
+
+{# {{ form_row(formAddItinerary.departure) }} #}
+ {# Gestion de l'affichage des suggestions de communes #}
+<div>
+    {{ form_label(formAddItinerary.departure) }}
+    {{ form_widget(formAddItinerary.departure) }}
+    <ul id="commune-with-places"></ul>
+</div>
+
+{# {{ form_row(formAddItinerary.arrival) }} #}
+<div>
+    {{ form_label(formAddItinerary.arrival) }}
+    {{ form_widget(formAddItinerary.arrival) }}
+    <ul id="commune-with-places"></ul>
+</div>
+
+{{ form_row(formAddItinerary.valider) }}
+
+{{ form_end(formAddItinerary) }}
+
+ {% block javascripts %}
+   
+    <script src="{{ asset('js/itinerary.js')}}"></script>
+    
+    {% endblock %}
+
+{% endblock %}

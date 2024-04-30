@@ -28,6 +28,12 @@ class CustomItinerary
     #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'customItineraries')]
     private Collection $place;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $departure = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $arrival = null;
+
     public function __construct()
     {
         $this->place = new ArrayCollection();
@@ -94,6 +100,30 @@ class CustomItinerary
     public function removePlace(Place $place): static
     {
         $this->place->removeElement($place);
+
+        return $this;
+    }
+
+    public function getDeparture(): ?string
+    {
+        return $this->departure;
+    }
+
+    public function setDeparture(?string $departure): static
+    {
+        $this->departure = $departure;
+
+        return $this;
+    }
+
+    public function getArrival(): ?string
+    {
+        return $this->arrival;
+    }
+
+    public function setArrival(?string $arrival): static
+    {
+        $this->arrival = $arrival;
 
         return $this;
     }

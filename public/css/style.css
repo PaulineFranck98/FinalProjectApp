@@ -650,6 +650,11 @@ input[type="radio"]:checked + label > figure > img {
     background-size: cover;
     background-attachment: fixed;
 }
+
+#commune-suggestions li{
+    cursor: pointer;
+    background-color: white;
+}
 /* test here */
 
 /* .form-container-top{

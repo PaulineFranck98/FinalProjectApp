@@ -47,6 +47,15 @@ class PlaceRepository extends ServiceEntityRepository
         ;
 
     }
+
+    public function findCitiesWithPlaces()
+    {
+        return $this->createQueryBuilder('p')
+        ->select('p.city')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
     //    /**
     //     * @return Place[] Returns an array of Place objects
     //     */

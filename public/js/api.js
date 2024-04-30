@@ -1,36 +1,43 @@
 
-
 // ------------------ Commune suggestions --------------------
 
-// Je déclare la fonction InitCommune pour l'appeler après et permettre le chargement complet du DOM
+
+// Je déclare la fonction InitCommune pour l'appeler après le chargement complet du DOM
 function initCommmune(){
+    
     // Je récupère l'élément input où l'utilisateur entre le nom de la commune
     const communeInput = document.querySelector('#place_city');
     // je récupère l'élément où seront affichés les suggestions de communes
     const communeSuggestions = document.querySelector('#commune-suggestions');
     
+    
     // J'ajoute une écouteur d'évènement sur l'élément input qui se déclenchera à chaque fois que l'utilisateur remplira cet input 
     communeInput.addEventListener('input', () => {
         // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après
         const searchTerm = communeInput.value.trim();
-        
+        // console.log(communeInput);
         // Si la longueur de la string entrée par l'utilisateur est supérieur ou égale à 3
         if (searchTerm.length >= 3) {
+
+
             // J'effectue une requête API vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
             fetch(`https://geo.api.gouv.fr/communes?nom=${searchTerm}&fields=nom,codesPostaux,centre,codeDepartement&format=json`)
                 .then(response => response.json()) // Je convertis la réponse en JSON
                 .then(data => {
+                    // console.log('nom communes : ', data.map(commune => commune.nom));
                     // Je réinitialise l'élément où sont affichées les suggestions de communes
                     communeSuggestions.innerHTML = '';
     
                     // Je filtre les résultats pour ne garder que les communes des départements 67 et 68
                     const filteredData = data.filter(commune => ['67', '68'].includes(commune.codeDepartement));
                     // Pour chaque commune filtrée
+                    // console.log('données', filteredData);
+
                     filteredData.forEach(commune => {
                         // Je crée un élément li qui contient le nom de la commune
                         const listItem = document.createElement('li');
                         listItem.textContent = commune.nom;
-                        
+                        // console.log(listItem);
                         // J'ajoute un écouteur d'événement sur l'élément li qui se déclenchera au click 
                         listItem.addEventListener('click', () => {
                             // Je remplis l'élément input avec le nom de la commune sélectionnée
@@ -73,6 +80,7 @@ function initCommmune(){
                         });
                         // J'ajoute l'élément li à l'élément ul où sont affichées les suggestions de communes
                         communeSuggestions.appendChild(listItem);
+                        // console.log(communeSuggestions);
                     });
                 })
                 .catch(error => console.error(error)); // j'affiche l'erreur en cas d'échec de la requête
@@ -153,3 +161,8 @@ function initMapNew(){
     document.addEventListener('DOMContentLoaded', () => {
     initMapNew();
 });
+
+
+
+
+

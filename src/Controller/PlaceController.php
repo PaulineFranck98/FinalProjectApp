@@ -27,6 +27,14 @@ class PlaceController extends AbstractController
         ]);
     }
 
+    #[Route('/place/cities_with_places', name: 'cities_with_places')]
+    public function citiesWithPlaces(PlaceRepository $placeRepository) : JsonResponse
+    {
+        $cities = $placeRepository->findCitiesWithPlaces();
+        // dump($placeRepository->findCitiesWithPlaces());
+        return $this->json($cities);
+    }
+
     #[Route('/place/new', name:'new_place')]
     public function new(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService): Response
     {
@@ -205,5 +213,7 @@ class PlaceController extends AbstractController
             'averageRating' => $averageRating
         ]);
     }
+
+
 
 }
