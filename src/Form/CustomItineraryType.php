@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CustomItineraryType extends AbstractType
@@ -29,6 +30,8 @@ class CustomItineraryType extends AbstractType
             ->add('arrival', TextType::class, [
                 'label' => 'Ville d\'arrivée',
             ])
+
+            // ->add('code', HiddenType::class)
             ->add('valider', SubmitType::class)
             // ->add('user', EntityType::class, [
             //     'class' => User::class,

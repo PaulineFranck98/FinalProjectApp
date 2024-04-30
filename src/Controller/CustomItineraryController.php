@@ -38,6 +38,8 @@ class CustomItineraryController extends AbstractController
             $user = $this->getUser();
             $itinerary->setUser($user);
             
+            // dd($data['departure']['input']['attributes']['code']);
+
             dd($itinerary);
             $entityManager->persist($itinerary);
 
