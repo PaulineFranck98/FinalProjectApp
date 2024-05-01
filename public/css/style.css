@@ -195,9 +195,9 @@ nav span{
 
 #how-it-works .looking-down{
     position: absolute;
-    top:9.9%;
-    left:38%;
-    width:7%;
+    top:12%;
+    left:36.7%;
+    width:6%;
     filter: saturate(0.8);
     opacity: 0.9;
 }
@@ -216,21 +216,31 @@ nav span{
     margin-top: 4rem;
 }
 
-.side-illustration{
+/* .side-illustration{
     width: 50%;
-}
-
-.side-illustration figure {
-    position: absolute;
-}
-
-/* .theme{
-
-}
-
-.history-castle{
-    
 } */
+
+.side-illustration-theme figure {
+    position: absolute;
+    width: 48%;
+    top: 4%;
+    left:0%;
+}
+
+.side-illustration-companion figure {
+    position: absolute;
+    width: 50%;
+    /* top: 4%; */
+    right: 9%;
+    top: 40%;
+}
+
+/* .side-illustration .theme {
+    width: 47%;
+    top: 4%;
+} */
+
+
 
 /* ================================   JOIN COMMUNITY SECTION   ================================ */
 
