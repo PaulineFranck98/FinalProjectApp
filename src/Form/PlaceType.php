@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 // I create a new form class for the Place entity, which extends the AbstractType class
 // I extend the AbstractType class to access protected and public methods and properties defined in this class
@@ -93,18 +94,8 @@ class PlaceType extends AbstractType
                 // I define the 'label' attribute for the 'description' field
                 'label' => 'Description',
             ])
-            ->add('latitude', NumberType::class, [
-                'scale' => 8,
-                'attr' => [
-                    'inputmode' => 'decimal',
-                ]
-            ])
-            ->add('longitude', NumberType::class,[
-                'scale' => 8,
-                'attr' => [
-                    'inputmode' => 'decimal',
-                ]
-            ])
+            ->add('latitude', HiddenType::class)
+            ->add('longitude', HiddenType::class)
             // ->add('isVerified')
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('type', EntityType::class, [

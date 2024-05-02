@@ -24,11 +24,15 @@
                         {{ form_row(formAddPlace.zipcode) }}
                     </div>
                     <div>
-                        {{ form_row(formAddPlace.address) }}
+                        {# {{ form_row(formAddPlace.address) }} #}
+                          {# Gestion de l'affichage des suggestions d'adresses' #}
+                        <div>
+                            {{ form_label(formAddPlace.address) }}
+                            {{ form_widget(formAddPlace.address) }}
+                            <ul id="address-suggestions"></ul>
+                        </div>
                         {{ form_row(formAddPlace.latitude) }}
-                        {{ form_row(formAddPlace.longitude) }}
-                        {# Lien permettant d'obtenir les coordonnées gps à partir de l'adresse #}
-                        <p><a href="https://www.coordonnees-gps.fr/" target="_blank">Coordonnées GPS de l'adresse</a></p>
+                        {{ form_row(formAddPlace.longitude) }}    
                     </div>
                 </div>
                 {# Affichage de la map et du marqueur placé suite à la récupération des coordonnées #}
