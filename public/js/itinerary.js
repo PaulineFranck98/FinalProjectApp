@@ -45,8 +45,8 @@ function initCitiesWithPlaces() {
                             // Je remplis l'élément input avec le nom de la commune sélectionnée
                             communeInput.value = commune.nom;
 
-                            communeInput.setAttribute('code', commune.code);
-                            console.log(communeInput.setAttribute('code', commune.code));
+                            // communeInput.setAttribute('code', commune.code);
+                            // console.log(communeInput.setAttribute('code', commune.code));
                             // Je réinitialise l'élément où sont affichées les suggestions de communes
                             communeSuggestions.innerHTML = '';
                         });
