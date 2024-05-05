@@ -33,14 +33,19 @@ class CustomItineraryController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $itinerary = $form->getData();
+            $codeDeparture = $form->get('codeDeparture')->getData();
+            $codeArrival = $form->get('codeArrival')->getData();
+
+            $itinerary->setDeparture($codeDeparture);
+            $itinerary->setArrival($codeArrival);
+
             $itinerary->setCreationDate(new \DateTime());
+
             $user = $this->getUser();
             $itinerary->setUser($user);
             
-            // dd($data['departure']['input']['attributes']['code']);
-
             dd($itinerary);
+            
             $entityManager->persist($itinerary);
 
             $entityManager->flush();

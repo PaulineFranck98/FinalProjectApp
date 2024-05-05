@@ -715,6 +715,11 @@ input[type="radio"]:checked + label > figure > img {
 } */
 
 
+#map-itinerary{
+    height:50vh;
+    width:50vw;
+}
+
 
 
 

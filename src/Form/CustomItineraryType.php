@@ -26,12 +26,24 @@ class CustomItineraryType extends AbstractType
             // ])
             ->add('departure', TextType::class, [
                 'label' => 'Ville de départ',
-            ])
-            ->add('arrival', TextType::class, [
-                'label' => 'Ville d\'arrivée',
+                'attr' => [
+                    'data-type' => 'departure'
+                ]
+                ])
+            ->add('codeDeparture', TextType::class, [
+                'mapped' => false,
             ])
 
-            // ->add('code', HiddenType::class)
+            ->add('arrival', TextType::class, [
+                'label' => 'Ville d\'arrivée',
+                'attr' => [
+                    'data-type' => 'arrival'
+                ]
+                ])
+            ->add('codeArrival', TextType::class, [
+                'mapped' => false,
+            ])
+
             ->add('valider', SubmitType::class)
             // ->add('user', EntityType::class, [
             //     'class' => User::class,

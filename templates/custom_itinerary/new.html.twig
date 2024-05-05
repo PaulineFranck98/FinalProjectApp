@@ -17,6 +17,7 @@
     {{ form_widget(formAddItinerary.departure) }}
     <ul id="commune-with-places"></ul>
 </div>
+    {{ form_row(formAddItinerary.codeDeparture) }}
 
 {# {{ form_row(formAddItinerary.arrival) }} #}
 <div>
@@ -24,14 +25,18 @@
     {{ form_widget(formAddItinerary.arrival) }}
     <ul id="commune-with-places"></ul>
 </div>
+{{ form_row(formAddItinerary.codeArrival) }}
 
-{# {{ form_row(formAddItinerary.code) }} #}
 {{ form_row(formAddItinerary.valider) }}
 
 {{ form_end(formAddItinerary) }}
 
+<div id="map-itinerary"></div>
+
  {% block javascripts %}
-   
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
     <script src="{{ asset('js/itinerary.js')}}"></script>
     
     {% endblock %}
