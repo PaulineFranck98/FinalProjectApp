@@ -7,7 +7,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(mapItinerary);
 
-let latlngs = [];
 //Envoie une requête http get à l'url
 async function getCitiesWithPlaces() {
     const response = await fetch('/place/cities_with_places'); 
@@ -15,31 +14,32 @@ async function getCitiesWithPlaces() {
     return data;
 }
 function initCitiesWithPlaces() {
-
+    
     // Je récupère l'élément input où l'utilisateur entre le nom de la commune
     const communeInputs = document.querySelectorAll('#custom_itinerary_departure, #custom_itinerary_arrival');
     // je récupère l'élément où seront affichés les suggestions de communes
     const communeSuggestions = document.querySelector('#commune-with-places');
-
+    
     const codeDeparture = document.querySelector('#custom_itinerary_codeDeparture');
-
+    
     const codeArrival = document.querySelector('#custom_itinerary_codeArrival');
     // console.log(codeArrival.id);
     // console.log(communeInputs[0].id);
     // console.log(codeArrival.innerHTML = 'Hello');
+    let latlngs = [];
     communeInputs.forEach(communeInput => {
-    communeInput.addEventListener('input', async () => {
-
-        // console.log(communeInput.id);
-        // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après
-        const search = communeInput.value.trim();
-        // console.log(communeInput);
-        // Si la longueur de la string entrée par l'utilisateur est supérieur ou égale à 3
-        if (search.length >= 3) {
-
-            const citiesWithPlaces = await getCitiesWithPlaces();
-
-            // console.log('cities with places : ', citiesWithPlaces);
+        communeInput.addEventListener('input', async () => {
+            
+            // console.log(communeInput.id);
+            // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après
+            const search = communeInput.value.trim();
+            // console.log(communeInput);
+            // Si la longueur de la string entrée par l'utilisateur est supérieur ou égale à 3
+            if (search.length >= 3) {
+                
+                const citiesWithPlaces = await getCitiesWithPlaces();
+                
+                // console.log('cities with places : ', citiesWithPlaces);
             // let latlngs = [];
             // J'effectue une requête API vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
             // fetch(`https://geo.api.gouv.fr/communes?nom=${searchTerm}&fields=nom,codesPostaux,centre,code,codeDepartement&format=json`)
@@ -74,7 +74,9 @@ function initCitiesWithPlaces() {
                             if( inputType === "departure")
                             {  
                                 codeDeparture.value = commune.code;
+                                latlngs.push([lat,lng]);
 
+                                console.log('departure : ' + lat,lng);
                                 // latlngs[0] = [lat, lng];
 
                             // } else if(communeInput.id === "custom_itinerary_arrival"){
@@ -82,36 +84,35 @@ function initCitiesWithPlaces() {
                             {
                                   
                                 codeArrival.value = commune.code;
-                              
+                                latlngs.push([lat,lng]);
+
+                                console.log('arrival : ' + lat, lng);
                                 // latlngs[1]=[lat, lng];
                                 
           
                             }
 
                             marker.addTo(mapItinerary);
-                            latlngs.push([lat,lng]);
+                            // latlngs.push([lat,lng]);
                             // latlngs[] = [lat, lng];
 
                             console.log(latlngs.length);
                             // console.log(coordinates);
                             
-                            if(latlngs.length >= 2){
-                        
-                                
-                                for(let i = 1; i < latlngs.length; i++){
-                                    const prevLatLng = latlngs[i - 1];
-                                    const currentLatLng = latlngs[i];
-                                    console.log(prevLatLng, currentLatLng);
-                                    if(prevLatLng && currentLatLng){
-                                        const line = L.polyline([prevLatLng, currentLatLng], {color: 'black'});
-                                        line.addTo(mapItinerary);
-                                        mapItinerary.fitBounds(line.getBounds());
-                                    }
-                                }
+                            const line = L.polyline([[47.7527, 7.3256], [48.4546, 7.4817]]).addTo(mapItinerary);
+                            
 
-                                // latlngs = [];
-                            }
-                            console.log(codeDeparture.value, codeArrival.value);
+                            // if (latlngs.length >= 2) {
+                            //     for (let i = 1; i < latlngs.length - 1; i++) {
+                                
+                            //         // if (prevLatLng && currentLatLng && prevLatLng.lat !== undefined && prevLatLng.lng !== undefined && currentLatLng.lat !== undefined && currentLatLng.lng !== undefined) {
+                            //             const line = L.polyline([latlngs[i], latlngs[i+1]], { color: 'black' }).addTo(mapItinerary);
+                            //             // line.addTo(mapItinerary);
+                            //             mapItinerary.fitBounds(line.getBounds());
+                            //         // }
+                            //     }
+                            // }
+                            // console.log(codeDeparture.value, codeArrival.value);
                             
                             // Je réinitialise l'élément où sont affichées les suggestions de communes
                             communeSuggestions.innerHTML = '';
