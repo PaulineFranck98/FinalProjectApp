@@ -3,9 +3,10 @@
 {% block title %}Hello CustomItineraryController!{% endblock %}
 
 {% block body %}
-<main>
+<main class="top">
     {% for itinerary in itineraries %}
         {{itinerary.name}}
+        <a href="{{ path('show_itinerary', {'id': itinerary.id}) }}">Détails</a>
     {% endfor %}
 </main>
 {% endblock %}

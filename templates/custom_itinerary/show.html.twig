@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de l'itinéraire personnalisé{% endblock %}
+
+{% block body %}
+<main class="top">
+
+    <div id="map-itinerary"></div>
+    {{ itinerary.name}}
+</main>
+    {% block javascripts %}
+      
+        <script> const itineraryData = JSON.parse("{{ itineraryData|e('js') }}") || [];</script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                crossorigin=""></script>
+        <script src="{{ asset('js/customItinerary.js')}}"></script>
+        
+    {% endblock %}
+
+{% endblock %}

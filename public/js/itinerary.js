@@ -41,77 +41,74 @@ async function getCitiesWithPlaces() {
             // console.log(communeInput);
 
             // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieur ou égale à 3
-            if (search.length >= 3) {
-                
+            if (search.length >= 3)
+            {
                 const citiesWithPlaces = await getCitiesWithPlaces();
                 
-            // J'effectue une requête API vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
-            fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
-                .then(response => response.json()) // Je convertis la réponse en JSON
-                .then(data => {
-                    // Je réinitialise l'élément où sont affichées les suggestions de communes
-                    communeSuggestions.innerHTML = '';
-    
-                    // Je filtre les résultats 
-                    const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.city === commune.nom))
-                    // Pour chaque commune filtrée
-                        // console.log('données', filteredData);
-
-                    filteredData.forEach(commune => {
-                        // Je crée un élément li qui contient le nom de la commune
-                        const listItem = document.createElement('li');
-                        listItem.textContent = commune.nom;
-
-                        let lat = commune.centre.coordinates[1];
-                        let lng = commune.centre.coordinates[0];
-
-                        const marker = L.marker([lat,lng]);
-                        // console.log(listItem);
-                        // J'ajoute un écouteur d'événement sur l'élément li qui se déclenchera au click 
-                        listItem.addEventListener('click', () => {
-                            // J'attribue comme valeur à l'input le nom de la commune sélectionnée
-                            communeInput.value = commune.nom; 
-                            let inputType = communeInput.getAttribute('data-type');
-
-                            // if(communeInput.id === "custom_itinerary_departure")
-                            if( inputType === "departure")
-                            {  
-                                codeDeparture.value = commune.code;
-                                // latlngs.push([lat,lng]);
-
-                                console.log('departure : ' + lat,lng);
-
-                            // } else if(communeInput.id === "custom_itinerary_arrival"){
-                            } else if(inputType === "arrival")
-                            {
-                                  
-                                codeArrival.value = commune.code;
-                                // latlngs.push([lat,lng]);
-
-                                console.log('arrival : ' + lat, lng);
-                                
-          
-                            }
-
-                            marker.addTo(mapItinerary);
-
-                            polyline.addLatLng(marker.getLatLng());
-                      
-                            communeSuggestions.innerHTML = '';
-                        });
-            
-
-                        // J'ajoute l'élément li à l'élément ul où sont affichées les suggestions de communes
-                        communeSuggestions.appendChild(listItem);
-
+                // J'effectue une requête API vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
+                fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
+                    .then(response => response.json()) // Je convertis la réponse en JSON
+                    .then(data => {
+                        // Je réinitialise l'élément où sont affichées les suggestions de communes
+                        communeSuggestions.innerHTML = '';
         
-                    
-                    });
-                  
+                        // Je filtre les résultats 
+                        const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.city === commune.nom))
+                        // Pour chaque commune filtrée
+                            // console.log('données', filteredData);
+
+                        filteredData.forEach(commune => {
+                            // Je crée un élément li qui contient le nom de la commune
+                            const listItem = document.createElement('li');
+                            listItem.textContent = commune.nom;
+
+                            let lat = commune.centre.coordinates[1];
+                            let lng = commune.centre.coordinates[0];
+
+                            const marker = L.marker([lat,lng]);
+                            // console.log(listItem);
+                            // J'ajoute un écouteur d'événement sur l'élément li qui se déclenchera au click 
+                            listItem.addEventListener('click', () => {
+                                // J'attribue comme valeur à l'input le nom de la commune sélectionnée
+                                communeInput.value = commune.nom; 
+                                let inputType = communeInput.getAttribute('data-type');
+
+                                // if(communeInput.id === "custom_itinerary_departure")
+                                if( inputType === "departure")
+                                {  
+                                    codeDeparture.value = commune.code;
+                                    // latlngs.push([lat,lng]);
+
+                                    console.log('departure : ' + lat,lng);
+
+                                // } else if(communeInput.id === "custom_itinerary_arrival"){
+                                } else if(inputType === "arrival")
+                                {
+                                    
+                                    codeArrival.value = commune.code;
+                                    // latlngs.push([lat,lng]);
+
+                                    console.log('arrival : ' + lat, lng);
+                                    
+            
+                                }
+
+                                marker.addTo(mapItinerary);
+
+                                polyline.addLatLng(marker.getLatLng());
+                        
+                                communeSuggestions.innerHTML = '';
+                            });
                 
-                  
-                })
-                .catch(error => console.error(error)); // j'affiche l'erreur en cas d'échec de la requête
+
+                            // J'ajoute l'élément li à l'élément ul où sont affichées les suggestions de communes
+                            communeSuggestions.appendChild(listItem);
+                        
+                        });
+                    
+                    
+                    })
+                    .catch(error => console.error(error)); // j'affiche l'erreur en cas d'échec de la requête
             } else {
                 // Je réinitialise l'élément où sont affichées les suggestions de communes
                 communeSuggestions.innerHTML = '';
@@ -121,5 +118,5 @@ async function getCitiesWithPlaces() {
       
     });
 
-   
+ 
 
