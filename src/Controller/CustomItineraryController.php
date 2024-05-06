@@ -44,7 +44,7 @@ class CustomItineraryController extends AbstractController
             $user = $this->getUser();
             $itinerary->setUser($user);
             
-            dd($itinerary);
+            // dd($itinerary);
             
             $entityManager->persist($itinerary);
 
@@ -55,6 +55,16 @@ class CustomItineraryController extends AbstractController
 
         return $this->render('custom_itinerary/new.html.twig', [
             'formAddItinerary' => $form,
+        ]);
+    }
+
+    #[Route('/itinerary/{id}', name: 'show_itinerary')]
+    // retrieve the 'customItinerary' corresponding to the id thanks to paramconverter tool
+    public function show(CustomItinerary $itinerary) : Response {
+        
+        
+        return $this->render('custom_itinerary/show.html.twig', [
+            'itinerary' => $itinerary,
         ]);
     }
 }
