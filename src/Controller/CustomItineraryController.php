@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CustomItinerary;
 use App\Form\CustomItineraryType;
+use App\Repository\CityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CustomItineraryRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class CustomItineraryController extends AbstractController
     }
 
     #[Route('/itinerary/new', name: 'new_itinerary')]
-    public function new(CustomItinerary $itinerary, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(CustomItinerary $itinerary, Request $request, EntityManagerInterface $entityManager, CityRepository $cityRepository): Response
     {
         $itinerary = new CustomItinerary();
 
@@ -34,9 +35,9 @@ class CustomItineraryController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $codeIntermediaire = $form->get('cities')->getData();
             $codeDeparture = $form->get('codeDeparture')->getData();
             $codeArrival = $form->get('codeArrival')->getData();
-
             $itinerary->setDeparture($codeDeparture);
             $itinerary->setArrival($codeArrival);
 
@@ -45,8 +46,16 @@ class CustomItineraryController extends AbstractController
             $user = $this->getUser();
 
             $itinerary->setUser($user);
+            $cities = [];
+            foreach ($codeIntermediaire  as $code){
+                $city = $cityRepository->findOneBy(['cityCode' =>  $code]);
+                if($city){
+                    $itinerary->addCity($city);
+                }
+            }
+
             
-            // dd($itinerary);
+            dd($itinerary);
             
             $entityManager->persist($itinerary);
 
@@ -64,7 +73,7 @@ class CustomItineraryController extends AbstractController
     // retrieve the 'customItinerary' corresponding to the id thanks to paramconverter tool
     public function show(CustomItinerary $itinerary)  
     {
-        $itineraryData[] = [
+        $itineraryData = [
             'id' => $itinerary->getId(),
             'name' => $itinerary->getName(),
             'departure' => $itinerary->getDeparture(),
@@ -77,4 +86,21 @@ class CustomItineraryController extends AbstractController
         ]);
 
     }
+
+    // $itineraryData = [
+    //     'id' => $itinerary->getId(),
+    //     'name' => $itinerary->getName(),
+    //     'places' => []
+    // ];
+    
+    // // Récupérez les villes sélectionnées pour cet itinéraire
+    // $places = $itinerary->getPlaces();
+    
+    // // Ajoutez les données de chaque ville au tableau 'places'
+    // foreach ($places as $place) {
+    //     $itineraryData['places'][] = [
+    //         'name' => $place->getName(),
+    //         'code' => $place->getCode()
+    //     ];
+    // }
 }

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Place;
+use App\Form\CityType;
 use App\Entity\CustomItinerary;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class CustomItineraryType extends AbstractType
 {
@@ -44,6 +46,15 @@ class CustomItineraryType extends AbstractType
                 'mapped' => false,
             ])
 
+            ->add('cities', CollectionType::class,[
+                // 'label' => 'Villes intermédiaires',
+                'entry_type' => CityType::class,
+                'prototype' => true,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ])
+            
             ->add('valider', SubmitType::class)
             // ->add('user', EntityType::class, [
             //     'class' => User::class,

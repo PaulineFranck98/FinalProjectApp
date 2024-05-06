@@ -77,6 +77,9 @@ class Place
     #[ORM\ManyToMany(targetEntity: CustomItinerary::class, mappedBy: 'place')]
     private Collection $customItineraries;
 
+    #[ORM\ManyToOne(inversedBy: 'places')]
+    private ?City $cityCode = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -434,6 +437,18 @@ class Place
         if ($this->customItineraries->removeElement($customItinerary)) {
             $customItinerary->removePlace($this);
         }
+
+        return $this;
+    }
+
+    public function getCityCode(): ?City
+    {
+        return $this->cityCode;
+    }
+
+    public function setCityCode(?City $cityCode): static
+    {
+        $this->cityCode = $cityCode;
 
         return $this;
     }

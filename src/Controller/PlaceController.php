@@ -214,6 +214,28 @@ class PlaceController extends AbstractController
         ]);
     }
 
-
-
 }
+
+//  add Place with city id ---------
+// $place = new Place();
+// $form = $this->createForm(PlaceType::class, $place);
+// $form->handleRequest($request);
+
+// if ($form->isSubmitted() && $form->isValid()) {
+//     $cityCode = $place->getCityCode();
+//     $city = $entityManager->getRepository(City::class)->findOneBy(['code' => $cityCode]);
+
+//     if (!$city) {
+//         $city = new City();
+//         $city->setCode($cityCode);
+//         $entityManager->persist($city);
+//     }
+
+//     $place->setCity($city);
+//     $city->addPlace($place);
+
+//     $entityManager->persist($place);
+//     $entityManager->flush();
+
+
+// }

@@ -8,6 +8,42 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(mapItinerary);
 
 
+$(document).ready(function() {
+    var cityIndex = $('.intermediate_city').length;
+
+    // J'ajoute un élément bouton pour permettre l'ajout d'une nouvelle ville intermédiaire
+    var addCityButton = $('<button type="button" class="add_city_button">Ajouter une ville</button>');
+    $('#custom_itinerary_intermediate_cities').append(addCityButton);
+
+    // j'ajoute un événement clic sur le bouton d'ajout de ville intermédiaire
+    addCityButton.click(function() {
+        cityIndex++;
+
+        // Je récupère le prototype de la ville intermédiaire à partir de l'attribut data-prototype
+        var newCityPrototype = $('#custom_itinerary_intermediate_cities').data('prototype');
+
+        // Je remplace le texte "__name__" dans le prototype par l'index de la nouvelle ville intermédiaire
+        var newCityHtml = newCityPrototype.replace(/__name__/g, cityIndex);
+
+        // Je crée un nouvel élément div pour contenir le nouvel input texte
+        var newCityDiv = $('<div class="intermediate_city_container"></div>');
+        newCityDiv.html(newCityHtml);
+
+        // J'ajoute un élément bouton "Supprimer" à chaque nouvelle ville intermédiaire
+        var deleteCityButton = $('<button type="button" class="delete_city_button">Supprimer</button>');
+        newCityDiv.append(deleteCityButton);
+
+        // J'ajoute le nouvel élément div à la collection de villes intermédiaires
+        $('#custom_itinerary_intermediate_cities').append(newCityDiv);
+    });
+
+    // J'ajoute un événement clic sur le bouton de suppression de ville intermédiaire permettant de supprimer l'élément div, parent du bouton supprimer
+    $(document).on('click', '.delete_city_button', function() {
+        $(this).parent().remove();
+    });
+});
+
+
 
 //Envoie une requête http get à l'url
 async function getCitiesWithPlaces() {
@@ -120,3 +156,71 @@ async function getCitiesWithPlaces() {
 
  
 
+
+    // fetch api et suggestions 
+
+// J'ajoute un événement clic sur le bouton d'ajout de ville intermédiaire
+// addCityButton.click(function() {
+//     cityIndex++;
+//// Je récupère le prototype de la ville intermédiaire à partir de l'attribut data-prototype
+//     var newCityPrototype = $('#custom_itinerary_intermediate_cities').data('prototype');
+
+//     // Je remplace le texte "__name__" dans le prototype par l'index de la nouvelle ville intermédiaire
+//     var newCityHtml = newCityPrototype.replace(/__name__/g, cityIndex);
+
+//     // Je crée un nouvel élément div pour contenir le nouvel input
+//     var newCityDiv = $('<div class="intermediate_city_container"></div>');
+//     newCityDiv.html(newCityHtml);
+
+//     // J'ajoute le bouton "Supprimer" à la nouvelle ville intermédiaire
+//     var deleteCityButton = $('<button type="button" class="delete_city_button">Supprimer</button>');
+//     newCityDiv.append(deleteCityButton);
+
+//     // J'ajoute un écouteur d'événements sur le nouvel input de ville intermédiaire
+//     var newCityInput = newCityDiv.find('input.intermediate_city');
+//     newCityInput.on('input', function() {
+//         // J'effectue la recherche de villes correspondantes et j'affiche les suggestions dans la liste <ul>
+//         // code ville départ et ville arrivée 
+//     });
+
+//     // J'ajoute le nouvel élément div à la collection de villes intermédiaires
+//     $('#custom_itinerary_intermediate_cities').append(newCityDiv);
+// });
+
+
+// --- écouteur d'événement sur l'input
+// newCityInput.on('input', function() {
+//// Je récupère la valeur entrée par l'utilisateur et je supprime les espaces avant et après
+//     const search = newCityInput.val().trim();
+
+// Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieure ou égale à 3
+//     if (search.length >= 3) {
+//         // J'effectue la recherche de villes correspondantes et j'affiche les suggestions dans la liste <ul>
+//         const filteredData = /* ... */;
+// //Je réinitialise la liste de suggestions
+//         $('#intermediate_city_suggestions').empty();
+
+//// J'ajoute les suggestions à la liste
+//filteredData.forEach(city => {
+//     const listItem = $('<li></li>');
+//     listItem.text(city.nom);
+
+//// J'ajoute un écouteur d'événements sur l'élément de suggestion
+//     listItem.on('click', function() {
+//// J'attribut la valeur sélectionnée à l'input de ville intermédiaire
+//     newCityInput.val(city.nom);
+//// J'ajoute un marqueur à la carte pour la ville sélectionnée
+// const marker = L.marker([city.latitude, city.longitude]);
+// marker.addTo(mapItinerary);
+
+// J'ajoute le marqueur au tableau de marqueurs
+// markers.push(marker);
+
+// Si la ville sélectionnée n'est pas la dernière ville ajoutée, je trace une ligne entre la dernière ville et la ville sélectionnée
+// if (markers.length > 1) {
+//     const polyline = L.polyline([markers[markers.length - 2].getLatLng(), marker.getLatLng()]).addTo(mapItinerary);
+//     polylines.push(polyline);
+// }
+
+// // Je réinitialise la liste de suggestions
+// $('#intermediate_city_suggestions').empty();

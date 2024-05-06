@@ -27,6 +27,18 @@
 </div>
 {{ form_row(formAddItinerary.codeArrival) }}
 
+<div id="custom_itinerary_intermediate_cities"
+    data-prototype="{{ form_widget(formAddItinerary.cities.vars.prototype)|e }}">
+    <label for = "custom_itinerary_cities" >Ville intermédiaire</label>
+    {% for city in formAddItinerary.cities %}
+        <div class="intermediate_city_container">
+            {{ form_errors(city) }}
+            {{ form_widget(city, {'attr': {'class': 'intermediate_city'}} ) }}
+            {# <button type="button" class="delete_city_button">Supprimer</button> #}
+        </div>
+    {% endfor %}
+</div>
+{# <button type="button" class="add_city_button">Ajouter une ville intermédiaire</button> #}
 {{ form_row(formAddItinerary.valider) }}
 
 {{ form_end(formAddItinerary) }}
@@ -34,6 +46,11 @@
 <div id="map-itinerary"></div>
 
  {% block javascripts %}
+   <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>

@@ -34,9 +34,16 @@ class CustomItinerary
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $arrival = null;
 
+    /**
+     * @var Collection<int, City>
+     */
+    #[ORM\ManyToMany(targetEntity: City::class, inversedBy: 'customItineraries')]
+    private Collection $cities;
+
     public function __construct()
     {
         $this->place = new ArrayCollection();
+        $this->cities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +131,30 @@ class CustomItinerary
     public function setArrival(?string $arrival): static
     {
         $this->arrival = $arrival;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, City>
+     */
+    public function getCities(): Collection
+    {
+        return $this->cities;
+    }
+
+    public function addCity(City $city): static
+    {
+        if (!$this->cities->contains($city)) {
+            $this->cities->add($city);
+        }
+
+        return $this;
+    }
+
+    public function removeCity(City $city): static
+    {
+        $this->cities->removeElement($city);
 
         return $this;
     }
