@@ -46,6 +46,7 @@ class CustomItineraryController extends AbstractController
             $user = $this->getUser();
 
             $itinerary->setUser($user);
+            
             $cities = [];
             foreach ($codeIntermediaire  as $code){
                 $city = $cityRepository->findOneBy(['cityCode' =>  $code]);
@@ -66,6 +67,7 @@ class CustomItineraryController extends AbstractController
 
         return $this->render('custom_itinerary/new.html.twig', [
             'formAddItinerary' => $form,
+            'itineraryId' => $itinerary->getId()
         ]);
     }
 

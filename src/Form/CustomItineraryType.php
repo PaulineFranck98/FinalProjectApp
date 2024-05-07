@@ -47,7 +47,7 @@ class CustomItineraryType extends AbstractType
             ])
 
             ->add('cities', CollectionType::class,[
-                // 'label' => 'Villes intermédiaires',
+                'label' => 'Ville intermédiaire',
                 'entry_type' => CityType::class,
                 'prototype' => true,
                 'allow_add' => true,

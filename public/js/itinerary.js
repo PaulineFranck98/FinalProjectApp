@@ -9,29 +9,44 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 $(document).ready(function() {
-    var cityIndex = $('.intermediate_city').length;
+    // var cityIndex = $('.intermediate_city').length
 
     // J'ajoute un élément bouton pour permettre l'ajout d'une nouvelle ville intermédiaire
-    var addCityButton = $('<button type="button" class="add_city_button">Ajouter une ville</button>');
-    $('#custom_itinerary_intermediate_cities').append(addCityButton);
-
+    // var addCityButton = $('<button type="button" class="add_city_button">Ajouter une ville</button>');
+    // $('#custom_itinerary_intermediate_cities').append(addCityButton);
+     var addCityButton = $('.add_city_button')
     // j'ajoute un événement clic sur le bouton d'ajout de ville intermédiaire
     addCityButton.click(function() {
-        cityIndex++;
+
+        // cityIndex++;
+        var list = $($(this).attr('data-list-selector'))
+
+        var counter = list.data('widget-counter') || list.children().length;
+
+        var itinerary = list.data('itinerary')
 
         // Je récupère le prototype de la ville intermédiaire à partir de l'attribut data-prototype
-        var newCityPrototype = $('#custom_itinerary_intermediate_cities').data('prototype');
+        // var newCityWidget = $('#custom_itinerary_intermediate_cities').data('prototype');
+        var newCityWidget = list.data('prototype')
+
+
 
         // Je remplace le texte "__name__" dans le prototype par l'index de la nouvelle ville intermédiaire
-        var newCityHtml = newCityPrototype.replace(/__name__/g, cityIndex);
+        newCityWidget = newCityWidget.replace(/__name__/g, counter)
+
+        // Ajout  des attributs personnalisés "class" et "value", qui n'apparaissent pas dans le prototype original 
+        newCityWidget = newCityWidget.replace(/><input type="hidden"/, ' class="intermediate_city"><input type="hidden" value="'+itinerary+'"')
+
+        counter++
+        list.data('widget-counter', counter)
 
         // Je crée un nouvel élément div pour contenir le nouvel input texte
-        var newCityDiv = $('<div class="intermediate_city_container"></div>');
-        newCityDiv.html(newCityHtml);
+        var newCityDiv = $('<div class="intermediate_city_container"></div>')
+        newCityDiv.html(newCityWidget)
 
         // J'ajoute un élément bouton "Supprimer" à chaque nouvelle ville intermédiaire
-        var deleteCityButton = $('<button type="button" class="delete_city_button">Supprimer</button>');
-        newCityDiv.append(deleteCityButton);
+        var deleteCityButton = $('<button type="button" class="delete_city_button">Supprimer</button>')
+        newCityDiv.append(deleteCityButton)
 
         // J'ajoute le nouvel élément div à la collection de villes intermédiaires
         $('#custom_itinerary_intermediate_cities').append(newCityDiv);
@@ -39,7 +54,7 @@ $(document).ready(function() {
 
     // J'ajoute un événement clic sur le bouton de suppression de ville intermédiaire permettant de supprimer l'élément div, parent du bouton supprimer
     $(document).on('click', '.delete_city_button', function() {
-        $(this).parent().remove();
+        $(this).parent().remove()
     });
 });
 
@@ -196,7 +211,7 @@ async function getCitiesWithPlaces() {
 // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieure ou égale à 3
 //     if (search.length >= 3) {
 //         // J'effectue la recherche de villes correspondantes et j'affiche les suggestions dans la liste <ul>
-//         const filteredData = /* ... */;
+//         const filteredData = ;
 // //Je réinitialise la liste de suggestions
 //         $('#intermediate_city_suggestions').empty();
 
