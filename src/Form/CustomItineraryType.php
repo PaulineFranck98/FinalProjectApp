@@ -21,13 +21,13 @@ class CustomItineraryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom de l\'itinéraire',
+                'label' => 'Donnez un nom à votre itinéraire',
             ])
             // ->add('creationDate', null, [
             //     'widget' => 'single_text',
             // ])
             ->add('departure', TextType::class, [
-                'label' => 'Ville de départ',
+                'label' => 'Choissisez une ville de départ',
                 'attr' => [
                     'data-type' => 'departure'
                 ]
@@ -37,7 +37,7 @@ class CustomItineraryType extends AbstractType
             ])
 
             ->add('arrival', TextType::class, [
-                'label' => 'Ville d\'arrivée',
+                'label' => 'Choisissez une ville d\'arrivée',
                 'attr' => [
                     'data-type' => 'arrival'
                 ]
