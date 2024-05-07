@@ -3,72 +3,78 @@
 {% block title %}Itinéraire personnalisé{% endblock %}
 
 {% block body %}
-    <main class="top">
-        <h1>Ajouter un itinéraire</h1>
+    <main class="new-itinerary-form">
+        <h1>Créer un nouvel itinéraire</h1>
+        <section id="itinerary-form">
+            
+            <div class="itinerary-form">
 
-        {{ form_start(formAddItinerary) }}
+                {{ form_start(formAddItinerary) }}
 
-        {{ form_row(formAddItinerary.name) }}
+                {{ form_row(formAddItinerary.name) }}
 
-        
-        {# Gestion de l'affichage des suggestions de communes #}
-        <div>
-            {{ form_label(formAddItinerary.departure) }}
-            {{ form_widget(formAddItinerary.departure) }}
-            <ul id="commune-with-places"></ul>
-        </div>
-            {{ form_row(formAddItinerary.codeDeparture) }}
-
-        
-        <div>
-            {{ form_label(formAddItinerary.arrival) }}
-            {{ form_widget(formAddItinerary.arrival) }}
-            <ul id="commune-with-places"></ul>
-        </div>
-        {{ form_row(formAddItinerary.codeArrival) }}
-
-        <p><b>Ajouter des villes intermédiaires</b></p>
-
-        <div id="custom_itinerary_intermediate_cities"
-            data-prototype="{{ form_widget(formAddItinerary.cities.vars.prototype)|e }}"
-            data-itinerary="{{ itineraryId }}"
-            data-widget-counter="{{ formAddItinerary.cities|length }}">
-
-            {# <label for = "custom_itinerary_cities" >Ville intermédiaire</label> #}
-
-            {% for city in formAddItinerary.cities %}
-                <div class="intermediate_city_container">
-                    {{ form_errors(city) }}
-                    {{ form_label(city) }}
-                    {{ form_widget(city, {'attr': {'class': 'intermediate_city'}} ) }}
-                    {# <button type="button" class="delete_city_button">Supprimer</button> #}
+                
+                {# Gestion de l'affichage des suggestions de communes #}
+                <div>
+                    {{ form_label(formAddItinerary.departure) }}
+                    {{ form_widget(formAddItinerary.departure) }}
+                    <ul id="commune-with-places"></ul>
                 </div>
-            {% endfor %}
-        </div>
-        <button type="button" 
-                class="add_city_button" 
-                data-list-selector="#custom_itinerary_intermediate_cities">Ajouter une ville intermédiaire
-        </button>
+                
+                <div>
+                    {{ form_label(formAddItinerary.arrival) }}
+                    {{ form_widget(formAddItinerary.arrival) }}
+                    <ul id="commune-with-places"></ul>
+                </div>
+                <div class="hidden">
+                    {{ form_row(formAddItinerary.codeDeparture) }}
+                    {{ form_row(formAddItinerary.codeArrival) }}
+                </div>
+                <div class="add-intermediate">
+                    <p><b>Ajouter des villes intermédiaires</b></p>
+
+                    <div id="custom_itinerary_intermediate_cities"
+                        data-prototype="{{ form_widget(formAddItinerary.cities.vars.prototype)|e }}"
+                        data-itinerary="{{ itineraryId }}"
+                        data-widget-counter="{{ formAddItinerary.cities|length }}">
+
+                        {# <label for = "custom_itinerary_cities" >Ville intermédiaire</label> #}
+
+                        {% for city in formAddItinerary.cities %}
+                            <div class="intermediate_city_container">
+                                {{ form_errors(city) }}
+                                {{ form_label(city) }}
+                                {{ form_widget(city, {'attr': {'class': 'intermediate_city'}} ) }}
+                                {# <button type="button" class="delete_city_button">Supprimer</button> #}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="button" 
+                            class="add_city_button" 
+                            data-list-selector="#custom_itinerary_intermediate_cities">&#128932; Ajouter une ville
+                    </button>
+                </div>
 
 
-        {# empêche l'apparition d'une légende "cites", si la collection est vide #}
-        {% do formAddItinerary.cities.setRendered %} 
+                {# empêche l'apparition d'une légende "cites", si la collection est vide #}
+                {% do formAddItinerary.cities.setRendered %} 
 
-        {{ form_row(formAddItinerary.valider) }}
+                {{ form_row(formAddItinerary.valider) }}
 
-        {{ form_end(formAddItinerary) }}
-
-        <div id="map-itinerary"></div>
+                {{ form_end(formAddItinerary) }}
+            </div>
+            <div id="map-itinerary"></div>    
+        </section>    
 
         {% block javascripts %}
-            <script
-                src="https://code.jquery.com/jquery-3.4.1.min.js"
-                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-                crossorigin="anonymous">
-            </script>
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-                        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-                        crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous">
+        </script>
             <script src="{{ asset('js/itinerary.js')}}"></script>
         {% endblock %}
 

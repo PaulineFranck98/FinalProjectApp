@@ -718,12 +718,75 @@ input[type="radio"]:checked + label > figure > img {
 
 } */
 
+/* ---- Add custom itinerary form  */
 
-#map-itinerary{
-    height:50vh;
-    width:50vw;
+
+.hidden{
+    display:none;
 }
 
+.new-itinerary-form h1{
+    padding-top:3%;
+    position:fixed;
+    left:34%;
+}
+#map-itinerary{
+    height:70vh;
+    width: 40vw;
+    border-radius:1rem;
+    position: fixed;
+    top: 15%;
+    right: 15%;
+    
+}
+
+#itinerary-form {
+  padding-top:1%;
+  width:20vw;
+  position:absolute;
+  border: none;
+  background: #070a0214;
+  padding: 3%;
+  margin: 1% 0 4%;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+#itinerary-form input,
+button.add_city_button,
+button#custom_itinerary_valider
+{
+    border: none;
+    background: #070a0214;
+    padding: 3%;
+    margin:1% 0 4%;
+    border-radius: 0.5rem;
+    width:100%;
+}
+
+.itinerary-form{
+    padding:1%;
+}
+
+.itinerary-form label,
+.itinerary-form p{
+    display:block;
+    font-size:1.2em;
+}
+
+button.add_city_button{
+
+    font-size:1em;
+}
+
+
+button#custom_itinerary_valider{
+    font-size: 1.1em;
+}
+
+.add-intermediate {
+    /* border: 1px solid black; */
+}
 
 
 
