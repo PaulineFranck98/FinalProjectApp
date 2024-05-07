@@ -349,10 +349,11 @@ nav span{
 }
 
 .bcg-join-community{
-    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/bcg-map-large.webp);
+    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
+    background-attachment: fixed;
 }
 
 #reviews-phone{
