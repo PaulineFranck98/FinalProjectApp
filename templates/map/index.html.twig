@@ -26,7 +26,7 @@
                                     </figure>
                                 {% endfor %}
                             </div>
-                            <button id="hide-button">Masquer</button>
+                            {# <button id="hide-button">Masquer</button> #}
                             <p class="border"></p>
                         </div>
                     {% endfor %}
@@ -37,7 +37,7 @@
     </main>
     {% block javascripts %}
         <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
-        <script>window.placesData = JSON.parse('{{ placesData|e('js') }}') || [];</script>
+        <script>window.placesData = JSON.parse("{{ placesData|e('js') }}") || [];</script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
                 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
                 crossorigin=""></script>
