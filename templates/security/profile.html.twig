@@ -4,24 +4,38 @@
 
 {% block body %}
 <main>
-    <section id="dashboard">
-        <aside>
-            <ul>
-                <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil</a></li>
-                <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}">Posts</a></li>
-                <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}">Avis</a></li>
-                <li><a href="#">Favoris</a></li>
-                <li><a href="#">Itinéraires</a></li>
-            </ul>
-        </aside>
-        <section id="profile">
-            <h1>Infos Profil</h1>
-            <p>{{ app.user}}</p>
-            <p>{{ app.user.email}}</p>
-            {# <figure>
-                <img src="{{ asset('uploads/' ~ app.user.profilePicture)}}" alt="">
-            </figure> #}
+    <div class="bcg-profile">
+        <section id="dashboard">
+            <aside>
+                <div class="dashboard-aside">
+                    <figure>
+                        {# <img src="#"> #}
+                    </figure>
+                    <p><b>{{ app.user}}</b></p>
+                </div>
+                <ul>
+                    <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}"><i class="fa-regular fa-user" style="color: #ffffff;"></i> Profil</a></li>
+                    <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}"><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i> Posts</a></li>
+                    <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}"><i class="fa-regular fa-star-half-stroke" style="color: #ffffff;"></i> Avis</a></li>
+                    <li><a href="#"><i class="fa-regular fa-heart" style="color: #ffffff;"></i> Favoris</a></li>
+                    <li><a href="#"><i class="fa-solid fa-signs-post" style="color: #ffffff;"></i> Itinéraires</a></li>
+                </ul>
+            </aside>
+            <section id="profile-container">
+                <h1>Infos Profil</h1>
+                <p>{{ app.user}}</p>
+                <p>{{ app.user.email}}</p>
+                {# <figure>
+                    <img src="{{ asset('uploads/' ~ app.user.profilePicture)}}" alt="">
+                </figure> #}
+            </section>
         </section>
-    </section>
+        <figure class="travel-sign">
+            <img src="/img-source/travel-sign.webp">
+        </figure>
+        <figure class="travel-stork">
+            <img src="/img-source/adventure-stork.webp">
+        </figure>
+    </div>
 </main>
 {% endblock %}

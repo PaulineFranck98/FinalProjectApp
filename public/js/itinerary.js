@@ -29,8 +29,6 @@ $(document).ready(function() {
         // var newCityWidget = $('#custom_itinerary_intermediate_cities').data('prototype');
         var newCityWidget = list.data('prototype')
 
-
-
         // Je remplace le texte "__name__" dans le prototype par l'index de la nouvelle ville intermédiaire
         newCityWidget = newCityWidget.replace(/__name__/g, counter)
 
@@ -66,7 +64,6 @@ async function getCitiesWithPlaces() {
     const data = await response.json();
     return data;
 }
-
     
     // Je récupère l'élément input où l'utilisateur entre le nom de la commune
     const communeInputs = document.querySelectorAll('#custom_itinerary_departure, #custom_itinerary_arrival');
@@ -140,7 +137,6 @@ async function getCitiesWithPlaces() {
                                     // latlngs.push([lat,lng]);
 
                                     console.log('arrival : ' + lat, lng);
-                                    
             
                                 }
 

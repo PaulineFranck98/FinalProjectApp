@@ -349,7 +349,7 @@ nav span{
 }
 
 .bcg-join-community{
-    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp);
+    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/fond-community.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
@@ -601,30 +601,104 @@ input[type="radio"]:checked + label > figure > img {
     font-size: 1.1rem;
 }
 
+.bcg-profile {
+    background: url(/img-source/bcg-profile4.webp), linear-gradient(transparent, #c9b20a47);
+    background-size: cover;
+    height: 100vh;
+    background-position-y: bottom;
+}
+
+.travel-sign{
+    position: absolute;
+    bottom: 0%;
+    width: 10%;
+    left: 1%;
+    filter: drop-shadow(-14px 10px 2px rgba(0, 0, 0, 0.3));
+}
+
+.travel-sign img{
+    filter: brightness(1.1);
+}
+
+.travel-stork{
+    position: absolute;
+    top: 65.2%;
+    right: 5.5%;
+    width: 6%;
+    /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));  */
+}
+
+.travel-stork img{
+    filter: contrast(0.85);
+}
+
 
 #dashboard{
-    /* padding-top: 3rem; */
+    padding-top: 4.5rem;
     display: flex;
-    align-items :center;
-    width:50vw;
-    height:80vh;
-    margin:auto;
+    align-items: center;
+    gap:1%;
+    width: 84vw;
+    height: 94vh;
+    margin: auto;
 }
 
 #dashboard aside{
-    width:40%;
+    width:16vw;
+    height:100%;
+    background:#3f3c3cf5;
+    border-radius: var(--sm-border-radius);
+    padding:1%;
     /* height:50%;
     margin: auto 1rem; */
+}
+
+#dashboard aside i {
+    margin-right:1rem;
+}
+
+.dashboard-aside{
+    height: 25%;
+    margin-top: 1%; 
+    color:white;
+    text-align: center;
+}
+
+.dashboard-aside figure{
+    background: #ffffff9e;
+    height: 65%;
+    width: 44%;
+    border-radius: 50%;
+    margin: 0 auto 5%;
 }
 
 
 #dashboard aside ul li a {
     text-decoration: none;
-    border: 1px solid grey;
-    width:60%;
-    display:block;
+    width: 77%;
+    display: block;
+    padding: 1.6rem 0;
+    color: white;
+    border-bottom: 1px solid #ffffff40;
+    margin:auto;
+}
+
+#profile-container{
+    width: 67vw;
+    height: 100%;
+    background: #3f3c3cd1;
+    border-radius: var(--sm-border-radius);
+    color:white;
     padding:1rem;
-    color:black;
+}
+
+.rating-ul{
+    width: 46%;
+    color: black;
+    background: #ffffffc4;
+    border-radius: var(--sm-border-radius);
+    padding: 1rem;
+    margin-top: 1rem; 
 }
 
 

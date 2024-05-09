@@ -4,35 +4,49 @@
 
 {% block body %}
 <main>
-    <section id="dashboard">
-        <aside>
-            <ul>
-                <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil</a></li>
-                <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}">Posts</a></li>
-                <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}">Avis</a></li>
-                <li><a href="#">Favoris</a></li>
-                <li><a href="#">Itinéraires</a></li>
-            </ul>
-        </aside>
-        <section>
-            <h1>Notes et Avis</h1>
-            {% if app.user.ratings %}
-            <ul>
-                {% for rating in ratings %}
-                <li>
-                    <p>{{ rating.place}}</p>
-                    <p>{{ rating.rating|stars|raw}}</p>
-                    <p>{{ rating.ratingDate|date("d/m/Y, H:i")}}</p>
-                    <p>{{ rating.comment }}</p>
-                </li>
-    
-                {% endfor %}
-            </ul>
-            {% else %}
-                <p>Vous n'avez pas encore laissé d'avis.</p>
-            {% endif %}
-            
+     <div class="bcg-profile">
+        <section id="dashboard">
+            <aside>
+                <div class="dashboard-aside">
+                    <figure>
+                        {# <img src="#"> #}
+                    </figure>
+                    <p><b>{{ app.user}}</b></p>
+                </div>
+                <ul>
+                    <li><a href="{{ path('show_profile', {'id': app.user.id}) }}) }}"><i class="fa-regular fa-user" style="color: #ffffff;"></i> Profil</a></li>
+                    <li><a href="{{ path('show_posts', {'id': app.user.id}) }}) }}"><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i> Posts</a></li>
+                    <li><a href="{{ path('show_ratings', {'id': app.user.id}) }}) }}"><i class="fa-regular fa-star-half-stroke" style="color: #ffffff;"></i> Avis</a></li>
+                    <li><a href="#"><i class="fa-regular fa-heart" style="color: #ffffff;"></i> Favoris</a></li>
+                    <li><a href="#"><i class="fa-solid fa-signs-post" style="color: #ffffff;"></i> Itinéraires</a></li>
+                </ul>
+            </aside>
+            <section id="profile-container">
+        
+                <h1>Notes et Avis</h1>
+                {% if app.user.ratings %}
+                <ul class="rating-ul">
+                    {% for rating in ratings %}
+                    <li>
+                        <p><b><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i> {{ rating.place}}</b></p>
+                        <p>{{ rating.rating|stars|raw}}</p>
+                        <p><small>{{ rating.ratingDate|date("d/m/Y, H:i")}}</small></p>
+                        <p>{{ rating.comment }}</p>
+                    </li>
+        
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>Vous n'avez pas encore laissé d'avis.</p>
+                {% endif %}
+            </section>
         </section>
-    </section>
+        <figure class="travel-sign">
+            <img src="/img-source/travel-sign.webp">
+        </figure>
+        <figure class="travel-stork">
+            <img src="/img-source/adventure-stork.webp">
+        </figure>
+    </div>
 </main>
 {% endblock %}
