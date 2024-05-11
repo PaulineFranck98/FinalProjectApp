@@ -17,14 +17,14 @@
                 {# Gestion de l'affichage des suggestions de communes #}
                 <div>
                     {{ form_label(formAddItinerary.departure) }}
-                    {{ form_widget(formAddItinerary.departure) }}
-                    <ul id="commune-with-places"></ul>
+                    {{ form_widget(formAddItinerary.departure, {'attr': {'class': 'commune-input'}}) }}
+                    <ul id="commune-with-places-departure"></ul>
                 </div>
                 
                 <div>
                     {{ form_label(formAddItinerary.arrival) }}
-                    {{ form_widget(formAddItinerary.arrival) }}
-                    <ul id="commune-with-places"></ul>
+                    {{ form_widget(formAddItinerary.arrival,  {'attr': {'class': 'commune-input'}}) }}
+                    <ul id="commune-with-places-arrival"></ul>
                 </div>
                 <div class="hidden">
                     {{ form_row(formAddItinerary.codeDeparture) }}
@@ -38,14 +38,9 @@
                         data-itinerary="{{ itineraryId }}"
                         data-widget-counter="{{ formAddItinerary.cities|length }}">
 
-                        {# <label for = "custom_itinerary_cities" >Ville intermédiaire</label> #}
-
                         {% for city in formAddItinerary.cities %}
                             <div class="intermediate_city_container">
-                                {{ form_errors(city) }}
-                                {{ form_label(city) }}
-                                {{ form_widget(city, {'attr': {'class': 'intermediate_city'}} ) }}
-                                {# <button type="button" class="delete_city_button">Supprimer</button> #}
+                                {{ form_widget(city) }}
                             </div>
                         {% endfor %}
                     </div>
