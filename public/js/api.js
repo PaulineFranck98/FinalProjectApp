@@ -3,7 +3,12 @@
 
     
     // Je récupère l'élément input où l'utilisateur entre le nom de la commune
-    const communeInput = document.querySelector('#place_city');
+    const communeInput = document.querySelector('#place_cityName');
+
+    // Je récupère l'élément input où le code de la commune sera stocké
+    const codeCommuneInput = document.querySelector('#place_cityCodeId');
+
+
     // Je récupère l'élément où seront affichées les suggestions de communes
     const communeSuggestions = document.querySelector('#commune-suggestions');
     
@@ -39,6 +44,8 @@
                     listItem.addEventListener('click', () => {
                         // Je remplis l'élément input avec le nom de la commune sélectionnée
                         communeInput.value = commune.nom;
+
+                        codeCommuneInput.value = commune.code;
 
                         // Je vérifie la longueur du tableau contenant les codes postaux de la commune sélectionnée 
                         if (commune.codesPostaux.length === 1) {

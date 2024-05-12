@@ -18,6 +18,9 @@ class City
     #[ORM\Column(length: 255)]
     private ?string $cityCode = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $cityName = null;
+
     /**
      * @var Collection<int, CustomItinerary>
      */
@@ -27,8 +30,10 @@ class City
     /**
      * @var Collection<int, Place>
      */
-    #[ORM\OneToMany(targetEntity: Place::class, mappedBy: 'cityCode')]
+    #[ORM\OneToMany(targetEntity: Place::class, mappedBy: 'city')]
     private Collection $places;
+
+
 
     public function __construct()
     {
@@ -52,6 +57,19 @@ class City
 
         return $this;
     }
+
+    public function getCityName(): ?string
+    {
+        return $this->cityName;
+    }
+
+    public function setCityName(string $cityName): static
+    {
+        $this->cityName = $cityName;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, CustomItinerary>
@@ -92,7 +110,7 @@ class City
     {
         if (!$this->places->contains($place)) {
             $this->places->add($place);
-            $place->setCityCode($this);
+            $place->setCity($this);
         }
 
         return $this;
@@ -102,11 +120,16 @@ class City
     {
         if ($this->places->removeElement($place)) {
             // set the owning side to null (unless already changed)
-            if ($place->getCityCode() === $this) {
-                $place->setCityCode(null);
+            if ($place->getCity() === $this) {
+                $place->setCity(null);
             }
         }
 
         return $this;
+    }
+
+
+    public function __toString(){
+        return $this->getCityName() ?: '';
     }
 }

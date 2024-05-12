@@ -24,8 +24,8 @@ class Place
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $city = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $city = null;
 
     #[ORM\Column]
     private ?int $zipcode = null;
@@ -62,6 +62,10 @@ class Place
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
 
+    #[ORM\ManyToOne(inversedBy: 'places')]
+    private ?City $city = null;
+
+
     #[ORM\ManyToMany(targetEntity: Theme::class,  inversedBy: 'places')]
     private Collection $themes;
 
@@ -77,9 +81,7 @@ class Place
     #[ORM\ManyToMany(targetEntity: CustomItinerary::class, mappedBy: 'place')]
     private Collection $customItineraries;
 
-    #[ORM\ManyToOne(inversedBy: 'places')]
-    private ?City $cityCode = null;
-
+   
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -120,17 +122,17 @@ class Place
         return $this;
     }
 
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
+    // public function getCity(): ?string
+    // {
+    //     return $this->city;
+    // }
 
-    public function setCity(string $city): static
-    {
-        $this->city = $city;
+    // public function setCity(string $city): static
+    // {
+    //     $this->city = $city;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getZipcode(): ?string
     {
@@ -441,14 +443,14 @@ class Place
         return $this;
     }
 
-    public function getCityCode(): ?City
+    public function getCity(): ?City
     {
-        return $this->cityCode;
+        return $this->city;
     }
 
-    public function setCityCode(?City $cityCode): static
+    public function setCity(?City $city): static
     {
-        $this->cityCode = $cityCode;
+        $this->city = $city;
 
         return $this;
     }

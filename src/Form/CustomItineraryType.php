@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\City;
 use App\Entity\User;
 use App\Entity\Place;
 use App\Form\CityType;
@@ -48,7 +49,10 @@ class CustomItineraryType extends AbstractType
 
             ->add('cities', CollectionType::class,[
                 'label' => 'Ville intermédiaire',
-                'entry_type' => CityType::class,
+                'entry_type' => EntityType::class,
+                'entry_options' => [
+                    'class' => City::class,
+                ],
                 'prototype' => true,
                 'allow_add' => true,
                 'allow_delete' => true,

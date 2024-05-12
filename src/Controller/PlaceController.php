@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\City;
 use App\Entity\Image;
 use App\Entity\Place;
 use App\Form\PlaceType;
-use App\Repository\PlaceRepository;
 use App\Service\PictureService;
+use App\Repository\CityRepository;
+use App\Repository\PlaceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,15 +30,14 @@ class PlaceController extends AbstractController
     }
 
     #[Route('/place/cities_with_places', name: 'cities_with_places')]
-    public function citiesWithPlaces(PlaceRepository $placeRepository) : JsonResponse
+    public function citiesWithPlaces(CityRepository $cityRepository) : JsonResponse
     {
-        $cities = $placeRepository->findCitiesWithPlaces();
-        // dump($placeRepository->findCitiesWithPlaces());
+        $cities = $cityRepository->findCitiesWithPlaces();
         return $this->json($cities);
     }
 
     #[Route('/place/new', name:'new_place')]
-    public function new(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService): Response
+    public function new(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService, CityRepository $cityRepository): Response
     {
         $place = new Place();
 
@@ -71,17 +72,48 @@ class PlaceController extends AbstractController
                 $img->setName($file);
                 $place->addImage($img);
 
-                // On doit persister l'image dans le lieu
             }
-         
 
+            // Je récupère le code INSEE de la ville et je le stocke dans la variable $cityCode
+            $cityCode = $form->get('cityCodeId')->getData();
+            
+            // Je récupère le nom de la ville et je le stocke dans la variable $cityName
+            $cityName = $form->get('cityName')->getData();
+
+            // J'utilise la fonction 'findBy' pour récupérer la ville avec le même cityCode si elle existe
+            $city = $cityRepository->findOneBy(['cityCode' => $cityCode]);
+            // dd($cityCode, $city);
+            // Si la ville n'existe pas dans l'entité city
+            if ($city) {
+                $place->setCity($city);
+            
+            } else {
+            //   Je crée une nouvelle ville
+              $city = new City();
+
+            //   Je définis son code INSEE
+              $city->setCityCode($cityCode);
+
+            //   Je définis son nom
+              $city->setCityName($cityName);
+
+              $place->setCity($city);
+
+              $entityManager->persist($city);
+            }
+            // dd($city);
+       
+        
             $place = $form->getData();
+
+            // dd($place, $city);
             // dd($place);
             $entityManager->persist($place);
 
             $entityManager->flush();
 
             return $this->redirectToRoute('app_place');
+        
 
         }
 
@@ -91,7 +123,7 @@ class PlaceController extends AbstractController
     }
 
     #[Route('/place/{id}/edit', name:'edit_place')]
-    public function edit(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService): Response
+    public function edit(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService, CityRepository $cityRepository): Response
     {
     $form = $this->createForm(PlaceType::class, $place);
 
@@ -121,9 +153,41 @@ class PlaceController extends AbstractController
             $img->setName($file);
             $place->addImage($img);
 
-            // On doit persister l'image dans le lieu
         }
+
+         // Je récupère le code INSEE de la ville et je le stocke dans la variable $cityCode
+         $cityCode = $form->get('cityCodeId')->getData();
+            
+         // Je récupère le nom de la ville et je le stocke dans la variable $cityName
+         $cityName = $form->get('cityName')->getData();
+
+         // J'utilise la fonction 'findBy' pour récupérer la ville avec le même cityCode si elle existe
+         $city = $cityRepository->findOneBy(['cityCode' => $cityCode]);
+         // dd($cityCode, $city);
+         // Si la ville n'existe pas dans l'entité city
+         if ($city) {
+             $place->setCity($city);
+         
+         } else {
+         //   Je crée une nouvelle ville
+           $city = new City();
+
+         //   Je définis son code INSEE
+           $city->setCityCode($cityCode);
+
+         //   Je définis son nom
+           $city->setCityName($cityName);
+
+           $place->setCity($city);
+
+           $entityManager->persist($city);
+         }
+         // dd($city);
+
+
         $place = $form->getData();
+
+
         $entityManager->persist($place);
         $entityManager->flush();
 

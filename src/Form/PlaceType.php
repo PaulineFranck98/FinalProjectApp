@@ -45,9 +45,14 @@ class PlaceType extends AbstractType
                 'label' => 'Adresse',
             ])
             // TextType renders a basic input text field
-            ->add('city', TextType::class, [
+            ->add('cityName', TextType::class, [
                 // I define the 'label' attribute for the 'city' field
                 'label' => 'Ville',
+                'mapped' => false,
+            ])
+
+            ->add('cityCodeId', TextType::class, [
+                'mapped' => false,
             ])
             // zipcode is a number between 67000 and 68999 inclusive
             ->add('zipcode', NumberType::class, [

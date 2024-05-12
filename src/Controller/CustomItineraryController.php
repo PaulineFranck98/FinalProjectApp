@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\City;
 use App\Entity\CustomItinerary;
 use App\Form\CustomItineraryType;
 use App\Repository\CityRepository;
@@ -35,7 +36,7 @@ class CustomItineraryController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $codeIntermediaire = $form->get('cities')->getData();
+            $intermediateCities = $form->get('cities')->getData();
             $codeDeparture = $form->get('codeDeparture')->getData();
             $codeArrival = $form->get('codeArrival')->getData();
             $itinerary->setDeparture($codeDeparture);
@@ -46,16 +47,36 @@ class CustomItineraryController extends AbstractController
             $user = $this->getUser();
 
             $itinerary->setUser($user);
-            
-            $cities = [];
-            foreach ($codeIntermediaire  as $code){
-                $city = $cityRepository->findOneBy(['cityCode' =>  $code]);
-                if($city){
-                    $itinerary->addCity($city);
-                }
-            }
 
             
+            // foreach ($intermediateCities as $cityName){
+            //     $city = $cityRepository->findOneBy(['cityName' =>  $cityName]);
+                
+            //     if($city){
+            //         $itinerary->addCity($city);
+            //     }
+    
+            // }
+
+            // dd($intermediateCities);
+            
+
+            // foreach ($intermediateCities as $cityName) {
+            //     // $city = $cityRepository->find($cityId['id']);
+            //     $city = $cityRepository->findOneBy(['cityName' =>  $cityName]);
+            //     // $city = $cityRepository->findOneBy(['id' => $cityId]);
+            //         // dd($city);
+            //         $itinerary->addCity($city);
+            //         // $cities[] = $city;
+            //     }
+            
+
+            // Ajouter les villes intermédiaires à l'itinéraire
+            // foreach ($cities as $city) {
+                // $itinerary->addCity($city);
+// }
+
+            // $itinerary = $form->getData();
             dd($itinerary);
             
             $entityManager->persist($itinerary);

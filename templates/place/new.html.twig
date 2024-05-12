@@ -17,9 +17,12 @@
                         {{ form_row(formAddPlace.name) }}
                         {# Gestion de l'affichage des suggestions de communes #}
                         <div>
-                            {{ form_label(formAddPlace.city) }}
-                            {{ form_widget(formAddPlace.city) }}
+                            {{ form_label(formAddPlace.cityName) }}
+                            {{ form_widget(formAddPlace.cityName) }}
                             <ul id="commune-suggestions"></ul>
+                        </div>
+                        <div>
+                            {{ form_row(formAddPlace.cityCodeId)}}
                         </div>
                         {{ form_row(formAddPlace.zipcode) }}
                     </div>

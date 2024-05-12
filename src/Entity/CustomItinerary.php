@@ -37,7 +37,7 @@ class CustomItinerary
     /**
      * @var Collection<int, City>
      */
-    #[ORM\ManyToMany(targetEntity: City::class, inversedBy: 'customItineraries')]
+    #[ORM\ManyToMany(targetEntity: City::class, inversedBy: 'customItineraries', cascade:['persist'])]
     private Collection $cities;
 
     public function __construct()
