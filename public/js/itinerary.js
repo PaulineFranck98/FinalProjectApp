@@ -243,7 +243,7 @@ $(document).ready(function() {
         newCityWidget = newCityWidget.replace(/__name__/g, counter);
 
         // J'ajoute un attribut data-type et  data-index à l'élément input de commune intermédiaire
-        newCityWidget = newCityWidget.replace('<input type="text"', '<input type="text" data-type="intermediateCity" data-index="' + counter + '"');
+        // newCityWidget = newCityWidget.replace('<input type="text"', '<input type="text" data-type="intermediateCity" data-index="' + counter + '"');
 
         // Je récupère l'élément <div> et je le stocke dans la varibable 'newCityDiv'rée un nouvel élément div pour contenir le nouvel input texte
         var newCityDiv = $('<div class="intermediate_city_container"></div>');
@@ -251,11 +251,14 @@ $(document).ready(function() {
         // Je définis le contenu de cet élément grâce à la fonction html(), native jQuery
         newCityDiv.html(newCityWidget);
 
+        var deleteButton = $('<button type="button" class="delete_city_button"><i class="fa-solid fa-trash-can"></i></button>');
+        newCityDiv.append(deleteButton);
+
         // Je crée une nouvelle liste <ul> pour les suggestions de communes et je rends leur id unique grâce à l'index (counter)
-        var newCommuneSuggestions = $('<ul id="commune-with-places-' + counter + '"></ul>');
+        // var newCommuneSuggestions = $('<ul id="commune-with-places-' + counter + '"></ul>');
 
         // J'ajoute la liste <ul> après chaque nouvel élément input
-        newCityDiv.append(newCommuneSuggestions);
+        // newCityDiv.append(newCommuneSuggestions);
 
         // J'ajoute le nouvel élément <div> à la collection de villes intermédiaires grâce à la fonction append(), native jQuery
         $('#custom_itinerary_intermediate_cities').append(newCityDiv);

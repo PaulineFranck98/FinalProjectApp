@@ -55,13 +55,6 @@ class CustomItineraryType extends AbstractType
                         'class' => City::class,
                         'choice_label' => 'cityName',
                         'choice_value' => 'cityCode',
-                    //     'multiple' => true,
-                    //     'expanded' => false,
-                    //     'required' => false,
-                    //     'attr' => [
-                    //         'class' => 'tom-select',
-                    //         'data-placeholder' => 'Ajouter une ville',
-                    //     ],
                     ],
 
                 'prototype' => true,
