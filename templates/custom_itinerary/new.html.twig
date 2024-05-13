@@ -30,7 +30,7 @@
                     {{ form_row(formAddItinerary.codeDeparture) }}
                     {{ form_row(formAddItinerary.codeArrival) }}
                 </div>
-                <div class="add-intermediate">
+                {# <div class="add-intermediate">
                     <p><b>Ajoutez des villes intermédiaires</b></p>
 
                     <div id="custom_itinerary_intermediate_cities"
@@ -47,12 +47,14 @@
                     <button type="button" 
                             class="add_city_button" 
                             data-list-selector="#custom_itinerary_intermediate_cities">&#128932; Ajouter une ville
-                    </button>
+                    </button> #}
+
+                    {{ form_row(formAddItinerary.cities)}}
                 </div>
 
 
                 {# empêche l'apparition d'une légende "cities", si la collection est vide #}
-                {% do formAddItinerary.cities.setRendered %} 
+                {# {% do formAddItinerary.cities.setRendered %}  #}
 
                 {{ form_row(formAddItinerary.valider) }}
 

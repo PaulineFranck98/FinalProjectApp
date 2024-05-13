@@ -47,16 +47,20 @@ class CustomItineraryType extends AbstractType
                 'mapped' => false,
             ])
 
-            ->add('cities', CollectionType::class,[
-                'label' => 'Ville intermédiaire',
-                'entry_type' => EntityType::class,
-                'entry_options' => [
-                    'class' => City::class,
-                ],
-                'prototype' => true,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
+            // ->add('cities', CollectionType::class,[
+            //     'label' => 'Ville intermédiaire',
+            //     'entry_type' => EntityType::class,
+            //     'entry_options' => [
+            //         'class' => City::class,
+            //     ],
+            //     'prototype' => true,
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            //     'by_reference' => false,
+            // ])
+
+            ->add('cities', CityAutocompleteField::class, [
+                'multiple' => true,
             ])
             
             ->add('valider', SubmitType::class)

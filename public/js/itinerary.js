@@ -9,11 +9,43 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
+var citySelect = new TomSelect('#custom_itinerary_cities', {
+    // maxItems: null,
+    labelField: 'cityName',
+    searchField: 'cityName',
+    options: [],
+});
+console.log(citySelect);
+
+
+
+
 async function getCitiesWithPlaces() {
     const response = await fetch('/place/cities_with_places'); 
     const data = await response.json();
     return data;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Je récupère et stock les éléments input où l'utilisateur entre le nom de la commune de départ et d'arrivée 
 const arrivalInput = document.querySelector('#custom_itinerary_arrival');
