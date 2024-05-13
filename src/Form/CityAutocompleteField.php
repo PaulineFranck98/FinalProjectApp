@@ -17,6 +17,7 @@ class CityAutocompleteField extends AbstractType
             'class' => City::class,
             'placeholder' => 'Choose a City',
             'choice_label' => 'cityName',
+            'multiple' => true,
 
             // choose which fields to use in the search
             // if not passed, *all* fields are used

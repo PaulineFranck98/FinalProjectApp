@@ -9,13 +9,52 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
-var citySelect = new TomSelect('#custom_itinerary_cities', {
-    // maxItems: null,
-    labelField: 'cityName',
-    searchField: 'cityName',
-    options: [],
-});
-console.log(citySelect);
+
+
+// var citySelect = new TomSelect('#custom_itinerary_cities', {
+//     // maxItems: null,
+//     labelField: 'cityName',
+//     searchField: 'cityName',
+//     options: [],
+// });
+// console.log(citySelect);
+// $(document).ready(function() {
+//     $('.tom-select').tomSelect({
+//         create: true,
+//         sortField: {
+//             field: 'text',
+//             direction: 'asc'
+//         },
+//         plugins: {
+//             remove_button: {
+//                 title: 'Supprimer la ville',
+//             }
+//         },
+//         render: {
+//             option: function(data, escape) {
+//                 return '<div>' + escape(data.text) + '</div>';
+//             },
+//             item: function(data, escape) {
+//                 return '<div>' + escape(data.text) + ' <span class="badge badge-secondary">' + data.id + '</span></div>';
+//             }
+//         },
+//         ajax: {
+//             type: 'GET',
+//             url: '/place/cities_with_places',
+//             dataType: 'json',
+//             // data: function(params) {
+//             //     return {
+//             //         q: params.term
+//             //     };
+//             // },
+//             // processResults: function(data) {
+//             //     return {
+//             //         results: data
+//             //     };
+//             // }
+//         }
+//     });
+// });
 
 
 
@@ -25,26 +64,6 @@ async function getCitiesWithPlaces() {
     const data = await response.json();
     return data;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Je récupère et stock les éléments input où l'utilisateur entre le nom de la commune de départ et d'arrivée 
@@ -240,71 +259,99 @@ $(document).ready(function() {
 
         // J'ajoute le nouvel élément <div> à la collection de villes intermédiaires grâce à la fonction append(), native jQuery
         $('#custom_itinerary_intermediate_cities').append(newCityDiv);
+        let marker;
+        // console.log(newCityDiv.find('select'));
+        newCityDiv.find('select').change(function(){
+            var selectedCity = $(this).children("option:selected").val();
+            console.log(selectedCity);
 
-        // Ajoute un écouteur d'événement sur l'élément input de commune intermédiaire en utilisant les fonction find() et on(), native jQuery
-        newCityDiv.find('input[type="text"]').on('input', async function() {
-
-            // Je réinitialise la liste de suggestions de communes
-            newCommuneSuggestions.innerHTML = '';
-
-            // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après grâce à la fonction trim(), native Javascript
-            const search = this.value.trim();
-
-            // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieure ou égale à 3
-            if (search.length >= 3)
-            {
-                const citiesWithPlaces = await getCitiesWithPlaces();
-                
-                // J'effectue une requête vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
-                fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
-                    .then(response => response.json()) // Je convertis la réponse en JSON
-                    .then(data => {
-
-                    // Je filtre et stocke dans la constante 'filteredData', les villes contenant des lieux d'intérêts, grâce aux fonction filter() et some 
-                    const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.cityName === commune.nom));
-
-                    
-                    filteredData.forEach(commune => {
-
-                        // J'ajoute  et stocke dans la constante 'listItem' un élément <il> contenant les suggestions de communes à la liste <ul> correspondante
-                        const listItem = document.createElement('li');
-
-                        // Je définis le contenu texte de chaque élément <li> sur le nom de chaque commune suggérée dans la liste <ul>
-                        listItem.textContent = commune.nom;
-
+            fetch(`https://geo.api.gouv.fr/communes?code=${selectedCity}&fields=nom,code,centre&limit=3`)
+                .then(response => response.json()) // Je convertis la réponse en JSON
+                .then(data => {
+                    data.forEach(commune => {
                         // Je récupère et stocke dans la variable 'lat' la latitude de chaque commune
                         let lat = commune.centre.coordinates[1];
 
                         // Je récupère et stocke dans la variable 'lng' la longitude de chaque commune
                         let lng = commune.centre.coordinates[0];
 
-                        // J'ajoute un écouteur d'événement au click sur l'élément <li> 
-                        listItem.addEventListener('click', () => {
+                        console.log(lat, lng);
+                        if(marker){
+                            mapItinerary.removeLayer(marker);
+                        }
 
-                            // J'attribue comme valeur à l'input le nom de la commune sélectionnée
-                            this.value = commune.nom;
+                        // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
+                       marker = L.marker([lat, lng]);
 
-                            console.log(`intermediate city ${this.dataset.index}: `, lat, lng);
+                        // J'ajoute de marqueur de la commune correspondante à la map 
+                        mapItinerary.addLayer(marker);
+                    })
+                })
+        })
+        // Ajoute un écouteur d'événement sur l'élément input de commune intermédiaire en utilisant les fonction find() et on(), native jQuery
+        // newCityDiv.find('input[type="text"]').on('input', async function() {
 
-                            // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
-                            const marker = L.marker([lat, lng]);
+            // Je réinitialise la liste de suggestions de communes
+        //     newCommuneSuggestions.innerHTML = '';
 
-                            // J'ajoute de marqueur de la commune correspondante à la map 
-                            marker.addTo(mapItinerary);
+        //     // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après grâce à la fonction trim(), native Javascript
+        //     const search = this.value.trim();
 
-                            // Je mets à jour la polyline en récupérant la latitude et longitude du marqueur grâce à la fonction getLatLng(), native Leaflet
-                            updatePolyline(marker.getLatLng());
+        //     // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieure ou égale à 3
+        //     if (search.length >= 3)
+        //     {
+        //         const citiesWithPlaces = await getCitiesWithPlaces();
+                
+        //         // J'effectue une requête vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
+        //         fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
+        //             .then(response => response.json()) // Je convertis la réponse en JSON
+        //             .then(data => {
 
-                            // Je réinitialise la liste de suggestions de communes grâce à la fonction empty(), native jQuery
-                            newCommuneSuggestions.empty();
-                        });
+        //             // Je filtre et stocke dans la constante 'filteredData', les villes contenant des lieux d'intérêts, grâce aux fonction filter() et some 
+        //             const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.cityName === commune.nom));
 
-                        // Ajoute l'élément <li> à l'élément <ul> où sont affichées les suggestions de communes grâce à la fonction append(), native jQuery
-                        newCommuneSuggestions.append(listItem);
-                    });
-                });
-            }
-        });
+                    
+        //             filteredData.forEach(commune => {
+
+        //                 // J'ajoute  et stocke dans la constante 'listItem' un élément <il> contenant les suggestions de communes à la liste <ul> correspondante
+        //                 const listItem = document.createElement('li');
+
+        //                 // Je définis le contenu texte de chaque élément <li> sur le nom de chaque commune suggérée dans la liste <ul>
+        //                 listItem.textContent = commune.nom;
+
+        //                 // Je récupère et stocke dans la variable 'lat' la latitude de chaque commune
+        //                 let lat = commune.centre.coordinates[1];
+
+        //                 // Je récupère et stocke dans la variable 'lng' la longitude de chaque commune
+        //                 let lng = commune.centre.coordinates[0];
+
+        //                 // J'ajoute un écouteur d'événement au click sur l'élément <li> 
+        //                 listItem.addEventListener('click', () => {
+
+        //                     // J'attribue comme valeur à l'input le nom de la commune sélectionnée
+        //                     this.value = commune.nom;
+
+        //                     console.log(`intermediate city ${this.dataset.index}: `, lat, lng);
+
+        //                     // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
+        //                     const marker = L.marker([lat, lng]);
+
+        //                     // J'ajoute de marqueur de la commune correspondante à la map 
+        //                     marker.addTo(mapItinerary);
+
+        //                     // Je mets à jour la polyline en récupérant la latitude et longitude du marqueur grâce à la fonction getLatLng(), native Leaflet
+        //                     updatePolyline(marker.getLatLng());
+
+        //                     // Je réinitialise la liste de suggestions de communes grâce à la fonction empty(), native jQuery
+        //                     newCommuneSuggestions.empty();
+        //                 });
+
+        //                 // Ajoute l'élément <li> à l'élément <ul> où sont affichées les suggestions de communes grâce à la fonction append(), native jQuery
+        //                 newCommuneSuggestions.append(listItem);
+        //             });
+        //         });
+        //     }
+        // });
 
         // Incrémente le compteur de villes intermédiaires
         // $(this).data('widget-counter', counter + 1);

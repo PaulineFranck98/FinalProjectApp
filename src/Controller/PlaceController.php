@@ -30,7 +30,7 @@ class PlaceController extends AbstractController
     }
 
     #[Route('/place/cities_with_places', name: 'cities_with_places')]
-    public function citiesWithPlaces(CityRepository $cityRepository) : JsonResponse
+    public function citiesWithPlaces(CityRepository $cityRepository, Request $request) : JsonResponse
     {
         $cities = $cityRepository->findCitiesWithPlaces();
         return $this->json($cities);

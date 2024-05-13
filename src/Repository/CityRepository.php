@@ -30,26 +30,30 @@ class CityRepository extends ServiceEntityRepository
     //     ;
     // }
 
-    public function findCitiesWithPlaces($cityName)
-    {
-        return $this->createQueryBuilder('c')
-        ->select('c.cityName')
-        ->where('c.cityName like :cityName')
-        ->setParameter('cityName', '%' . $cityName. '%')
-        ->getQuery()
-        ->getResult()
-        ;
-    }
-
-    // public function findCitiesWithPlaces()
+    // public function findCitiesWithPlaces($cityName)
     // {
     //     return $this->createQueryBuilder('c')
-    //         ->innerJoin('c.places', 'p')
-    //         ->select('c.cityName')
-    //         ->groupBy('c.cityName')
-    //         ->getQuery()
-    //         ->getResult();
+    //     ->select('c.cityName')
+    //     ->where('c.cityName like :cityName')
+    //     ->setParameter('cityName', '%' . $cityName. '%')
+    //     ->getQuery()
+    //     ->getResult()
+    //     ;
     // }
+
+
+
+
+
+    public function findCitiesWithPlaces()
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.places', 'p')
+            ->select('c.cityName')
+            ->groupBy('c.cityName')
+            ->getQuery()
+            ->getResult();
+    }
 
     //    /**
     //     * @return City[] Returns an array of City objects
