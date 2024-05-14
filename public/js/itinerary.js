@@ -4,6 +4,7 @@ const mapItinerary = L.map('map-itinerary').setView([48.267, 7.45], 8);
 // J'ajoute une couche de tuiles OpenStreetMap à la carte 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
+    minZoom:8,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(mapItinerary);
 
@@ -131,14 +132,24 @@ departureInput.addEventListener('input', async () => {
 
                     console.log('departure : ' + lat, lng);
 
+                    const departureIcon = new L.icon({
+                        iconUrl: "/images/departure-city-icon.png",
+                        // Je définis la largeur et la hauteur de l'icône
+                        iconSize: [32,35],
+                        // Je définis le point d'ancrage de l'icône
+                        iconAnchor: [16,40],
+                        // Je définis le point d'ancrage du popup
+                        popupAnchor:[0,-39]
+                    });
+
                     // Je récupère et stock la position de la commune sélectionnée en utilisant sa latitude et sa longitude
-                    const marker = L.marker([lat, lng]);
+                    const marker = L.marker([lat, lng], {icon: departureIcon});
 
                     // J'ajoute le marqueur à la carte en utilisant la fonction addTo(), native de Leaflet
                     marker.addTo(mapItinerary);
-
+                    marker.bindPopup('Je suis la ville de départ!').openPopup();
                     // Je mets à jour la polyline en récupérant la latitude et longitude du marqueur avec la fonction getLatLng(), native de Leaflet
-                    updatePolyline(marker.getLatLng());
+                    // updatePolyline(marker.getLatLng());
 
                     // Je réinitialise la liste de suggestions de communes une fois la commune sélectionnée
                     departureCommuneSuggestions.innerHTML = '';
@@ -202,14 +213,24 @@ arrivalInput.addEventListener('input', async () => {
 
                     console.log('arrival : ' + lat, lng);
 
+                    const arrivalIcon = new L.icon({
+                        iconUrl: "/images/arrival-city-icon.png",
+                        // Je définis la largeur et la hauteur de l'icône
+                        iconSize: [32,35],
+                        // Je définis le point d'ancrage de l'icône
+                        iconAnchor: [16,40],
+                        // Je définis le point d'ancrage du popup
+                        popupAnchor:[0,-39]
+                    });
+
                     // Je récupère et stock la position de la commune de l'élément sélectionnée en utilisant sa latitude et sa longitude
-                    const marker = L.marker([lat, lng]);
+                    const marker = L.marker([lat, lng], {icon: arrivalIcon});
 
                     // J'ajoute le marqueur à la carte en utilisant la fonction addTo(), native de Leaflet
                     marker.addTo(mapItinerary);
-
+                    marker.bindPopup('Je suis la ville d\'arrivée!').openPopup();
                     // Je mets à jour la polyline en récupérant la latitude et la longitude du marqueur avec la fonction getLatLng(), native de Leaflet
-                    updatePolyline(marker.getLatLng());
+                    // updatePolyline(marker.getLatLng());
 
                     // Je réinitialise la liste de suggestions de communes une fois la commune sélectionnée
                     arrivalCommuneSuggestions.innerHTML = '';
@@ -235,10 +256,10 @@ $(document).ready(function() {
 
         var counter = list.data('widget-counter') || list.children().length;
 
-        // Récupère le prototype de la ville intermédiaire à partir de l'attribut data-prototype
+        // Je récupère le prototype de la ville intermédiaire à partir de l'attribut data-prototype
         var newCityWidget = list.attr('data-prototype');
 
-        // Remplace le texte "__name__" dans le prototype par l'index de la nouvelle ville intermédiaire
+        // Je remplace le texte "__name__" dans le prototype par l'index de la nouvelle ville intermédiaire
         
         newCityWidget = newCityWidget.replace(/__name__/g, counter);
 
@@ -251,7 +272,7 @@ $(document).ready(function() {
         // Je définis le contenu de cet élément grâce à la fonction html(), native jQuery
         newCityDiv.html(newCityWidget);
 
-        var deleteButton = $('<button type="button" class="delete_city_button"><i class="fa-solid fa-trash-can"></i></button>');
+        var deleteButton = $('<button type="button" class="delete_city_button">Supprimer</button>');
         newCityDiv.append(deleteButton);
 
         // Je crée une nouvelle liste <ul> pour les suggestions de communes et je rends leur id unique grâce à l'index (counter)
@@ -262,7 +283,22 @@ $(document).ready(function() {
 
         // J'ajoute le nouvel élément <div> à la collection de villes intermédiaires grâce à la fonction append(), native jQuery
         $('#custom_itinerary_intermediate_cities').append(newCityDiv);
+
+        counter++
+        list.data('widget-counter', counter)
+
         let marker;
+        // Je définis les icônes pour les villes intermédiaires
+        const intermediateIcon = new L.icon({
+            iconUrl: "/images/intermediate-city-icon.png",
+            // Je définis la largeur et la hauteur de l'icône
+            iconSize: [32,35],
+            // Je définis le point d'ancrage de l'icône
+            iconAnchor: [16,40],
+            // Je définis le point d'ancrage du popup
+            popupAnchor:[0,-39]
+        });
+
         // console.log(newCityDiv.find('select'));
         newCityDiv.find('select').change(function(){
             var selectedCity = $(this).children("option:selected").val();
@@ -284,82 +320,27 @@ $(document).ready(function() {
                         }
 
                         // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
-                       marker = L.marker([lat, lng]);
+                       marker = L.marker([lat, lng], {icon: intermediateIcon});
 
                         // J'ajoute de marqueur de la commune correspondante à la map 
-                        mapItinerary.addLayer(marker);
+                        mapItinerary.addLayer(marker)
+                        marker.bindPopup(`Je suis la ville n°${counter}`).openPopup();
+
                     })
                 })
         })
-        // Ajoute un écouteur d'événement sur l'élément input de commune intermédiaire en utilisant les fonction find() et on(), native jQuery
-        // newCityDiv.find('input[type="text"]').on('input', async function() {
 
-            // Je réinitialise la liste de suggestions de communes
-        //     newCommuneSuggestions.innerHTML = '';
-
-        //     // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après grâce à la fonction trim(), native Javascript
-        //     const search = this.value.trim();
-
-        //     // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieure ou égale à 3
-        //     if (search.length >= 3)
-        //     {
-        //         const citiesWithPlaces = await getCitiesWithPlaces();
-                
-        //         // J'effectue une requête vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
-        //         fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
-        //             .then(response => response.json()) // Je convertis la réponse en JSON
-        //             .then(data => {
-
-        //             // Je filtre et stocke dans la constante 'filteredData', les villes contenant des lieux d'intérêts, grâce aux fonction filter() et some 
-        //             const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.cityName === commune.nom));
-
-                    
-        //             filteredData.forEach(commune => {
-
-        //                 // J'ajoute  et stocke dans la constante 'listItem' un élément <il> contenant les suggestions de communes à la liste <ul> correspondante
-        //                 const listItem = document.createElement('li');
-
-        //                 // Je définis le contenu texte de chaque élément <li> sur le nom de chaque commune suggérée dans la liste <ul>
-        //                 listItem.textContent = commune.nom;
-
-        //                 // Je récupère et stocke dans la variable 'lat' la latitude de chaque commune
-        //                 let lat = commune.centre.coordinates[1];
-
-        //                 // Je récupère et stocke dans la variable 'lng' la longitude de chaque commune
-        //                 let lng = commune.centre.coordinates[0];
-
-        //                 // J'ajoute un écouteur d'événement au click sur l'élément <li> 
-        //                 listItem.addEventListener('click', () => {
-
-        //                     // J'attribue comme valeur à l'input le nom de la commune sélectionnée
-        //                     this.value = commune.nom;
-
-        //                     console.log(`intermediate city ${this.dataset.index}: `, lat, lng);
-
-        //                     // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
-        //                     const marker = L.marker([lat, lng]);
-
-        //                     // J'ajoute de marqueur de la commune correspondante à la map 
-        //                     marker.addTo(mapItinerary);
-
-        //                     // Je mets à jour la polyline en récupérant la latitude et longitude du marqueur grâce à la fonction getLatLng(), native Leaflet
-        //                     updatePolyline(marker.getLatLng());
-
-        //                     // Je réinitialise la liste de suggestions de communes grâce à la fonction empty(), native jQuery
-        //                     newCommuneSuggestions.empty();
-        //                 });
-
-        //                 // Ajoute l'élément <li> à l'élément <ul> où sont affichées les suggestions de communes grâce à la fonction append(), native jQuery
-        //                 newCommuneSuggestions.append(listItem);
-        //             });
-        //         });
-        //     }
-        // });
-
-        // Incrémente le compteur de villes intermédiaires
-        // $(this).data('widget-counter', counter + 1);
-        counter++
-        list.data('widget-counter', counter)
+             // J'ajoute un écouteur d'évènement au clic sur le bouton "supprimer"
+             deleteButton.click(function() {
+                // Je supprime le conteneur de la ville intermédiaire
+                newCityDiv.remove();
+                // Je supprime le marqueur correspondant à la ville intermédiaire de la carte
+                mapItinerary.removeLayer(marker);
+            });
+    
+       
+        // counter++
+        // list.data('widget-counter', counter)
     });
 });
 

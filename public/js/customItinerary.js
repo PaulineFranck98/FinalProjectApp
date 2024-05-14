@@ -12,19 +12,29 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 let departureCoordinates;
-const polyline = L.polyline([]).addTo(mapItinerary);
+// const polyline = L.polyline([]).addTo(mapItinerary);
 
 fetch(`https://geo.api.gouv.fr/communes/${itineraryData.departure}?fields=centre`)
 .then(response => response.json())
 .then(data => {
 
-    departureCoordinates = [data.centre.coordinates[1], data.centre.coordinates[0]];
+    // departureCoordinates = [data.centre.coordinates[1], data.centre.coordinates[0]];
     let lat = data.centre.coordinates[1];
     let lng = data.centre.coordinates[0];
 
-    const marker = L.marker([lat,lng]);
+    const departureIcon = new L.icon({
+        iconUrl: "/images/departure-city-icon.png",
+        // Je définis la largeur et la hauteur de l'icône
+        iconSize: [32,35],
+        // Je définis le point d'ancrage de l'icône
+        iconAnchor: [16,40],
+        // Je définis le point d'ancrage du popup
+        popupAnchor:[0,-39]
+    });
+
+    const marker = L.marker([lat,lng], {icon: departureIcon});
     marker.addTo(mapItinerary);
-    polyline.addLatLng(marker.getLatLng());
+    // polyline.addLatLng(marker.getLatLng());
 
     
 });
@@ -36,12 +46,44 @@ fetch(`https://geo.api.gouv.fr/communes/${itineraryData.arrival}?fields=centre`)
     let lat = data.centre.coordinates[1];
     let lng = data.centre.coordinates[0];
 
-    const marker = L.marker([lat,lng])
+    const arrivalIcon = new L.icon({
+        iconUrl: "/images/arrival-city-icon.png",
+        // Je définis la largeur et la hauteur de l'icône
+        iconSize: [32,35],
+        // Je définis le point d'ancrage de l'icône
+        iconAnchor: [16,40],
+        // Je définis le point d'ancrage du popup
+        popupAnchor:[0,-39]
+    });
+
+    const marker = L.marker([lat,lng], {icon: arrivalIcon});
     marker.addTo(mapItinerary);
-    polyline.addLatLng(marker.getLatLng());
+    // polyline.addLatLng(marker.getLatLng());
 });
 
 
+itineraryData.cities.forEach(cityCode => {
+    fetch(`https://geo.api.gouv.fr/communes/${cityCode}?fields=centre`)
+    .then(response => response.json())
+    .then(data => {
+
+        let lat = data.centre.coordinates[1];
+        let lng = data.centre.coordinates[0];
+
+        const intermediateIcon = new L.icon({
+            iconUrl: "/images/intermediate-city-icon.png",
+            // Je définis la largeur et la hauteur de l'icône
+            iconSize: [32,35],
+            // Je définis le point d'ancrage de l'icône
+            iconAnchor: [16,40],
+            // Je définis le point d'ancrage du popup
+            popupAnchor:[0,-39]
+        });
+
+        const marker = L.marker([lat,lng], {icon: intermediateIcon})
+        marker.addTo(mapItinerary);
+    });
+})
 
 
 

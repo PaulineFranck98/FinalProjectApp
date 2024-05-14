@@ -36,7 +36,7 @@ class CustomItineraryController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $intermediateCities = $form->get('cities')->getData();
+            // $intermediateCities = $form->get('cities')->getData();
             $codeDeparture = $form->get('codeDeparture')->getData();
             $codeArrival = $form->get('codeArrival')->getData();
             $itinerary->setDeparture($codeDeparture);
@@ -77,7 +77,7 @@ class CustomItineraryController extends AbstractController
 // }
 
             // $itinerary = $form->getData();
-            dd($itinerary);
+            // dd($itinerary);
             
             $entityManager->persist($itinerary);
 
@@ -96,11 +96,16 @@ class CustomItineraryController extends AbstractController
     // retrieve the 'customItinerary' corresponding to the id thanks to paramconverter tool
     public function show(CustomItinerary $itinerary)  
     {
+        $cities = [];
+        foreach($itinerary->getCities() as $city){
+            $cities[] = $city->getCityCode();
+        }
         $itineraryData = [
             'id' => $itinerary->getId(),
             'name' => $itinerary->getName(),
             'departure' => $itinerary->getDeparture(),
-            'arrival' => $itinerary->getArrival()
+            'arrival' => $itinerary->getArrival(),
+            'cities' => $cities,
         ];
         //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
         return $this->render('custom_itinerary/show.html.twig', [
