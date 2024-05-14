@@ -21,9 +21,9 @@
                     <a href="{{ path('app_home') }}">Home <span>|</span></a>
                 {% if app.user %}
                     {# <a href="#"><i class="fa-solid fa-user"></i>&nbsp;{{app.user}}</a> #}
-                    <a href="">Contribuer <span>|</span></a>
+                    <a href="{{ path('new_place') }}">Contribuer <span>|</span></a>
                     <a href="">Forum <span>|</span></a>
-                    <a href="">Itinéraires <span>|</span></a>
+                    <a href="{{ path('app_itinerary') }}">Itinéraires <span>|</span></a>
                     <a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil <span>|</span></a>
                     <a href="{{ path('app_logout') }}">Déconnexion <span>|</span></a>
                 {% else %}
@@ -33,11 +33,11 @@
             </nav>
         </header>
         {% block body %}{% endblock %}
+        <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
             {% block javascripts %}
                 {# {% block importmap %}{{ importmap('app') }} #}
     
                  {# {% endblock %} #}
-                <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
             {% endblock %}
     </body>
 </html>

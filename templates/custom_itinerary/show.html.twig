@@ -4,9 +4,40 @@
 
 {% block body %}
 <main class="top">
+    <section id="show-itineray">
+        {# {{ itinerary.name}} #}
+        <h1>{{ itineraryDatas.name}}</h1>
+        <div>
+            {% for city in itineraryDatas.cities %}
+                <p><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;<b>{{city.cityName}}</b></p>
+                {% for place in itineraryDatas.cityPlaces %}
+                    {% if place.placeCity is same as(city.cityName) %}
+                        <p>
+                            {% if place.placeType is same as('Restaurant') %}
+                                <i class="fa-solid fa-utensils"></i>
+                            
+                            {% elseif place.placeType is same as('Hôtel') %}
+                                <i class="fa-solid fa-hotel"></i>
 
-    <div id="map-itinerary"></div>
-    {{ itinerary.name}}
+                            {% elseif place.placeType is same as('Hôtel-Restaurant') %}
+                                <i class="fa-solid fa-mug-hot"></i>
+                            
+                            {% elseif place.placeType is same as('Activité') %}
+                                <i class="fa-solid fa-person-hiking"></i>
+
+                            {% endif %}
+                            {{ place.placeName}}, {{ place.placeType}}
+                        </p>
+                    {% endif %}  
+                    
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {# {% for place in itineraryDatas.cityPlaces %}
+            {{ place.placeName}}
+        {% endfor %} #}
+        <div id="map-itinerary"></div>
+    </section>
 </main>
     {% block javascripts %}
       

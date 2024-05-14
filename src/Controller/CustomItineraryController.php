@@ -97,8 +97,24 @@ class CustomItineraryController extends AbstractController
     public function show(CustomItinerary $itinerary)  
     {
         $cities = [];
+        $cityPlaces = [];
         foreach($itinerary->getCities() as $city){
-            $cities[] = $city->getCityCode();
+            $cities[] = [
+                'cityCode' => $city->getCityCode(),
+                'cityName' => $city->getCityName(),
+            ];
+
+            foreach($city->getPlaces() as $cityPlace){
+            $cityPlaces[] = [ 
+                'placeName' => $cityPlace->getName(),
+                'placeAddress' => $cityPlace->getAddress(),
+                'placeLat' => $cityPlace->getLatitude(),
+                'placeLng' => $cityPlace->getLongitude(),
+                'placeCity' => $cityPlace->getCity()->getCityName(),
+                'placeType' => $cityPlace->getType()->getName(),
+            ];
+            }
+        
         }
         $itineraryData = [
             'id' => $itinerary->getId(),
@@ -106,11 +122,13 @@ class CustomItineraryController extends AbstractController
             'departure' => $itinerary->getDeparture(),
             'arrival' => $itinerary->getArrival(),
             'cities' => $cities,
+            'cityPlaces' => $cityPlaces,
         ];
         //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
         return $this->render('custom_itinerary/show.html.twig', [
             'itinerary' => $itinerary,
-            'itineraryData' => json_encode($itineraryData)
+            'itineraryData' => json_encode($itineraryData),
+            'itineraryDatas' => $itineraryData,
         ]);
 
     }
