@@ -278,6 +278,16 @@ class PlaceController extends AbstractController
         ]);
     }
 
+
+    #[Route('/city/{id}', name: 'show_city')]
+    // retrieve the 'post' corresponding to the id thanks to paramconverter tool
+    public function showCity(City $city) : Response {
+        //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
+        return $this->render('place/city.html.twig', [
+            'city' => $city
+        ]);
+    }
+
 }
 
 //  add Place with city id ---------

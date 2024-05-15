@@ -34,6 +34,17 @@ class CustomItineraryType extends AbstractType
                     'data-type' => 'departure'
                 ]
                 ])
+            // ->add('departure', CityAutocompleteField::class, [
+            //     'placeholder' =>'Choisissez une ville de départ',
+            //     'attr' => ['class'=> 'tom-select'],
+            // ])
+            // ->add('departure', EntityType::class, [
+            //     'class' => City::class,
+            //     'choice_label' => 'cityName',
+            //     // 'attr' => ['class' => 'tom-select'],
+            //     'autocomplete' => false,
+            // ])
+            
             ->add('codeDeparture', TextType::class, [
                 'mapped' => false,
             ])

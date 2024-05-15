@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Itinéraire personnalisé{% endblock %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/TomSelect/2.2.2/css/tom-select.bootstrap5.min.css" integrity="sha512-/9r4vgK6s6Nmf7j3KLNq+4W8m4uAMXdMzpCk8zFqn1MDWZqKtEImv3pD3ueHhV0JLR9GNjbOAa7zBCuXFA1wA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
 {% block body %}
     <main class="new-itinerary-form">
         <h1>Créer un nouvel itinéraire</h1>
@@ -15,12 +18,14 @@
 
                 
                 {# Gestion de l'affichage des suggestions de communes #}
-                <div>
+                 <div>
                     {{ form_label(formAddItinerary.departure) }}
                     {{ form_widget(formAddItinerary.departure, {'attr': {'class': 'commune-input'}}) }}
                     <ul id="commune-with-places-departure"></ul>
-                </div>
-                
+                </div> 
+                {#{{ form_row(formAddItinerary.departure)}} #}
+                {# {{ form_row(formAddItinerary.departure, {'attr': {'class': 'tom-select '}}) }} #}
+
                 <div>
                     {{ form_label(formAddItinerary.arrival) }}
                     {{ form_widget(formAddItinerary.arrival,  {'attr': {'class': 'commune-input'}}) }}
@@ -73,10 +78,46 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous">
         </script>
-        {# <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script> #}
+        <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
         {# <script src="{{ asset('bundles/tomselect/dist/js/tom-select.complete.min.js') }}"></script> #}
             <script src="{{ asset('js/itinerary.js')}}"></script>
+        <script>
+    //         const departureSelect = new TomSelect('#custom_itinerary_departure select', {
+    //         create: false,
+    //         sortField: {
+    //             field: 'text',
+    //             direction: 'asc'
+    // }
+    // });
+//     plugins: ['dropdown_input'],
+//     // render: {
+//     //     option: function(data, escape) {
+//     //         return '<div>' + escape(data.text) + '</div>';
+//     //     },
+//     //     item: function(data, escape) {
+//     //         return '<div>' + escape(data.text) + '</div>';
+//     //     }
+//     // }
+// });
+	// const departureSelect = new TomSelect("#custom_itinerary_departure",{
+	// 	plugins: ['remove_button'],
+	// 	create: true,
+	// 	// onItemAdd:function(){
+	// 	// 	this.setTextboxValue('');
+	// 	// 	this.refreshOptions();
+	// 	// },
+	// 	render:{
+	// 		option:function(data,escape){
+	// 			return '<div class="d-flex"><span>' + escape(data.value) + '</span><span class="ms-auto text-muted">' + escape(data.date) + '</span></div>';
+	// 		},
+	// 		item:function(data,escape){
+	// 			return '<div>' + escape(data.value) + '</div>';
+	// 		}
+	// 	}
+	// });
+	
 
+        </script>
         {% endblock %}
 
     </main>

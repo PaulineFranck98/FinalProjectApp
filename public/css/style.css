@@ -551,7 +551,7 @@ nav span{
     width:65%;
     margin:0 auto;
 }
-.swiper{
+#choice .swiper{
     margin-top:1rem;
     width:80%;
     min-height:300px;
@@ -559,7 +559,7 @@ nav span{
 
 }
 
-.swiper-slide{
+#choice .swiper-slide{
     width:15%;
 }
 .radio-choice-container:first-child{
@@ -794,7 +794,9 @@ input[type="radio"]:checked + label > figure > img {
 } */
 
 /* ---- Add custom itinerary form  */
-
+/* .tom-select-hide {
+    display: none;
+} */
 
 .hidden{
     display:none;
@@ -889,4 +891,45 @@ button#custom_itinerary_valider{
 }
 
 
-/* ------------------------------------------------------------------------------------- */
+/* -------------City detail------------------------------------------------------------------------ */
+ .img-city-detail{
+    width:250px;
+} 
+
+/*.img-city-detail img{
+    width:100%;
+} */
+
+.scroll-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    width:50%;
+  }
+  
+  .scroll-list {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .scroll-item {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    /* width: 100%; */
+    padding: 1rem;
+    /* box-sizing: border-box; */
+  }
+  
+  /* .scroll-item h2 {
+    margin: 0 0 0.5rem;
+  } */
+  
+  .scroll-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  

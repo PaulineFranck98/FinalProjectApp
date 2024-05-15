@@ -9,7 +9,7 @@
         <h1>{{ itineraryDatas.name}}</h1>
         <div>
             {% for city in itineraryDatas.cities %}
-                <p><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;<b>{{city.cityName}}</b></p>
+                <p><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;<b><a href="{{ path('show_city', {'id': city.cityId}) }}">{{city.cityName}}</a></b></p>
                 {% for place in itineraryDatas.cityPlaces %}
                     {% if place.placeCity is same as(city.cityName) %}
                         <p>

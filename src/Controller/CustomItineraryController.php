@@ -102,6 +102,7 @@ class CustomItineraryController extends AbstractController
             $cities[] = [
                 'cityCode' => $city->getCityCode(),
                 'cityName' => $city->getCityName(),
+                'cityId' => $city->getId(),
             ];
 
             foreach($city->getPlaces() as $cityPlace){

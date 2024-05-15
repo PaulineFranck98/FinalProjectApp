@@ -1,9 +1,37 @@
 {% extends 'base.html.twig' %}
-
+   
 {% block title %}{% endblock %}
 
 {% block body %}
-<main>
+<main class="top">
+    <section id="detail-city">
+        <h1>{{ city.cityName }}</h1>
+        <div>
+            <div>
+            <p>Pour se restaurer</p>
+            </div>
+            <div class="scroll-container">
+                <ul class="scroll-list">
+                {% for place in city.places %}
+                {% if place.type == 'Restaurant' %}
+                    <li class="scroll-item">   
+                        {% for image in place.images %}
+                            <figure class="img-city-detail">
+                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                                </figure>
+                        {% endfor %}
+                        <b>{{ place.name}}</b>
+                    <li>
+                {% endif %}
 
+                {% endfor %} 
+                </ul>
+            </div>
+        </div>
+       
+    </section>
 </main>
+   {% block javascripts %}
+
+    {% endblock %}
 {% endblock %}
