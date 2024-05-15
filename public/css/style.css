@@ -809,11 +809,11 @@ input[type="radio"]:checked + label > figure > img {
 }
 #map-itinerary{
     height:70vh;
-    width: 40vw;
+    width: 25vw;
     border-radius:1rem;
     position: fixed;
-    top: 15%;
-    right: 18%;
+    top: 20%;
+    right: 22%;
     
 }
 
@@ -1016,3 +1016,48 @@ button#custom_itinerary_valider{
     position:fixed;
 }
 
+/* ------------ Itinerary Detail ---------------- */
+
+#show-itinerary {
+    width: 55%;
+    margin: auto;
+    height: 95vh;
+}
+
+#show-itinerary a{
+    color:black;
+}
+
+#show-itinerary span{
+    color:var(--red-color);
+}
+
+.aside-cities {
+    line-height: 2.7em;
+    margin-top: 3rem;
+    font-size: 1.1em;
+}
+
+
+.itinerary-title{
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 1.5rem;
+}
+
+.inter-cities{
+    margin-left:3rem;
+}
+
+.bold{
+    font-weight:500;
+    margin-top:2rem;
+    margin-bottom:-0.8rem;
+    font-size:1.2em;
+}
+
+.title{
+    font-size:1.1em;
+    margin-top:2rem;
+    margin-bottom:-0.8rem;
+}

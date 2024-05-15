@@ -48,6 +48,17 @@ class PlaceRepository extends ServiceEntityRepository
 
     }
 
+    public function countPlacesByCityId($cityId)
+    {
+        return $this->createQueryBuilder('p')
+                    ->select('COUNT(p.id)')
+                    ->innerJoin('p.city' , 'c')
+                    ->where('c.id = :cityId')
+                    ->setParameter('cityId', $cityId)
+                    ->getQuery()
+                    ->getSingleScalarResult();
+    }
+
     // public function findCitiesWithPlaces()
     // {
     //     return $this->createQueryBuilder('p')

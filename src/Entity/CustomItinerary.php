@@ -28,11 +28,17 @@ class CustomItinerary
     #[ORM\ManyToMany(targetEntity: Place::class, inversedBy: 'customItineraries')]
     private Collection $place;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $departure = null;
+    // #[ORM\Column(length: 255, nullable: true)]
+    // private ?string $departure = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $arrival = null;
+    // #[ORM\Column(length: 255, nullable: true)]
+    // private ?string $arrival = null;
+
+    #[ORM\ManyToOne(targetEntity: City::class)]
+    private ?City $departure = null;
+
+    #[ORM\ManyToOne(targetEntity: City::class)]
+    private ?City $arrival = null;
 
     /**
      * @var Collection<int, City>
@@ -111,24 +117,24 @@ class CustomItinerary
         return $this;
     }
 
-    public function getDeparture(): ?string
+    public function getDeparture(): ?City
     {
         return $this->departure;
     }
 
-    public function setDeparture(?string $departure): static
+    public function setDeparture(?City $departure): static
     {
         $this->departure = $departure;
 
         return $this;
     }
 
-    public function getArrival(): ?string
+    public function getArrival(): ?City
     {
         return $this->arrival;
     }
 
-    public function setArrival(?string $arrival): static
+    public function setArrival(?City $arrival): static
     {
         $this->arrival = $arrival;
 

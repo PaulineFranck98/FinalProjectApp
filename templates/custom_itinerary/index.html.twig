@@ -7,6 +7,7 @@
     {% for itinerary in itineraries %}
         {{itinerary.name}}
         <a href="{{ path('show_itinerary', {'id': itinerary.id}) }}">Détails</a>
+        <a href="{{ path('edit_itinerary', {'id': itinerary.id}) }}">Modifier</a>
     {% endfor %}
 </main>
 {% endblock %}

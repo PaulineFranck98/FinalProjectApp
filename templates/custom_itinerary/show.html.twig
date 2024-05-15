@@ -4,34 +4,49 @@
 
 {% block body %}
 <main class="top">
-    <section id="show-itineray">
+    <section id="show-itinerary">
         {# {{ itinerary.name}} #}
-        <h1>{{ itineraryDatas.name}}</h1>
-        <div>
-            {% for city in itineraryDatas.cities %}
-                <p><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;<b><a href="{{ path('show_city', {'id': city.cityId}) }}">{{city.cityName}}</a></b></p>
-                {% for place in itineraryDatas.cityPlaces %}
-                    {% if place.placeCity is same as(city.cityName) %}
-                        <p>
-                            {% if place.placeType is same as('Restaurant') %}
-                                <i class="fa-solid fa-utensils"></i>
-                            
-                            {% elseif place.placeType is same as('Hôtel') %}
-                                <i class="fa-solid fa-hotel"></i>
-
-                            {% elseif place.placeType is same as('Hôtel-Restaurant') %}
-                                <i class="fa-solid fa-mug-hot"></i>
-                            
-                            {% elseif place.placeType is same as('Activité') %}
-                                <i class="fa-solid fa-person-hiking"></i>
-
-                            {% endif %}
-                            {{ place.placeName}}, {{ place.placeType}}
-                        </p>
-                    {% endif %}  
-                    
+        {# <h1>"{{ itineraryDatas.name}}"</h1> #}
+        <p class="itinerary-title">Votre itinéraire de <b><span>{{ itineraryDatas.departure }}</span></b> à <b>{{ itineraryDatas.arrival }}</b></p>
+        <p>"{{ itineraryDatas.name}}"</p>
+        <div class="aside-cities">
+            <p class="title"><i class="fa-solid fa-location-dot" style="color: #9569FA;"></i>&nbsp;Ville de départ : <b><a href="{{ path('show_city', {'id': itineraryDatas.departureId}) }}">{{ itineraryDatas.departure }}</a></b></p>
+            <p>
+                <a href="{{ path('show_city', {'id': itineraryDatas.departureId}) }}"><i class="fa-solid fa-arrow-right-long"></i>
+                {% if itineraryDatas.departurePlacesCount == 1 %}
+                    {{ itineraryDatas.departurePlacesCount }} lieu à découvrir dans cette ville
+                {% else %}
+                {{ itineraryDatas.departurePlacesCount }} lieux à découvrir dans cette ville
+                {% endif %}</a>
+            </p>
+            <p class="title"><i class="fa-solid fa-location-dot" style="color: #3F71EA;"></i>&nbsp;Ville d'arrivée : <b><a href="{{ path('show_city', {'id': itineraryDatas.arrivalId}) }}">{{ itineraryDatas.arrival }}</a></b></p>
+            <p>
+                <a href="{{ path('show_city', {'id': itineraryDatas.arrivalId}) }}"><i class="fa-solid fa-arrow-right-long"></i> 
+                    {% if itineraryDatas.arrivalPlacesCount == 1 %}
+                        {{ itineraryDatas.arrivalPlacesCount }} lieu à découvrir dans cette ville
+                    {% else %}
+                        {{ itineraryDatas.arrivalPlacesCount }} lieux à découvrir dans cette ville
+                    {% endif %}
+                </a>
+            </p>
+            <p class=" bold">Villes qui composent votre itinéraire<p>
+            <div class="inter-cities">
+                {% for city in itineraryDatas.cities %}
+                    <p class="title">
+                        <i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;
+                        <b><a href="{{ path('show_city', {'id': city.cityId}) }}">{{city.cityName}}</a></b>
+                    </p>
+                    <p>
+                        <a href="{{ path('show_city', {'id': city.cityId}) }}"><i class="fa-solid fa-arrow-right-long"></i>
+                        {% if city.cityPlacesCount == 1 %}
+                            {{ city.cityPlacesCount }} lieu à découvrir dans cette ville
+                        {% else %}
+                            {{ city.cityPlacesCount }} lieux à découvrir dans cette ville
+                        {% endif %}</a>
+                    </p>
                 {% endfor %}
-            {% endfor %}
+            </div>
+            <a href="{{ path('edit_itinerary', {'id': itinerary.id}) }}">Modifier mon itinéraire</a>
         </div>
         {# {% for place in itineraryDatas.cityPlaces %}
             {{ place.placeName}}

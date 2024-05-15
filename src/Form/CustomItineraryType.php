@@ -28,36 +28,44 @@ class CustomItineraryType extends AbstractType
             // ->add('creationDate', null, [
             //     'widget' => 'single_text',
             // ])
-            ->add('departure', TextType::class, [
-                'label' => 'Choissisez une ville de départ',
-                'attr' => [
-                    'data-type' => 'departure'
-                ]
-                ])
-            // ->add('departure', CityAutocompleteField::class, [
-            //     'placeholder' =>'Choisissez une ville de départ',
-            //     'attr' => ['class'=> 'tom-select'],
-            // ])
-            // ->add('departure', EntityType::class, [
-            //     'class' => City::class,
-            //     'choice_label' => 'cityName',
-            //     // 'attr' => ['class' => 'tom-select'],
-            //     'autocomplete' => false,
-            // ])
-            
-            ->add('codeDeparture', TextType::class, [
-                'mapped' => false,
+            // ->add('departure', TextType::class, [
+            //     'label' => 'Choissisez une ville de départ',
+            //     'attr' => [
+            //         'data-type' => 'departure'
+            //     ]
+            //     ])
+            // EntityType is a field that's designed to load options from a Doctrine entity
+            ->add('departure', EntityType::class, [
+                'label' => 'Choisissez votre ville de départ',
+                // defines the entity class to use, here : the entity Theme
+                'class' => City::class,
+                // I define the entity property to be used as the label for each choice in the list, here : name
+                'choice_label' => 'cityName',
+                'choice_value' => 'cityCode',
+                
             ])
+            // EntityType is a field that's designed to load options from a Doctrine entity
+            ->add('arrival', EntityType::class, [
+                // defines the entity class to use, here : the entity Theme
+                'class' => City::class,
+                // I define the entity property to be used as the label for each choice in the list, here : name
+                'choice_label' => 'cityName',
+                'choice_value' => 'cityCode',
+                'label' => 'Choisissez votre ville d\'arrivée',
+            ])
+            // ->add('codeDeparture', TextType::class, [
+            //     'mapped' => false,
+            // ])
 
-            ->add('arrival', TextType::class, [
-                'label' => 'Choisissez une ville d\'arrivée',
-                'attr' => [
-                    'data-type' => 'arrival'
-                ]
-                ])
-            ->add('codeArrival', TextType::class, [
-                'mapped' => false,
-            ])
+            // ->add('arrival', TextType::class, [
+            //     'label' => 'Choisissez une ville d\'arrivée',
+            //     'attr' => [
+            //         'data-type' => 'arrival'
+            //     ]
+            //     ])
+            // ->add('codeArrival', TextType::class, [
+            //     'mapped' => false,
+            // ])
 
             ->add('cities', CollectionType::class,[
                 // 'label' => 'Ville intermédiaire',

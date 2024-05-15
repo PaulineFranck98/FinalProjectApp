@@ -64,38 +64,6 @@
             <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
         </div>
        {% endif %}
-       {% set activities = city.places|filter(place => place.type == 'Activité') %}
-       {% if activities|length > 0 %}
-        <div class="type-container">
-            <div class="detail-type">
-                <h2>Activités</h2>
-                <p>Découvrez les activités palpitantes d'Alsace. Participez à des expériences uniques qui allient culture, histoire et aventure pour enrichir votre séjour.</p>
-            </div>
-            <i class="fa-solid fa-circle-arrow-left scroll-left"></i>
-            <div class="scroll-container">
-                <ul class="scroll-list">
-                {% for place in activities %}
-                {# {% if place.type == 'Activité' %} #}
-                    <li class="scroll-item">   
-                        {% for image in place.images %}
-                        {% if loop.first %}
-                            
-                            <figure class="img-city-detail">
-                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
-                            </figure>
-                        {% endif %}
-                        {% endfor %}
-                        <b>{{ place.name}}</b>
-                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
-                    <li>
-                {# {% endif %} #}
-
-                {% endfor %} 
-                </ul>
-            </div>
-            <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
-        </div>
-        {% endif %}
         {% set hotelsRestaurants = city.places|filter(place => place.type == 'Hôtel-Restaurant') %}
         {% if hotelsRestaurants|length > 0 %}
         <div class="type-container">
@@ -128,3 +96,36 @@
             <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
         </div>
        {% endif %}
+       {% set activities = city.places|filter(place => place.type == 'Activité') %}
+       {% if activities|length > 0 %}
+        <div class="type-container">
+            <div class="detail-type">
+                <h2>Activités</h2>
+                <p>Découvrez les activités palpitantes d'Alsace. Participez à des expériences uniques qui allient culture, histoire et aventure pour enrichir votre séjour.</p>
+            </div>
+            <i class="fa-solid fa-circle-arrow-left scroll-left"></i>
+            <div class="scroll-container">
+                <ul class="scroll-list">
+                {% for place in activities %}
+                {# {% if place.type == 'Activité' %} #}
+                    <li class="scroll-item">   
+                        {% for image in place.images %}
+                        {% if loop.first %}
+                            
+                            <figure class="img-city-detail">
+                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                            </figure>
+                        {% endif %}
+                        {% endfor %}
+                        <b>{{ place.name}}</b>
+                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                    <li>
+                {# {% endif %} #}
+
+                {% endfor %} 
+                </ul>
+            </div>
+            <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
+        </div>
+        {% endif %}
+       

@@ -19,29 +19,31 @@
                 
                 {# Gestion de l'affichage des suggestions de communes #}
                  <div>
-                    {{ form_label(formAddItinerary.departure) }}
+                    {# {{ form_label(formAddItinerary.departure) }}
                     {{ form_widget(formAddItinerary.departure, {'attr': {'class': 'commune-input'}}) }}
-                    <ul id="commune-with-places-departure"></ul>
+                    <ul id="commune-with-places-departure"></ul> #}
+                    {{ form_row(formAddItinerary.departure) }}
                 </div> 
                 {#{{ form_row(formAddItinerary.departure)}} #}
                 {# {{ form_row(formAddItinerary.departure, {'attr': {'class': 'tom-select '}}) }} #}
 
                 <div>
-                    {{ form_label(formAddItinerary.arrival) }}
+                    {# {{ form_label(formAddItinerary.arrival) }}
                     {{ form_widget(formAddItinerary.arrival,  {'attr': {'class': 'commune-input'}}) }}
-                    <ul id="commune-with-places-arrival"></ul>
+                    <ul id="commune-with-places-arrival"></ul> #}
+                    {{ form_row(formAddItinerary.arrival) }}
                 </div>
-                <div class="hidden">
+                {# <div class="hidden">
                     {{ form_row(formAddItinerary.codeDeparture) }}
                     {{ form_row(formAddItinerary.codeArrival) }}
-                </div>
+                </div> #}
                 <div class="add-intermediate">
                     <p><b>Ajoutez des villes intermédiaires</b></p>
  
                     <div id="custom_itinerary_intermediate_cities"
                         data-widget-counter="{{ formAddItinerary.cities|length }}"
                         data-prototype="{{ form_widget(formAddItinerary.cities.vars.prototype)|e }}"
-                        data-itinerary="{{ itineraryId }}">
+                        >
 
                         {% for city in formAddItinerary.cities %}
                             <div class="intermediate_city_container">

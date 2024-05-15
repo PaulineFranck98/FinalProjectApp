@@ -14,7 +14,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let departureCoordinates;
 // const polyline = L.polyline([]).addTo(mapItinerary);
 
-fetch(`https://geo.api.gouv.fr/communes/${itineraryData.departure}?fields=centre`)
+fetch(`https://geo.api.gouv.fr/communes/${itineraryData.departureCode}?fields=centre`)
 .then(response => response.json())
 .then(data => {
 
@@ -23,7 +23,7 @@ fetch(`https://geo.api.gouv.fr/communes/${itineraryData.departure}?fields=centre
     let lng = data.centre.coordinates[0];
 
     const departureIcon = new L.icon({
-        iconUrl: "/images/departure-city-icon.png",
+        iconUrl: "/images/departure-city-icon.webp",
         // Je définis la largeur et la hauteur de l'icône
         iconSize: [32,35],
         // Je définis le point d'ancrage de l'icône
@@ -39,7 +39,7 @@ fetch(`https://geo.api.gouv.fr/communes/${itineraryData.departure}?fields=centre
     
 });
 
-fetch(`https://geo.api.gouv.fr/communes/${itineraryData.arrival}?fields=centre`)
+fetch(`https://geo.api.gouv.fr/communes/${itineraryData.arrivalCode}?fields=centre`)
 .then(response => response.json())
 .then(data => {
 
@@ -47,7 +47,7 @@ fetch(`https://geo.api.gouv.fr/communes/${itineraryData.arrival}?fields=centre`)
     let lng = data.centre.coordinates[0];
 
     const arrivalIcon = new L.icon({
-        iconUrl: "/images/arrival-city-icon.png",
+        iconUrl: "/images/arrival-city-icon.webp",
         // Je définis la largeur et la hauteur de l'icône
         iconSize: [32,35],
         // Je définis le point d'ancrage de l'icône
@@ -72,7 +72,7 @@ itineraryData.cities.forEach(city => {
         let lng = data.centre.coordinates[0];
 
         const intermediateIcon = new L.icon({
-            iconUrl: "/images/intermediate-city-icon.png",
+            iconUrl: "/images/intermediate-city-icon.webp",
             // Je définis la largeur et la hauteur de l'icône
             iconSize: [32,35],
             // Je définis le point d'ancrage de l'icône

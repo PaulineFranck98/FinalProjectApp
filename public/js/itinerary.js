@@ -11,55 +11,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 
-
-// var citySelect = new TomSelect('#custom_itinerary_cities', {
-//     // maxItems: null,
-//     labelField: 'cityName',
-//     searchField: 'cityName',
-//     options: [],
-// });
-// console.log(citySelect);
-// $(document).ready(function() {
-//     $('.tom-select').tomSelect({
-//         create: true,
-//         sortField: {
-//             field: 'text',
-//             direction: 'asc'
-//         },
-//         plugins: {
-//             remove_button: {
-//                 title: 'Supprimer la ville',
-//             }
-//         },
-//         render: {
-//             option: function(data, escape) {
-//                 return '<div>' + escape(data.text) + '</div>';
-//             },
-//             item: function(data, escape) {
-//                 return '<div>' + escape(data.text) + ' <span class="badge badge-secondary">' + data.id + '</span></div>';
-//             }
-//         },
-//         ajax: {
-//             type: 'GET',
-//             url: '/place/cities_with_places',
-//             dataType: 'json',
-//             // data: function(params) {
-//             //     return {
-//             //         q: params.term
-//             //     };
-//             // },
-//             // processResults: function(data) {
-//             //     return {
-//             //         results: data
-//             //     };
-//             // }
-//         }
-//     });
-// });
-
-
-
-
 async function getCitiesWithPlaces() {
     const response = await fetch('/place/cities_with_places'); 
     const data = await response.json();
@@ -71,177 +22,96 @@ async function getCitiesWithPlaces() {
 const arrivalInput = document.querySelector('#custom_itinerary_arrival');
 const departureInput = document.querySelector('#custom_itinerary_departure');
 
-// Je récupère et stock les éléments où seront affichées les suggestions de communes de départ et d'arrivée
-const departureCommuneSuggestions = document.querySelector('#commune-with-places-departure');
-const arrivalCommuneSuggestions = document.querySelector('#commune-with-places-arrival');
 
-// 
-const polyline = L.polyline([]).addTo(mapItinerary);
+  
+// J'ajoute un écouteur d'évènement sur le sélecteur de la ville d'arrivée
+departureInput.addEventListener('change', () => {
+    // Je récupère la valeur sélectionnée 
+    const departureValue = departureInput.value;
+    console.log(departureValue);
 
-const updatePolyline = (latLng) => {
-    polyline.addLatLng(latLng);
-}
+    fetch(`https://geo.api.gouv.fr/communes?code=${departureValue}&fields=nom,code,centre&limit=3`)
+        .then(response => response.json()) // Je convertis la réponse en JSON
+        .then(data => {
+            data.forEach(commune => {
+                let marker;
 
-// J'ajoute un écouteur d'événement sur l'élément input de la ville de départ 'departure'
-departureInput.addEventListener('input', async () => {
-
-    // Je réinitialise la liste de suggestions de communes
-    departureCommuneSuggestions.innerHTML = '';
-
-    // Je récupère et stock la valeur entrée par l'utilisateur et je supprime les espaces avant et après
-    const search = departureInput.value.trim();
-
-    // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieur ou égale à 3
-    if (search.length >= 3)
-    {
-        const citiesWithPlaces = await getCitiesWithPlaces();
-        // console.log(citiesWithPlaces);
-        // J'effectue une requête vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
-        fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
-            .then(response => response.json()) // Je convertis la réponse en JSON
-            .then(data => {
-
-            // Je filtre les résultats pour récupérer les villes contenant des lieux d'intérêts
-            const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.cityName === commune.nom));
-
-            filteredData.forEach(commune => {
-
-                // J'ajoute un élément <li> contenant les suggestions de communes à la liste <ul> #departureCommuneSuggestions
-                const listItem = document.createElement('li');
-
-                // Je définis le contenu texte de chaque élément <li> sur le nom de chaque commune suggérée dans la liste <uk>
-                listItem.textContent = commune.nom;
-
-                //Je récupère et stock la latitude de chaque commune  
-                let lat = commune.centre.coordinates[1];
-
-                // Je récupère et stock la longitude de chaque commune
-                let lng = commune.centre.coordinates[0];
-
-                // J'ajoute un écouteur d'événement au click sur l'élément <li> 
-                listItem.addEventListener('click', () => {
-
-                    // J'attribue comme valeur à l'input le nom de la commune sélectionnée
-                    departureInput.value = commune.nom;
-
-                    // Je récupère et stock l'élément input caché où le code unique INSEE de la commune sera stocké   
-                    const codeInput = document.querySelector('#custom_itinerary_codeDeparture');
-
-                    // Je définis la valeur de l'input sur le code INSEE de la commune
-                    codeInput.value = commune.code;
-
-                    console.log('departure : ' + lat, lng);
-
-                    const departureIcon = new L.icon({
-                        iconUrl: "/images/departure-city-icon.png",
-                        // Je définis la largeur et la hauteur de l'icône
-                        iconSize: [32,35],
-                        // Je définis le point d'ancrage de l'icône
-                        iconAnchor: [16,40],
-                        // Je définis le point d'ancrage du popup
-                        popupAnchor:[0,-39]
-                    });
-
-                    // Je récupère et stock la position de la commune sélectionnée en utilisant sa latitude et sa longitude
-                    const marker = L.marker([lat, lng], {icon: departureIcon});
-
-                    // J'ajoute le marqueur à la carte en utilisant la fonction addTo(), native de Leaflet
-                    marker.addTo(mapItinerary);
-                    marker.bindPopup('Je suis la ville de départ!').openPopup();
-                    // Je mets à jour la polyline en récupérant la latitude et longitude du marqueur avec la fonction getLatLng(), native de Leaflet
-                    // updatePolyline(marker.getLatLng());
-
-                    // Je réinitialise la liste de suggestions de communes une fois la commune sélectionnée
-                    departureCommuneSuggestions.innerHTML = '';
+                // Je définis l'icône pour la ville de départ
+                const departureIcon = new L.icon({
+                    iconUrl: "/images/departure-city-icon.webp",
+                    // Je définis la largeur et la hauteur de l'icône
+                    iconSize: [32,35],
+                    // Je définis le point d'ancrage de l'icône
+                    iconAnchor: [16,40],
+                    // Je définis le point d'ancrage du popup
+                    popupAnchor:[0,-39]
                 });
 
-                // J'ajoute l'élément <li> à l'élément <ul> où sont affichées les suggestions de communes grâce à la fonction appendChild, native Javascript
-                departureCommuneSuggestions.appendChild(listItem);
-            });
-        });
-    }   
-});
-
-// J'ajoute un écouteur d'événement sur l'élément input pour la ville d'arrivée,  'arrival'
-arrivalInput.addEventListener('input', async () => {
-
-    // Je réinitialise la liste de suggestions de communes
-    arrivalCommuneSuggestions.innerHTML = '';
-
-    // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après
-    const search = arrivalInput.value.trim();
-
-    // Si la longueur de la chaîne de caractères entrée par l'utilisateur est supérieur ou égale à 3
-    if (search.length >= 3)
-    {
-        const citiesWithPlaces = await getCitiesWithPlaces();
-        
-        // J'effectue une requête vers l'API Geo Gouv pour récupérer les communes correspondant à la recherche effectuée
-        fetch(`https://geo.api.gouv.fr/communes?nom=${search}&fields=nom,code,centre&limit=3`)
-            .then(response => response.json()) // Je convertis la réponse en JSON
-            .then(data => {
-
-            // Je filtre les résultats pour récupérer les villes contenant des lieux d'intérêts grâce à la fonction some(), fonction native Javascript
-            const filteredData = data.filter(commune => citiesWithPlaces.some(city => city.cityName === commune.nom));
-
-            // J'ajoute les éléments <li> contenant les suggestions de communes à la liste <ul> appropriée
-            filteredData.forEach(commune => {
-
-                // J'ajoute un élément <li> contenant les suggestions de communes à la liste <ul> #arrivalCommunSuggestions
-                const listItem = document.createElement('li');
-
-                // Je définis le contenu texte de chaque élément <li> sur me nom de chaque commune suggérée dans la liste <ul>
-                listItem.textContent = commune.nom;
-
-                // Je récupère et stock la latitude de chaque commune 
+                // Je récupère et stocke dans la variable 'lat' la latitude de chaque commune
                 let lat = commune.centre.coordinates[1];
                 
-                // Je récupère et stock la longitude de chaque commune
+                // Je récupère et stocke dans la variable 'lng' la longitude de chaque commune
                 let lng = commune.centre.coordinates[0];
+                
+                console.log(lat, lng);
+                if(marker){
+                    mapItinerary.removeLayer(marker);
+                }
+                        
+                // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
+                marker = L.marker([lat, lng], {icon: departureIcon});
+                        
+                // J'ajoute de marqueur de la commune correspondante à la map 
+                mapItinerary.addLayer(marker)
+                marker.bindPopup(`Je suis la ville de départ`).openPopup();
+                        
+            })
+        
+    })
+  
+});    
 
-                // J'ajoute un écouteur d'événement au click sur l'élément <li>
-                listItem.addEventListener('click', () => {
-
-                    // J'attribue comme valeur à l'input le nom de la commune sélectionnée
-                    arrivalInput.value = commune.nom;
-
-                    // Je récupère et stock l'élément input caché où le code unique INSEE de la commune sera stocké
-                    const codeInput = document.querySelector('#custom_itinerary_codeArrival');
-
-                    // Je définis la valeur de l'input sur le code INSEE de la commune
-                    codeInput.value = commune.code;
-
-                    console.log('arrival : ' + lat, lng);
-
-                    const arrivalIcon = new L.icon({
-                        iconUrl: "/images/arrival-city-icon.png",
-                        // Je définis la largeur et la hauteur de l'icône
-                        iconSize: [32,35],
-                        // Je définis le point d'ancrage de l'icône
-                        iconAnchor: [16,40],
-                        // Je définis le point d'ancrage du popup
-                        popupAnchor:[0,-39]
-                    });
-
-                    // Je récupère et stock la position de la commune de l'élément sélectionnée en utilisant sa latitude et sa longitude
-                    const marker = L.marker([lat, lng], {icon: arrivalIcon});
-
-                    // J'ajoute le marqueur à la carte en utilisant la fonction addTo(), native de Leaflet
-                    marker.addTo(mapItinerary);
-                    marker.bindPopup('Je suis la ville d\'arrivée!').openPopup();
-                    // Je mets à jour la polyline en récupérant la latitude et la longitude du marqueur avec la fonction getLatLng(), native de Leaflet
-                    // updatePolyline(marker.getLatLng());
-
-                    // Je réinitialise la liste de suggestions de communes une fois la commune sélectionnée
-                    arrivalCommuneSuggestions.innerHTML = '';
-                });
-
-                // J'ajoute l'élément <li> à l'élément <ul> où sont affichées les suggestions de communes grâce à la fonction appendChild(), native Javascript
-                arrivalCommuneSuggestions.appendChild(listItem);
+// J'ajoute un écouteur d'évènement sur le sélecteur de la ville d'arrivée
+arrivalInput.addEventListener('change', () => {
+    // Je récupère la valeur sélectionnée 
+    const arrivalValue = arrivalInput.value;
+    
+    fetch(`https://geo.api.gouv.fr/communes?code=${arrivalValue}&fields=nom,code,centre&limit=3`)
+    .then(response => response.json()) // Je convertis la réponse en JSON
+    .then(data => {
+        data.forEach(commune => {
+            let marker;
+            // Je définis l'icône pour la ville d'arrivée
+            const arrivalIcon = new L.icon({
+                iconUrl: "/images/arrival-city-icon.webp",
+                // Je définis la largeur et la hauteur de l'icône
+                iconSize: [32,35],
+                // Je définis le point d'ancrage de l'icône
+                iconAnchor: [16,40],
+                // Je définis le point d'ancrage du popup
+                popupAnchor:[0,-39]
             });
-        });
-    }
-});
+            // Je récupère et stocke dans la variable 'lat' la latitude de la commune
+            let lat = commune.centre.coordinates[1];
+            
+            // Je récupère et stocke dans la variable 'lng' la longitude de la commune
+            let lng = commune.centre.coordinates[0];
+            
+            console.log(lat, lng);
+            if(marker){
+                mapItinerary.removeLayer(marker);
+            }
+                    
+            // Je récupère et stock dans la constante 'marker' la latitude et la longitude de la commune sélectionnée
+            marker = L.marker([lat, lng], {icon: arrivalIcon});
+            
+            // J'ajoute de marqueur de la commune correspondante à la map 
+            mapItinerary.addLayer(marker)
+            marker.bindPopup(`Je suis la ville d'arrivée`).openPopup();
+                    
+        })
+    })
+});    
 
 
 $(document).ready(function() {
@@ -290,7 +160,7 @@ $(document).ready(function() {
         let marker;
         // Je définis les icônes pour les villes intermédiaires
         const intermediateIcon = new L.icon({
-            iconUrl: "/images/intermediate-city-icon.png",
+            iconUrl: "/images/intermediate-city-icon.webp",
             // Je définis la largeur et la hauteur de l'icône
             iconSize: [32,35],
             // Je définis le point d'ancrage de l'icône
