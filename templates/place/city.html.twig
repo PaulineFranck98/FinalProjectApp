@@ -9,12 +9,22 @@
 
 <main class="top">
     <section id="detail-city">
-       <div>
-            <p>Filtrer</p>
+       <div class="form-filters">
+            {# <p>Filtrer</p> #}
             <form id="filters">
+                <p class="filter-title">Thèmes</p>
                 {% for theme in themes %}
-                    <p><input type="checkbox" name="themes[]" id="theme{{ theme.id}}" value="{{ theme.id}}">
-                    <label for="theme{{ theme.id}}">{{ theme.name }}</label></p>
+                    <p>
+                        <input type="checkbox" name="themes[]" id="theme{{ theme.id}}" value="{{ theme.id}}">
+                        <label for="theme{{ theme.id}}">{{ theme.name }}</label>
+                    </p>
+                {% endfor %}
+                <p class="filter-title">Qui vous accompagne ?</p>
+                {% for companion in companions %}
+                    <p>
+                        <input type="checkbox" name="companions[]" id="companion{{ companion.id }}" value="{{ companion.id }}">
+                        <label for="companion{{ companion.id }}">{{ companion.name }}</label>
+                    </p>
                 {% endfor %}
             </form>
        </div>

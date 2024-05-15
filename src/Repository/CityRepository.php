@@ -42,20 +42,28 @@ class CityRepository extends ServiceEntityRepository
     // }
 
 
-    public function findPlacesByCityId($cityId, $filters = null)
+    public function findPlacesByCityId($cityId, $themeFilters = null, $companionFilters = null)
     {
         $query = $this->createQueryBuilder('c')
             ->innerJoin('c.places', 'p')
             ->select('c, p')
-            ->where('c.id = :cityId');
+            ->where('c.id = :cityId')
+            ->setParameter('cityId', $cityId);
+
         // Je filtre les données
-        if($filters != null){
-            $query->andWhere('p.themes IN(:themes)')
-            ->setParameter(':themes', array_values($filters));
+        if($themeFilters != null){
+            $query->innerJoin('p.themes', 't')
+                ->andWhere('t.id IN (:themes)')
+                ->setParameter('themes', array_values($themeFilters));
+        }
+        if ($companionFilters != null) {
+            $query->innerJoin('p.companions', 'comp')
+                  ->andWhere('comp.id IN (:companions)')
+                  ->setParameter('companions', array_values($companionFilters));
         }
 
-        $query->setParameter('cityId', $cityId)
-            ;
+        
+
         return $query->getQuery()->getResult();
     }
 

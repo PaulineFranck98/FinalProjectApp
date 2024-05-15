@@ -30,14 +30,19 @@ window.onload = () => {
                     "X-Requested-with": "XMLHttpRequest"
                 }
             // fetch retournant une promesse, je fais alors un then qui récupère la réponse
-            }).then(response => 
-                response.json()
-            ).then(data => {
+            }).then(response => {
+                if(!response.ok){
+                    throw new Error(response.statusText)
+            }
+                return response.json();
+            }).then(data => {
                 // Je récupère la zone de contenu
                 const content = document.querySelector('#content');
 
                 // Je remplace le contenuss
                 content.innerHTML = data.content;
+            }).catch(error => {
+                console.error(error);
             })
 
         });
