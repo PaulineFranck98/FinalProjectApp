@@ -42,7 +42,22 @@ class CityRepository extends ServiceEntityRepository
     // }
 
 
+    public function findPlacesByCityId($cityId, $filters = null)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->innerJoin('c.places', 'p')
+            ->select('c, p')
+            ->where('c.id = :cityId');
+        // Je filtre les données
+        if($filters != null){
+            $query->andWhere('p.themes IN(:themes)')
+            ->setParameter(':themes', array_values($filters));
+        }
 
+        $query->setParameter('cityId', $cityId)
+            ;
+        return $query->getQuery()->getResult();
+    }
 
 
     public function findCitiesWithPlaces()

@@ -9,6 +9,7 @@ use App\Form\PlaceType;
 use App\Service\PictureService;
 use App\Repository\CityRepository;
 use App\Repository\PlaceRepository;
+use App\Repository\ThemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -281,10 +282,43 @@ class PlaceController extends AbstractController
 
     #[Route('/city/{id}', name: 'show_city')]
     // retrieve the 'post' corresponding to the id thanks to paramconverter tool
-    public function showCity(City $city) : Response {
+    public function showCity(City $city, PlaceRepository $placeRepository, ThemeRepository $themeRepository, CityRepository $cityRepository, Request $request) : Response {
+
+        // Je récupère les filtres 
+        $filters = $request->get('themes');
+    //    dd($filters);
+       
+        // $places = $city->getPlaces($filters);
+        $places = $cityRepository->findPlacesByCityId($city->getId(), $filters);
+        
+        // dd($places);
+
+        $averageRatings = [];
+
+        foreach ($places as $place) {
+            $averageRatings[$place->getId()] = $placeRepository->getAverageRating($place->getId());
+        }
+        
+        // Je vérifie si j'ai une requête ajax
+        if($request->get('ajax')){
+            return new JsonResponse([
+                'content' => $this->renderView('place/_content.html.twig', [
+                    'city' => $city,
+                    'places' => $places,
+                    'averageRatings' => $averageRatings,
+                    
+                    ])
+                ]);
+            }
+            // Je récupère tous les thèmes 
+            $themes = $themeRepository->findAll();
+
         //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
         return $this->render('place/city.html.twig', [
-            'city' => $city
+            'city' => $city,
+            'places' => $places,
+            'averageRatings' => $averageRatings,
+            'themes' => $themes,
         ]);
     }
 

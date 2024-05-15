@@ -1,0 +1,126 @@
+ <h1>{{ city.cityName }}</h1>
+
+        {% set restaurants = city.places|filter(place => place.type == 'Restaurant') %}
+        {% if restaurants|length > 0 %}
+        <div class="type-container">
+            <div class="detail-type">
+                <h2>Pour se restaurer</h2>
+            </div>
+            <i class="fa-solid fa-circle-arrow-left scroll-left"></i>
+            <div class="scroll-container">
+                <ul class="scroll-list">
+                {% for place in restaurants %}
+                {# {% if place.type == 'Restaurant' %} #}
+                    <li class="scroll-item">   
+                        {% for image in place.images %}
+                        {% if loop.first %}
+                            
+                            <figure class="img-city-detail">
+                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                            </figure>
+                        {% endif %}
+                        {% endfor %}
+                        <b>{{ place.name}}</b>
+                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                    <li>
+                {# {% endif %} #}
+
+                {% endfor %} 
+                </ul>
+            </div>
+            <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
+        </div>
+        {% endif %}
+        {% set hotels = city.places|filter(place => place.type == 'Hôtel') %}
+        {% if hotels|length > 0 %}
+        <div class="type-container">
+            <div class="detail-type">
+                <h2>Pour se reposer</h2>
+            </div>
+            <i class="fa-solid fa-circle-arrow-left scroll-left"></i>
+            <div class="scroll-container">
+                <ul class="scroll-list">
+                {% for place in hotels %}
+                {# {% if place.type == 'Hôtel' %} #}
+                    <li class="scroll-item">   
+                        {% for image in place.images %}
+                        {% if loop.first %}
+                            
+                            <figure class="img-city-detail">
+                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                            </figure>
+                        {% endif %}
+                        {% endfor %}
+                        <p><b class="break-word">{{ place.name}}</b></p>
+                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                    <li>
+                {# {% endif %} #}
+
+                {% endfor %} 
+                </ul>
+            </div>
+            <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
+        </div>
+       {% endif %}
+       {% set activities = city.places|filter(place => place.type == 'Activité') %}
+       {% if activities|length > 0 %}
+        <div class="type-container">
+            <div class="detail-type">
+                <h2>Pour se divertir</h2>
+            </div>
+            <i class="fa-solid fa-circle-arrow-left scroll-left"></i>
+            <div class="scroll-container">
+                <ul class="scroll-list">
+                {% for place in activities %}
+                {# {% if place.type == 'Activité' %} #}
+                    <li class="scroll-item">   
+                        {% for image in place.images %}
+                        {% if loop.first %}
+                            
+                            <figure class="img-city-detail">
+                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                            </figure>
+                        {% endif %}
+                        {% endfor %}
+                        <b>{{ place.name}}</b>
+                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                    <li>
+                {# {% endif %} #}
+
+                {% endfor %} 
+                </ul>
+            </div>
+            <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
+        </div>
+        {% endif %}
+        {% set hotelsRestaurants = city.places|filter(place => place.type == 'Hôtel-Restaurant') %}
+        {% if hotelsRestaurants|length > 0 %}
+        <div class="type-container">
+            <div class="detail-type">
+                <h2>Pour se restaurer et se reposer</h2>
+            </div>
+            <i class="fa-solid fa-circle-arrow-left scroll-left"></i>
+            <div class="scroll-container">
+                <ul class="scroll-list">
+                {% for place in hotelsRestaurants %}
+                {# {% if place.type == 'Hôtel-Restaurant' %} #}
+                    <li class="scroll-item">   
+                        {% for image in place.images %}
+                        {% if loop.first %}
+                            
+                            <figure class="img-city-detail">
+                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                            </figure>
+                        {% endif %}
+                        {% endfor %}
+                        <b>{{ place.name}}</b>
+                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                    <li>
+                {# {% endif %} #}
+
+                {% endfor %} 
+                </ul>
+            </div>
+            <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
+        </div>
+       {% endif %}

@@ -3,35 +3,59 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
+
+
+
 <main class="top">
     <section id="detail-city">
-        <h1>{{ city.cityName }}</h1>
-        <div>
-            <div>
-            <p>Pour se restaurer</p>
-            </div>
-            <div class="scroll-container">
-                <ul class="scroll-list">
-                {% for place in city.places %}
-                {% if place.type == 'Restaurant' %}
-                    <li class="scroll-item">   
-                        {% for image in place.images %}
-                            <figure class="img-city-detail">
-                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
-                                </figure>
-                        {% endfor %}
-                        <b>{{ place.name}}</b>
-                    <li>
-                {% endif %}
-
-                {% endfor %} 
-                </ul>
-            </div>
-        </div>
-       
+       <div>
+            <p>Filtrer</p>
+            <form id="filters">
+                {% for theme in themes %}
+                    <p><input type="checkbox" name="themes[]" id="theme{{ theme.id}}" value="{{ theme.id}}">
+                    <label for="theme{{ theme.id}}">{{ theme.name }}</label></p>
+                {% endfor %}
+            </form>
+       </div>
+       <div id="content">
+        
+            {% include "place/_content.html.twig" %}
+       </div>
     </section>
 </main>
-   {% block javascripts %}
 
     {% endblock %}
+   {% block javascripts %}
+<script>
+    // const scrollContainer = document.querySelector('.scroll-container');
+const containers = document.querySelectorAll('.type-container');
+
+containers.forEach(container => {
+
+    const scrollItem = container.querySelector('.scroll-item');
+    const scrollList = container.querySelector('.scroll-list');
+    const scrollLeftBtn = container.querySelector('.scroll-left');
+    const scrollRightBtn = container.querySelector('.scroll-right');
+    
+    let scrollPosition = 0;
+    
+    scrollRightBtn.addEventListener('click', () => {
+      scrollPosition += scrollItem.offsetWidth;
+      scrollList.style.transform = `translateX(-${scrollPosition}px)`;
+    });
+    
+    scrollLeftBtn.addEventListener('click', () => {
+      scrollPosition -= scrollItem.offsetWidth;
+      if (scrollPosition < 0) {
+        scrollPosition = 0;
+      }
+      scrollList.style.transform = `translateX(-${scrollPosition}px)`;
+    });
+
+})
+
+</script>
+<script src="{{ asset('js/filters.js') }}"></script>
+
 {% endblock %}
