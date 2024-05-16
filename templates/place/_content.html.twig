@@ -12,18 +12,23 @@
                 <ul class="scroll-list">
                 {% for place in restaurants %}
                 {# {% if place.type == 'Restaurant' %} #}
-                    <li class="scroll-item">   
-                        {% for image in place.images %}
-                        {% if loop.first %}
-                            
-                            <figure class="img-city-detail">
-                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
-                            </figure>
-                        {% endif %}
-                        {% endfor %}
-                        <b>{{ place.name}}</b>
-                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
-                    <li>
+                    <li class="scroll-item">
+                        <a href="{{ path('show_place', {'id': place.id}) }}">
+                            {% for image in place.images %}
+                                {% if loop.first %}
+                                    
+                                    <figure class="img-city-detail">
+                                        <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                                        <div class="discover-city">
+                                            <p>Découvrir</p>
+                                        </div>
+                                    </figure>
+                                {% endif %}
+                            {% endfor %}
+                            <b>{{ place.name}}</b>
+                            <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                        </a>
+                    </li>
                 {# {% endif %} #}
 
                 {% endfor %} 
@@ -44,18 +49,23 @@
                 <ul class="scroll-list">
                 {% for place in hotels %}
                 {# {% if place.type == 'Hôtel' %} #}
-                    <li class="scroll-item">   
-                        {% for image in place.images %}
-                        {% if loop.first %}
-                            
-                            <figure class="img-city-detail">
-                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
-                            </figure>
-                        {% endif %}
-                        {% endfor %}
-                        <p><b class="break-word">{{ place.name}}</b></p>
-                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
-                    <li>
+                    <li class="scroll-item">
+                        <a href="{{ path('show_place', {'id': place.id}) }}">
+                            {% for image in place.images %}
+                                {% if loop.first %}
+                                    
+                                    <figure class="img-city-detail">
+                                        <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                                        <div class="discover-city">
+                                            <p>Découvrir</p>
+                                        </div>
+                                    </figure>
+                                {% endif %}
+                            {% endfor %}
+                            <p><b class="break-word">{{ place.name}}</b></p>
+                            <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                        </a>
+                    </li>
                 {# {% endif %} #}
 
                 {% endfor %} 
@@ -76,18 +86,23 @@
                 <ul class="scroll-list">
                 {% for place in hotelsRestaurants %}
                 {# {% if place.type == 'Hôtel-Restaurant' %} #}
-                    <li class="scroll-item">   
-                        {% for image in place.images %}
-                        {% if loop.first %}
-                            
-                            <figure class="img-city-detail">
-                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
-                            </figure>
-                        {% endif %}
-                        {% endfor %}
-                        <b>{{ place.name}}</b>
-                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
-                    <li>
+                    <li class="scroll-item">
+                        <a href="{{ path('show_place', {'id': place.id}) }}">   
+                            {% for image in place.images %}
+                                {% if loop.first %}
+                                    
+                                    <figure class="img-city-detail">
+                                        <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                                        <div class="discover-city">
+                                            <p>Découvrir</p>
+                                        </div>
+                                    </figure>
+                                {% endif %}
+                            {% endfor %}
+                            <b>{{ place.name}}</b>
+                            <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                        </a>
+                    </li>
                 {# {% endif %} #}
 
                 {% endfor %} 
@@ -108,18 +123,23 @@
                 <ul class="scroll-list">
                 {% for place in activities %}
                 {# {% if place.type == 'Activité' %} #}
-                    <li class="scroll-item">   
-                        {% for image in place.images %}
-                        {% if loop.first %}
-                            
-                            <figure class="img-city-detail">
-                                <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
-                            </figure>
-                        {% endif %}
-                        {% endfor %}
-                        <b>{{ place.name}}</b>
-                        <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
-                    <li>
+                    <li class="scroll-item">
+                        <a href="{{ path('show_place', {'id': place.id}) }}">  
+                            {% for image in place.images %}
+                                {% if loop.first %}
+                                    
+                                    <figure class="img-city-detail">
+                                        <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}">
+                                        <div class="discover-city">
+                                            <p>Découvrir</p>
+                                        </div>
+                                    </figure>
+                                {% endif %}
+                            {% endfor %}
+                            <b>{{ place.name}}</b>
+                            <div>{{averageRatings[place.id]|default('Pas de notes')|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                        </a>
+                    </li>
                 {# {% endif %} #}
 
                 {% endfor %} 

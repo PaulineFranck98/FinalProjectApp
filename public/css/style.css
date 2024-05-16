@@ -349,7 +349,7 @@ nav span{
 }
 
 .bcg-join-community{
-    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/fond-community.webp);
+    background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
@@ -895,7 +895,9 @@ button#custom_itinerary_valider{
  .img-city-detail{
     width:270px;
     height:200px;
-    
+    position:relative;
+    transition: all 0.4s ease;
+
 } 
 
 /*.img-city-detail img{
@@ -939,8 +941,39 @@ button#custom_itinerary_valider{
     border-radius: var(--sm-border-radius);
     object-fit: cover;
     margin-bottom: 1rem;
+    /* position: relative; */
+  }
+
+  /* .img-city-detail:hover{
+    filter: brightness(0.6);
+  } */
+
+  .discover-city{
+    color:white;
+    position:absolute;
+    border-radius: var(--sm-border-radius);
+    transition: all 0.4s ease;
+    opacity:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background :#00000082;
+  }
+
+  .discover-city p{
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .img-city-detail:hover .discover-city{
+    opacity:1;
   }
   
+
   .scroll-right,
   .scroll-left{
     font-size:3em;
@@ -954,6 +987,10 @@ button#custom_itinerary_valider{
     margin:auto;
     margin-top:2rem;
     display: flex;
+}
+
+#detail-city a {
+    color: black;
 }
 
 #detail-city h1{
@@ -997,6 +1034,11 @@ button#custom_itinerary_valider{
 .filter-title{
     margin-top: 2rem;
     font-weight:600;
+}
+
+#filters label,
+#filters input{
+    cursor: pointer;
 }
 
 #content{
