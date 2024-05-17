@@ -14,7 +14,8 @@ use Symfony\Component\Validator\Constraints\PasswordStrength;
 use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
-class ChangePasswordFormType extends AbstractType
+
+class EditPasswordFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -67,7 +68,5 @@ class ChangePasswordFormType extends AbstractType
         $resolver->setDefaults([]);
     }
 }
-
-
 
 

@@ -667,10 +667,11 @@ input[type="radio"]:checked + label > figure > img {
 }
 
 .dashboard-aside figure{
-    background: #ffffff9e;
+    /* background: #ffffff9e; */
     height: 65%;
     width: 44%;
     border-radius: 50%;
+    overflow: hidden;
     margin: 0 auto 5%;
 }
 

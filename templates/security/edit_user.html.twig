@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification infos profil{% endblock %}
+
+{% block body %}
+<main>
+    <section>
+        
+    <h1>Modifier mes infos</h1>
+
+
+    {{ form_start(formEditUser) }}
+
+    {{ form_row(formEditUser.email) }}
+
+    {{ form_row(formEditUser.username) }}
+
+    {{ form_row(formEditUser.profilePicture) }}
+   
+
+    {{ form_row(formEditUser.valider) }}
+    
+    {{ form_end(formEditUser) }}
+
+    </section>
+
+    {# {% do formAddPost.place.setRendered %}  #}
+
+</main>
+{% endblock %}
