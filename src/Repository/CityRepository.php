@@ -55,6 +55,7 @@ class CityRepository extends ServiceEntityRepository
             $query->innerJoin('p.themes', 't')
                 ->andWhere('t.id IN (:themes)')
                 ->setParameter('themes', array_values($themeFilters));
+                // dump($query);
         }
         if ($companionFilters != null) {
             $query->innerJoin('p.companions', 'comp')

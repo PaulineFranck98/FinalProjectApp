@@ -1192,7 +1192,7 @@ button#custom_itinerary_valider{
 .post-content-text{
     height: 80%;
     margin-top:1.2rem;
-    background: #fbfbfb;
+    background: #ffffff;
     padding: 0.7rem 1rem;
     border-radius: var(--lg-border-radius);
     line-height:1.7em;
@@ -1210,7 +1210,7 @@ button#custom_itinerary_valider{
 
 
 .post-container{
-    background: #dfdfdf99;
+    background: #efefef99;
     backdrop-filter: blur(10px);
 
     padding: 1rem;

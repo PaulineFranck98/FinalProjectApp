@@ -285,7 +285,7 @@ class PlaceController extends AbstractController
 
     #[Route('/city/{id}', name: 'show_city')]
     // retrieve the 'post' corresponding to the id thanks to paramconverter tool
-    public function showCity(City $city, PlaceRepository $placeRepository, ThemeRepository $themeRepository, CityRepository $cityRepository, CompanionRepository $companionRepository ,Request $request) : Response {
+    public function showCity(City $city, PlaceRepository $placeRepository, ThemeRepository $themeRepository, CityRepository $cityRepository, CompanionRepository $companionRepository ,Request $request ) : Response {
 
         // Je récupère les filtres 
         $themeFilters = $request->get('themes');
@@ -302,7 +302,13 @@ class PlaceController extends AbstractController
         foreach ($places as $place) {
             $averageRatings[$place->getId()] = $placeRepository->getAverageRating($place->getId());
         }
-        
+
+        // Je récupère tous les thèmes 
+        // $themes = $themeRepository->findAll();
+        // $companions = $companionRepository->findAll();
+   
+        // $theme = $themeRepository->find($themeId);
+        // $placeTheme = $theme->getPlaces(); 
         // Je vérifie si j'ai une requête ajax
         if($request->get('ajax')){
             return new JsonResponse([
@@ -314,9 +320,9 @@ class PlaceController extends AbstractController
                     ])
                 ]);
             }
-            // Je récupère tous les thèmes 
-            $themes = $themeRepository->findAll();
-            $companions = $companionRepository->findAll();
+        // Je récupère tous les thèmes 
+        $themes = $themeRepository->findAll();
+        $companions = $companionRepository->findAll();
 
         //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
         return $this->render('place/city.html.twig', [
