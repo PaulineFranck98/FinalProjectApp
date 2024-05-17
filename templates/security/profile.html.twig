@@ -22,20 +22,25 @@
                 </ul>
             </aside>
             <section id="profile-container">
-                <h1>Infos Profil</h1>
-                <p>Nom d'utilisateur : {{ app.user}}</p>
-                <p>Email : {{ app.user.email}}</p>
-                <p><a href="{{ path('edit_user', {'id' : app.user.id}) }}">Modifier les infos du profil</a>
-                <p><a href="{{ path('edit_password', {'id' : app.user.id}) }}">Modifier le mot de passe</a>
-            
+                 <h1><span>Bienvenue</span> sur votre profil &#129384;</h1>
+                {#<p>Nom d'utilisateur : {{ app.user}}</p>
+                    <p><a href="{{ path('edit_user', {'id' : app.user.id}) }}">Modifier les infos du profil</a>
+                <p>Email : {{ app.user.email}}</p> #}
+                <div class="fieldset">
+                    <fieldset class="security-links">
+                        <legend>Espace Sécurité</legend>
+                        <p><a href="{{ path('edit_password', {'id' : app.user.id}) }}"><i class="fa-solid fa-key"></i>&nbsp;Modifier mot de passe</a>
+                        <p><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;Supprimer le compte</a>
+                    </fieldset>
+                </div>
             </section>
         </section>
-        <figure class="travel-sign">
+        {# <figure class="travel-sign">
             <img src="/img-source/travel-sign.webp">
         </figure>
         <figure class="travel-stork">
             <img src="/img-source/adventure-stork.webp">
-        </figure>
+        </figure> #}
     </div>
 </main>
 {% endblock %}
