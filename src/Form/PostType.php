@@ -6,6 +6,8 @@ namespace App\Form;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\Place;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -72,12 +74,28 @@ class PostType extends AbstractType
             //     'class' => User::class,
             //     'choice_label' => 'id',
             // ])
-            ->add('place', EntityType::class, [
-                'class' => Place::class,
-                'choice_label' => 'name',
-            ])
+            // ->add('place', EntityType::class, [
+            //     'class' => Place::class,
+            //     'choice_label' => 'name',
+            // ])
             ->add('valider', SubmitType::class)
         ;
+
+        // Adding an event listener that listens to the PRE_SET_DATA event.
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            // Getting the form and data associated with the event
+            $form = $event->getForm();
+            $data = $event->getData();
+
+            // Check if the place is already set in the Post entity
+            if ($data->getPlace() === null) {
+                // If not, add the 'place' field to the form
+                $form->add('place', EntityType::class, [
+                    'class' => Place::class,
+                    'choice_label' => 'name',
+                ]);
+            }
+        });
     }
 
     // I define the method that configures the form options

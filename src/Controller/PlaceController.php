@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\City;
 use App\Entity\Image;
 use App\Entity\Place;
+use App\Form\CityType;
 use App\Form\PlaceType;
 use App\Service\PictureService;
 use App\Repository\CityRepository;
+use App\Repository\PostRepository;
 use App\Repository\PlaceRepository;
 use App\Repository\ThemeRepository;
 use App\Repository\CompanionRepository;
@@ -326,28 +328,40 @@ class PlaceController extends AbstractController
         ]);
     }
 
+     #[Route('/post/place/{placeId}', name: 'find_posts_place')]
+    public function findPostByPlaceId(PostRepository $postRepository, PlaceRepository $placeRepository, $placeId): Response
+    {
+        $posts = $postRepository->findPostsByPlace($placeId);
+        $place = $placeRepository->find($placeId);
+
+        return $this->render('place/posts.html.twig', [
+            'posts' => $posts,
+            'place' => $place,
+        ]);
+    }
+
+    
+    #[Route('/post/city/{cityId}', name: 'find_posts_city')]
+    public function findPostByCityId(PostRepository $postRepository, CityRepository $cityRepository, $cityId, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $posts = $postRepository->findPostsByCity($cityId);
+        $city = $cityRepository->find($cityId);
+
+        // $citySelectForm = $this->createForm(CityType::class);
+        // $citySelectForm->handleRequest($request);
+
+        // if ($citySelectForm->isSubmitted() && $citySelectForm->isValid()) {
+        //     $selectedCity = $citySelectForm->get('city')->getData();
+        //     return $this->redirectToRoute('find_posts_city', ['cityId' => $selectedCity->getId()]);
+        // }
+
+
+        return $this->render('place/cityPosts.html.twig', [
+            'posts' => $posts,
+            'city' => $city,
+            // 'citySelectForm' => $citySelectForm->createView()
+        ]);
+    }
+
 }
 
-//  add Place with city id ---------
-// $place = new Place();
-// $form = $this->createForm(PlaceType::class, $place);
-// $form->handleRequest($request);
-
-// if ($form->isSubmitted() && $form->isValid()) {
-//     $cityCode = $place->getCityCode();
-//     $city = $entityManager->getRepository(City::class)->findOneBy(['code' => $cityCode]);
-
-//     if (!$city) {
-//         $city = new City();
-//         $city->setCode($cityCode);
-//         $entityManager->persist($city);
-//     }
-
-//     $place->setCity($city);
-//     $city->addPlace($place);
-
-//     $entityManager->persist($place);
-//     $entityManager->flush();
-
-
-// }

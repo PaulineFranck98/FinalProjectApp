@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<h1>Commenter</h1>
+
+{{ form_start(formAddCommentary) }}
+
+{{ form_row(formAddCommentary.content) }}
+
+{{ form_row(formAddCommentary.valider) }}
+
+{{ form_end(formAddCommentary) }}
+
+{% endblock %}

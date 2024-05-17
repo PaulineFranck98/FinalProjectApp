@@ -3,16 +3,39 @@
 {% block title %}Nouveau post{% endblock %}
 
 {% block body %}
-<main>
-    <section>
-        <h1>{{post.title}}</h1>
-        <p>{{post.place}}</p>
-        <p>{{post.content}}</p>
+<main class="top">
+    <section id="detail-post">
+        <div>
+            <h1>{{post.title}}</h1>
+            <p>
+                <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
+            </p>
+            <p>
+                <a href="{{ path('show_city', {'id': post.place.city.id}) }}">{{post.place.city}}</a>
+            </p>
+            <p>{{post.content}}</p>
+        </div>
         <figure>
             <img src="{{ asset('uploads/'~ post.image)}}">
         </figure>
-        <small>{{post.user}}</small>
-        <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+        <div>
+            <small>{{post.user}}</small>
+            <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+        </div>
+        <a href="{{ path('edit_post', {'id': post.id}) }}">Modifier le post</a>
+        <div>
+            
+            {% for comment in post.commentaries %}
+               <p>{{ comment.content}}</p>
+               <p>{{ comment.user}}, le {{comment.creationDate | date("d/m/Y, H:i")}}</p>
+                <figure>
+                    <img src="{{ asset('uploads/'~ comment.user.profilePicture)}}">
+                </figure>
+                <a href="{{ path('edit_commentary', {'id': comment.id}) }}">Modifier le commentaire</a>
+                <a href="{{ path('delete_commentary', {'id': comment.id}) }}">Supprimer le commentaire</a>
+            {% endfor %}
+        </div>
     </section>
+    <a href="{{ path('new_commentary', {'postId': post.id})}}">Répondre</a>
 </main>
 {% endblock %}

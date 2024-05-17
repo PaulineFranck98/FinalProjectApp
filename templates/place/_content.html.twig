@@ -1,5 +1,6 @@
  <h1>{{ city.cityName }}</h1>
 
+
         {% set restaurants = city.places|filter(place => place.type == 'Restaurant') %}
         {% if restaurants|length > 0 %}
         <div class="type-container">
@@ -148,4 +149,6 @@
             <i class="fa-solid fa-circle-arrow-right scroll-right"></i>
         </div>
         {% endif %}
+ <p><a href="{{ path('find_posts_city', {'cityId': city.id})}}">Voir les posts de cette ville</a></p>
+
        

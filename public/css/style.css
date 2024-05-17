@@ -26,6 +26,8 @@ body{
 
 img{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 a{
@@ -962,7 +964,7 @@ button#custom_itinerary_valider{
   }
 
   .discover-city p{
-    font-size: 2em;
+    font-size: 1.5em;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1023,6 +1025,7 @@ button#custom_itinerary_valider{
 
 .form-filters{
     width: 25%;
+    min-height: 100vh;
     margin-right: 1rem;
     margin-top: 1.1rem;
     padding: 1rem;
@@ -1103,3 +1106,130 @@ button#custom_itinerary_valider{
     margin-top:2rem;
     margin-bottom:-0.8rem;
 }
+
+/* --------- Detail post by City & Place ---------- */
+
+/* #detail-post figure{
+    width:300px;
+} */
+
+.user-profile-pic-sm-circle{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.profile-post-detail-container{
+    display: flex;
+    gap: 10px;
+}
+
+#city-posts{
+    width: 75%;
+    margin: auto;
+    margin-top:1.5rem
+}
+
+.posts-header{
+    text-align:center;
+}
+
+.posts-header h2{
+    font-weight: 500;
+}
+
+.posts-header h3{
+    margin: 1rem auto 1.5rem;
+    width: fit-content;
+    background: #ffffffd9;
+    font-weight: 400;
+}
+
+
+#city-posts h1{
+    /* text-align: center; */
+    font-size: 3em;
+    color: var(--red-color);
+}
+
+.posts-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    height:55vh;
+}
+
+
+.img-content-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap:25px;
+    height:70%;
+}
+/* 
+.post-figure{
+    width:75%;
+    height:100%;
+} */
+
+.post-figure img{
+    border-radius: var(--lg-border-radius);
+
+}
+
+.post-place-name{
+    width: fit-content; 
+    font-size: 1.1em;
+    margin-bottom:0.2rem;
+}
+
+.post-place-address{
+    font-size:0.9em;
+
+}
+
+.post-content-text{
+    height: 80%;
+    margin-top:1.2rem;
+    background: #fbfbfb;
+    padding: 0.7rem 1rem;
+    border-radius: var(--lg-border-radius);
+    line-height:1.7em;
+}
+
+.post-content{
+    height:100%;
+}
+
+.post-content h3{
+    margin: 0.6rem 0 1.2rem;
+    font-weight:500;
+}
+
+
+
+.post-container{
+    background: #dfdfdf99;
+    backdrop-filter: blur(10px);
+
+    padding: 1rem;
+    border-radius: var(--lg-border-radius);
+}
+
+.background-post{
+    position:absolute;
+    z-index:-1;
+}
+
+.show-post-comments{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.5rem 0; 
+}
+
+/* .bcg-posts{
+    height:100vh;
+    background-size: cover;
+    background : url('/img-source/bcg-presentation-vignes.webp');
+} */

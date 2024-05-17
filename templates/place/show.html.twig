@@ -3,7 +3,7 @@
 {% block title %}Détails d'un lieu{% endblock %}
 
 {% block body %}
-    <main>
+    <main class="top">
         <section>
             <h1>{{ place.name }}</h1>
             <div>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
@@ -70,6 +70,8 @@
             <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
             <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>
             <a href="{{ path('new_rating', {'placeId': place.id})}}">Noter ce lieu</a>
+            <a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a>
+            <a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a>
         </section>
     </main>
     {# {{dump(place.images)}} #}

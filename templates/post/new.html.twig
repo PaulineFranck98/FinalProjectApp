@@ -13,11 +13,16 @@
     {{ form_row(formAddPost.title) }}
     {{ form_row(formAddPost.content) }}
     {{ form_row(formAddPost.image) }}
-    {{ form_row(formAddPost.place) }}
+    {% if placeSelect == true %}
+        {{ form_row(formAddPost.place) }}
+    {% endif %}
     
     {{ form_row(formAddPost.valider) }}
     
     {{ form_end(formAddPost) }}
     </section>
+
+    {# {% do formAddPost.place.setRendered %}  #}
+
 </main>
 {% endblock %}

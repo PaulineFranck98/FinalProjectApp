@@ -21,6 +21,26 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+
+    public function findPostsByPlace($placeId)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.place = :placeId')
+            ->setParameter('placeId', $placeId)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findPostsByCity($cityId)
+    {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.place', 'pl')  // Joindre les places aux posts
+            ->innerJoin('pl.city', 'c')   // Joindre les villes aux places
+            ->where('c.id = :cityId')     // Filtrer les places en fonction de l'ID de la ville
+            ->setParameter('cityId', $cityId)
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Post[] Returns an array of Post objects
     //     */

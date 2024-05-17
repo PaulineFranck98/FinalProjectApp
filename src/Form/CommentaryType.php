@@ -3,14 +3,15 @@
 namespace App\Form;
 
 // I import the necessary classes to create the form
-use App\Entity\Commentary;
 use App\Entity\Post;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Commentary;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 // I create a new form class for the Commentary entity, which extends the AbstractType class
 // I extend the AbstractType class to access protected and public methods and properties defined in this class
@@ -25,6 +26,7 @@ class CommentaryType extends AbstractType
         $builder
             // TextareaType renders a textarea HTML element
             ->add('content', TextareaType::class)
+            ->add('valider', SubmitType::class)
             // ->add('creationDate', null, [
             //     'widget' => 'single_text',
             // ])
