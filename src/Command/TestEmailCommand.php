@@ -2,13 +2,14 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Attribute\AsCommand;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
-use Psr\Log\LoggerInterface;
 
 #[AsCommand(
     name: 'app:test-email',
@@ -34,7 +35,7 @@ class TestEmailCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $email = (new Email())
-            ->from('admin@alsace.com')
+            ->from(new Address('admin@exemple.com', 'Admin'))
             ->to('camille@exemple.com') // Remplace par une adresse email de test
             ->subject('Test Email')
             ->text('This is a test email.');

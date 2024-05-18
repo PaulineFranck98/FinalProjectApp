@@ -23,9 +23,9 @@ class EmailVerifier
     public function sendEmailConfirmation(string $verifyEmailRouteName, UserInterface $user, TemplatedEmail $email): void
     {
 
-        if (!$user instanceof User) {
-            throw new \InvalidArgumentException('User must be an instance of App\Entity\User.');
-        }
+        // if (!$user instanceof User) {
+        //     throw new \InvalidArgumentException('User must be an instance of App\Entity\User.');
+        // }
 
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
@@ -49,9 +49,9 @@ class EmailVerifier
      */
     public function handleEmailConfirmation(Request $request, UserInterface $user): void
     {
-        if (!$user instanceof User) {
-            throw new \InvalidArgumentException('User must be an instance of App\Entity\User.');
-        }
+        // if (!$user instanceof User) {
+        //     throw new \InvalidArgumentException('User must be an instance of App\Entity\User.');
+        // }
         
         $this->verifyEmailHelper->validateEmailConfirmationFromRequest($request, $user->getId(), $user->getEmail());
 

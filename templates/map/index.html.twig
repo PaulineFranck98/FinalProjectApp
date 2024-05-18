@@ -8,32 +8,36 @@
             crossorigin=""/>
     {% endblock %}
     <main>
-        <section>
-            <aside>
-                <div id='places-container'>
-                    {% for place in places %}
-                        <div id="{{place.id}}">
-                            <h2>{{place.name}}</h2>
-                            <div>{{ place.averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})
-                                <a href="{{ path('show_place', {'id': place.id}) }}">Détails et avis</a>
+        <div class="places-wrapper">
+            <section id="display-places">
+                <aside>
+                    <div id='places-container'>
+                        {% for place in places %}
+                            <div id="{{place.id}}" class="place-infos-container">
+                                <div class="place-img">
+                                    {% for image in place.images|slice(0,2) %}
+                                        <figure>
+                                            <img src="{{ asset('images/place/') ~ image }}" alt="{{ place.name }}">
+                                        </figure>
+                                    {% endfor %}
+                                </div>
+                                <div >
+                                    <h2>{{place.name}}</h2>
+                                    <div><span class="stars-color">{{ place.averageRating|round(1, 'floor')|stars|raw }}</span>({{ place.ratings|length}})
+                                        <a href="{{ path('show_place', {'id': place.id}) }}">Détails et avis</a>
+                                    </div>
+                                    <p>{{ place.type }}</p>
+                                    <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+                                </div>
+                                {# <button id="hide-button">Masquer</button> #}
                             </div>
-                            <p>{{ place.type }}</p>
-                            <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
-                            <div class="place-img">
-                                {% for image in place.images %}
-                                    <figure>
-                                        <img src="{{ asset('images/place/') ~ image }}" alt="{{ place.name }}">
-                                    </figure>
-                                {% endfor %}
-                            </div>
-                            {# <button id="hide-button">Masquer</button> #}
                             <p class="border"></p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </aside>    
+                        {% endfor %}
+                    </div>
+                </aside>    
             <div id="map"></div>
-        </section>    
+            </section>    
+        </div>
     </main>
     {% block javascripts %}
         <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
@@ -41,7 +45,6 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
                 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
                 crossorigin=""></script>
-        {# defer pour que le script soit chargé après le contenu de la page #}
         <script src="{{ asset('js/map.js')}}"></script>
     {% endblock %}
 {% endblock %}
