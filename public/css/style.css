@@ -795,7 +795,7 @@ input[type="radio"]:checked + label > figure > img {
     min-width: 635px;
     margin: 0 auto;
     padding: 5rem 3rem 2rem;
-    background: #ffffffb0;
+    background: #ffffffa8;
 }
 
 .place-form h1{
@@ -848,7 +848,8 @@ input[type="radio"]:checked + label > figure > img {
 }
 
 .new-place-form{
-    background : linear-gradient(#daeccd, #ffffff7a, #daeccdb0), url(/img-source/bcg-map-large.webp);
+    /* background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp); */
+    background: linear-gradient(#adadada8, #adadada8), url(/img-source/map-background.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
@@ -1039,6 +1040,7 @@ button#custom_itinerary_valider{
     width:100%;
     height:100%;
     background :#00000082;
+    backdrop-filter: blur(3px);
   }
 
   .discover-city p{
