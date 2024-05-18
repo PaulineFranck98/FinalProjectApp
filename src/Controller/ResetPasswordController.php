@@ -166,7 +166,8 @@ class ResetPasswordController extends AbstractController
                 'resetToken' => $resetToken,
             ])
         ;
-        dd($email);
+        // dd($email);
+        // dd($mailer);
         $mailer->send($email);
         // dd($mailer);
 
