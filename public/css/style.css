@@ -61,7 +61,6 @@ nav span{
 }
 
 
-
 .flying-stork{
     position: absolute;
     width:6%;
@@ -683,7 +682,31 @@ input[type="radio"]:checked + label > figure > img {
     color: white;
     border-bottom: 1px solid #ffffff40;
     margin:auto;
+
 }
+
+#dashboard aside ul li{
+    transition: all 0.3s ease;
+}
+
+#dashboard aside ul li:hover,
+.active {
+    background-color:#80808080;
+    border-radius: var(--lg-border-radius);
+}
+
+#dashboard aside ul li a:hover{
+    border-bottom:transparent;
+}
+
+#dashboard aside ul li.active a{
+    border-bottom: transparent;
+}
+
+/* .active {
+    background-color: #80808080;
+    border-radius: var(--lg-border-radius);
+} */
 
 #profile-container{
     width: 60vw;
