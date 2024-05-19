@@ -1313,7 +1313,8 @@ button#custom_itinerary_valider{
 
 
 .post-container{
-    background: #efefef99;
+    /* background: #efefef99; */
+    background: #7f7f7f54;
     backdrop-filter: blur(10px);
 
     padding: 1rem;
