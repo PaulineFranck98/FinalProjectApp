@@ -38,7 +38,7 @@ window.onload = () => {
                     response => response.json()
                     // Une fois qu'on a la réponse
                 ).then(data => {
-                    // Je vérifie si ça a fonctionné
+                    // Si c'est un succès
                     if(data.success)
                         // parentElement représente la div : élément parent du lien
                         this.parentElement.remove();
