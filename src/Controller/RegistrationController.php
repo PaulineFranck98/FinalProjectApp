@@ -37,9 +37,7 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-        // if ($form->isSubmitted()) {
-        //     dd($form->get('profilePicture')->getErrors(true));
-        // }
+      
         if ($form->isSubmitted() && $form->isValid()) {
             // handle file upload
              /** @var UploadedFile $profilePictureFile */
