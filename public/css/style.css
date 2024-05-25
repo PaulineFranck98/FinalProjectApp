@@ -20,7 +20,8 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    width:100%;
 
 }
 
@@ -68,9 +69,9 @@ nav span{
     left:22%;
 }
 
-.parallax{
-    width:100vw;
-    height:50vh;
+.main-picture-bcg{
+    /* width:100vw; */
+    height:100vh;
     background : url('/img-source/bcg-presentation-vignes.webp');
     background-attachment: fixed;
     background-size: cover;
@@ -113,7 +114,7 @@ nav span{
 .home-btn{
     padding: 0.5rem 1rem;
     border-radius: var(--sm-border-radius);
-    background: var(--red-color);
+    background-color: var(--red-color);
     color: var(--white-color);
     font-family: 'Poppins', sans-serif;
     border: none;
@@ -598,9 +599,17 @@ input[type="radio"]:checked + label > figure > img {
     background: RGB(57, 57, 57);
     color: white;
     border-radius: 0.5rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     font-size: 1.1rem;
 }
+
+.btn-login{
+    display:block;
+    margin: auto;
+    margin-top: 7%;
+}
+
+
 
 .bcg-profile {
     background: url(/img-source/bcg-profile-page.webp);
@@ -1331,4 +1340,76 @@ button#custom_itinerary_valider{
     justify-content: space-between;
     padding: 0.5rem 0.5rem 0; 
 }
+
+/* ============================LOGIN FORM================================= */
+
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    background : url('/img-source/bcg-presentation-vignes.webp');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: 62%;
+}
+
+.login-form a {
+    color: black;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-background);
+    border-radius: var(--lg-border-radius);
+    height:60%;
+    width:35%;
+    min-width:fit-content;
+    padding:2% 1%;
+}
+
+.form-container form{
+    width:100%;
+    margin: auto;
+    padding:2%;
+}
+
+.form-container form label{
+    display: block;
+}
+
+.form-container form input{
+    border-color:transparent;
+    outline: none;
+    width:100%;
+    padding: 2% 0;
+    border-radius : 8px;
+}
+
+.form-titles{
+    text-align: center;
+}
+
+.form-titles h1{
+    font-size: 1.9em;
+    font-weight: 600;
+}
+
+.form-titles h2{
+    margin-top: 6%;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.form-titles span{
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.form-container > div{
+    width:80%;
+    margin: 0 auto;
+}
+
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}HomePage{% endblock %}
+{% block meta_description %}Ceci est ma description de la page d'accueil{% endblock %}
+{% block title %}Accueil | Nom du site{% endblock %}
 {% block body %}
     {% block stylesheets %}
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -8,9 +8,8 @@
 
     <main id="main">
         <!-- =========================== PRESENTATION / VIDEO  =========================== -->
-
+    <div class="main-picture-bcg">
         <section id="presentation">
-            <div class="parallax" aria-label="Paysage, vignes Alsace" role="img"></div>
                 <figure class="flying-stork">
                     <img src="img-source/flying-stork.webp" alt="Icône représentant une cigogne en vol">
                 </figure>
@@ -21,9 +20,9 @@
                     </p> #}
                     <a href="#choice" class="home-btn discover" aria-label="Envoie au formulaire initial">Découvrir</a>
                 </div>
-                <div class="parallax" aria-label="Paysage, vignes Alsace" role="img"></div>
             
         </section>
+    </div>
         <!-- =========================== SELECT THEME / COMPANION  =========================== -->
         <div class="bcg-choice">
             {# <figure>

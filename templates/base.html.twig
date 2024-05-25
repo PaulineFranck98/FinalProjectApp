@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +26,7 @@
                     <a href="{{ path('new_place') }}">Contribuer <span>|</span></a>
                     <a href="">Forum <span>|</span></a>
                     <a href="{{ path('app_itinerary') }}">Itinéraires <span>|</span></a>
-                    <a href="{{ path('show_profile', {'id': app.user.id}) }}) }}">Profil <span>|</span></a>
+                    <a href="{{ path('show_profile') }}">Profil <span>|</span></a>
                     <a href="{{ path('app_logout') }}">Déconnexion <span>|</span></a>
                 {% else %}
                     <a href="{{ path('app_register') }}">Inscription <span>|</span></a>
