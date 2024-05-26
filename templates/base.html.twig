@@ -19,7 +19,7 @@
     </head>
     <body>
         <header>
-            <nav>
+            <nav id="nav">
                     <a href="{{ path('app_home') }}">Home <span>|</span></a>
                 {% if app.user %}
                     {# <a href="#"><i class="fa-solid fa-user"></i>&nbsp;{{app.user}}</a> #}
@@ -35,6 +35,25 @@
             </nav>
         </header>
         {% block body %}{% endblock %}
+        <script>
+
+            const navbar = document.getElementById('nav');
+         
+            let lastScrollValue = 0;
+
+            document.addEventListener('scroll',() => {
+                let top  = document.documentElement.scrollTop;
+                console.log(top);
+                // let top = navbar.offsetTop;
+                if(lastScrollValue < top) {
+                    navbar.classList.add("hidden-nav");
+                } else {
+                    navbar.classList.remove("hidden-nav");
+                }
+                lastScrollValue = top;
+            });
+
+        </script>
         <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
             {% block javascripts %}
                 {# {% block importmap %}{{ importmap('app') }} #}

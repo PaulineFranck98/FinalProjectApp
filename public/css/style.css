@@ -43,6 +43,17 @@ nav{
     width: 100%;
     z-index: 2;
     padding: 0.3rem;
+    top:0;
+    transition: top 0.3s;
+    transition-delay: 0.3s;
+}
+
+/* .fixed{
+    position: fixed;
+} */
+
+.hidden-nav{
+    top:-35px;
 }
 
 nav a{
@@ -218,7 +229,7 @@ nav span{
 
 #how-it-works .looking-down{
     position: absolute;
-    top:6.8%;
+    top:6.9%;
     left:26%;
     width:6%;
     filter: saturate(0.9);
@@ -228,7 +239,7 @@ nav span{
     position: absolute;
     width: 7%;
     right: 37%;
-    top: 39.1%;
+    top: 39.4%;
     filter: saturate(0.8);
 }
 
@@ -344,7 +355,7 @@ nav span{
 
 
 #join-community figure{
-      height: 50%;
+      /* height: 50%; */
       position: absolute;
       margin: 1rem auto 0;
       border-radius: 0.5rem;
