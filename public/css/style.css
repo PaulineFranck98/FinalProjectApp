@@ -8,6 +8,9 @@
     --sm-border-radius: 0.5rem;
 }
 
+html{
+    background-color: white;
+}
 
 *{
     margin: 0;
@@ -74,8 +77,9 @@ nav span{
 /* ---- apparition progressive -------- */
 
 /* Initial state */
+/* .main-picture-bcg, */
 .main-picture-bcg .presentation h1,
-.main-picture-bcg .presentation h1 span,
+/* .main-picture-bcg .presentation h1 span, */
 .main-picture-bcg .presentation a,
 .main-picture-bcg .presentation i,
 .main-picture-bcg .flying-stork {
@@ -92,16 +96,48 @@ nav span{
     transform: translateX(-25%);
 }
 
+
 .main-picture-bcg.show .presentation h1 {
     opacity: 1;
     transition-duration: 2s;
-    /* transition-delay: 1s; */
+    transition-delay: 1s;
+}
+.main-picture-bcg{
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out;
+}
+.main-picture-bcg.show{
+    opacity: 1;
+    /* transition-duration: 1.3s ; */
 }
 
-.main-picture-bcg.show .presentation h1 span{
+.main-picture-bcg .span-container-title span{
+    position:relative;
+    display: inline-block;
+    overflow: hidden;
+    opacity: 0;
+    left:-50%;
+    /* animation: reveal 2s forwards ease-in-out; */
+    /* transition: opacity 2s ease-in-out, left 5s ease-in-out; */
+    /* transition-delay: 3.5s; */
+}
+.main-picture-bcg.show .span-container-title span{
+    animation: reveal 2.5s backwards ease-in-out;
+    animation-delay: 1.5s;
     opacity: 1;
-    transition-delay: 1s;
-    transition-duration: 2s;
+    left:0;
+}
+
+@keyframes reveal{
+    0%{
+        opacity:0;
+        left:-50%;
+    }
+    100%{
+        opacity:1;
+        left:0;
+
+    }
 }
 
  
@@ -109,10 +145,8 @@ nav span{
 .main-picture-bcg.show .presentation a {
     opacity: 1;
     transform: translateY(0);
-    /* left:50%; */
-    /* transform: translate(-50%, 50%); */
-    transition-delay: 3s; /* Delayed until after the h1 */
-    /* animation: bounce 2s infinite; */
+    transition-duration: 0.8s;
+    transition-delay: 4s; /* Delayed until after the h1 */
 }
 
 .main-picture-bcg.show .presentation i {
@@ -132,24 +166,31 @@ nav span{
     }
 }
 
+
+
 .main-picture-bcg.show .flying-stork {
     opacity: 1;
     transform: translateX(0);
+    transition-delay: 0.9s;
+    transition-duration: 2.5s;
+   
+
     /* transition-delay: 3s; */
 }
 
 /* ------------------------------------- */
 .flying-stork{
     position: absolute;
-    width:6%;
-    top:27%;
-    left:22%;
+    width:8%;
+    top:25%;
+    left:23%;
 }
 
 .main-picture-bcg{
     /* width:100vw; */
     height:100vh;
-    background : url('/img-source/bcg-presentation-vignes.webp');
+    background: linear-gradient(#00000000, #00000036), url(/img-source/bcg-presentation-vignes.webp);
+    /* background : url('/img-source/bcg-presentation-vignes.webp'); */
     background-attachment: fixed;
     background-size: cover;
     background-position-y: 62%;

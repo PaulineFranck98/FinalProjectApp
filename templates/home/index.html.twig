@@ -14,7 +14,11 @@
                     <img src="img-source/flying-stork.webp" alt="Icône représentant une cigogne en vol">
                 </figure>
                 <div class="presentation">
-                    <h1>Visitez l'Alsace<br><span>autrement</span></h1>
+                    <h1>Visitez l'Alsace<br>
+                        <div class="span-container-title">
+                            <span>autrement</span>
+                        </div>
+                    </h1>
                     {# <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
                     </p> #}
@@ -237,9 +241,9 @@
         <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
+    // setTimeout(function() {
         document.querySelector('.main-picture-bcg').classList.add('show');
-    }, 500); // Delay for better visual effect on page load
+    // }, 500); // Delay for better visual effect on page load
 });
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -29,12 +29,12 @@ class PostType extends AbstractType
         // A form is composed of fields, each of which are built with the help of a field type
         // I define the type of each field in the form to specify the type of data expected  
         $builder
-            // TextType renders a basic input text field
+            // TextType renders a basic input text field : the data expected is a string
             ->add('title', TextType::class, [
                 // I define the 'label' attribute, which will be visible to the user to indicate the expected information
                 'label' => 'Titre',
             ])
-            // TextareaType renders a textarea HTML element
+            // TextareaType renders a textarea HTML element : the data expected is large text content
             ->add('content', TextareaType::class, [
                 // I define the 'label' attribute for the 'content' field
                 'label' => 'Contenu',
