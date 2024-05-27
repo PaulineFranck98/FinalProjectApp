@@ -41,7 +41,7 @@ nav{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    z-index: 2;
+    z-index: 10;
     padding: 0.3rem;
     top:0;
     transition: top 0.3s;
@@ -71,8 +71,74 @@ nav span{
 .top{
     padding-top:3rem;
 }
+/* ---- apparition progressive -------- */
 
+/* Initial state */
+.main-picture-bcg .presentation h1,
+.main-picture-bcg .presentation h1 span,
+.main-picture-bcg .presentation a,
+.main-picture-bcg .presentation i,
+.main-picture-bcg .flying-stork {
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
 
+/* Transitions */
+.main-picture-bcg .presentation a {
+    transform: translateY(-25%);
+}
+
+.main-picture-bcg .flying-stork{
+    transform: translateX(-25%);
+}
+
+.main-picture-bcg.show .presentation h1 {
+    opacity: 1;
+    transition-duration: 2s;
+    /* transition-delay: 1s; */
+}
+
+.main-picture-bcg.show .presentation h1 span{
+    opacity: 1;
+    transition-delay: 1s;
+    transition-duration: 2s;
+}
+
+ 
+.main-picture-bcg.show .presentation i, 
+.main-picture-bcg.show .presentation a {
+    opacity: 1;
+    transform: translateY(0);
+    /* left:50%; */
+    /* transform: translate(-50%, 50%); */
+    transition-delay: 3s; /* Delayed until after the h1 */
+    /* animation: bounce 2s infinite; */
+}
+
+.main-picture-bcg.show .presentation i {
+    animation: bounce 1.3s infinite;
+}
+
+.main-picture-bcg.show .presentation i{
+    font-size: 2em;
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+}
+
+.main-picture-bcg.show .flying-stork {
+    opacity: 1;
+    transform: translateX(0);
+    /* transition-delay: 3s; */
+}
+
+/* ------------------------------------- */
 .flying-stork{
     position: absolute;
     width:6%;
@@ -92,9 +158,10 @@ nav span{
 
 
 #presentation h1{
-    font-size: 6rem;
+    font-size: 6.5em;
     line-height: 7rem;
     font-weight: 600;
+    margin-top: 14%;
 }
 
 #presentation h1 span{
@@ -102,14 +169,28 @@ nav span{
     /* color: #a90126; */
 }
 
+.main-picture-bcg .presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    height: 100vh; /* S'assure que le conteneur prend toute la hauteur disponible */
+    color:white;
+    text-align: center;
+}
 
-.presentation, 
+
+/* .presentation, 
 .discover{
     position: absolute;
     
-}
+} */
 
-.presentation{
+/* .presentation{
+    position: absolute;
+} */
+
+/* .presentation{
     top: 54%;
     left:50%;
     transform: translate(-50%,-50%);
@@ -120,7 +201,10 @@ nav span{
     padding:2rem;
     border-radius: 5px;
 
-}
+} */
+
+
+
 
 .home-btn{
     padding: 0.5rem 1rem;
@@ -130,12 +214,14 @@ nav span{
     font-family: 'Poppins', sans-serif;
     border: none;
     font-size:1.3rem;
+    margin-top: 3rem;
+    margin-bottom: 8rem;
 }
 
-.discover{
-    left: 40%;
-    transform: translate(30%, 50%);
-}
+/* .discover{
+    left:50%;
+    transform: translate(-50%, 50%);
+} */
 
 
 #choice,
@@ -171,6 +257,26 @@ nav span{
 
 /* ================================   HOW IT WORKS SECTION   ================================ */
 
+.div-hidden{
+    opacity:0;
+    transition: all 0.9s ease-in-out;
+}
+
+.div-from-left{
+    transform : translateX(-5%);
+}
+
+.div-from-right{
+    transform: translateX(5%);
+}
+
+
+.div-visible{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
 .bcg-how-it-works{
     background : linear-gradient(#feffb96e, #8f998082, #feffb947), url(/img-source/bcg-how-it-works.webp);
     width:100%;
@@ -198,7 +304,9 @@ nav span{
 }
 
 .right-block{
-    width: 64%;
+    /* width: 64%; */
+    position: relative;
+    width:50%;
     background-color: #ffffffbd;
     border-radius: 1rem;
     height: 65%;
@@ -218,28 +326,64 @@ nav span{
 
 #how-it-works{
     height:180vh;
+    /* height:100vh; */
     position: relative;
     margin:5rem auto;
     /* background: #ffffff8f; */
     padding: 2rem 3rem 0;
     /* border-radius: var(--lg-border-radius); */
     /* backdrop-filter: blur(6px); */
+    
 }
+
+/* .scrolling-section{
+    position: relative;
+    height:100vh;
+    overflow: hidden;
+} */
+
+/* .horizontal-scroll-container{
+    /* height:100%; 
+    width:300vw;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    /* transform: translateX(0); 
+} */
+
+/* .scroll-article{
+    /* position: relative;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left:100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+
+  width:100vw;
+    /* left: 100%;  
+
+    
+} */
+
 
 
 #how-it-works .looking-down{
     position: absolute;
-    top:6.9%;
-    left:26%;
-    width:6%;
+    /* top:6.9%; */
+    top:-20.5%;
+    /* left:26%; */
+    width:12%;
+    transform: scaleX(-1);
     filter: saturate(0.9);
 }
 
 .standing-stork-up{
     position: absolute;
-    width: 7%;
-    right: 37%;
-    top: 39.4%;
+    width: 13%;
+    /* right: 0; */
+    left:0;
+    bottom: -2.6%;
+    transform: scaleX(-1);
     filter: saturate(0.8);
 }
 
@@ -253,14 +397,15 @@ nav span{
 
 #how-it-works article{
     display:flex;
-    justify-content: space-between;
+    /* position: relative; */
+    /* justify-content: space-between; */
     height:55vh;
-    gap:14rem;
+    /* gap:14rem; */
 }
 
-#how-it-works article:nth-of-type(2){
+/* #how-it-works article:nth-of-type(2){
     justify-content: start;
-}
+} */
 
 /* .side-illustration{
     width: 50%;
@@ -268,23 +413,35 @@ nav span{
 
 .side-illustration-theme figure {
     position: absolute;
-    width: 47%;
-    top: 2.1%;
-    left: -6%;
+    bottom:10%;
+    width:94%;
+    /* width: 47%; */
+    /* top: 2.1%; */
+    /* left: -6%; */
 }
 
 .side-illustration-companion figure {
     position: absolute;
-    width: 42%;
+    /* width: 42%; */
     /* top: 4%; */
-    right: 2%;
-    top: 33%;
+    /* right: 2%; */
+    /* top: 33%;*/
+    bottom:5%; 
+    width:90%;
+}
+
+.side-illustration-itinerary,
+.side-illustration-companion,
+.side-illustration-theme{
+    position: relative;
+    width: 50%;
 }
 
 .side-illustration-itinerary figure{
     position:absolute;
-    top:62%;
-    width:48%;
+    /* top:62%; */
+    /* width:48%; */
+    bottom:-5%;
 }
 
 /* .side-illustration .theme {
