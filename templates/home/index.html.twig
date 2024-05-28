@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
-{% block meta_description %}Ceci est ma description de la page d'accueil{% endblock %}
-{% block title %}Accueil | Nom du site{% endblock %}
+
+{% block meta_description %}
+    Créez des itinéraires personnalisés selon vos préférences et compagnons de voyage. Découvrez les lieux qui vous correspondent en Alsace avec AlsaceGo
+{% endblock %}
+
+
+{% block title %}AlsaceGo | Créez Vos Itinéraires Personnalisés{% endblock %}
+
 {% block body %}
     {% block stylesheets %}
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -22,7 +28,9 @@
                     {# <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, praesentium corrupti? Quisquam atque sint amet repellat!
                     </p> #}
-                    <a href="#choice" class="home-btn discover" aria-label="Envoie au formulaire initial">Découvrir</a>
+                    
+                    <a href="#choice" class="home-btn discover" aria-label="Découvrir : accéder au formulaire permettant de sélectionner un thème et un compagnon de voyage">Découvrir</a>
+
                     <p><i class="fa-solid fa-chevron-down"></i></p>
                 </div>
             
@@ -202,20 +210,20 @@
             <section id="share-experience">
                 <article>
                     <figure class="straight-stork">
-                        <img src="img-source/looking-straight-stork.webp" alt="Illustration représentant une cigogne regardant en bas">
+                        <img src="img-source/looking-straight-stork.webp" alt="Illustration représentant une cigogne, avec un corps noir et blanc. Son bec est long et de couleur orange vif, tout comme ses pattes. Elle est tournée vers la droite et regarde légèrement vers le bas" >
                     </figure>
                     <div class="share-message">
                         <h3>Partagez vos expériences...</h3>
                         <figure>
-                            <img src="img-source/left-speech-bubble.webp" alt="Illustration représentant une bulle de discussion orientée à gauche">
+                            <img src="img-source/left-speech-bubble.webp" alt="Illustration représentant une bulle de discussion, de couleur blanche, orientée à gauche">
                         </figure>
                     
                         <figure class="standing-stork">
-                            <img src="img-source/stork-looking-up.webp" alt="Illustration représentant une cigogne regardant en l'air">
+                            <img src="img-source/stork-looking-up.webp" alt="Illustration représentant une cigogne, avec un corps noir et blanc. Son bec est long et de couleur orange vif, tout comme ses pattes. Elle est tournée vers la gauche et regarde en l'air">
                         </figure>
                         <h3>...et découvrez celles des autres</h3>
                         <figure>
-                            <img src="img-source/right-speech-bubble.webp" alt="Illustration représentant une bulle de discussion orientée à droite">
+                            <img src="img-source/right-speech-bubble.webp" alt="Illustration représentant une bulle de discussion, de couleur blanche, orientée à droite">
                         </figure>
                     </div>
                     <div>

@@ -23,37 +23,45 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('username', TextType::class)
+            ->add('email', EmailType::class, [
+                'label' => 'Renseignez votre adresse mail'
+            ])
+            ->add('username', TextType::class, [
+                'label' => 'Choisissez un pseudo'
+            ])
+
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'invalid_message' => 'Les mots de passe doivent être identiques',
+                'options' => [
+                    'attr' => ['class' => 'password-field'],
+                    'row_attr' => ['class' => 'formRow'],
+                ],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Répétez votre mot de passe'],
                 'mapped' => false,
                 // 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 12,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{12,}$/',
-                        'message' => 'Your password should include at least one lowercase, one uppercase, one number and one symbol',
+                        'message' => 'Votre mot de passe doit contenir aux moins une minuscule, une majuscule, un chiffre et un caractère spécial',
                     ])
                 ],
             ])
             ->add('profilePicture', FileType::class, [
-                'label'=> 'Profile Picture',
+                'label'=> 'Sélectionnez une photo de profil',
                 // unmapped means that this filed is not associated to any entity property
                 'mapped' => false,
                 // optional so I don't have to re-upload the picture every time the user detail is edited
@@ -74,9 +82,11 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'J\'ai lu et j\'accepte les <a href="#">conditions</a>',
+                'label_html' => true,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les conditions pour continuer',
                     ]),
                 ],
             ])

@@ -34,6 +34,7 @@ class PlaceRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    
 
     public function getAverageRating($placeId)
     {
@@ -45,8 +46,8 @@ class PlaceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult()
         ;
-
     }
+
 
     public function countPlacesByCityId($cityId)
     {
