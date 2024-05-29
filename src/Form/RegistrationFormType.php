@@ -31,8 +31,6 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('plainPassword', RepeatedType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent être identiques',
                 'options' => [
@@ -41,25 +39,21 @@ class RegistrationFormType extends AbstractType
                 ],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Répétez votre mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre mot de passe'],
                 'mapped' => false,
-                // 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe',
                     ]),
-                    new Length([
-                        'min' => 12,
-                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
+
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{12,}$/',
+                        
                         'message' => 'Votre mot de passe doit contenir aux moins une minuscule, une majuscule, un chiffre et un caractère spécial',
                     ])
                 ],
             ])
+
             ->add('profilePicture', FileType::class, [
                 'label'=> 'Sélectionnez une photo de profil',
                 // unmapped means that this filed is not associated to any entity property
