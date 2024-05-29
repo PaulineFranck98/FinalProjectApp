@@ -16,26 +16,14 @@
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
 
-                        {# {% if app.user %}
-                            <div class="mb-3">
-                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                            </div>
-                        {% endif %} #}
                     
                         <label for="inputEmail">Email</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                         <label for="inputPassword">Mot de passe</label>
                         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-                        <input type="hidden" name="_csrf_token"
-                            value="{{ csrf_token('authenticate') }}"
-                        >
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                        {# <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Remember me
-                            </label>
-                        </div> #}
                         <p><a href="{{ path('app_forgot_password_request')}}">Vous avez oublié votre mot de passe?</a></p>
                         <button class="btn btn-login" type="submit">
                             C'est parti !
@@ -46,3 +34,13 @@
         </section>
     <main>
 {% endblock %}
+
+
+
+
+
+                        {# <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div> #}

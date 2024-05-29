@@ -48,32 +48,38 @@ class RegistrationFormType extends AbstractType
 
                     new Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{12,}$/',
-                        
+
                         'message' => 'Votre mot de passe doit contenir aux moins une minuscule, une majuscule, un chiffre et un caractère spécial',
                     ])
                 ],
             ])
-
+            
+            // J'ajoute un champ de type 'file' 
             ->add('profilePicture', FileType::class, [
+                // Je définis son label
                 'label'=> 'Sélectionnez une photo de profil',
-                // unmapped means that this filed is not associated to any entity property
+                // J'indique que ce champ n'est associé à aucune propriété de l'entité
                 'mapped' => false,
-                // optional so I don't have to re-upload the picture every time the user detail is edited
+                // Je rends ce champ facultatif pour ne pas avoir à re-télécharger l'image à chaque modification des infos utilisateur
                 'required' => false,
-                // unmapped fields can't define their validation using attributes in se associated entity
-                // so I use the PHP constraint classes
+                // J'utilise le validateur qui est conçu pour valider des objets par rapport à des contraintes
                 'constraints' => [
+                    // J'utilise la contrainte 'File' pour spécifier les contraintes
                     new File([
-                        'maxSize' => '1024k', //1MB
+                        // Je définis la taille max du fichier à 1024 kilo octets, soit 1MB
+                        'maxSize' => '1024k', 
+                        // Je définis les type MIME accecptés 
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png', 
                             'image/webp',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid profile picture (jpeg / png / webp)',
+                        // Je définis le message d'erreur affiché si le type MIME n'est pas valide
+                        'mimeTypesMessage' => 'Format d\'image invalide. Le format de l\'image doit être de type jpeg, png ou webp)',
                     ])
-                    ],
+                ],
             ])
+
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'J\'ai lu et j\'accepte les <a href="#">conditions</a>',
