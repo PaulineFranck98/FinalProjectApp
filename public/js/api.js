@@ -2,10 +2,10 @@
 // ------------------ Commune suggestions --------------------
 
     
-    // Je récupère l'élément input où l'utilisateur entre le nom de la commune
+    // Je récupère l'élément input où l'utilisateur entre le nom de la commune et je le stocke dans la constante 'communeInput'
     const communeInput = document.querySelector('#place_cityName');
 
-    // Je récupère l'élément input où le code de la commune sera stocké
+    // Je récupère l'élément input où le code INSEE de la commune sera stocké
     const codeCommuneInput = document.querySelector('#place_cityCodeId');
 
 
@@ -18,7 +18,7 @@
     communeInput.addEventListener('input', () => {
         // Je récupère la valeur entrée par l'utilisateur et supprime les espaces avant et après
         const search = communeInput.value.trim();
-        // console.log(communeInput);
+       
         // Si la longueur de la string entrée par l'utilisateur est supérieur ou égale à 3
         if (search.length >= 3) {
 
@@ -42,9 +42,9 @@
                     // console.log(listItem);
                     // J'ajoute un écouteur d'événement  sur l'élément li qui se déclenchera au click 
                     listItem.addEventListener('click', () => {
-                        // Je remplis l'élément input avec le nom de la commune sélectionnée
+                        // J'attribut à l'élément input avec le nom de la commune sélectionnée
                         communeInput.value = commune.nom;
-
+                        
                         codeCommuneInput.value = commune.code;
 
                         // Je vérifie la longueur du tableau contenant les codes postaux de la commune sélectionnée 
@@ -113,27 +113,23 @@ inputAdresse.addEventListener('input', () => {
         fetch(`https://api-adresse.data.gouv.fr/search/?q=${search}&postcode=${postCode.value}&autocomplete=1&limit=3`, {mode: 'cors'})
         .then(response => response.json())
         .then(data => {
-            // data.features.forEach( feature => { console.log(feature.properties.name, feature.properties.city)});
-                // console.log(data.features.properties.name);
-
-            
+                // Je réinitialise la liste de suggestions
                 inputSuggestions.innerHTML = '';
-                // console.log(data);
-                // data.forEach(result => {
-                    data.features.forEach( feature => { 
-                    const listItem = document.createElement('li');
-                    listItem.textContent = feature.properties.name + ' ' + feature.properties.city;
+                
+                data.features.forEach( feature => { 
+                const listItem = document.createElement('li');
+                listItem.textContent = feature.properties.name + ' ' + feature.properties.city;
 
-                    listItem.addEventListener('click', () => {
-                        inputAdresse.value = feature.properties.name;
-                        inputLatitude.value = feature.geometry.coordinates[1];
-                        inputLongitude.value = feature.geometry.coordinates[0];
+                listItem.addEventListener('click', () => {
+                    inputAdresse.value = feature.properties.name;
+                    inputLatitude.value = feature.geometry.coordinates[1];
+                    inputLongitude.value = feature.geometry.coordinates[0];
 
-                        inputSuggestions.innerHTML = '';
-                    });
-                    inputSuggestions.appendChild(listItem);
+                    inputSuggestions.innerHTML = '';
                 });
-            })
+                inputSuggestions.appendChild(listItem);
+            });
+        })
     //         .catch(error => console.error(error));
     } else {
         inputSuggestions.innerHTML = '';
@@ -157,6 +153,7 @@ let marker;
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mapNew);
 
+    // J'ajoute une évènement au click sur la liste de suggestions de communes
     inputSuggestions.addEventListener('click', (event) => {
 
     event.target.textContent;
@@ -174,9 +171,10 @@ let marker;
 
     // Je stocke la valeur de latitude et la valeur de la longitude dans la variable position
     const position = [selectedLatitude, selectedLongitude];
-    // console.log(position);
+ 
     // Je crée un nouveau marqueur avec les coordonnées de la variable position 
     marker =  new L.marker(position);
+
     // J'ajoute le marqueur à la carte via une layer 
     mapNew.addLayer(marker);
     // J'ajoute un popup et je l'affiche 

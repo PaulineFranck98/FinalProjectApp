@@ -82,7 +82,7 @@ class PlaceType extends AbstractType
                     'data' => "Lundi :\nMardi :\nMercredi :\nJeudi :\nVendredi :\nSamedi :\nDimanche :\n",
                 
             ])
-            // UrlType avoids input errors and ensures that links to websites are functional
+            // 
             ->add('website', TextType::class, [
                 // I define the 'label' attribute for the 'website' field
                 'label' => 'Site web',
