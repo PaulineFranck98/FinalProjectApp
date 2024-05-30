@@ -110,8 +110,7 @@ class PlaceController extends AbstractController
         
             $place = $form->getData();
 
-            // dd($place, $city);
-            // dd($place);
+           
             $entityManager->persist($place);
 
             $entityManager->flush();
@@ -224,6 +223,7 @@ class PlaceController extends AbstractController
         }
 
         //Je supprime le lieu de la base de données
+        
         $entityManager->remove($place);
         $entityManager->flush();
 
@@ -272,9 +272,11 @@ class PlaceController extends AbstractController
 
     #[Route('/place/{id}', name: 'show_place')]
     // retrieve the 'place' corresponding to the id thanks to paramconverter tool
-    public function show(Place $place, PlaceRepository $placeRepository, $id) : Response {
+    public function show(Place $place, PlaceRepository $placeRepository, $placeId) : Response {
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
-        $averageRating = $placeRepository->getAverageRating($id);
+        
+        $averageRating = $placeRepository->getAverageRating($placeId);
+        
         // dd($averageRating);
         return $this->render('place/show.html.twig', [
             'place' => $place,
