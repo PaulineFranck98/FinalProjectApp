@@ -3,6 +3,7 @@
 :root{
     --red-color: #fb463a;
     --dark-grey: #393939;
+    --light-green: #D6F1CA;
     --white-color: #ffffff;
     --white-background : #ffffffcf;
     --white-background-light : #ffffffb5;
@@ -1621,4 +1622,14 @@ button#custom_itinerary_valider{
     background-color: var(--red-color);
 } */
 
+
+/* Breakpoint : Tablette */
+@media (max-width: 1024px) and (min-width: 769px) {
+    
+}
+
+/* Breakpoint : Smartphone */
+@media (max-width: 768px) {
+    
+}
 
