@@ -41,7 +41,7 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/user/{id}/edit', name:'edit_user')]
+    #[Route(path: '/account/{id}/edit', name:'edit_user')]
     public function editUser(User $user, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger) : Response
     {
         $userId = $this->getUser()->getId();
@@ -91,7 +91,7 @@ class SecurityController extends AbstractController
 
     }
 
-    #[Route('/user/{id}/edit_password', name: 'edit_password')]
+    #[Route('/account/{id}/edit_password', name: 'edit_password')]
     public function editPassword(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
@@ -127,7 +127,7 @@ class SecurityController extends AbstractController
     
 
 
-    #[Route(path: '/user/profile', name: 'show_profile')]
+    #[Route(path: '/account/profile', name: 'show_profile')]
     public function showProfile(): Response
     {
         
@@ -136,7 +136,7 @@ class SecurityController extends AbstractController
 
 
 
-    #[Route(path: '/user/posts', name: 'show_posts')]
+    #[Route(path: '/account/posts', name: 'show_posts')]
     public function showPosts(): Response
     {
         
@@ -144,14 +144,14 @@ class SecurityController extends AbstractController
       
     }
 
-    #[Route(path: '/user/ratings', name: 'show_ratings')]
+    #[Route(path: '/account/ratings', name: 'show_ratings')]
     public function showRatings(): Response
     {
         
         return $this->render('security/ratings.html.twig');
     }
 
-    #[Route(path: '/user/itineraries', name: 'show_itineraries')]
+    #[Route(path: '/account/itineraries', name: 'show_itineraries')]
     public function showItineraries(): Response
     {
         

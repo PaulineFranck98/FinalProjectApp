@@ -37,36 +37,45 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-      
+        
+        // Je vérifie si le formulaire a été soumis et si les données sont valides
         if ($form->isSubmitted() && $form->isValid()) {
-            // handle file upload
+            // Je précise que $profilePictureFile sera une instance de UploadedFile
              /** @var UploadedFile $profilePictureFile */
+            // Je récupère les données du champ 'profilePicture' de mon formulaire
             $profilePictureFile = $form->get('profilePicture')->getData();
+            // Je vérifie si un fichier a bien été téléchargé
             if($profilePictureFile){
+                // J'extrais le nom du fichier original sans l'extension, et je le stocke dans la variable 'originalFilename'
                 $originalFilename = pathinfo($profilePictureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // This is needed to safely include the file name as part of the URL
+                // Je rends la chaîne de caractères sûre en enlevant les espaces et caractères spéciaux avec la fonction slug()
                 $safeFilename = $slugger->slug($originalFilename);
+                // Je génère un nom de fichier unique en ajoutant un identifiant unique
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$profilePictureFile->guessExtension();
 
-                // move the file to the directory where uploaded pictures are stored
                 try{
+                    // Je déplace le fichier vers le dossier où les images téléchargées sont stockées
                     $profilePictureFile->move(
+                        // Je récupère le chemin du dossier de téléchargements
                         $this->getParameter('uploads_directory'),
+                        // Nouveau nom sous lequel le fichier sera enregitré
                         $newFilename
                     );
+                // J'intercepte et gère l'exception en cas d'erreur lors du téléchargement
                 } catch(FileException $e){
-                    // handle exception if something happens during file upload 
-                    dd('Could not move uploaded picture to directory');
+                    // J'affiche une message d'erreur et stoppe le script 
+                    dd('Impossible de déplacer l\'image téléchargée vers le dossier');
                 }
-
-                // updates the 'pictureFilename' property to store the image file name
-                // instead of its content
+                // J'attribue à la propriété 'profilePicture' de l'utilisateur le nouveau nom de fichier    
                 $user->setProfilePicture($newFilename);
             }
-            // encode the plain password
+
+            // Je définis la valeur de la propriété 'plainPassword' de l'entité User
             $user->setPassword(
+                // hache le mot de passe pour le User donné
                 $userPasswordHasher->hashPassword(
                     $user,
+                    // Je récupère le mot de passe entré dans le champ 'plainPassword' du formulaire
                     $form->get('plainPassword')->getData()
                 )
             );
@@ -115,3 +124,6 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('app_register');
     }
 }
+
+
+

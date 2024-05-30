@@ -142,7 +142,8 @@ class PostController extends AbstractController
             'placeSelect' => false
         ]);
     }
-    #[Route('post/{id}/edit', name: 'edit_post')]
+    
+    #[Route('/forum/post/{id}/edit', name: 'edit_post')]
     public function edit(Post $post, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger) : Response
     {   
         // dd('hello');
