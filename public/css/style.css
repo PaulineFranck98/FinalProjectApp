@@ -1,11 +1,19 @@
+
+
 :root{
     --red-color: #fb463a;
     --dark-grey: #393939;
     --white-color: #ffffff;
     --white-background : #ffffffcf;
     --white-background-light : #ffffffb5;
-    --lg-border-radius: 1rem;
-    --sm-border-radius: 0.5rem;
+    --dashboard-aside-background : #3f3c3cf5;
+    --lg-border-radius: 16px;
+    --sm-border-radius: 8px;
+    --lg-width-container: 65%;
+    --md-width-container: 85%;
+    --sm-width-container: 95%;
+    --transition-500: all 500ms ease;
+    --transition-900: all 900ms ease;
 }
 
 html{
@@ -1074,24 +1082,7 @@ input[type="radio"]:checked + label > figure > img {
     cursor: pointer;
     background-color: white;
 }
-/* test here */
 
-/* .form-container-top{
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    margin-top: 3rem;
-} */
-
-/* .bcg-form{
-    position:absolute;
-
-} */
-
-/* ---- Add custom itinerary form  */
-/* .tom-select-hide {
-    display: none;
-} */
 
 .hidden{
     display:none;
@@ -1449,7 +1440,7 @@ button#custom_itinerary_valider{
 
 .posts-container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     height:55vh;
 }
@@ -1461,6 +1452,7 @@ button#custom_itinerary_valider{
     gap:25px;
     height:70%;
 }
+
 /* 
 .post-figure{
     width:75%;
@@ -1520,7 +1512,7 @@ button#custom_itinerary_valider{
 .show-post-comments{
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0.5rem 0; 
+    padding: 8px 8px 0; 
 }
 
 /* ============================LOGIN FORM================================= */
