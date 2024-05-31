@@ -58,11 +58,12 @@ class CommentaryController extends AbstractController
     }
 
 
-    #[Route('/commentary/{id}/edit', name: 'edit_commentary')]
-    public function editComment(Commentary $commentary, Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository): Response
+    #[Route('/commentary/{id}/edit/{postId}', name: 'edit_commentary')]
+    public function editComment(Commentary $commentary, Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository, $postId): Response
     {
 
-        // $post = $postRepository->findOneBy(['id'=> $postId]);
+
+        $post = $postRepository->findOneBy(['id'=> $postId]);
 
         $form = $this->createForm(CommentaryType::class, $commentary);
         
@@ -70,13 +71,7 @@ class CommentaryController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            // $commentary->setCreationDate(new \DateTime());
-
-            // $user = $this->getUser();
-
-            // $commentary->setUser($user);
-
-            // $commentary->setPost($post);
+            
         
             $commentary = $form->getData();
 
@@ -85,12 +80,13 @@ class CommentaryController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_post');
+            return $this->redirectToRoute('show_post', ['id' => $postId]);
         }
 
         return $this->render('commentary/new.html.twig', [
             'formAddCommentary' => $form,
-            'edit'=> $commentary->getId()
+            'edit'=> $commentary->getId(),
+            'postId' => $postId
         ]);
     }
 

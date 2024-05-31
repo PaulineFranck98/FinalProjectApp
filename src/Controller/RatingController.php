@@ -45,7 +45,7 @@ class RatingController extends AbstractController
             $entityManager->persist($rating);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('show_place', ['id' => $placeId]);
 
         }
         return $this->render('rating/new.html.twig', [

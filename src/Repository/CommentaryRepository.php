@@ -21,6 +21,15 @@ class CommentaryRepository extends ServiceEntityRepository
         parent::__construct($registry, Commentary::class);
     }
 
+    // public function findCommentsByPostId($postId)
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->where('p.post = :postId')
+    //         ->setParameter('postId', $postId)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
     //    /**
     //     * @return Commentary[] Returns an array of Commentary objects
     //     */
