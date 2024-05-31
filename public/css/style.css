@@ -38,8 +38,9 @@ body{
 }
 
 img{
-    max-width: 100%;
-    height: 100%;
+    /* max-width: 100%; */
+    width:100%;
+    /* height: 100%; */
     object-fit: cover;
 }
 
@@ -1617,10 +1618,84 @@ button#custom_itinerary_valider{
     font-family: 'Poppins';
 }
 
-/* .register-btn{
-    background-color: var(--red-color);
-} */
+/* --------------------- SHOW PLACE --------------------- */
 
+/* swiper place pictures */
+/* .swiper-wrapper{
+
+} */
+.wrapper-container-post{
+    width:50%;
+}
+
+.swiper-slide{
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:1rem;
+    /* border-radius: var(--sm-border-radius); */
+
+    /* margin-bottom:10%; */
+}
+
+.swiper{
+    width: 100%;
+    /* height: 300px; */
+    margin-left: auto;
+    margin-right: auto;
+    /* padding: 10px, imp !important; */
+}
+
+.mySwiper{
+    height: 20%;
+    /* box-sizing: border-box; */
+    padding: 10px 0;
+    border-radius: var(--sm-border-radius);
+}
+
+.mySwiper2{
+    height: 60%;
+    width: 100%;
+    margin-bottom:2%;
+    border-radius: var(--sm-border-radius);
+}
+
+
+
+.mySwiper .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+    /* border-radius: var(--sm-border-radius); */
+
+  }
+
+
+
+.mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+
+  .show-post{
+    width: 70%;
+    margin: 6% auto;
+    display: flex;
+    gap:20%;
+  }
+
+  .show-post-infos{
+    width:30%;
+  }
+
+  .show-post-main{
+    height:100vh;
+  }
+
+/* ----------------------END SHOW PLACE---------------------- */
 
 /* Breakpoint : Tablette */
 @media (max-width: 1024px) and (min-width: 769px) {

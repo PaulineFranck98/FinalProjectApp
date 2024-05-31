@@ -3,44 +3,76 @@
 {% block title %}Détails d'un lieu{% endblock %}
 
 {% block body %}
-    <main class="top">
-        <section>
-            <h1>{{ place.name }}</h1>
-            <div>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
-            <div>
-                <h2>Localisation</h2>
-                <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+{% block stylesheets %}
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+{% endblock %}
+    <main class="show-post-main">
+        <section class="show-post">
+            <div class="show-post-infos">
+                <h1>{{ place.name }}</h1>
+                <div>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+                <div>
+                    <h2>Localisation</h2>
+                    <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+                </div>
+                <div>
+                    <h2>Contact</h2>
+                    <p>Horaires d'ouverture :{{ place.openingHours }}</p>
+                    <p>
+                        Site web :
+                        {% if place.website %}
+                            <a href="{{ place.website }}" target="_blank">{{ place.website }}</a>
+                        {% else %}
+                            Pas de site web
+                        {% endif %}
+                    </p>        
+                    <p>Téléphone : {{ place.phoneNumber }}</p>
+                </div>
+                <div>
+                    <h2>Catégorie</h2>
+                    <p>Type : {{ place.type }}</p>
+                    <p>Thème :
+                        {% for theme in place.themes %}
+                            {{ theme }}
+                        {% endfor %}
+                    </p>
+                    <p>Companion :
+                        {% for companion in place.companions %}
+                            {{ companion }}
+                        {% endfor %}
+                    </p>
+                    <p>Description : {{ place.description }}</p>
+                </div>
             </div>
-            <div>
-                <h2>Contact</h2>
-                <p>Horaires d'ouverture :{{ place.openingHours }}</p>
-                <p>
-                    Site web :
-                    {% if place.website %}
-                        <a href="{{ place.website }}" target="_blank">{{ place.website }}</a>
-                    {% else %}
-                        Pas de site web
-                    {% endif %}
-                </p>        
-                <p>Téléphone : {{ place.phoneNumber }}</p>
+            <div class="wrapper-container-post">
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
+                        {% for image in place.images %}
+                            {# <div class="swiper-slide-post-show"> #}
+                                <figure class="swiper-slide">
+                                    <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}" >
+                                </figure>
+                            {# </div> #}
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div thumbsSlider="" class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        {% for image in place.images %}
+                            {# <div class="swiper-slide-post-show"> #}
+                                <figure class="swiper-slide">
+                                    <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}" >
+                                </figure>
+                            {# </div> #}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            <div>
-                <h2>Catégorie</h2>
-                <p>Type : {{ place.type }}</p>
-                <p>Thème :
-                    {% for theme in place.themes %}
-                        {{ theme }}
-                    {% endfor %}
-                </p>
-                <p>Companion :
-                    {% for companion in place.companions %}
-                        {{ companion }}
-                    {% endfor %}
-                </p>
-                <p>Description : {{ place.description }}</p>
-            </div>
+        </section>   
 
-            <p>Notes et commentaires :</p>
+         {# <p>Notes et commentaires :</p>
             
                 {% for rating in place.ratings %}
                 <div>
@@ -56,28 +88,46 @@
                     </div>
                     <p>{{ rating.comment }}</p>
                 </div>
-                {% endfor %}
-            
-
-         
-            {% for image in place.images %}
-                <figure>
-                    <img src="{{ asset('images/place/') ~ image.name }}" alt="{{ place.name }}" width="150">
-                </figure>
-            {% endfor %}
-
+                {% endfor %}  #}
             {# A modifier pour réserver à l'Admin #}
             <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
             <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>
+            {# ------------------------------------ #}
             <a href="{{ path('new_rating', {'placeId': place.id})}}">Noter ce lieu</a>
             <a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a>
             <a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a>
-        </section>
+        
     </main>
     {# {{dump(place.images)}} #}
     
     
     {% block javascripts %}
-    <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            spaceBetween: 10,
+            slidesPerView: 3,
+            
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        const swiper2 = new Swiper(".mySwiper2", {
+            loop: true,
+            spaceBetween: 10,
+            mousewheel: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+    });
+    </script>
+        {# <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> #}
+        {# <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script> #}
     {% endblock %}
 {% endblock %}
