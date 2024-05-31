@@ -272,10 +272,10 @@ class PlaceController extends AbstractController
 
     #[Route('/place/{id}', name: 'show_place')]
     // retrieve the 'place' corresponding to the id thanks to paramconverter tool
-    public function show(Place $place, PlaceRepository $placeRepository, $placeId) : Response {
+    public function show(Place $place, PlaceRepository $placeRepository, $id) : Response {
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
         
-        $averageRating = $placeRepository->getAverageRating($placeId);
+        $averageRating = $placeRepository->getAverageRating($id);
         
         // dd($averageRating);
         return $this->render('place/show.html.twig', [
@@ -355,19 +355,9 @@ class PlaceController extends AbstractController
         $posts = $postRepository->findPostsByCity($cityId);
         $city = $cityRepository->find($cityId);
 
-        // $citySelectForm = $this->createForm(CityType::class);
-        // $citySelectForm->handleRequest($request);
-
-        // if ($citySelectForm->isSubmitted() && $citySelectForm->isValid()) {
-        //     $selectedCity = $citySelectForm->get('city')->getData();
-        //     return $this->redirectToRoute('find_posts_city', ['cityId' => $selectedCity->getId()]);
-        // }
-
-
         return $this->render('place/cityPosts.html.twig', [
             'posts' => $posts,
             'city' => $city,
-            // 'citySelectForm' => $citySelectForm->createView()
         ]);
     }
 
