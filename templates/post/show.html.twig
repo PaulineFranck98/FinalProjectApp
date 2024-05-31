@@ -32,7 +32,7 @@
                     <img src="{{ asset('uploads/'~ comment.user.profilePicture)}}">
                 </figure>
                 <a href="{{ path('edit_commentary', {'id': comment.id, 'postId': post.id }) }}">Modifier le commentaire</a>
-                {# <a href="{{ path('delete_commentary', {'id': comment.id}) }}">Supprimer le commentaire</a> #}
+                <a href="{{ path('delete_commentary', {'id': comment.id, 'postId': post.id }) }}">Supprimer le commentaire</a>
             {% endfor %}
         </div>
     </section>

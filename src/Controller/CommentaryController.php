@@ -91,14 +91,15 @@ class CommentaryController extends AbstractController
     }
 
     
-    #[Route('/commentary/{id}/delete', name: 'delete_commentary')]
-    public function delete(Commentary $commentary, EntityManagerInterface $entityManager)
+    #[Route('/commentary/{id}/delete/{postId}', name: 'delete_commentary')]
+    public function delete(Commentary $commentary, EntityManagerInterface $entityManager, PostRepository $postRepository, $postId)
     {
+        $post = $postRepository->findOneBy(['id'=> $postId]);
         // delete the object 'commentary'
         $entityManager->remove($commentary);
         // apply the SQL query 'DELETE FROM'
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_post');
+        return $this->redirectToRoute('show_post', ['id' => $postId]);
     }
 }
