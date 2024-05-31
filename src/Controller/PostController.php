@@ -19,13 +19,14 @@ class PostController extends AbstractController
     #[Route('/post', name: 'app_post')]
     public function index(PostRepository $postRepository): Response
     {
+        // $posts = $postRepository->findBy([], ["title" => "ASC"]);
         $posts = $postRepository->findAll();
-
+        
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);
     }
-
+    
     #[Route('post/new', name: 'new_post')]
     public function new(Post $post, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger) : Response
     {   
@@ -180,10 +181,7 @@ class PostController extends AbstractController
                  $post->setImage($newFilename);
              }
              
-            //  $post->setCreationDate(new \DateTime());
-            //  $user = $this->getUser();
-            //  $post->setUser($user);
-            //  dd($post);
+          
              $entityManager->persist($post);
              $entityManager->flush();
  
@@ -197,17 +195,6 @@ class PostController extends AbstractController
              'edit' => $post->getId()
          ]);
         }
-
-        // #[Route('/post/new/{placeId}', name: 'new_post_place')]
-        // public function addPostByPlaceId(Post $post, Request $request, EntityManagerInterface $entityManager, PlaceRepository $placeRepository, $placeId, SluggerInterface $slugger): Response
-        // {
-        //     $post = new Post();
-    
-        //     $place = $placeRepository->findOneBy(['id'=> $placeId]);
-     
-
-
-
 
 
         #[Route('/post/{id}', name: 'show_post')]

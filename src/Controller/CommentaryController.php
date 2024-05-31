@@ -49,7 +49,7 @@ class CommentaryController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_post');
+            return $this->redirectToRoute('show_post', ['id' => $postId]);
         }
 
         return $this->render('commentary/new.html.twig', [

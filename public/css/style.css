@@ -41,7 +41,6 @@ img{
     max-width: 100%;
     height: 100%;
     object-fit: cover;
-    content-visibility: auto;
 }
 
 a{
@@ -1072,7 +1071,7 @@ input[type="radio"]:checked + label > figure > img {
 
 .new-place-form{
     /* background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp); */
-    background: linear-gradient(#adadada8, #adadada8), url(/img-source/map-background.webp);
+    background: linear-gradient(#ffffffa8, #ffffffa8), url(/img-source/map-background.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;

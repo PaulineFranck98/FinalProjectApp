@@ -115,7 +115,7 @@ class PlaceController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_place');
+            return $this->redirectToRoute('app_home');
         
 
         }

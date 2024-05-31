@@ -9,7 +9,7 @@
             <aside>
                 <div class="dashboard-aside">
                     <figure>
-                        {# <img src="#"> #}
+                        <img src="{{ asset('uploads/' ~ app.user.profilePicture)}}" alt="">
                     </figure>
                     <p><b>{{ app.user}}</b></p>
                 </div>
@@ -40,12 +40,6 @@
                 
             </section>
         </section>
-           <figure class="travel-sign">
-            <img src="/img-source/travel-sign.webp">
-        </figure>
-        <figure class="travel-stork">
-            <img src="/img-source/adventure-stork.webp">
-        </figure>
     </div>
 </main>
 {% endblock %}

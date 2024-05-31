@@ -53,4 +53,15 @@ class RatingController extends AbstractController
             'placeId' => $place->getId(),
         ]);
     }
+
+    #[Route('/rating/{id}/delete', name: 'delete_rating')]
+    public function delete(Rating $rating, EntityManagerInterface $entityManager)
+    {
+        // delete the object 'rating'
+        $entityManager->remove($rating);
+        // apply the SQL query 'DELETE FROM'
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_rating');
+    }
 }

@@ -51,7 +51,7 @@ class PlaceType extends AbstractType
                 'mapped' => false,
             ])
 
-            ->add('cityCodeId', TextType::class, [
+            ->add('cityCodeId', HiddenType::class, [
                 'mapped' => false,
             ])
             // zipcode is a number between 67000 and 68999 inclusive

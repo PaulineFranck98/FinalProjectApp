@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Posts{% endblock %}
 
@@ -12,4 +12,78 @@
     </section>
 </main>
 
+{% endblock %} #}
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="bcg-posts">
+    <figure class="background-post">
+        <img src="/img-source/fond-post.webp" alt="Illustration représentant une cigogne regardant en bas">
+    </figure>
+    <main class="top">
+        <section id="city-posts">
+            {# <div class="posts-header">
+                <h2>Bienvenue sur la partie forum de </h2>
+                <h1>{{ place }}</h1>
+                <h3>Parcourez les posts, échangez et partagez vos expériences avec la communauté</h3>
+            </div> #}
+            <div class="posts-container">
+                {% for post in posts %}
+                            <div class="post-container">
+                                <div class="profile-post-detail-container">
+                                    <figure class="user-profile-pic-sm-circle">
+                                        <img src="{{ asset('uploads/'~ post.user.profilePicture)}}">
+                                    </figure>
+                                    <div>
+                                        <p>{{ post.user }}</p>
+
+                                        <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <h3>« {{ post.title }} »</h3>
+                                    <div class="img-content-container">
+                                        <figure class="post-figure">
+                                            <img src="{{ asset('uploads/'~ post.image)}}">
+                                        </figure>
+                                        <div>
+                                            <p class="post-place-name">
+                                                <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
+                                            </p>
+                                            <p class="post-place-address"><i class="fa-solid fa-map-pin"></i> {{ post.place.address}}</p>
+                                            <p class="post-content-text">« {{ post.content }} »</p>
+                                        </div>
+                                    </div>
+                                <div class="show-post-comments">
+                                    {% if  post.commentaries|length > 1 %}
+                                    <p><i class="fa-regular fa-comments"></i>&nbsp;{{ post.commentaries|length }} réponses </p>
+                                    
+                                    {% else %}
+                                    <p><i class="fa-regular fa-comments"></i>&nbsp;{{ post.commentaries|length }} réponse </p>
+                                    {% endif %}
+                                    <p><a href="{{ path('show_post', {'id' : post.id} )}}"><i class="fa-solid fa-arrow-right-long"></i>&nbsp;Voir le post</a></p>
+                                </div>
+                                </div>
+                            </div>
+
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+</div>
+    {# {% if post.commentaries|length > 0 %}
+        <div>
+            <h4>Commentaires:</h4>
+
+            {% for comment in post.commentaries %}
+                <figure class="user-profile-pic-sm-circle">
+                    <img src="{{ asset('uploads/'~ comment.user.profilePicture)}}">
+                </figure>
+                <p>{{ comment.content }}</p>
+            {% endfor %}
+        </div>
+    {% endif %} #}
 {% endblock %}

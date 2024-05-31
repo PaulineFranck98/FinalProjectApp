@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CustomItineraryController extends AbstractController
 {
+    // Ajouter la vérification 'isPublic'
     #[Route('/itinerary', name: 'app_itinerary')]
     public function index(CustomItineraryRepository $itineraryRepository): Response
     {
@@ -50,7 +51,7 @@ class CustomItineraryController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_itinerary');
+            return $this->redirectToRoute('show_itinerary', ['id' => $itinerary->getId()]);
         }
 
         return $this->render('custom_itinerary/new.html.twig', [
@@ -76,7 +77,7 @@ class CustomItineraryController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_itinerary');
+            return $this->redirectToRoute('show_itinerary', ['id' => $itinerary->getId()]);
         }
 
         return $this->render('custom_itinerary/new.html.twig', [
@@ -114,6 +115,7 @@ class CustomItineraryController extends AbstractController
             }
         
         }
+
         $itineraryData = [
             'id' => $itinerary->getId(),
             'name' => $itinerary->getName(),
@@ -137,20 +139,5 @@ class CustomItineraryController extends AbstractController
 
     }
 
-    // $itineraryData = [
-    //     'id' => $itinerary->getId(),
-    //     'name' => $itinerary->getName(),
-    //     'places' => []
-    // ];
-    
-    // // Récupérez les villes sélectionnées pour cet itinéraire
-    // $places = $itinerary->getPlaces();
-    
-    // // Ajoutez les données de chaque ville au tableau 'places'
-    // foreach ($places as $place) {
-    //     $itineraryData['places'][] = [
-    //         'name' => $place->getName(),
-    //         'code' => $place->getCode()
-    //     ];
-    // }
+
 }
