@@ -305,12 +305,6 @@ class PlaceController extends AbstractController
             $averageRatings[$place->getId()] = $placeRepository->getAverageRating($place->getId());
         }
 
-        // Je récupère tous les thèmes 
-        // $themes = $themeRepository->findAll();
-        // $companions = $companionRepository->findAll();
-   
-        // $theme = $themeRepository->find($themeId);
-        // $placeTheme = $theme->getPlaces(); 
         // Je vérifie si j'ai une requête ajax
         if($request->get('ajax')){
             return new JsonResponse([

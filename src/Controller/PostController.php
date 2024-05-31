@@ -72,7 +72,7 @@ class PostController extends AbstractController
              $entityManager->flush();
  
         
-             return $this->redirectToRoute('app_post');
+             return $this->redirectToRoute('show_post', ['id' => $post->getId()]);
          }
  
          return $this->render('post/new.html.twig', [
@@ -135,11 +135,13 @@ class PostController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_post');
+            return $this->redirectToRoute('show_post', ['id' => $post->getId()]);
         }
 
         return $this->render('post/new.html.twig', [
             'formAddPost' => $form,
+            'postId' => $post->getId(),
+
             'placeSelect' => false
         ]);
     }
