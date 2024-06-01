@@ -6,11 +6,14 @@
 {% block stylesheets %}
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 {% endblock %}
-    <main class="show-post-main">
-        <section class="show-post">
-            <div class="show-post-infos">
-                <h1>{{ place.name }}</h1>
-                <div>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
+    <main class="show-place-main">
+        <h1><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{ place.name }}</h1>
+        <figure class="flying-stork-place">
+                <img src="/img-source/flying-stork.webp" alt="Icône représentant une cigogne en vol">
+        </figure>
+        <section class="show-place">
+            <div class="show-place-infos">
+                <div><p>Note des utilisateurs :</p>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
                 <div>
                     <h2>Localisation</h2>
                     <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
@@ -44,7 +47,7 @@
                     <p>Description : {{ place.description }}</p>
                 </div>
             </div>
-            <div class="wrapper-container-post">
+            <div class="wrapper-container-place">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
                         {% for image in place.images %}
@@ -90,12 +93,12 @@
                 </div>
                 {% endfor %}  #}
             {# A modifier pour réserver à l'Admin #}
-            <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
+            {# <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
             <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>
-            {# ------------------------------------ #}
+             ------------------------------------ 
             <a href="{{ path('new_rating', {'placeId': place.id})}}">Noter ce lieu</a>
             <a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a>
-            <a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a>
+            <a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a> #}
         
     </main>
     {# {{dump(place.images)}} #}

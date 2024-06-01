@@ -1454,11 +1454,10 @@ button#custom_itinerary_valider{
     height:70%;
 }
 
-/* 
-.post-figure{
-    width:75%;
+
+.post-figure img{
     height:100%;
-} */
+}
 
 .post-figure img{
     border-radius: var(--lg-border-radius);
@@ -1620,12 +1619,10 @@ button#custom_itinerary_valider{
 
 /* --------------------- SHOW PLACE --------------------- */
 
-/* swiper place pictures */
-/* .swiper-wrapper{
+/* --------- swiper place pictures--------------------- */
 
-} */
-.wrapper-container-post{
-    width:50%;
+.wrapper-container-place{
+    width:45%;
 }
 
 .swiper-slide{
@@ -1679,20 +1676,51 @@ button#custom_itinerary_valider{
     opacity: 1;
   }
 
+/* ------ end swiper ------------- */
 
-  .show-post{
-    width: 70%;
-    margin: 6% auto;
+  .show-place{
+    width: 65%;
+    margin: 3% auto;
     display: flex;
-    gap:20%;
+    /* gap: 13%; */
+    justify-content: space-between;
   }
 
-  .show-post-infos{
-    width:30%;
+  .show-place-infos{
+    width:50%;
+    background: #a5a5a526;
+    height: fit-content;
+    padding: 2%;
+    border-radius: var(--sm-border-radius);
   }
 
-  .show-post-main{
-    height:100vh;
+  .show-place-main{
+    /* height:100vh; */
+    position:relative;
+
+    /* background: url(/img-source/fond-post.webp); */
+  }
+
+  .show-place-main h1{
+    /* text-align: center; */
+    margin-top: 5%;
+    color:var(--red-color);
+    font-size:2.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .show-place-main h1 i {
+    font-size:0.8em;
+  }
+
+  .flying-stork-place{
+    position:absolute;
+    width:6%;
+    left:20%;
+    top:-3%;
   }
 
 /* ----------------------END SHOW PLACE---------------------- */
