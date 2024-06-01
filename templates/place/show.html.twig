@@ -15,24 +15,24 @@
             <div class="show-place-infos">
                 <div><p>Note des utilisateurs :</p>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</div>
                 <div>
-                    <h2>Localisation</h2>
-                    <p>Adresse : {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+                    {# <p><b>Localisation</b></p> #}
+                    <p><b>Adresse :</b> {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
                 </div>
                 <div>
-                    <h2>Contact</h2>
-                    <p>Horaires d'ouverture :{{ place.openingHours }}</p>
+                    {# <p><b>Contact</b></p> #}
+                    <p class="openinghrs"><b>Horaires d'ouverture :</b><br>{{ place.openingHours }}</p>
                     <p>
-                        Site web :
+                        <b>Site web :</b>
                         {% if place.website %}
                             <a href="{{ place.website }}" target="_blank">{{ place.website }}</a>
                         {% else %}
                             Pas de site web
                         {% endif %}
                     </p>        
-                    <p>Téléphone : {{ place.phoneNumber }}</p>
+                    <p><b>Téléphone :</b> {{ place.phoneNumber }}</p>
                 </div>
                 <div>
-                    <h2>Catégorie</h2>
+                    {# <h2>Catégorie</h2>
                     <p>Type : {{ place.type }}</p>
                     <p>Thème :
                         {% for theme in place.themes %}
@@ -43,8 +43,8 @@
                         {% for companion in place.companions %}
                             {{ companion }}
                         {% endfor %}
-                    </p>
-                    <p>Description : {{ place.description }}</p>
+                    </p> #}
+                    <p class="description-place"><b>Description :</b> {{ place.description }}</p>
                 </div>
             </div>
             <div class="wrapper-container-place">

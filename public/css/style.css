@@ -362,6 +362,7 @@ nav span{
     border-radius: 1rem;
     height: 65%;
     box-shadow: 0.5rem 0.5rem 1rem 0px rgb(0 0 0 / 7%);
+    padding:1%;
 }
 
 
@@ -492,9 +493,7 @@ nav span{
     font-size: 2rem;
 }
 
-#join-community h3{
-    margin-bottom: 1.2rem;
-}
+
 
 
 #join-community article{
@@ -515,6 +514,9 @@ nav span{
     box-shadow: 0.2rem 0.2rem 10rem rgb(0 0 0 / 13%);
     backdrop-filter: blur(13px);
     border-radius: 1rem;
+    padding:1% 2%;
+    display: flex;
+    flex-direction: column;
 }
 
 .top{
@@ -525,6 +527,7 @@ nav span{
 .middle{
     top:-123%;
     left:5%;
+    align-items: end;
 }
 
 .bottom{
@@ -551,18 +554,18 @@ nav span{
 #reviews-phone{
     width: 100%;
     z-index: 3;
-    left: -5%;
-    top: -102%;
+    left: -10%;
+    top: -100%;
     /* position: absolute; */
     background: none;
     filter: drop-shadow(2px 2px 2px lightgrey);
 }
 
 #itinerary-phone{
-    top: -16%;
+    top: -23%;
     /* bottom: 162%; */
-    left: 83%;
-    width: 134%;
+    left: 76%;
+    width: 143%;
     z-index: 3;
 }
 
@@ -570,10 +573,47 @@ nav span{
     top: -178%;
     z-index: 3;
     /* right: -22%; */
-    width: 122%;
-    left: 90%;  
+    width: 124%;
+    left: 92%;  
 }
 
+.create-itineraries,
+.publish-posts,
+.reviews-users{
+    /* text-align: left; */
+    /* display: flex;
+    flex-direction: column; */
+    width:50%;
+    text-align: justify;
+}
+
+.create-itineraries,
+.publish-posts{
+    
+}
+
+.reviews-users{
+  justify-content: right;
+}
+
+/* .publish-posts{
+    text-align: left;
+} */
+
+#join-community h3{
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+#join-community .top h3,
+#join-community .bottom h3{
+    /* text-align: left; */
+}
+
+#join-community .middle h3{
+    justify-content: end;
+}
 /* .front{
     z-index: 3;
 } */
@@ -585,6 +625,17 @@ nav span{
     background-size: cover;
 }
 
+#join-community i {
+    font-size:1.4em;
+    color: #eb4a3f;
+    /* color: #b38e69; */
+    /* color: #f8d919; */
+    /* color: #f81919; */
+
+}
+
+
+/* ---------- SHARE EXPERIENCE --------------- */
 #share-experience{
     height:75vh;
     display:flex;
@@ -1638,6 +1689,11 @@ button#custom_itinerary_valider{
     /* margin-bottom:10%; */
 }
 
+.swiper-slide img{
+    height:100%;
+    border-radius: var(--sm-border-radius);
+}
+
 .swiper{
     width: 100%;
     /* height: 300px; */
@@ -1647,17 +1703,17 @@ button#custom_itinerary_valider{
 }
 
 .mySwiper{
-    height: 20%;
+    height: 25%;
     /* box-sizing: border-box; */
     padding: 10px 0;
-    border-radius: var(--sm-border-radius);
+    /* border-radius: var(--sm-border-radius); */
 }
 
 .mySwiper2{
-    height: 60%;
+    height: 71%;
     width: 100%;
     margin-bottom:2%;
-    border-radius: var(--sm-border-radius);
+    /* border-radius: var(--sm-border-radius); */
 }
 
 
@@ -1684,6 +1740,7 @@ button#custom_itinerary_valider{
     display: flex;
     /* gap: 13%; */
     justify-content: space-between;
+    max-height: 50vh;
   }
 
   .show-place-infos{
@@ -1723,6 +1780,13 @@ button#custom_itinerary_valider{
     top:-3%;
   }
 
+.openinghrs{
+    white-space: pre;
+}
+
+.description-place{
+    text-align: justify;
+}
 /* ----------------------END SHOW PLACE---------------------- */
 
 /* Breakpoint : Tablette */
