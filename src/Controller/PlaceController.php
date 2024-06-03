@@ -40,90 +40,96 @@ class PlaceController extends AbstractController
         return $this->json($cities);
     }
 
+
+    // Je définis la route pour l'ajout d'un nouveau lieu
     #[Route('/place/new', name:'new_place')]
     public function new(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService, CityRepository $cityRepository): Response
     {
+        // Je crée un nouvel objet Place que je stocke dans la variable $place
         $place = new Place();
 
-        // On crée le formulaire
+        // Je crée le formulaire pour l'ajout pour l'ajout d'un nouveau lieu en utilisant PlaceType et l'objet Place
         $form = $this->createForm(PlaceType::class, $place);
 
-        // On traite la requête du formulaire
+        // Je traite la requête du formulaire
         $form->handleRequest($request);
 
-        // On vérifie si le formulaire est soumis ET valide
+        // Je vérifie si le formulaire a été soumis ET s'il est valide
         if($form->isSubmitted() && $form->isValid())
         {   
-            // On récupère les images : doit faire un get dans le formulaire
+            // Je récupère les images à partir du formulaire : je dois faire un get dans le formulaire
             $images = $form->get('images')->getData();
-            // dd($images);
             
-            // On boucle sur les images
+            // Je boucle sur les images pour les traiter une à une
             foreach($images as $image)
             {
-                // On définit le dossier de destination
+                // Je définis le dossier de destination pour l'image
                 $folder = 'place';
 
-                // On appelle le service d'ajout 
-                // On récupère le nom du fichier
+                // J'ajoute l'image dans le dossier en utilisant mon PictureService
                 $file = $pictureService->add($image, $folder);
-                // die; //Pour tester et ne pas aller plus loin dans la génération du formulaire
-
-                // Instanciation de mon entité Image
+               
+                // Je crée un nouvel objet Image pour stocker les infos de l'image et je le stocke dans la variable $img
                 $img = new Image();
 
-                // $file est renvoyé par mon service
+                //Je définis le nom de l'image en utilisant le nom de fichier renvoyé par mon PictureService
                 $img->setName($file);
+
+                //J'ajoute l'objet Image à l'objet Place en utilisant la méthode addImage()
                 $place->addImage($img);
 
             }
 
-            // Je récupère le code INSEE de la ville et je le stocke dans la variable $cityCode
+            // Je récupère le code INSEE de la ville à partir du formulaire et je le stocke dans la variable $cityCode
             $cityCode = $form->get('cityCodeId')->getData();
             
-            // Je récupère le nom de la ville et je le stocke dans la variable $cityName
+            // Je récupère le nom de la ville à partir du formulaire et je le stocke dans la variable $cityName
             $cityName = $form->get('cityName')->getData();
 
-            // J'utilise la fonction 'findBy' pour récupérer la ville avec le même cityCode si elle existe
+            // J'utilise la fonction 'findBy' pour rechercher la ville avec le même cityCode si elle existe dans ma base de données
             $city = $cityRepository->findOneBy(['cityCode' => $cityCode]);
-            // dd($cityCode, $city);
-            // Si la ville n'existe pas dans l'entité city
+           
+            // Si la ville existe, je l'associe à l'objet Place
             if ($city) {
+                // Je définis la ville de l'objet Place 
                 $place->setCity($city);
             
             } else {
-            //   Je crée une nouvelle ville
+            // Sinon je crée un nouvel objet City 
               $city = new City();
 
-            //   Je définis son code INSEE
+            // Je définis sa propriété 'cityCode' avec son code INSEE récupéré à partir du formulaire
               $city->setCityCode($cityCode);
 
-            //   Je définis son nom
+            // Je définis sa propriété 'cityName' avec son nom récupéré à partir du formulaire
               $city->setCityName($cityName);
-
+            
+            // Je l'associe à l'objet Place
               $place->setCity($city);
-
+            
+            // J'ajoute l'objet City à l'EntityManager pour qu'il soit persisté en base de données
               $entityManager->persist($city);
             }
-            // dd($city);
+           
        
-        
+            // Je récupère les données du formulaire pour l'objet Place
             $place = $form->getData();
 
-           
+            // J'ajoute l'objet Place à l'EntityManager pour qu'il soit persisté en base de données
             $entityManager->persist($place);
-
+            // J'exécute les requêtes pour envoyer les objets en base de données
             $entityManager->flush();
-
+            // Je redirige vers la page d'accueil après la création du nouveau lieu
             return $this->redirectToRoute('app_home');
         
 
         }
-
+        // Si le formulaire n'a pas été soumis ou qu'il n'est pas valide, j'affiche le formulaire d'ajout dans ma vue twig
         return $this->render('place/new.html.twig', [
             'formAddPlace' => $form,
         ]);
     }
+    
 
     #[Route('/place/{id}/edit', name:'edit_place')]
     public function edit(Place $place, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger, PictureService $pictureService, CityRepository $cityRepository): Response

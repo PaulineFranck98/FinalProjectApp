@@ -3,46 +3,47 @@ window.onload = () => {
     let links = document.querySelectorAll("[data-delete]")
     // console.log(links); 
 
-    // On boucle sur liens 
+    //Je parcours tous les liens récupérés avec une boucle for 
     for(let link of links){
 
-        // On met un écouteur d'évènements
+        // Pour chaque lien, j'ajoute un écouteur d'évènements qui se déclenchera au click
         link.addEventListener("click", function(e){
 
-            // On empêche la navigation : 
-            // je dis à mon évènement e de ne pas envoyer directement vers la page du delete, je veux utiliser ajax
+            // J'utilise preventDefault pour empêcher la navigateur de suivre le lien vers la page de suppression
+            // Cela me permet de gérer la suppression via une requête AJAX
             e.preventDefault()
 
-            // On demande confirmation avant de supprimer l'image
+            // Je demande confirmation avant de supprimer l'image
             if(confirm("Voulez-vous supprimer cette image ?")){
-
-                // On envoie une requête Ajax vers le href du lien avec la méthode correspondante
-                // je recherche l'élément href
+                // Si l'utilisateur confirme j'envoie une requête Ajax vers l'URL associée au lien cliqué
+                // J'utilise la méthode fetch pour envoyer la requête AJAX
                 fetch(this.getAttribute("href"), {
 
-                    // J'utilise la méthode DELETE
+                    // J'utilise la méthode HTTP 'DELETE' 
                     method: "DELETE",
 
-                    // J'envoie des headers
+                    // Je définis les en-têtes pour inidiquer au serveur que la requête est envoyée via AJAX
                     headers: {
                         "X-Requested-With": "XMLHttpRequest",
-                        // On précise qu'on envoie du json
+                        // Je précise que le corps de requête est au format JSON
                         "Content-Type": "application/json"
                     },
-                    // On envoie le token
-                    // On prend sur le lien qui a été cliqué le dataset.token
-                    // cette partie envoie la requête
+                    //le corps de requête contient le jeton CSRF associé à l'élément cliqué
+                    // Je le récupère avec la propriété dataset.token
                     body: JSON.stringify({"_token": this.dataset.token})
                 }).then(
-                    // Si ça fonctionne on récupère la réponse en JSON
+                    // une fois que la requête AJAX a été envoyée :
+                    // une première promesse est résolue avec la méthode 'response.json() qui convertit le corps de réponse JSON en objet Javascript
                     response => response.json()
-                    // Une fois qu'on a la réponse
+                    // un deuxième promesse est utilisée pour gérer l'objet Javascript récupéré
                 ).then(data => {
-                    // Si c'est un succès
+                    // Si la propriété success de l'objet est définie sur true, la suppression de l'image a réussi sur le serveur
                     if(data.success)
-                        // parentElement représente la div : élément parent du lien
+                        // l'élément HTML parent (div) est supprimé en utilisant la méthode remove()
                         this.parentElement.remove();
                     else
+                        // Sinon, une erreur s'est produite lors de la suppression
+                        // J'affiche une boîte de dialogue d'alerte avec le message d'erreur associé.
                         alert(data.error);
                 }).catch(e => alert(e))
             }
