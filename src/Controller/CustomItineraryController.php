@@ -27,7 +27,8 @@ class CustomItineraryController extends AbstractController
         ]);
     }
 
-    #[Route('/itinerary/new', name: 'new_itinerary')]
+    #[Route('/admin/itinerary/new', name: 'new_itinerary')]
+
     public function new(CustomItinerary $itinerary, Request $request, EntityManagerInterface $entityManager, CityRepository $cityRepository): Response
     {
         $itinerary = new CustomItinerary();
