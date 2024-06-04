@@ -1790,12 +1790,18 @@ button#custom_itinerary_valider{
 /* ----------------------END SHOW PLACE---------------------- */
 
 /* Breakpoint : Tablette */
-@media (max-width: 1024px) and (min-width: 769px) {
-    
-}
+/* @media (max-width: 1024px) and (min-width: 769px) {
+
+    .posts-container{
+        grid-template-columns: 1fr 1fr;
+    } 
+} */
 
 /* Breakpoint : Smartphone */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     
-}
+    .posts-container{
+        grid-template-columns: 1fr;
+    } 
+} */
 

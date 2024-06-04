@@ -10,7 +10,8 @@
     <main>
         <div class="places-wrapper">
             <section id="display-places">
-                <aside>
+                <aside> 
+                    {# {{dump(places)}} #}
                     <div id='places-container'>
                         {% for place in places %}
                             <div id="{{place.id}}" class="place-infos-container">
