@@ -44,6 +44,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: [ROLE_USER, ROLE_ADMIN] }
         - { path: ^/account, roles: [ROLE_USER, ROLE_ADMIN] }
         - { path: ^/itinerary, roles: [ROLE_USER, ROLE_ADMIN] }
         - { path: ^/forum, roles: [ROLE_USER, ROLE_ADMIN] }

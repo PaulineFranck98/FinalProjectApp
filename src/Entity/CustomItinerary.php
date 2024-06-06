@@ -183,12 +183,12 @@ class CustomItinerary
         return $this;
     }
 
-    public function isPublic(): ?bool
+    public function isIsPublic(): ?bool
     {
         return $this->isPublic;
     }
 
-    public function setPublic(?bool $isPublic): static
+    public function setIsPublic(?bool $isPublic): static
     {
         $this->isPublic = $isPublic;
 

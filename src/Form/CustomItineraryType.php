@@ -98,6 +98,7 @@ class CustomItineraryType extends AbstractType
                     'Public' => true,
                     'Privé' => false,
                 ],
+                'multiple' => false
             ])
             // ->add('cities', CityAutocompleteField::class, [
             //     // 'multiple' => true,

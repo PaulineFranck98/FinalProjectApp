@@ -24,17 +24,17 @@ class CustomItineraryRepository extends ServiceEntityRepository
     //    /**
     //     * @return CustomItinerary[] Returns an array of CustomItinerary objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+       public function findLastPublicItineraries(): array
+       {
+           return $this->createQueryBuilder('ci')
+               ->andWhere('ci.isPublic = :val')
+               ->setParameter('val', true)
+               ->orderBy('ci.creationDate', 'DESC')
+               ->setMaxResults(3)
+               ->getQuery()
+               ->getResult()
+           ;
+       }
 
     //    public function findOneBySomeField($value): ?CustomItinerary
     //    {

@@ -47,6 +47,8 @@ class CustomItineraryController extends AbstractController
             $itinerary->setUser($user);
 
             $itinerary = $form->getData();
+
+            // dd($itinerary);
             
             $entityManager->persist($itinerary);
 
@@ -70,7 +72,7 @@ class CustomItineraryController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $itinerary->setCreationDate(new \DateTime());
+            // $itinerary->setCreationDate(new \DateTime());
 
             $itinerary = $form->getData();
             // dd($itinerary);

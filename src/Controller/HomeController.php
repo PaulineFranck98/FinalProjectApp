@@ -6,7 +6,9 @@ use App\Entity\Theme;
 use App\Form\HomeType;
 use App\Entity\Companion;
 use App\Repository\CompanionRepository;
+use App\Repository\CustomItineraryRepository;
 use App\Repository\PlaceRepository;
+use App\Repository\PostRepository;
 use App\Repository\ThemeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +19,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
-    public function index(Request $request, PlaceRepository $placeRepository,ThemeRepository $themeRepository, CompanionRepository $companionRepository): Response
+    public function index(Request $request, PostRepository $postRepository,ThemeRepository $themeRepository, CompanionRepository $companionRepository, CustomItineraryRepository $itineraryRepository): Response
     {
 
         $themes = $themeRepository->findAll();
         $companions = $companionRepository->findAll();
-        // dd($themes, $companions);
+
 
         
+        $lastPosts = $postRepository->findBy([], ["creationDate" => "DESC"], 3);
+        $lastItineraries = $itineraryRepository->findLastPublicItineraries();
+
+
+        return $this->render('home/index.html.twig', [
+            'themes'=> $themes,
+            'companions'=> $companions,
+            'lastPosts' => $lastPosts,
+            'lastItineraries'=> $lastItineraries
+        ]);
+    }
+
+    
+    #[Route('/search', name: 'app_search')]
+    public function searchByThemesAndCompanions(Request $request, PlaceRepository $placeRepository,ThemeRepository $themeRepository, CompanionRepository $companionRepository, CustomItineraryRepository $itineraryRepository): Response
+    {
+         
         if( $request->isMethod('POST'))
         {
             $theme = $request->request->get('themes');
@@ -80,17 +99,19 @@ class HomeController extends AbstractController
                 }
 
                 // Je stocke les données en sessions
-                $request->getSession()->set('placesData', $data);
+                // $request->getSession()->set('placesData', $data);
 
                 // Je redirige vers la page de la map
-                return $this->redirectToRoute('app_map');
+                // return $this->redirectToRoute('app_map');
+                return $this->render('map/index.html.twig', [
+                    'placesData' => json_encode($data),
+                    'places' => $data
+                ]);
             }
         }
         
-        return $this->render('home/index.html.twig', [
-            'themes'=> $themes,
-            'companions'=> $companions,
-        ]);
+        // $lastItineraries = $itineraryRepository->findLastPublicItineraries();
+        return $this->render('home/index.html.twig');
+
     }
-    
 }
