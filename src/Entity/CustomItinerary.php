@@ -46,6 +46,12 @@ class CustomItinerary
     #[ORM\ManyToMany(targetEntity: City::class, inversedBy: 'customItineraries', cascade:['persist'])]
     private Collection $cities;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $duration = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $isPublic = null;
+
     public function __construct()
     {
         $this->place = new ArrayCollection();
@@ -161,6 +167,30 @@ class CustomItinerary
     public function removeCity(City $city): static
     {
         $this->cities->removeElement($city);
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): static
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function isPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setPublic(?bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

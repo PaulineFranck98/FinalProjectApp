@@ -8,13 +8,17 @@ use App\Entity\Place;
 use App\Form\CityType;
 use App\Entity\CustomItinerary;
 use App\Form\CityAutocompleteField;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class CustomItineraryType extends AbstractType
@@ -37,6 +41,7 @@ class CustomItineraryType extends AbstractType
             // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('departure', EntityType::class, [
                 'label' => 'Choisissez votre ville de départ',
+                'placeholder' => 'Sélectionnez une ville',
                 // defines the entity class to use, here : the entity Theme
                 'class' => City::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -46,6 +51,7 @@ class CustomItineraryType extends AbstractType
             ])
             // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('arrival', EntityType::class, [
+                'placeholder' => 'Sélectionnez une ville',
                 // defines the entity class to use, here : the entity Theme
                 'class' => City::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -68,12 +74,12 @@ class CustomItineraryType extends AbstractType
             // ])
 
             ->add('cities', CollectionType::class,[
-                // 'label' => 'Ville intermédiaire',
                 'entry_type' => EntityType::class,
                    'entry_options' => [
                         'class' => City::class,
                         'choice_label' => 'cityName',
                         'choice_value' => 'cityCode',
+                        'placeholder' => 'Sélectionnez une ville',
                     ],
 
                 'prototype' => true,
@@ -82,7 +88,17 @@ class CustomItineraryType extends AbstractType
                 'by_reference' => false,
                 ])
          
+            ->add('duration', IntegerType::class, [
+                'label' => 'Durée estimée de votre itinéraire',
+            ])
 
+            ->add('isPublic', ChoiceType::class, [
+                'label' => 'Souhaitez-vous que votre itinéraire soit public ?',
+                'choices'  => [
+                    'Public' => true,
+                    'Privé' => false,
+                ],
+            ])
             // ->add('cities', CityAutocompleteField::class, [
             //     // 'multiple' => true,
             // ])

@@ -64,6 +64,10 @@
                 {# empêche l'apparition d'une légende "cities", si la collection est vide #}
                 {% do formAddItinerary.cities.setRendered %} 
 
+                {{ form_row(formAddItinerary.duration) }}
+
+                {{ form_row(formAddItinerary.isPublic) }}
+
                 {{ form_row(formAddItinerary.valider) }}
 
                 {{ form_end(formAddItinerary) }}
