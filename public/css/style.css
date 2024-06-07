@@ -739,8 +739,9 @@ nav span{
 }
 
 #share-experience article {
-    width:50%;
+    width:60%;
     height:90%;
+    padding-top:5rem;
     /* text-align: center; */
 }
 
@@ -780,13 +781,13 @@ nav span{
 .share-message figure:first-of-type{
     top:-12%;
     left:8%;
-    width:60%;    
+    width:50%;    
 }
 
 .share-message figure:last-of-type{
     top:31%;
     left:39%;
-    width:60%;
+    width:50%;
 }
 
 #share-experience aside{
@@ -839,7 +840,8 @@ nav span{
 
 .straight-stork{
     width:6%;
-    top:8%;
+    /* top:8%;*/
+    bottom:75.5%; 
     left:8%;
 }
 

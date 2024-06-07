@@ -142,5 +142,11 @@ class CustomItineraryController extends AbstractController
 
     }
 
+        // public function addPlaceItinerary(EntityManagerInterface $entityManager, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository)
+        // {
+        //     $customItinerary = $itineraryRepository->
+            
+        // }
+
 
 }
