@@ -90,36 +90,39 @@
                 <div class="posts-container itineraries-container">
                     {% for itinerary in lastItineraries %}
                         <div class="post-container itinerary-container">
+                            {# <h3><i class="fa-solid fa-map-pin"></i>Découvrez l'itinéraire de </h3> #}
                             <div class="profile-itinerary-detail-container">
-                                <figure class="user-profile-pic-itinerary">
-                                    <img src="{{ asset('uploads/'~ itinerary.user.profilePicture)}}">
-                                </figure>
-                                <div>
-                                    <p>{{ itinerary.user }}</p>
+                                <div class="username-pic-itinerary">
+                                    <figure class="user-profile-pic-itinerary">
+                                        <img src="{{ asset('uploads/'~ itinerary.user.profilePicture)}}">
+                                    </figure>
+                                    <p>{{ itinerary.user }} &#129384;</p>
+                                </div>
+                                <div class="itinerary-stork-div">
+                                     <figure class="itinerary-stork">
+                                        <img src="img-source/itinerary-detail-img-stork.webp" alt="Icône représentant une cigogne en vol">
+                                    </figure>
                                 </div>
                             </div>
-                            <h3>Découvrez l'itinéraire de {{ itinerary.user }}</h3>
                             <div class="itinerary-text-content">
                                 <h4>{{ itinerary.departure.cityName}}&nbsp;<i class="fa-solid fa-arrow-right-long"></i>&nbsp;<span>{{ itinerary.arrival.cityName}}</span></h4>
                                 {# <p>{{ itinerary.arrival.cityName}}</p> #}
-                                <p>Durée estimée : {{ itinerary.duration}}
-                                    {% if  itinerary.duration > 1 %}
-                                        jours
-                                    {% else %}
-                                        jour
-                                    {% endif %}
-                                </p>
-                                <p>{{ 2 + itinerary.cities|length}} 
-                                    {% if  itinerary.cities|length > 1 %}
-                                        villes traversées
-                                    {% else %}
-                                        ville traversée
-                                    {% endif %}
-                                </p>
-                                <p>{% for places in array %}
-                                    
-                                {% endfor %}</p>
-                             
+                                <div>    
+                                    <p>Durée estimée : {{ itinerary.duration}}
+                                        {% if  itinerary.duration > 1 %}
+                                            jours
+                                        {% else %}
+                                            jour
+                                        {% endif %}
+                                    </p>
+                                    <p>{{ 2 + itinerary.cities|length}} 
+                                        {% if  itinerary.cities|length > 1 %}
+                                            villes traversées
+                                        {% else %}
+                                            ville traversée
+                                        {% endif %}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

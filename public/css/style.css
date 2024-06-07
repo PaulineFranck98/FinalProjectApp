@@ -378,21 +378,26 @@ nav span{
 #last-posts,
 #last-itineraries{
     width: 75%;
-    margin: 2rem auto;
+    margin: 6rem auto;
+    height:80vh;
 }
 
 #last-posts h2,
 #last-itineraries h2{
     text-align: center;
-    margin: 2rem 0;
+    margin: 2rem 0 4rem;
     font-weight: 600;
     font-size: 1.9em;
 }
 
 
 #last-itineraries h3{
-    font-weight: 600;
-    margin: 0.6rem 0 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+}
+
+.itinerary-container{
+   height:80%;
 }
 
 .itinerary-text-content h4 span{
@@ -404,32 +409,63 @@ nav span{
     background: #ffffff;
     padding: 0.7rem 1rem;
     border-radius: var(--lg-border-radius);
-    height:70%;
+    height:83%;
+    margin-top:3%;
 }
 
 .itinerary-text-content h4{
     font-size: 1.4em;
     font-weight: 600;
+    margin-bottom:3%;
+    
 }
 
 .profile-itinerary-detail-container{
-    display:flex;
-    gap:10px;
-    height:10%;
-    width:100%;
-    background-color: var(--white-color);
-    padding: 0.5rem;
-    border-radius: var(--sm-border-radius);
+    display: flex;
+    /* gap: 10px; */
+    height: 13%;
+    width: 100%;
+    /* background-color: var(--white-color); */
+    padding: 0 0.2rem;
+    /* border-radius: var(--sm-border-radius); */
+    position: relative;
+    justify-content: space-between;
+}
+
+.itinerary-stork{
+    position: absolute;
+    right: 6%;
+    top: -18%;
+    width: 43%;
+    /* height:111%; */
 }
 
 .user-profile-pic-itinerary{
-    /* height:90%; */
+    height:100%;
     overflow: hidden;
     border-radius: 50px;
 }
 
 .user-profile-pic-itinerary img{
     height: 100% !important;
+}
+
+.username-pic-itinerary{
+    display: flex;
+    /* gap: 16px; */
+    background-color: var(--white-color);
+    padding: 0.4rem 1.5rem 0.4rem 1.2rem;
+    border-radius: 0.7rem;
+    width: 44%;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.itinerary-stork-div{
+    background-color: var(--white-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.7rem;
+    width: 53%;
 }
 
 #how-it-works{
@@ -1602,6 +1638,11 @@ button#custom_itinerary_valider{
 .post-content h3{
     margin: 0.6rem 0 1.2rem;
     font-weight:500;
+    background-color: var(--white-color);
+    padding: 0.5rem;
+    border-radius: var(--sm-border-radius);
+    font-size: 1.1em;
+
 }
 
 
