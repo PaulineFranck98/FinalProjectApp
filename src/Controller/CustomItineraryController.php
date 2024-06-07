@@ -148,5 +148,7 @@ class CustomItineraryController extends AbstractController
             
         // }
 
+        // gérer ajout lieux
+
 
 }
