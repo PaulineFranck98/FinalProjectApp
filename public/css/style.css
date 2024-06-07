@@ -269,6 +269,10 @@ nav span{
     margin-bottom: 8rem;
 }
 
+.home-btn:hover{
+    cursor: pointer;
+}
+
 /* .discover{
     left:50%;
     transform: translate(-50%, 50%);
@@ -377,7 +381,7 @@ nav span{
 
 #last-posts,
 #last-itineraries{
-    width: 75%;
+    width: 60%;
     margin: 6rem auto;
     height:80vh;
 }
@@ -422,22 +426,18 @@ nav span{
 
 .profile-itinerary-detail-container{
     display: flex;
-    /* gap: 10px; */
     height: 13%;
     width: 100%;
-    /* background-color: var(--white-color); */
     padding: 0 0.2rem;
-    /* border-radius: var(--sm-border-radius); */
     position: relative;
     justify-content: space-between;
 }
 
 .itinerary-stork{
     position: absolute;
-    right: 6%;
-    top: -18%;
+    right: 4%;
+    top: -9%;
     width: 43%;
-    /* height:111%; */
 }
 
 .user-profile-pic-itinerary{
@@ -452,31 +452,30 @@ nav span{
 
 .username-pic-itinerary{
     display: flex;
-    /* gap: 16px; */
     background-color: var(--white-color);
-    padding: 0.4rem 1.5rem 0.4rem 1.2rem;
+    padding: 0.4rem 1.2rem;
     border-radius: 0.7rem;
-    width: 44%;
+    width: 48%;
     align-items: center;
     justify-content: space-between; 
+}
+
+.username-pic-itinerary{
+    font-size:1.1em;
 }
 
 .itinerary-stork-div{
     background-color: var(--white-color);
     padding: 0.5rem 1rem;
     border-radius: 0.7rem;
-    width: 53%;
+    width: 48%;
 }
 
 #how-it-works{
     height:180vh;
-    /* height:100vh; */
     position: relative;
     margin:5rem auto;
-    /* background: #ffffff8f; */
     padding: 2rem 3rem 0;
-    /* border-radius: var(--lg-border-radius); */
-    /* backdrop-filter: blur(6px); */
     
 }
 
@@ -1590,7 +1589,7 @@ button#custom_itinerary_valider{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    height:55vh;
+    height:45vh;
 }
 
 
@@ -1651,7 +1650,7 @@ button#custom_itinerary_valider{
     /* background: #efefef99; */
     background: #c5c5c554;
     backdrop-filter: blur(10px);
-
+    height:100%;
     padding: 1rem;
     border-radius: var(--lg-border-radius);
 }
