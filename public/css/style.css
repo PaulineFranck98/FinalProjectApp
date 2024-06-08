@@ -265,13 +265,13 @@ nav span{
     font-family: 'Poppins', sans-serif;
     border: none;
     font-size:1.6rem;
-    margin-top: 3rem;
-    margin-bottom: 8rem;
 }
 
 .home-btn:hover{
     cursor: pointer;
 }
+
+
 
 /* .discover{
     left:50%;
@@ -289,7 +289,7 @@ nav span{
 }
 
 #choice{
-    height:90vh;
+    height:100vh;
     padding: 1rem 3rem;
 }
 
@@ -386,9 +386,9 @@ nav span{
 
  
 .p-home{
-    font-size:1.1em;
+    font-size:1.2em;
     /* margin: 0 auto 1rem; */
-    text-align :left;
+    text-align :justify;
     display:flex;
     gap:10px;
     /* width:80%; */
@@ -914,7 +914,7 @@ nav span{
     display: flex;
     justify-content: center;
     width:85%;
-    margin: 2rem auto;
+    margin: auto;
     gap: 0.5rem;
     padding:2rem;
     /* background-color: #efefef; */
