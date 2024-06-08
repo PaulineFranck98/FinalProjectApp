@@ -389,6 +389,8 @@ nav span{
     font-size:1.1em;
     /* margin: 0 auto 1rem; */
     text-align :left;
+    display:flex;
+    gap:10px;
     /* width:80%; */
 }
 
