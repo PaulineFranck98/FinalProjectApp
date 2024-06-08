@@ -289,14 +289,14 @@ nav span{
 }
 
 #choice{
-    height:100vh;
+    height:90vh;
     padding: 1rem 3rem;
 }
 
 .bcg-choice{
     /* background:#d5bf86; */
     width:100%;
-    padding-top:7rem;
+    padding-top:4rem;
     box-shadow: inset 0 1rem 1rem rgb(0 0 0 / 12%);
 }
 
@@ -371,7 +371,8 @@ nav span{
 
 
 #choice h2:first-of-type {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    font-weight: 600;
 }
 
 #choice h2:first-of-type span{
@@ -878,9 +879,12 @@ nav span{
 .choice-theme-container{
     display: flex;
     justify-content: center;
-    width:80%;
-    margin: 2rem auto 2.5rem;
+    width:85%;
+    margin: 2rem auto;
     gap: 0.5rem;
+    padding:2rem;
+    /* background-color: #efefef; */
+    border-radius: var(--lg-border-radius);
 }
 
 .choice-companion-container {
@@ -914,7 +918,7 @@ input[type="radio"] + label > figure{
 
 input[type="radio"] + label > figure > img {
     cursor: pointer;
-    filter: brightness(0.9);
+    /* filter: brightness(0.9); */
     transition: all 0.3s ease;
     width:100%;
     border-radius: 1.3rem;
@@ -922,7 +926,11 @@ input[type="radio"] + label > figure > img {
  
 input[type="radio"]:checked + label > figure > img {
     transform: translateY(-5%);
-    filter: brightness(1.7);
+    /* filter: brightness(1.7); */
+}
+
+input[type="radio"]:hover + label > figure > img{
+    transform: translateY(-5%)
 }
 
 .btn {
