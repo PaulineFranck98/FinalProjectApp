@@ -347,6 +347,10 @@ nav span{
    font-weight: 500;
    margin-top:-4.5rem;
    color:white;
+   display: flex;
+   align-items: center;
+   justify-content: left;
+   text-align: left;
    
    
 }
@@ -355,7 +359,7 @@ nav span{
 
 #how-it-works span{
     font-size:3rem;
-    margin-right: 5rem;
+    margin-right: 2rem;
 }
 
 .right-block{
