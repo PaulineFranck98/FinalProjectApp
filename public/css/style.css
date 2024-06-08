@@ -357,7 +357,7 @@ nav span{
 
 
 
-#how-it-works span{
+.number{
     font-size:3rem;
     margin-right: 2rem;
 }
@@ -374,19 +374,29 @@ nav span{
     padding:1%;
 }
 
+.right-block-paragraphs{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 78%;
+    align-items: start;
+    justify-content: center;
+    margin: auto;
+}
+
  
 .p-home{
     font-size:1.1em;
-    margin: 0 auto 1rem;
+    /* margin: 0 auto 1rem; */
     text-align :left;
-    width:80%;
+    /* width:80%; */
 }
 
 .border-home{
     border-bottom: 1px solid #00000038;
     width: 80%;
     margin: 1rem auto;
-    text-align: start;
+    /* text-align: start; */
     /* margin: 0 auto 1.5rem; */
     text-align: left;
 }
