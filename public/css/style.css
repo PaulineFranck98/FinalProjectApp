@@ -370,6 +370,13 @@ nav span{
     padding:1%;
 }
 
+.right-block p{
+    font-size:1.1em;
+    margin: 1.5rem auto;
+    text-align :left;
+    width:80%;
+}
+
 
 #choice h2:first-of-type {
     font-size: 2.1rem;
