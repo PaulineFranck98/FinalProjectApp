@@ -370,11 +370,21 @@ nav span{
     padding:1%;
 }
 
-.right-block p{
+ 
+.p-home{
     font-size:1.1em;
-    margin: 1.5rem auto;
+    margin: 0 auto 1rem;
     text-align :left;
     width:80%;
+}
+
+.border-home{
+    border-bottom: 1px solid #00000038;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: start;
+    /* margin: 0 auto 1.5rem; */
+    text-align: left;
 }
 
 
