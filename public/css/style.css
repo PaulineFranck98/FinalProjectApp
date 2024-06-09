@@ -256,7 +256,7 @@ nav span{
 
 
 
-
+.go-btn,
 .home-btn{
     padding: 0.5rem 1rem;
     border-radius: var(--sm-border-radius);
@@ -265,11 +265,23 @@ nav span{
     font-family: 'Poppins', sans-serif;
     border: none;
     font-size:1.6rem;
+    transition: var(--transition-500);
 }
 
+.go-btn:hover,
 .home-btn:hover{
+    transform: scale(1.05);
     cursor: pointer;
 }
+
+.home-btn{
+    margin-top:3rem;
+    margin-bottom:4rem;
+}
+
+/* .home-btn:hover{
+    cursor: pointer;
+} */
 
 
 
@@ -414,19 +426,56 @@ nav span{
 
 }
 
-#last-posts,
-#last-itineraries{
-    width: 70%;
-    margin: 6rem auto;
+.bcg-last-posts,
+.bcg-last-itineraries{
+    width:100vw;
     height:80vh;
+    background-color: #c5c5c554;
+    /* padding:2rem 0 ; */
+
+}
+
+.bcg-last-itineraries{
+    padding-top:2rem;
+}
+.bcg-last-posts{
+    padding-bottom :2rem;
+}
+
+/* .bcg-last-posts{
+    width:100vw;
+    height:75vh;
+    background-color: var(--dark-grey);
+    padding:1rem 0 ;
+} */
+
+
+#last-itineraries{
+    padding:1rem 3rem;
+    border-radius: 1rem 1rem 0 0;
+    /* height:80vh; */
+}
+
+#last-posts{
+    border-radius: 0 0 1rem 1rem;
+}
+
+#last-itineraries,
+#last-posts{
+    width:75%;
+    height:100%;
+    margin: 0 auto;
+    /* border-radius: 1rem 1rem 0 0 ; */
+    background-color: var(--white-background);
 }
 
 #last-posts h2,
 #last-itineraries h2{
     text-align: center;
-    margin: 2rem 0 4rem;
+    margin-bottom:4rem;
     font-weight: 600;
     font-size: 1.9em;
+    /* color:white; */
 }
 
 
@@ -916,7 +965,7 @@ nav span{
     width:85%;
     margin: auto;
     gap: 0.5rem;
-    padding:2rem;
+    padding:2rem 1rem 0.5rem;
     /* background-color: #efefef; */
     border-radius: var(--lg-border-radius);
 }
@@ -926,7 +975,7 @@ nav span{
     margin:0 auto;
 }
 #choice .swiper{
-    margin-top:1rem;
+    /* margin-top:1rem; */
     width:80%;
     min-height:300px;
     padding:1rem !important;

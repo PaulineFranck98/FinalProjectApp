@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="home-btn">C'est parti !</button>
+                    <button type="submit" class="go-btn">C'est parti !</button>
                 </form>
             </section>
         </div>
@@ -84,93 +84,96 @@
         <!-- =========================== USER SECTION : LAST ITINERARIES =========================== -->
         {% if app.user %}
             
-        
-            <section id="last-itineraries">
-                <h2>Nouveaux itinéraires à explorer : découvrez les dernières créations de nos voyageurs</h2>
-                <div class="posts-container itineraries-container">
-                    {% for itinerary in lastItineraries %}
-                        <div class="post-container itinerary-container">
-                            {# <h3><i class="fa-solid fa-map-pin"></i>Découvrez l'itinéraire de </h3> #}
-                            <div class="profile-itinerary-detail-container">
-                                <div class="username-pic-itinerary">
-                                    <figure class="user-profile-pic-itinerary">
-                                        <img src="{{ asset('uploads/'~ itinerary.user.profilePicture)}}">
-                                    </figure>
-                                    <p>{{ itinerary.user }} &#129384;</p>
-                                </div>
-                                <div class="itinerary-stork-div">
-                                     <figure class="itinerary-stork">
-                                        <img src="img-source/itinerary-detail-img-stork.webp" alt="Icône représentant une cigogne en vol">
-                                    </figure>
-                                </div>
-                            </div>
-                            <div class="itinerary-text-content">
-                                <h4>{{ itinerary.departure.cityName}}&nbsp;<i class="fa-solid fa-arrow-right-long"></i>&nbsp;<span>{{ itinerary.arrival.cityName}}</span></h4>
-                                {# <p>{{ itinerary.arrival.cityName}}</p> #}
-                                <div>    
-                                    <p>Durée estimée : {{ itinerary.duration}}
-                                        {% if  itinerary.duration > 1 %}
-                                            jours
-                                        {% else %}
-                                            jour
-                                        {% endif %}
-                                    </p>
-                                    <p>{{ 2 + itinerary.cities|length}} 
-                                        {% if  itinerary.cities|length > 1 %}
-                                            villes traversées
-                                        {% else %}
-                                            ville traversée
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </section>
-            <section id="last-posts">
-                <h2>A ne pas manquer : les derniers récits de voyage qui vont vous inspirer</h2>
-                <div class="posts-container">
-                    {% for post in lastPosts %}
-                        <div class="post-container">
-                            <div class="profile-post-detail-container">
-                                <figure class="user-profile-pic-sm-circle">
-                                    <img src="{{ asset('uploads/'~ post.user.profilePicture)}}">
-                                </figure>
-                                <div>
-                                    <p>{{ post.user }}</p>
-                                    <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
-                                </div>
-                            </div>
-                            <div class="post-content">
-                                <h3>« {{ post.title }} »</h3>
-                                <div class="img-content-container">
-                                    <figure class="post-figure">
-                                        <img src="{{ asset('uploads/'~ post.image)}}">
-                                    </figure>
-                                    <div>
-                                        <p class="post-place-name">
-                                            <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
-                                        </p>
-                                        <p class="post-place-address"><i class="fa-solid fa-map-pin"></i> {{ post.place.address}}</p>
-                                        <p class="post-content-text">« {{ post.content }} »</p>
+            <div class="bcg-last-itineraries">
+                <section id="last-itineraries">
+                    <h2>Découvrez les derniers itinéraires publiés</h2>
+                    <div class="posts-container itineraries-container">
+                        {% for itinerary in lastItineraries %}
+                            <div class="post-container itinerary-container">
+                                {# <h3><i class="fa-solid fa-map-pin"></i>Découvrez l'itinéraire de </h3> #}
+                                <div class="profile-itinerary-detail-container">
+                                    <div class="username-pic-itinerary">
+                                        <figure class="user-profile-pic-itinerary">
+                                            <img src="{{ asset('uploads/'~ itinerary.user.profilePicture)}}">
+                                        </figure>
+                                        <p>{{ itinerary.user }} &#129384;</p>
+                                    </div>
+                                    <div class="itinerary-stork-div">
+                                        <figure class="itinerary-stork">
+                                            <img src="img-source/itinerary-detail-img-stork.webp" alt="Icône représentant une cigogne en vol">
+                                        </figure>
                                     </div>
                                 </div>
-                                <div class="show-post-comments">
-                                    {% if  post.commentaries|length > 1 %}
-                                        <p><i class="fa-regular fa-comments"></i>&nbsp;{{ post.commentaries|length }} réponses </p>
-                                    {% else %}
-                                        <p><i class="fa-regular fa-comments"></i>&nbsp;{{ post.commentaries|length }} réponse </p>
-                                    {% endif %}
-                                    <p>
-                                        <a href="{{ path('show_post', {'id' : post.id} )}}"><i class="fa-solid fa-arrow-right-long"></i>&nbsp;Voir le post</a>
-                                    </p>
+                                <div class="itinerary-text-content">
+                                    <h4>{{ itinerary.departure.cityName}}&nbsp;<i class="fa-solid fa-arrow-right-long"></i>&nbsp;<span>{{ itinerary.arrival.cityName}}</span></h4>
+                                    {# <p>{{ itinerary.arrival.cityName}}</p> #}
+                                    <div>    
+                                        <p>Durée estimée : {{ itinerary.duration}}
+                                            {% if  itinerary.duration > 1 %}
+                                                jours
+                                            {% else %}
+                                                jour
+                                            {% endif %}
+                                        </p>
+                                        <p>{{ 2 + itinerary.cities|length}} 
+                                            {% if  itinerary.cities|length > 1 %}
+                                                villes traversées
+                                            {% else %}
+                                                ville traversée
+                                            {% endif %}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </section>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+            <div class="bcg-last-posts">
+                <section id="last-posts">
+                    <h2>Les derniers récits de voyage qui vont vous inspirer</h2>
+                    <div class="posts-container">
+                        {% for post in lastPosts %}
+                            <div class="post-container">
+                                <div class="profile-post-detail-container">
+                                    <figure class="user-profile-pic-sm-circle">
+                                        <img src="{{ asset('uploads/'~ post.user.profilePicture)}}">
+                                    </figure>
+                                    <div>
+                                        <p>{{ post.user }}</p>
+                                        <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <h3>« {{ post.title }} »</h3>
+                                    <div class="img-content-container">
+                                        <figure class="post-figure">
+                                            <img src="{{ asset('uploads/'~ post.image)}}">
+                                        </figure>
+                                        <div>
+                                            <p class="post-place-name">
+                                                <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
+                                            </p>
+                                            <p class="post-place-address"><i class="fa-solid fa-map-pin"></i> {{ post.place.address}}</p>
+                                            <p class="post-content-text">« {{ post.content }} »</p>
+                                        </div>
+                                    </div>
+                                    <div class="show-post-comments">
+                                        {% if  post.commentaries|length > 1 %}
+                                            <p><i class="fa-regular fa-comments"></i>&nbsp;{{ post.commentaries|length }} réponses </p>
+                                        {% else %}
+                                            <p><i class="fa-regular fa-comments"></i>&nbsp;{{ post.commentaries|length }} réponse </p>
+                                        {% endif %}
+                                        <p>
+                                            <a href="{{ path('show_post', {'id' : post.id} )}}"><i class="fa-solid fa-arrow-right-long"></i>&nbsp;Voir le post</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
 
         <!-- =========================== USER SECTION : LAST POSTS =========================== -->
 
