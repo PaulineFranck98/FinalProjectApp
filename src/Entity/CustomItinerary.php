@@ -52,10 +52,17 @@ class CustomItinerary
     #[ORM\Column(nullable: true)]
     private ?bool $isPublic = null;
 
+    /**
+     * @var Collection<int, CustomItineraryPlaceCity>
+     */
+    #[ORM\OneToMany(targetEntity: CustomItineraryPlaceCity::class, mappedBy: 'customItinerary')]
+    private Collection $customItineraryPlaceCities;
+
     public function __construct()
     {
         $this->place = new ArrayCollection();
         $this->cities = new ArrayCollection();
+        $this->customItineraryPlaceCities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -191,6 +198,36 @@ class CustomItinerary
     public function setIsPublic(?bool $isPublic): static
     {
         $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CustomItineraryPlaceCity>
+     */
+    public function getCustomItineraryPlaceCities(): Collection
+    {
+        return $this->customItineraryPlaceCities;
+    }
+
+    public function addCustomItineraryPlaceCity(CustomItineraryPlaceCity $customItineraryPlaceCity): static
+    {
+        if (!$this->customItineraryPlaceCities->contains($customItineraryPlaceCity)) {
+            $this->customItineraryPlaceCities->add($customItineraryPlaceCity);
+            $customItineraryPlaceCity->setCustomItinerary($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomItineraryPlaceCity(CustomItineraryPlaceCity $customItineraryPlaceCity): static
+    {
+        if ($this->customItineraryPlaceCities->removeElement($customItineraryPlaceCity)) {
+            // set the owning side to null (unless already changed)
+            if ($customItineraryPlaceCity->getCustomItinerary() === $this) {
+                $customItineraryPlaceCity->setCustomItinerary(null);
+            }
+        }
 
         return $this;
     }

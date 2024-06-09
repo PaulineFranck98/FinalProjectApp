@@ -33,12 +33,19 @@ class City
     #[ORM\OneToMany(targetEntity: Place::class, mappedBy: 'city')]
     private Collection $places;
 
+    /**
+     * @var Collection<int, CustomItineraryPlaceCity>
+     */
+    #[ORM\OneToMany(targetEntity: CustomItineraryPlaceCity::class, mappedBy: 'city')]
+    private Collection $customItineraryPlaceCities;
+
 
 
     public function __construct()
     {
         $this->customItineraries = new ArrayCollection();
         $this->places = new ArrayCollection();
+        $this->customItineraryPlaceCities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,5 +138,35 @@ class City
 
     public function __toString(){
         return $this->getCityName() ?: '';
+    }
+
+    /**
+     * @return Collection<int, CustomItineraryPlaceCity>
+     */
+    public function getCustomItineraryPlaceCities(): Collection
+    {
+        return $this->customItineraryPlaceCities;
+    }
+
+    public function addCustomItineraryPlaceCity(CustomItineraryPlaceCity $customItineraryPlaceCity): static
+    {
+        if (!$this->customItineraryPlaceCities->contains($customItineraryPlaceCity)) {
+            $this->customItineraryPlaceCities->add($customItineraryPlaceCity);
+            $customItineraryPlaceCity->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomItineraryPlaceCity(CustomItineraryPlaceCity $customItineraryPlaceCity): static
+    {
+        if ($this->customItineraryPlaceCities->removeElement($customItineraryPlaceCity)) {
+            // set the owning side to null (unless already changed)
+            if ($customItineraryPlaceCity->getCity() === $this) {
+                $customItineraryPlaceCity->setCity(null);
+            }
+        }
+
+        return $this;
     }
 }
