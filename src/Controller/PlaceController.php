@@ -14,6 +14,8 @@ use App\Repository\PlaceRepository;
 use App\Repository\ThemeRepository;
 use App\Repository\CompanionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
+use App\Repository\CustomItineraryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -278,15 +280,22 @@ class PlaceController extends AbstractController
 
     #[Route('/place/{id}', name: 'show_place')]
     // retrieve the 'place' corresponding to the id thanks to paramconverter tool
-    public function show(Place $place, PlaceRepository $placeRepository, $id) : Response {
+    // public function show(Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security, $id, $userId, $placeId) : Response {
+    public function show(Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security) : Response {
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
+       $userId = $this->getUser()->getId();
+    //    $placeId = $placeRepository->findBy($id);
+    //    $userId = $user->getId();
+        $count = $itineraryRepository->countItinerariesByPlaceAndUser($place->getId(), $userId); 
         
-        $averageRating = $placeRepository->getAverageRating($id);
+        
+        $averageRating = $placeRepository->getAverageRating($place->getId());
         
         // dd($averageRating);
         return $this->render('place/show.html.twig', [
             'place' => $place,
-            'averageRating' => $averageRating
+            'averageRating' => $averageRating,
+            'count' => $count
         ]);
     }
 
