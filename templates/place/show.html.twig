@@ -47,6 +47,13 @@
                     </p> #}
                     <p class="description-place"><b>Description :</b> {{ place.description }}</p>
                 </div>
+                {% if count > 0 %}
+                   <p>Ajouter à un itinéraire</p>
+                   {{ form_start(itineraryPlaceCity)}}
+                   {{ form_row(itineraryPlaceCity.customItinerary)}}
+                   {{ form_row(itineraryPlaceCity.valider)}}
+                   {{form_end(itineraryPlaceCity)}}
+                {% endif %}
             </div>
             <div class="wrapper-container-place">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">

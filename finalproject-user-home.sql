@@ -84,14 +84,15 @@ CREATE TABLE IF NOT EXISTS `custom_itinerary` (
   CONSTRAINT `FK_B5184F5062789708` FOREIGN KEY (`arrival_id`) REFERENCES `city` (`id`),
   CONSTRAINT `FK_B5184F507704ED06` FOREIGN KEY (`departure_id`) REFERENCES `city` (`id`),
   CONSTRAINT `FK_B5184F50A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table finalprojectapp.custom_itinerary : ~4 rows (environ)
+-- Listage des données de la table finalprojectapp.custom_itinerary : ~5 rows (environ)
 INSERT INTO `custom_itinerary` (`id`, `user_id`, `name`, `creation_date`, `departure_id`, `arrival_id`, `duration`, `is_public`) VALUES
 	(1, 1, 'Idée itinéraire', '2024-06-06 14:56:31', 4, 3, 3, 0),
 	(4, 1, 'Mon itinéraire', '2024-06-06 14:56:44', 4, 6, 6, 1),
 	(5, 1, 'super itinéraire', '2024-06-06 14:57:03', 6, 4, 5, 1),
-	(6, 1, 'Mon séjour', '2024-06-06 14:55:14', 3, 4, 4, 1);
+	(6, 1, 'Mon séjour', '2024-06-06 14:55:14', 3, 4, 4, 1),
+	(7, 1, 'Nouvel itinéraire', '2024-06-09 10:56:40', 6, 4, 3, 0);
 
 -- Listage de la structure de table finalprojectapp. custom_itinerary_city
 CREATE TABLE IF NOT EXISTS `custom_itinerary_city` (
@@ -104,18 +105,19 @@ CREATE TABLE IF NOT EXISTS `custom_itinerary_city` (
   CONSTRAINT `FK_9D5DBA8BAC62AF` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table finalprojectapp.custom_itinerary_city : ~8 rows (environ)
+-- Listage des données de la table finalprojectapp.custom_itinerary_city : ~11 rows (environ)
 INSERT INTO `custom_itinerary_city` (`custom_itinerary_id`, `city_id`) VALUES
 	(1, 5),
 	(1, 6),
 	(4, 3),
 	(4, 5),
-	(4, 7),
 	(5, 3),
 	(5, 5),
-	(5, 7),
+	(5, 6),
+	(6, 5),
 	(6, 6),
-	(6, 7);
+	(7, 3),
+	(7, 5);
 
 -- Listage de la structure de table finalprojectapp. custom_itinerary_place
 CREATE TABLE IF NOT EXISTS `custom_itinerary_place` (
@@ -129,6 +131,25 @@ CREATE TABLE IF NOT EXISTS `custom_itinerary_place` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table finalprojectapp.custom_itinerary_place : ~0 rows (environ)
+
+-- Listage de la structure de table finalprojectapp. custom_itinerary_place_city
+CREATE TABLE IF NOT EXISTS `custom_itinerary_place_city` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `place_id` int DEFAULT NULL,
+  `city_id` int DEFAULT NULL,
+  `custom_itinerary_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_1AA43B03DA6A219` (`place_id`),
+  KEY `IDX_1AA43B038BAC62AF` (`city_id`),
+  KEY `IDX_1AA43B036E7020A9` (`custom_itinerary_id`),
+  CONSTRAINT `FK_1AA43B036E7020A9` FOREIGN KEY (`custom_itinerary_id`) REFERENCES `custom_itinerary` (`id`),
+  CONSTRAINT `FK_1AA43B038BAC62AF` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`),
+  CONSTRAINT `FK_1AA43B03DA6A219` FOREIGN KEY (`place_id`) REFERENCES `place` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table finalprojectapp.custom_itinerary_place_city : ~1 rows (environ)
+INSERT INTO `custom_itinerary_place_city` (`id`, `place_id`, `city_id`, `custom_itinerary_id`) VALUES
+	(1, 9, 5, 1);
 
 -- Listage de la structure de table finalprojectapp. image
 CREATE TABLE IF NOT EXISTS `image` (

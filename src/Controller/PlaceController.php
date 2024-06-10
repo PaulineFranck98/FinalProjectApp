@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\City;
+use App\Entity\CustomItineraryPlaceCity;
 use App\Entity\Image;
 use App\Entity\Place;
 use App\Form\CityType;
+use App\Form\CustomItineraryPlaceCityType;
 use App\Form\PlaceType;
 use App\Service\PictureService;
 use App\Repository\CityRepository;
@@ -281,21 +283,39 @@ class PlaceController extends AbstractController
     #[Route('/place/{id}', name: 'show_place')]
     // retrieve the 'place' corresponding to the id thanks to paramconverter tool
     // public function show(Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security, $id, $userId, $placeId) : Response {
-    public function show(Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security) : Response {
+    public function show(Request $request, Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security,EntityManagerInterface $entityManager) : Response {
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
-       $userId = $this->getUser()->getId();
-    //    $placeId = $placeRepository->findBy($id);
-    //    $userId = $user->getId();
+        $userId = $this->getUser()->getId();
+
         $count = $itineraryRepository->countItinerariesByPlaceAndUser($place->getId(), $userId); 
         
-        
         $averageRating = $placeRepository->getAverageRating($place->getId());
+
+        // $availableItineraries = $itineraryRepository->findItinerariesByPlaceAndUser($place->getId(), $userId);
+
+        $itineraryPlaceCity = new CustomItineraryPlaceCity();
+
+        $form = $this->createForm(CustomItineraryPlaceCityType::class, $itineraryPlaceCity);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $itineraryPlaceCity->setPlace($place);
+            $itineraryPlaceCity->setCity($place->getCity());
+            $entityManager->persist($itineraryPlaceCity);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('show_place', ['id' => $place->getId()]);
+
+        }
         
         // dd($averageRating);
         return $this->render('place/show.html.twig', [
             'place' => $place,
             'averageRating' => $averageRating,
-            'count' => $count
+            'count' => $count,
+            'itineraryPlaceCity' => $form
         ]);
     }
 
