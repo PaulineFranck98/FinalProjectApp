@@ -1964,14 +1964,21 @@ button#custom_itinerary_valider{
     left:0;
     padding:4%;
     transition: var(--transition-500);
-    background: #edecec;
+    background: #f7f7f7;
     border-radius: 0 0 0.5rem 0.5rem;
 
 }
 
 #add-place-itinerary{
-    z-index:1;
-    position: absolute;
+    z-index: 1;
+    position: relative;
+    padding: 0.2rem;
+    border: none;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 0.9em;
+    cursor: pointer;
+
 }
 
 #add-place-itinerary-form.hidden-form{
@@ -1993,7 +2000,7 @@ button#custom_itinerary_valider{
   .show-place-infos{
     width:50%;
     position:relative;
-    background: #edecec;
+    background: #f7f7f7;
     height: fit-content;
     padding: 2%;
     border-radius: var(--sm-border-radius);
@@ -2037,7 +2044,8 @@ button#custom_itinerary_valider{
     text-align: justify;
     position: relative;
     z-index:1;
-    background: #edecec;
+    background: #f7f7f7;
+    padding-bottom:1rem;
     /* background-color: white; */
  
 }

@@ -3,6 +3,16 @@
 {% block title %}Détail de l'itinéraire personnalisé{% endblock %}
 
 {% block body %}
+{# {{ dump(itinerary.customItineraryPlaceCities)}} #}
+
+{# {% for itinerary in itinerary.customItineraryPlaceCities %}
+    {{itinerary.place}}
+{% endfor %} #}
+
+{% for city in itinerary.cities %}
+   {{cityPlacesCount}}, {{ city.cityName}}
+{% endfor %}
+{{ dump(arrivalPlacesCount)}}
 <main class="top">
     <section id="show-itinerary">
         {# {{ itinerary.name}} #}
@@ -32,6 +42,8 @@
             <p class=" bold">Villes qui composent votre itinéraire<p>
             <div class="inter-cities">
                 {% for city in itineraryDatas.cities %}
+                    
+
                     <p class="title">
                         <i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;
                         <b><a href="{{ path('show_city', {'id': city.cityId}) }}">{{city.cityName}}</a></b>

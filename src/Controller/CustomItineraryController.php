@@ -133,11 +133,16 @@ class CustomItineraryController extends AbstractController
             'departurePlacesCount' => $departurePlacesCount,
             'arrivalPlacesCount' => $arrivalPlacesCount,
         ];
+
+        $cityPlacesCount = $placeRepository->countPlacesByCityId($city->getId());
         //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
         return $this->render('custom_itinerary/show.html.twig', [
             'itinerary' => $itinerary,
             'itineraryData' => json_encode($itineraryData),
             'itineraryDatas' => $itineraryData,
+            'cityPlacesCount' => $cityPlacesCount,
+            'departurePlacesCount' => $departurePlacesCount,
+            'arrivalPlacesCount' => $arrivalPlacesCount,
         ]);
 
     }
