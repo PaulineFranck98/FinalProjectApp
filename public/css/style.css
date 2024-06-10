@@ -1952,6 +1952,35 @@ button#custom_itinerary_valider{
 
 /* ------ end swiper ------------- */
 
+
+/* .visible-form{
+    transform: translateY(0%);
+} */
+
+#add-place-itinerary-form{
+    position: absolute;
+    z-index:0;
+    width:100%;
+    left:0;
+    padding:4%;
+    transition: var(--transition-500);
+    background: #edecec;
+    border-radius: 0 0 0.5rem 0.5rem;
+
+}
+
+#add-place-itinerary{
+    z-index:1;
+    position: absolute;
+}
+
+#add-place-itinerary-form.hidden-form{
+    /* display: none; */
+    transform : translateY(-100%);  
+    transition: var(--transition-500);
+}
+
+
   .show-place{
     width: 65%;
     margin: 3% auto;
@@ -1963,7 +1992,8 @@ button#custom_itinerary_valider{
 
   .show-place-infos{
     width:50%;
-    background: #a5a5a526;
+    position:relative;
+    background: #edecec;
     height: fit-content;
     padding: 2%;
     border-radius: var(--sm-border-radius);
@@ -2002,8 +2032,14 @@ button#custom_itinerary_valider{
     white-space: pre;
 }
 
+
 .description-place{
     text-align: justify;
+    position: relative;
+    z-index:1;
+    background: #edecec;
+    /* background-color: white; */
+ 
 }
 /* ----------------------END SHOW PLACE---------------------- */
 
