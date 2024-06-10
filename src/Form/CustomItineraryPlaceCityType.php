@@ -21,6 +21,7 @@ class CustomItineraryPlaceCityType extends AbstractType
      
             ->add('customItinerary', EntityType::class, [
                 'class' => CustomItinerary::class,
+                'label' => 'A quel itinéraire souhaitez-vous ajouter ce lieu?',
                 'choice_label' => 'name',
             ])
 
