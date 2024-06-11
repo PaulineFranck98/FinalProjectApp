@@ -28,18 +28,18 @@ class PostType extends AbstractType
     {
         // A form is composed of fields, each of which are built with the help of a field type
 
-        // Je définis le type de chaque champ pour spécifier le type de donnée attendu
-        $builder
-            // TextType rend un champ de texte de saisie basique : le type de donnée attendu est une chaîne de caractères
-            ->add('title', TextType::class, [
-                // Je définis le label du champ 'title' qui sera visible par l'utilisateur
-                'label' => 'Titre',
-            ])
-            // TextareaType rend un élément HTML textarea : le type de donnée attendu est un contenu textuel volumineux
-            ->add('content', TextareaType::class, [
-                // Je définis le label du champ 'content' qui sera visible par l'utilisateur
-                'label' => 'Contenu',
-            ])
+// Je définis le type de chaque champ pour spécifier le type de donnée attendu
+$builder
+    // TextType rend un champ de texte de saisie basique : le type de donnée attendu est une chaîne de caractères
+    ->add('title', TextType::class, [
+        // Je définis le label du champ 'title' qui sera visible par l'utilisateur
+        'label' => 'Titre',
+    ])
+    // TextareaType rend un élément HTML textarea : le type de donnée attendu est un contenu textuel volumineux
+    ->add('content', TextareaType::class, [
+        // Je définis le label du champ 'content' qui sera visible par l'utilisateur
+        'label' => 'Contenu',
+    ])
 
             // FileType renders an input file field
             ->add('image', FileType::class, [
