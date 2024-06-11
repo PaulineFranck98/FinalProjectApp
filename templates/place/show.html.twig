@@ -47,7 +47,7 @@
                     </p> #}
                     <p class="description-place"><b>Description :</b> {{ place.description }}</p>
                 </div>
-                {% if count > 0 %}
+                {% if itinerariesByPlace|length > 0 %}
                    <button id="add-place-itinerary">Ajouter ce lieu à un itinéraire</button>
                    <div id="add-place-itinerary-form" class="hidden-form">
                         {{ form_start(itineraryPlaceCity)}}

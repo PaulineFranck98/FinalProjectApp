@@ -37,7 +37,30 @@ class CustomItineraryRepository extends ServiceEntityRepository
            ;
        }
 
-       public function countItinerariesByPlaceAndUser($placeId, $userId)
+    //    public function countItinerariesByPlaceAndUser($placeId, $userId)
+    //    {
+        
+    //     $entityManager = $this->getEntityManager();
+    //      // Récupérer directement l'ID de la ville depuis l'entité Place
+    //      $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
+
+    //      return $this->createQueryBuilder('ci')
+    //         ->select('COUNT(DISTINCT ci.id) AS count')
+    //         // les villes intermédiaires
+    //         ->join('ci.cities', 'cic') 
+    //         ->where('ci.user = :userId')
+    //         // je vérifie si la ville est dans dans departure, arrival, ou la collection citites
+    //         ->andWhere(':cityId = ci.departure OR :cityId = ci.arrival OR cic.id = :cityId') // Vérifier si la ville est dans les départ, arrivée ou villes intermédiaires
+    //         ->setParameter('userId', $userId)
+    //         ->setParameter('cityId', $cityId)
+    //         ->getQuery()
+    //         ->getSingleScalarResult()
+    //         ;
+            
+    //    }
+
+
+       public function getItinerariesByPlaceAndUser($placeId, $userId)
        {
         
         $entityManager = $this->getEntityManager();
@@ -45,7 +68,6 @@ class CustomItineraryRepository extends ServiceEntityRepository
          $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
 
          return $this->createQueryBuilder('ci')
-            ->select('COUNT(DISTINCT ci.id) AS count')
             // les villes intermédiaires
             ->join('ci.cities', 'cic') 
             ->where('ci.user = :userId')
@@ -54,9 +76,8 @@ class CustomItineraryRepository extends ServiceEntityRepository
             ->setParameter('userId', $userId)
             ->setParameter('cityId', $cityId)
             ->getQuery()
-            ->getSingleScalarResult()
-            ;
-            
+            ->getResult()
+            ;    
        }
 
 

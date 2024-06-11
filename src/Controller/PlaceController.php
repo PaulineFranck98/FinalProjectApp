@@ -287,7 +287,8 @@ class PlaceController extends AbstractController
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
         $userId = $this->getUser()->getId();
 
-        $count = $itineraryRepository->countItinerariesByPlaceAndUser($place->getId(), $userId); 
+        // $count = $itineraryRepository->countItinerariesByPlaceAndUser($place->getId(), $userId); 
+        $itinerariesByPlace = $itineraryRepository->getItinerariesByPlaceAndUser($place->getId(), $userId); 
         
         $averageRating = $placeRepository->getAverageRating($place->getId());
 
@@ -314,8 +315,9 @@ class PlaceController extends AbstractController
         return $this->render('place/show.html.twig', [
             'place' => $place,
             'averageRating' => $averageRating,
-            'count' => $count,
-            'itineraryPlaceCity' => $form
+            // 'count' => $count,
+            'itineraryPlaceCity' => $form,
+            'itinerariesByPlace' => $itinerariesByPlace
         ]);
     }
 
