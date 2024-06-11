@@ -48,6 +48,32 @@
                     <p class="description-place"><b>Description :</b> {{ place.description }}</p>
                 </div>
                 {% if itinerariesByPlace|length > 0 %}
+
+                {# {% set placeAlreadyAdded = false %}
+                {% for itinerary in itinerariesByPlace %}
+                    {% if itinerary == selectedItinerary %}
+                        {% for customItineraryPlaceCity in itinerary.customItineraryPlaceCities %}
+                            {% if customItineraryPlaceCity.place.id == place.id %}
+                                {% set placeAlreadyAdded = true %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if not placeAlreadyAdded %} #}
+                      <button id="add-place-itinerary">Ajouter ce lieu à un itinéraire</button>
+                   <div id="add-place-itinerary-form" class="hidden-form">
+                        {{ form_start(itineraryPlaceCity)}}
+                        {{ form_row(itineraryPlaceCity.customItinerary)}}
+                        {{ form_row(itineraryPlaceCity.valider)}}
+                        {{form_end(itineraryPlaceCity)}}
+                    </div>
+                {# {% endif %} #}
+            {% endif %}
+
+
+{# 
+                {% if itinerariesByPlace|length > 0 %}
                    <button id="add-place-itinerary">Ajouter ce lieu à un itinéraire</button>
                    <div id="add-place-itinerary-form" class="hidden-form">
                         {{ form_start(itineraryPlaceCity)}}
@@ -55,7 +81,7 @@
                         {{ form_row(itineraryPlaceCity.valider)}}
                         {{form_end(itineraryPlaceCity)}}
                     </div>
-                {% endif %}
+                {% endif %} #}
             </div>
             <div class="wrapper-container-place">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">

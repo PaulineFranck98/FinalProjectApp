@@ -16,13 +16,14 @@ class CustomItineraryPlaceCityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // $itineraries = $options['itineraries'];
+        $itineraries = $options['itineraries'];
         $builder
      
             ->add('customItinerary', EntityType::class, [
                 'class' => CustomItinerary::class,
                 'label' => 'A quel itinéraire souhaitez-vous ajouter ce lieu?',
                 'choice_label' => 'name',
+                'choices' => $itineraries,
             ])
 
             ->add('valider', SubmitType::class)
@@ -33,7 +34,7 @@ class CustomItineraryPlaceCityType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CustomItineraryPlaceCity::class,
-            // 'itineraries' => [],
+            'itineraries' => [],
         ]);
     }
 }

@@ -289,6 +289,7 @@ class PlaceController extends AbstractController
 
         // $count = $itineraryRepository->countItinerariesByPlaceAndUser($place->getId(), $userId); 
         $itinerariesByPlace = $itineraryRepository->getItinerariesByPlaceAndUser($place->getId(), $userId); 
+        $itineraries = $itineraryRepository->getItinerariesByPlaceAndUser($place->getId(), $userId); 
         
         $averageRating = $placeRepository->getAverageRating($place->getId());
 
@@ -296,18 +297,29 @@ class PlaceController extends AbstractController
 
         $itineraryPlaceCity = new CustomItineraryPlaceCity();
 
-        $form = $this->createForm(CustomItineraryPlaceCityType::class, $itineraryPlaceCity);
+        $form = $this->createForm(CustomItineraryPlaceCityType::class, null, ['itineraries' => $itineraries]);
 
         $form->handleRequest($request);
 
+        $selectedItinerary = null;
+
         if($form->isSubmitted() && $form->isValid())
         {
+            $customItinerary = $form->get('customItinerary')->getData();
             $itineraryPlaceCity->setPlace($place);
             $itineraryPlaceCity->setCity($place->getCity());
+            $itineraryPlaceCity->setCustomItinerary($customItinerary);
+
+
             $entityManager->persist($itineraryPlaceCity);
             $entityManager->flush();
 
+            $itinerariesByPlace = $itineraryRepository->getItinerariesByPlaceAndUser($place->getId(), $userId);
+            
+            $selectedItinerary = $customItinerary;
+
             return $this->redirectToRoute('show_place', ['id' => $place->getId()]);
+
 
         }
         
@@ -317,7 +329,8 @@ class PlaceController extends AbstractController
             'averageRating' => $averageRating,
             // 'count' => $count,
             'itineraryPlaceCity' => $form,
-            'itinerariesByPlace' => $itinerariesByPlace
+            'itinerariesByPlace' => $itinerariesByPlace,
+            'selectedItinerary' => $selectedItinerary,
         ]);
     }
 
