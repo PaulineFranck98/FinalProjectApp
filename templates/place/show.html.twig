@@ -21,14 +21,14 @@
                 <div>
                     {# <p><b>Localisation</b></p> #}
                     <p>
-                        <b>Adresse</b><br><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{ place.address }}, {{ place.zipcode }} {{ place.city }}
+                        <b>Adresse</b><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{ place.address }}, {{ place.zipcode }} {{ place.city }}
                     </p>
                 </div>
                 <div>
                     {# <p><b>Contact</b></p> #}
                     {# <p class="openinghrs"><b>Horaires d'ouverture :</b><br>{{ place.openingHours }}</p> #}
                     <p>
-                        <b>Site web</b><br><i class="fa-solid fa-at"></i>&nbsp;
+                        <b>Site web</b>
                         {% if place.website %}
                             <a href="{{ place.website }}" target="_blank">{{ place.website }}</a>
                         {% else %}
@@ -38,7 +38,7 @@
                 </div>
                 <div>       
                     <p>
-                        <b>Téléphone</b><br><i class="fa-solid fa-phone"></i>&nbsp;{{ place.phoneNumber }}
+                        <i class="fa-solid fa-phone"></i>&nbsp;<b>Téléphone</b>{{ place.phoneNumber }}
                     </p>
                 </div>
                 <div>
