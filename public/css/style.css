@@ -2004,6 +2004,10 @@ button#custom_itinerary_valider{
     max-height: 50vh;
   }
 
+  .show-place b{
+    font-weight:600;
+  }
+
   .show-place-infos{
     width:50%;
     position:relative;

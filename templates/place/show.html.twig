@@ -15,24 +15,31 @@
         <section class="show-place">
             <div class="show-place-infos">
                 <div>
-                    <p><strong>{{ place.name }}</strong>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</p>
+                    <p>
+                        <strong>{{ place.name }}</strong>{{ averageRating|round(1, 'floor')|stars|raw }}({{ place.ratings|length}})</p>
                 </div>
                 <div>
                     {# <p><b>Localisation</b></p> #}
-                    <p><b><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;Adresse :</b> {{ place.address }}, {{ place.zipcode }} {{ place.city }}</p>
+                    <p>
+                        <b>Adresse</b><br><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{ place.address }}, {{ place.zipcode }} {{ place.city }}
+                    </p>
                 </div>
                 <div>
                     {# <p><b>Contact</b></p> #}
                     {# <p class="openinghrs"><b>Horaires d'ouverture :</b><br>{{ place.openingHours }}</p> #}
                     <p>
-                        <b><i class="fa-solid fa-at"></i>&nbsp;Site web : </b>
+                        <b>Site web</b><br><i class="fa-solid fa-at"></i>&nbsp;
                         {% if place.website %}
                             <a href="{{ place.website }}" target="_blank">{{ place.website }}</a>
                         {% else %}
-                            Pas de site web
+                            Ce lieu ne possède pas de site web.
                         {% endif %}
-                    </p>        
-                    <p><b><i class="fa-solid fa-phone"></i>&nbsp;Téléphone : </b>{{ place.phoneNumber }}</p>
+                    </p>
+                </div>
+                <div>       
+                    <p>
+                        <b>Téléphone</b><br><i class="fa-solid fa-phone"></i>&nbsp;{{ place.phoneNumber }}
+                    </p>
                 </div>
                 <div>
                     {# <h2>Catégorie</h2>
@@ -47,7 +54,7 @@
                             {{ companion }}
                         {% endfor %}
                     </p> #}
-                    <p class="description-place"><b>Description : </b> {{ place.description }}</p>
+                    <p class="description-place"><b>Description</b><br>{{ place.description }}</p>
                 </div>
                 {% if itinerariesByPlace|length > 0 %}
 
