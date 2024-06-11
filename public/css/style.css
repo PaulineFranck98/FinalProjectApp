@@ -2,8 +2,11 @@
 
 :root{
     --red-color: #fb463a;
+    --light-red: #ff6a60;
     --dark-grey: #393939;
     --light-green: #D6F1CA;
+    --dark-green: #89cd69;
+    --light-purple: #847ad0;
     --white-color: #ffffff;
     --white-background : #ffffffcf;
     --white-background-light : #ffffffb5;
