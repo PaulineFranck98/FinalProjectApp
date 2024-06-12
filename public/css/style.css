@@ -524,7 +524,12 @@ nav span{
     margin-bottom:1.5rem;
     font-weight: 600;
     font-size: 1.9em;
+    color: var(--dark-grey);
     /* color:white; */
+}
+
+.bcg-last-itineraries h2 i{
+    color:var(--light-red);
 }
 
 /* #last-itineraries h2{
