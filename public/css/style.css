@@ -472,22 +472,27 @@ nav span{
 
 
 #last-itineraries{
-    padding:1rem 3rem;
+    padding:2rem 3rem;
     border-radius: 1rem 1rem 0 0;
+    background: linear-gradient(#dafcc54d, #dafcc54d), url(/img-source/blur-bcg-original.webp);
+    border-radius:var(--lg-border-radius);
+    height:90%;
+    width:75%;
     /* height:80vh; */
 }
 
 #last-posts{
     border-radius: 0 0 1rem 1rem;
+    height:100%;
 }
 
 #last-itineraries,
 #last-posts{
     width:75%;
-    height:100%;
+    /* height:100%; */
     margin: 0 auto;
     /* border-radius: 1rem 1rem 0 0 ; */
-    background-color: var(--white-background);
+    /* background-color: var(--white-background); */
 }
 
 #last-posts h2,
@@ -499,15 +504,19 @@ nav span{
     /* color:white; */
 }
 
+#last-itineraries h2{
+    color:white;
+}
+
 
 #last-itineraries h3{
     font-weight: 500;
     margin-bottom: 0.6rem;
 }
 
-.itinerary-container{
+/* .itinerary-container{
    height:80%;
-}
+} */
 
 .itinerary-text-content h4 span{
     color: var(--red-color);
@@ -533,7 +542,7 @@ nav span{
     display: flex;
     height: 13%;
     width: 100%;
-    padding: 0 0.2rem;
+    /* padding: 0 0.2rem; */
     position: relative;
     justify-content: space-between;
 }
@@ -541,8 +550,8 @@ nav span{
 .itinerary-stork{
     position: absolute;
     right: 4%;
-    top: -9%;
-    width: 43%;
+    top: 0;
+    width: 90%;
 }
 
 .user-profile-pic-itinerary{
@@ -558,22 +567,26 @@ nav span{
 .username-pic-itinerary{
     display: flex;
     background-color: var(--white-color);
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 0.7rem;
-    width: 48%;
+    width: 58%;
+    gap:15px;
     align-items: center;
-    justify-content: space-between; 
+    font-size:1.1em;
+
+    /* justify-content: space-between;  */
 }
 
-.username-pic-itinerary{
+/* .username-pic-itinerary{
     font-size:1.1em;
-}
+} */
 
 .itinerary-stork-div{
     background-color: var(--white-color);
     padding: 0.5rem 1rem;
     border-radius: 0.7rem;
-    width: 48%;
+    width: 38%;
+    position:relative;
 }
 
 #how-it-works{
@@ -1004,12 +1017,12 @@ nav span{
     margin:0 auto;
     background-color: #f7f7f7;
     border-radius: var(--lg-border-radius);
-    padding:1rem;
+    padding:1rem 1rem 2rem;
 }
 #choice .swiper{
     /* margin-top:1rem; */
     width:100%;
-    min-height:300px;
+    /* min-height:300px; */
     padding:1rem !important;
 
 }
@@ -1717,6 +1730,15 @@ button#custom_itinerary_valider{
     height:45vh;
 }
 
+.itineraries-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    height:45vh;
+    width:85%;
+    margin:auto;
+}
+
 
 .img-content-container{
     display: grid;
@@ -1775,6 +1797,15 @@ button#custom_itinerary_valider{
     /* background: #efefef99; */
     background: #c5c5c554;
     backdrop-filter: blur(10px);
+    height:100%;
+    padding: 1rem;
+    border-radius: var(--lg-border-radius);
+}
+
+.itinerary-container{
+    /* background: #efefef99; */
+    background: #ffffff80;
+    /* backdrop-filter: blur(10px); */
     height:100%;
     padding: 1rem;
     border-radius: var(--lg-border-radius);
