@@ -26,7 +26,7 @@
                         </div>
                     </h1>
                     
-                    <a href="#choice" class="home-btn discover" aria-label="Découvrir : accéder au formulaire permettant de sélectionner un thème et un compagnon de voyage">Découvrir</a>
+                    <a href="#choice" class="home-btn" aria-label="Découvrir : accéder au formulaire permettant de sélectionner un thème et un compagnon de voyage">Découvrir</a>
 
                     <p><i class="fa-solid fa-chevron-down"></i></p>
                 </div>
@@ -40,7 +40,7 @@
             </figure> #}
             <section id="choice">
                 <form method="POST" action="{{ path('app_search')}}" enctype="application/x-www-form-urlencoded">
-                    <h2>Choisissez le <span>thème</span> de votre séjour</h2>
+                    <h2 class="choice-theme-title">Choisissez le <span>thème</span> de votre séjour</h2>
                     <div class="choice-theme-container">
                         {% for theme in themes %}
                             <input type="radio"
@@ -56,7 +56,7 @@
                         {% endfor %}
                     </div>
                     <div class="choice-companion-container">
-                        <h2>Vous voyagez ... </h2>
+                        <h2>Avec <span>qui</span> souhaitez-vous voyager?</h2>
                         <div class="swiper">
                             <div class="swiper-wrapper" space-between="10">
                                 {% for companion in companions %}
@@ -85,8 +85,8 @@
         {% if app.user %}
             
             <div class="bcg-last-itineraries">
+                <h2>Découvrez les derniers itinéraires publiés</h2>
                 <section id="last-itineraries">
-                    <h2>Découvrez les derniers itinéraires publiés</h2>
                     <div class="itineraries-container">
                         {% for itinerary in lastItineraries %}
                             <div class=" itinerary-container">

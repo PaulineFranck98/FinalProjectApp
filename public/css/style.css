@@ -261,14 +261,19 @@ nav span{
 
 .go-btn,
 .home-btn{
-    padding: 0.5rem 1rem;
-    border-radius: var(--sm-border-radius);
+    /* padding: 0.6rem 1rem;
+    border-radius: var(--lg-border-radius); */
     background-color: var(--red-color);
     color: var(--white-color);
     font-family: 'Poppins', sans-serif;
     border: none;
     font-size:1.6rem;
     transition: var(--transition-500);
+}
+
+.go-btn{
+    padding: 0.6rem 1rem;
+    border-radius: var(--lg-border-radius);
 }
 
 .go-btn:hover,
@@ -280,6 +285,8 @@ nav span{
 .home-btn{
     margin-top:3rem;
     margin-bottom:4rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--sm-border-radius);
 }
 
 /* .home-btn:hover{
@@ -303,8 +310,11 @@ nav span{
 }
 
 #choice{
-    height:100vh;
-    padding: 1rem 3rem;
+    height:92vh;
+    padding: 1.5rem 3rem;
+    background-color: #e4e4e461;
+    margin-bottom:3rem;
+    border-radius:var(--lg-border-radius);
 }
 
 .bcg-choice{
@@ -436,22 +446,24 @@ nav span{
 } */
 
 
-#choice h2:first-of-type {
+
+.choice-theme-title{
     font-size: 2.1rem;
     font-weight: 600;
-    margin: 1.2rem 0 1rem 0;
 }
 
-#choice h2:first-of-type span{
+.choice-companion-container span,
+.choice-theme-title span{
     color: #fb463a;
-
 }
+
+
 
 .bcg-last-posts,
 .bcg-last-itineraries{
     width:100vw;
     height:80vh;
-    background-color: #c5c5c554;
+    background-color: #e4e4e461;
     /* padding:2rem 0 ; */
 
 }
@@ -474,28 +486,31 @@ nav span{
 #last-itineraries{
     padding:2rem 3rem;
     border-radius: 1rem 1rem 0 0;
-    background: linear-gradient(#dafcc54d, #dafcc54d), url(/img-source/blur-bcg-original.webp);
+    /* background: linear-gradient(#dafcc54d, #dafcc54d), url(/img-source/blur-bcg-original.webp); */
+    /* background: linear-gradient(#ddf7908c, #ddf7908c), url(/img-source/blur-bcg-original.webp); */
+    background: linear-gradient(#eafcb5b0, #eafcb5b0), url(/img-source/blur-bcg-original.webp);
     border-radius:var(--lg-border-radius);
-    height:90%;
-    width:75%;
+    height:70%;
+    width:70%;
     /* height:80vh; */
 }
 
 #last-posts{
     border-radius: 0 0 1rem 1rem;
     height:100%;
+    width:75%;
 }
 
 #last-itineraries,
 #last-posts{
-    width:75%;
+    /* width:75%; */
     /* height:100%; */
     margin: 0 auto;
     /* border-radius: 1rem 1rem 0 0 ; */
     /* background-color: var(--white-background); */
 }
 
-#last-posts h2,
+/* #last-posts h2, */
 #last-itineraries h2{
     text-align: center;
     margin-bottom:4rem;
@@ -504,9 +519,17 @@ nav span{
     /* color:white; */
 }
 
-#last-itineraries h2{
-    color:white;
+.bcg-last-itineraries h2{
+    text-align: center;
+    margin-bottom:1.5rem;
+    font-weight: 600;
+    font-size: 1.9em;
+    /* color:white; */
 }
+
+/* #last-itineraries h2{
+    color:white;
+} */
 
 
 #last-itineraries h3{
@@ -1014,11 +1037,21 @@ nav span{
 
 .choice-companion-container {
     width:65%;
-    margin:0 auto;
-    background-color: #f7f7f7;
+    margin: 1rem auto 0;
+    /* background-color: #f7f7f7; */
+    background-color: #ffffff;
     border-radius: var(--lg-border-radius);
     padding:1rem 1rem 2rem;
 }
+
+.choice-companion-container h2{
+    font-size:1.9em;
+    font-weight:600;
+}
+
+
+
+
 #choice .swiper{
     /* margin-top:1rem; */
     width:100%;
@@ -1735,7 +1768,7 @@ button#custom_itinerary_valider{
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     height:45vh;
-    width:85%;
+    width:90%;
     margin:auto;
 }
 
@@ -1807,6 +1840,7 @@ button#custom_itinerary_valider{
     background: #ffffff80;
     /* backdrop-filter: blur(10px); */
     height:100%;
+    min-width:345px;
     padding: 1rem;
     border-radius: var(--lg-border-radius);
 }
