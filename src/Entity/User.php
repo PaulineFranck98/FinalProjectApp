@@ -62,6 +62,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: CustomItinerary::class, mappedBy: 'user')]
     private Collection $customItineraries;
 
+    /**
+     * @var Collection<int, Favorite>
+     */
+    #[ORM\OneToMany(targetEntity: Favorite::class, mappedBy: 'user')]
+    private Collection $favorites;
+
     public function __construct()
     {
         $this->commentaries = new ArrayCollection();
@@ -69,6 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->favorite = new ArrayCollection();
         $this->ratings = new ArrayCollection();
         $this->customItineraries = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -340,5 +347,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Favorite>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
     }
 }

@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\City;
+use App\Entity\Favorite;
 use App\Entity\CustomItinerary;
 use App\Form\CustomItineraryType;
 use App\Repository\CityRepository;
+use App\Repository\PlaceRepository;
+use App\Repository\FavoriteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CustomItineraryRepository;
-use App\Repository\PlaceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CustomItineraryController extends AbstractController
 {
+
     // Ajouter la vérification 'isPublic'
     #[Route('/itinerary', name: 'app_itinerary')]
     public function index(CustomItineraryRepository $itineraryRepository): Response
@@ -147,15 +150,35 @@ class CustomItineraryController extends AbstractController
 
     }
 
-    
+    #[Route('/favorite/{id}', name: 'toggle_favorite', methods:['POST'])]
+    public function toggleFavorite(EntityManagerInterface $entityManager, FavoriteRepository $favoriteRepository, CustomItinerary $itinerary) : JsonResponse
+    {
+        
 
-        // public function addPlaceItinerary(EntityManagerInterface $entityManager, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository)
-        // {
-        //     $customItinerary = $itineraryRepository->
-            
-        // }
+        $favorite = $favoriteRepository->findOneBy([
+            'customItinerary' => $itinerary,
+            'user' => $this->getUser()
+        ]);
 
-        // gérer ajout lieux
+        if($favorite){
+            $entityManager->remove($favorite);
+            // $entityManager->flush();
+            return new JsonResponse(['status' => 'removed']);
+        } else{
+            $favorite = new Favorite();
+            $favorite->setUser($this->getUser());
+            $favorite->setCustomItinerary($itinerary);
+            $entityManager->persist($favorite);
+            // $entityManager->flush();
+            return new JsonResponse(['status' => 'added']);
+
+        }
+        $entityManager->flush();
+
+
+
+       
+    }
 
 
 }

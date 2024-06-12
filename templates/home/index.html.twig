@@ -124,6 +124,12 @@
                                             {% endif %}
                                         </p>
                                     </div>
+                                    
+                                    <button class="favorite-button" data-itinerary="{{ itinerary.id }}" >
+                                       
+                                            Ajouter aux favoris
+                                        
+                                    </button>
                                 </div>
                             </div>
                         {% endfor %}
@@ -397,6 +403,7 @@
     </main>
 
     {% block javascripts %}
+        <script src="{{ asset('js/favorite.js') }}"></script>
         <script>
 
             document.addEventListener('DOMContentLoaded', function() {
@@ -462,6 +469,7 @@
                         });
             });
         </script>
+       
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     {% endblock %}
 {% endblock %}
