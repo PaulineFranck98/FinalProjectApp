@@ -58,7 +58,7 @@
                     <div class="choice-companion-container">
                         <h2>Avec <span>qui</span> souhaitez-vous voyager?</h2>
                         <div class="swiper">
-                            <div class="swiper-wrapper" space-between="10">
+                            <div class="swiper-wrapper">
                                 {% for companion in companions %}
                                     <div class="swiper-slide">
                                         <input type="radio"
@@ -75,9 +75,12 @@
                                 {% endfor %}
                             </div>
                         </div>
-                    <button type="submit" class="go-btn">C'est parti !</button>
                     </div>
+                    <button type="submit" class="go-btn">Go !</button>
                 </form>
+            {# <figure class="curly-arrow">
+                <img src="img-source/curly-arrow.png" alt="Icône représentant une cigogne en vol">
+            </figure> #}
             </section>
         </div>
 
@@ -125,7 +128,7 @@
                                         </p>
                                     </div>
                                     
-                                    <button class="favorite-button" data-itinerary="{{ itinerary.id }}" >
+                                    <button class="favorite-button" data-itinerary="{{ itinerary.id }}" data-favorite="{{ favorite.id ?? '' }}">
                                        
                                             Ajouter aux favoris
                                         
@@ -401,9 +404,10 @@
         </div>
        
     </main>
+    {% endblock %}
 
     {% block javascripts %}
-        <script src="{{ asset('js/favorite.js') }}"></script>
+        
         <script>
 
             document.addEventListener('DOMContentLoaded', function() {
@@ -471,5 +475,6 @@
         </script>
        
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="{{ asset('js/favorite.js') }}"></script>
     {% endblock %}
-{% endblock %}
+

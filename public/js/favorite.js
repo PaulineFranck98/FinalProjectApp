@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     buttons.forEach(function(button) {
         button.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             console.log(this.dataset.itinerary)
             const itineraryId = this.dataset.itinerary;
+            const buttonElement = this;
             fetch(`/favorite/${itineraryId}`, {
                 method: 'POST',
                 headers: {
@@ -17,12 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }).then(response => response.json()).then(data => {
                 if (data.status === 'added'){
-                    this.textContent = 'Retiré des favoris';
+                    buttonElement.textContent = 'Retiré des favoris';
                 } else {
-                    this.textContent = 'Ajouté aux favoris';
+                    buttonElement.textContent = 'Ajouté aux favoris';
                 }
             });
         });
     });
 
 });
+
+

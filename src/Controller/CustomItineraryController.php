@@ -154,6 +154,7 @@ class CustomItineraryController extends AbstractController
     public function toggleFavorite(EntityManagerInterface $entityManager, FavoriteRepository $favoriteRepository, CustomItinerary $itinerary) : JsonResponse
     {
         
+        // dd($itinerary);
 
         $favorite = $favoriteRepository->findOneBy([
             'customItinerary' => $itinerary,
@@ -162,23 +163,49 @@ class CustomItineraryController extends AbstractController
 
         if($favorite){
             $entityManager->remove($favorite);
-            // $entityManager->flush();
+            $entityManager->flush();
             return new JsonResponse(['status' => 'removed']);
         } else{
             $favorite = new Favorite();
             $favorite->setUser($this->getUser());
             $favorite->setCustomItinerary($itinerary);
             $entityManager->persist($favorite);
-            // $entityManager->flush();
+            $entityManager->flush();
             return new JsonResponse(['status' => 'added']);
-
         }
-        $entityManager->flush();
 
-
-
-       
     }
+
+    // #[Route('/favorite/{id}', name: 'add_favorite', methods: ['POST'])]
+    // public function addFavorite(EntityManagerInterface $entityManager, CustomItinerary $customItinerary): JsonResponse
+    // {
+    //     $user = $this->getUser();
+
+    //     $favorite = new Favorite();
+    //     $favorite->setUser($user);
+    //     $favorite->setCustomItinerary($customItinerary);
+
+    //     $entityManager->persist($favorite);
+    //     $entityManager->flush();
+
+    //     return $this->json(['success' => true]);
+    // }
+
+    // #[Route('/favorite/{id}', name: 'remove_favorite', methods: ['DELETE'])]
+    // public function removeFavorite(EntityManagerInterface $entityManager, Favorite $favorite): JsonResponse
+    // {
+    //     $user = $this->getUser();
+
+    //     if ($favorite->getUser() !== $user) {
+    //         throw $this->createAccessDeniedException();
+    //     }
+
+    //     $entityManager->remove($favorite);
+    //     $entityManager->flush();
+
+    //     return $this->json(['success' => true]);
+    // }
+
 
 
 }
