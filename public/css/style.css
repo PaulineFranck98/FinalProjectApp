@@ -310,8 +310,8 @@ nav span{
 }
 
 #choice{
-    height:92vh;
-    padding: 1.5rem 3rem;
+    height:95vh;
+    padding: 1.5rem 3rem 2rem;
     background-color: #e4e4e461;
     margin-bottom:3rem;
     border-radius:var(--lg-border-radius);
@@ -469,7 +469,7 @@ nav span{
 }
 
 .bcg-last-itineraries{
-    padding-top:2rem;
+    padding-top:5rem;
 }
 .bcg-last-posts{
     padding-bottom :2rem;
@@ -484,8 +484,8 @@ nav span{
 
 
 #last-itineraries{
-    padding: 2rem 0;
-    background: linear-gradient(#ffffff4d, #ffffff4d), url(/img-source/bcg-how-it-works.webp);
+    padding: 3rem 0;
+    background: linear-gradient(#ffffff2e, #ffffff2e), url(/img-source/bcg-how-it-works.webp);
     border-radius: var(--sm-border-radius);
     height: 70%;
     background-size: cover;
@@ -1780,7 +1780,7 @@ button#custom_itinerary_valider{
     background: white;
     width: 80%;
     margin: auto;
-    padding: 2rem 4rem 3rem;
+    padding: 2rem 4rem 5rem;
 }
 
 .last-posts-container{
