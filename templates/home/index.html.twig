@@ -85,7 +85,8 @@
         {% if app.user %}
             
             <div class="bcg-last-itineraries">
-                <h2><i class="fa-solid fa-map-location-dot"></i>&nbsp;Découvrez les derniers itinéraires publiés</h2>
+                <div class="last-itineraries-container">
+                <h2><i class="fa-solid fa-map-location-dot"></i>&nbsp;&nbsp;Découvrez les derniers itinéraires publiés</h2>
                 <section id="last-itineraries">
                     <div class="itineraries-container">
                         {% for itinerary in lastItineraries %}
@@ -129,24 +130,26 @@
                     </div>
                 </section>
             </div>
+            </div>
             <div class="bcg-last-posts">
+                <div class="last-posts-container">
                 <section id="last-posts">
-                    <h2>Les derniers récits de voyage qui vont vous inspirer</h2>
-                    <div class="posts-container">
+                    <h2><i class="fa-regular fa-paper-plane"></i>&nbsp;&nbsp;Les derniers récits de voyage qui vont vous inspirer</h2>
+                    <div class="posts-home-container">
                         {% for post in lastPosts %}
-                            <div class="post-container">
-                                <div class="profile-post-detail-container">
-                                    <figure class="user-profile-pic-sm-circle">
+                            <div class="post-home-container">
+                                {# <div class="profile-post-detail-container">
+                                    <figure class="user-profile-pic-sm-circle-home">
                                         <img src="{{ asset('uploads/'~ post.user.profilePicture)}}">
                                     </figure>
                                     <div>
-                                        <p>{{ post.user }}</p>
-                                        <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+                                        <p>{{ post.user }}, le {{post.creationDate | date("d/m/Y à H:i")}}</p>
+                                        <small>{{post.creationDate | date("d/m/Y, H:i")}}</small> 
                                     </div>
-                                </div>
-                                <div class="post-content">
+                                </div>#}
+                                <div class="post-content-home">
                                     <h3>« {{ post.title }} »</h3>
-                                    <div class="img-content-container">
+                                    <div class="img-content-container-home">
                                         <figure class="post-figure">
                                             <img src="{{ asset('uploads/'~ post.image)}}">
                                         </figure>
@@ -155,7 +158,7 @@
                                                 <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
                                             </p>
                                             <p class="post-place-address"><i class="fa-solid fa-map-pin"></i> {{ post.place.address}}</p>
-                                            <p class="post-content-text">« {{ post.content }} »</p>
+                                            <p class="post-content-text-home">« {{ post.content }} »</p>
                                         </div>
                                     </div>
                                     <div class="show-post-comments">
@@ -173,6 +176,7 @@
                         {% endfor %}
                     </div>
                 </section>
+                </div>
             </div>
 
         <!-- =========================== USER SECTION : LAST POSTS =========================== -->

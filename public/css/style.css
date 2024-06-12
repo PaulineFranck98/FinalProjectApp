@@ -484,39 +484,32 @@ nav span{
 
 
 #last-itineraries{
-    padding:2rem 3rem;
-    border-radius: 1rem 1rem 0 0;
-    /* background: linear-gradient(#dafcc54d, #dafcc54d), url(/img-source/blur-bcg-original.webp); */
-    /* background: linear-gradient(#ddf7908c, #ddf7908c), url(/img-source/blur-bcg-original.webp); */
-    background: linear-gradient(#eafcb5b0, #eafcb5b0), url(/img-source/blur-bcg-original.webp);
-    border-radius:var(--lg-border-radius);
-    height:70%;
-    width:70%;
-    /* height:80vh; */
+    padding: 2rem 0;
+    background: linear-gradient(#ffffff4d, #ffffff4d), url(/img-source/bcg-how-it-works.webp);
+    border-radius: var(--sm-border-radius);
+    height: 70%;
+    background-size: cover;
+    background-attachment: fixed;
+    
+
 }
 
 #last-posts{
-    border-radius: 0 0 1rem 1rem;
     height:100%;
-    width:75%;
 }
 
 #last-itineraries,
 #last-posts{
-    /* width:75%; */
-    /* height:100%; */
     margin: 0 auto;
-    /* border-radius: 1rem 1rem 0 0 ; */
-    /* background-color: var(--white-background); */
+
 }
 
-/* #last-posts h2, */
-#last-itineraries h2{
+#last-posts h2{
     text-align: center;
     margin-bottom:4rem;
     font-weight: 600;
     font-size: 1.9em;
-    /* color:white; */
+  
 }
 
 .bcg-last-itineraries h2{
@@ -525,16 +518,14 @@ nav span{
     font-weight: 600;
     font-size: 1.9em;
     color: var(--dark-grey);
-    /* color:white; */
+    
 }
 
+#last-posts h2 i,
 .bcg-last-itineraries h2 i{
     color:var(--light-red);
 }
 
-/* #last-itineraries h2{
-    color:white;
-} */
 
 
 #last-itineraries h3{
@@ -542,9 +533,6 @@ nav span{
     margin-bottom: 0.6rem;
 }
 
-/* .itinerary-container{
-   height:80%;
-} */
 
 .itinerary-text-content h4 span{
     color: var(--red-color);
@@ -554,13 +542,13 @@ nav span{
 #last-itineraries .itinerary-text-content{
     background: #ffffff;
     padding: 0.7rem 1rem;
-    border-radius: var(--lg-border-radius);
+    border-radius: var(--sm-border-radius);
     height:83%;
     margin-top:3%;
 }
 
 .itinerary-text-content h4{
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: 600;
     margin-bottom:3%;
     
@@ -579,7 +567,7 @@ nav span{
     position: absolute;
     right: 4%;
     top: 0;
-    width: 90%;
+    /* width: 90%; */
 }
 
 .user-profile-pic-itinerary{
@@ -596,9 +584,9 @@ nav span{
     display: flex;
     background-color: var(--white-color);
     padding: 0.4rem 0.8rem;
-    border-radius: 0.7rem;
+    border-radius: var(--sm-border-radius);
     width: 58%;
-    gap:15px;
+    gap:4px;
     align-items: center;
     font-size:1.1em;
 
@@ -612,7 +600,7 @@ nav span{
 .itinerary-stork-div{
     background-color: var(--white-color);
     padding: 0.5rem 1rem;
-    border-radius: 0.7rem;
+    border-radius: var(--sm-border-radius);
     width: 38%;
     position:relative;
 }
@@ -1728,6 +1716,17 @@ button#custom_itinerary_valider{
     height:100% !important;
 }
 
+.user-profile-pic-sm-circle-home{
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.user-profile-pic-sm-circle-home img{
+    height:100%;
+}
+
 .profile-post-detail-container{
     display: flex;
     gap: 10px;
@@ -1773,8 +1772,55 @@ button#custom_itinerary_valider{
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     height:45vh;
-    width:90%;
+    width:75%;
     margin:auto;
+}
+
+.last-itineraries-container{
+    background: white;
+    width: 80%;
+    margin: auto;
+    padding: 2rem 4rem 3rem;
+}
+
+.last-posts-container{
+    width: 80%;
+    background: white;
+    margin: auto;
+    padding: 2rem 4rem 3rem;
+}
+
+.post-home-container{
+    height:100%;
+}
+
+
+.post-content-text-home{
+    height: 80%;
+    margin-top:0.5rem;
+    background: #ffffff;
+    padding: 0.7rem 1rem;
+    border-radius: var(--sm-border-radius);
+    line-height:1.7em;
+}
+
+.posts-home-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width:91%;
+    margin:auto;
+    /* height:45vh; */
+
+}
+
+.img-content-container-home{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 15px;
+    /* height: 65%; */
+    min-height:300px;
+    margin-bottom:0.5rem;
 }
 
 
@@ -1791,7 +1837,7 @@ button#custom_itinerary_valider{
 }
 
 .post-figure img{
-    border-radius: var(--lg-border-radius);
+    border-radius: var(--sm-border-radius);
 
 }
 
@@ -1815,8 +1861,15 @@ button#custom_itinerary_valider{
     line-height:1.7em;
 }
 
+
 .post-content{
     height:100%;
+}
+
+.post-content-home{
+    background: #c5c5c554;
+    padding: 0.5rem 1rem; 
+    border-radius: var(--sm-border-radius);
 }
 
 .post-content h3{
@@ -1826,6 +1879,15 @@ button#custom_itinerary_valider{
     padding: 0.5rem;
     border-radius: var(--sm-border-radius);
     font-size: 1.1em;
+}
+
+.post-content-home h3{
+    margin: 0.6rem 0;
+    font-weight:500;
+    background-color: var(--white-color);
+    padding: 0.5rem;
+    border-radius: var(--sm-border-radius);
+    font-size: 1em;
 
 }
 
@@ -1842,11 +1904,12 @@ button#custom_itinerary_valider{
 
 .itinerary-container{
     /* background: #efefef99; */
-    background: #ffffff80;
-    /* backdrop-filter: blur(10px); */
+    background: #ffffff9e;
+    backdrop-filter: blur(20px);
     height:100%;
-    min-width:345px;
-    padding: 1rem;
+    min-width:325px;
+    max-width:340px;
+    padding: 1rem 1rem 0.5rem;
     border-radius: var(--lg-border-radius);
 }
 
