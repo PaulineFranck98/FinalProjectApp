@@ -285,7 +285,7 @@ class PlaceController extends AbstractController
     // public function show(Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security, $id, $userId, $placeId) : Response {
     public function show(Request $request, Place $place, PlaceRepository $placeRepository, CustomItineraryRepository $itineraryRepository, Security $security,EntityManagerInterface $entityManager) : Response {
         //I then pass the retrieved 'place' object to the 'show.html.twig' view in the 'place' folder
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser();
 
         // $count = $itineraryRepository->countItinerariesByPlaceAndUser($place->getId(), $userId); 
         $itinerariesByPlace = $itineraryRepository->getItinerariesByPlaceAndUser($place->getId(), $userId); 
@@ -313,6 +313,7 @@ class PlaceController extends AbstractController
 
             $entityManager->persist($itineraryPlaceCity);
             $entityManager->flush();
+            $this->addFlash('success', 'Le lieu a bien été ajouté à votre itinéraire');
 
             $itinerariesByPlace = $itineraryRepository->getItinerariesByPlaceAndUser($place->getId(), $userId);
             

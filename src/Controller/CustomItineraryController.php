@@ -6,6 +6,7 @@ use App\Entity\City;
 use App\Entity\Favorite;
 use App\Entity\CustomItinerary;
 use App\Form\CustomItineraryType;
+use App\Form\SearchItineraryType;
 use App\Repository\CityRepository;
 use App\Repository\PlaceRepository;
 use App\Repository\FavoriteRepository;
@@ -151,13 +152,6 @@ class CustomItineraryController extends AbstractController
     }
 
 
-    public function showPublicItineraries(){
-        
-    }
-
-
-
-
     #[Route('/favorite/{id}', name: 'toggle_favorite', methods:['POST'])]
     public function toggleFavorite(EntityManagerInterface $entityManager, FavoriteRepository $favoriteRepository, CustomItinerary $itinerary) : JsonResponse
     {
@@ -172,6 +166,7 @@ class CustomItineraryController extends AbstractController
         if($favorite){
             $entityManager->remove($favorite);
             $entityManager->flush();
+
             return new JsonResponse(['status' => 'removed']);
         } else{
             $favorite = new Favorite();
@@ -179,9 +174,34 @@ class CustomItineraryController extends AbstractController
             $favorite->setCustomItinerary($itinerary);
             $entityManager->persist($favorite);
             $entityManager->flush();
+            
             return new JsonResponse(['status' => 'added']);
         }
 
+    }
+
+    #[Route('/itineraries', name: 'search_itinerary')]    
+    public function searchItineraries(Request $request, CustomItineraryRepository $itineraryRepository): Response
+    {
+        $form = $this->createForm(SearchItineraryType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()&& $form->isValid()){
+            $data = $form->getData();
+            $departure = $data['departure'];
+            $arrival = $data['arrival'];
+            $duration = $data['duration'];
+
+            $itineraries = $itineraryRepository->search($departure, $arrival, $duration);
+        } else {
+            $itineraries = $itineraryRepository->findBy([],['isPublic' => true]);
+            // $itineraries = $itineraryRepository->findAll();
+        }
+
+        return $this->render('custom_itinerary/search.html.twig', [
+            'searchForm' => $form,
+            'itineraries' => $itineraries,
+        ]);
     }
 
     

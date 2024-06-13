@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<main class="top">
+
+
+     <div class="bcg-last-itineraries">
+                <div class="last-itineraries-container">
+                <h2><i class="fa-solid fa-map-location-dot"></i>&nbsp;&nbsp;Découvrez les itinéraires des autres utilisateurs</h2>
+                <div>
+                    {{ form_start(searchForm)}}
+                    {{ form_row(searchForm.departure)}}
+                    {{ form_row(searchForm.arrival)}}
+                    {{ form_row(searchForm.duration)}}
+                    {{ form_row(searchForm.valider)}}
+                    {{ form_end(searchForm)}}
+                </div>
+                <section id="last-itineraries">
+                    {% if itineraries %}
+                    <div class="search-itineraries-container">
+                            
+                       
+                        {% for itinerary in itineraries %}
+                            <div class=" search-itinerary-container">
+                                {# <h3><i class="fa-solid fa-map-pin"></i>Découvrez l'itinéraire de </h3> #}
+                                <div class="profile-itinerary-detail-container">
+                                    <div class="username-pic-itinerary">
+                                        <figure class="user-profile-pic-itinerary">
+                                            <img src="{{ asset('uploads/'~ itinerary.user.profilePicture)}}">
+                                        </figure>
+                                        <p>{{ itinerary.user }} &#129384;</p>
+                                    </div>
+                                    <div class="itinerary-stork-div">
+                                        <figure class="itinerary-stork">
+                                            <img src="img-source/itinerary-stork-detail.webp" alt="Icône représentant une cigogne en vol">
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="itinerary-text-content">
+                                    <h4>{{ itinerary.departure.cityName}}&nbsp;<i class="fa-solid fa-arrow-right-long"></i>&nbsp;<span>{{ itinerary.arrival.cityName}}</span></h4>
+                                    {# <p>{{ itinerary.arrival.cityName}}</p> #}
+                                    <div>    
+                                        <p>Durée estimée : {{ itinerary.duration}}
+                                            {% if  itinerary.duration > 1 %}
+                                                jours
+                                            {% else %}
+                                                jour
+                                            {% endif %}
+                                        </p>
+                                        <p>{{ 2 + itinerary.cities|length}} 
+                                            {% if  itinerary.cities|length > 1 %}
+                                                villes traversées
+                                            {% else %}
+                                                ville traversée
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    {% set isFavorite = false %}
+                                    {% for favorite in app.user.favorites %}
+                                        {% if favorite.customItinerary == itinerary %}
+                                            {% set isFavorite = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <button class="favorite-button" data-itinerary="{{ itinerary.id }}" data-favorite="{{ favorite.id ?? '' }}">
+                                        
+                                        {% if isFavorite %}
+                                            <i class="fa-solid fa-heart"></i>
+                                        {% else %}
+                                            <i class="fa-regular fa-heart"></i>
+                                        {% endif %}
+                                        
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                         {% else %}
+                            <p class="not-found-itinerary">Pas d'itinéraire trouvé, créez le votre : <a href="{{ path('new_itinerary') }}">Créer mon itinéraire</a></p>
+                        {% endif %}
+                </section>
+            </div>
+            </div>
+
+  
+</main>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/favorite.js') }}"></script>
+{% endblock %}

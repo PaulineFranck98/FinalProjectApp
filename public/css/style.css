@@ -462,7 +462,7 @@ nav span{
 
 .bcg-last-posts,
 .bcg-last-itineraries{
-    width:100vw;
+    /* width:100vw; */
     height:80vh;
     background-color: #e4e4e461;
     /* padding:2rem 0 ; */
@@ -1774,11 +1774,21 @@ button#custom_itinerary_valider{
     height: 45vh;
 }
 
+
 .itineraries-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     height:45vh;
+    width:75%;
+    margin:auto;
+}
+
+.search-itineraries-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    /* height:45vh; */
     width:75%;
     margin:auto;
 }
@@ -1919,6 +1929,70 @@ button#custom_itinerary_valider{
     padding: 1rem 1rem 0.5rem;
     border-radius: var(--lg-border-radius);
 }
+
+.search-itinerary-container{
+    /* background: #efefef99; */
+    background: #ffffff9e;
+    backdrop-filter: blur(20px);
+    height:100%;
+    min-height:400px;
+    min-width:325px;
+    max-width:340px;
+    padding: 1rem 1rem 0.5rem;
+    border-radius: var(--lg-border-radius);
+}
+
+
+form[name="search_itinerary"]{
+    display: flex;
+    /* justify-content: center; */
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+
+form[name="search_itinerary"] label{
+    padding-right:0.5rem;
+    font-size: 1.1em;
+}
+
+form[name="search_itinerary"] select,
+form[name="search_itinerary"] input{
+    font-family: 'Poppins';
+    /* font-weight: 600; */
+    padding:0.1rem;
+    font-size: 1em;
+}
+
+form[name="search_itinerary"] input{
+    width:70%;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+}
+
+.favorite-button i {
+    font-size: 1.4em;
+    color: var(--light-red);
+}
+
+.not-found-itinerary{
+    text-align: center;
+    background: white;
+    width: 50%;
+    padding: 1.5rem;
+    margin: auto;
+    border-radius: var(--sm-border-radius);
+}
+
+#search_itinerary_valider{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 1em;
+    padding: 0.1rem 0.8rem;
+}
+
 
 .background-post{
     position:absolute;

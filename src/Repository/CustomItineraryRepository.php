@@ -37,6 +37,29 @@ class CustomItineraryRepository extends ServiceEntityRepository
            ;
        }
 
+
+       public function search($departure = null, $arrival = null, $duration = null)
+       {
+        $queryBuilder = $this->createQueryBuilder('ci');
+        $queryBuilder->where('ci.isPublic = :is_public')
+            ->setParameter('is_public', true);
+        if($departure){
+            $queryBuilder->andWhere('ci.departure = :departure')
+                ->setParameter('departure', $departure);
+        }
+        if($arrival){
+            $queryBuilder->andWhere('ci.arrival = :arrival')
+                ->setParameter('arrival', $arrival);
+        }
+        if($duration){
+            $queryBuilder->andWhere('ci.duration = :duration')
+                ->setParameter('duration', $duration);
+        }
+
+        return $queryBuilder->getQuery()->getResult();
+
+       }
+
     //    public function countItinerariesByPlaceAndUser($placeId, $userId)
     //    {
         
@@ -60,87 +83,31 @@ class CustomItineraryRepository extends ServiceEntityRepository
     //    }
 
 
-       public function getItinerariesByPlaceAndUser($placeId, $userId)
-       {
+       
+
+
+    public function getItinerariesByPlaceAndUser($placeId, $userId)
+    {
+    
+    $entityManager = $this->getEntityManager();
+        // Récupérer directement l'ID de la ville depuis l'entité Place
+        $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
+
+        return $this->createQueryBuilder('ci')
         
-        $entityManager = $this->getEntityManager();
-         // Récupérer directement l'ID de la ville depuis l'entité Place
-         $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
-
-         return $this->createQueryBuilder('ci')
-            
-            // les villes intermédiaires
-            ->join('ci.cities', 'cic') 
-            ->where('ci.user = :userId')
-            // je vérifie si la ville est dans dans departure, arrival, ou la collection citites
-            ->andWhere(':cityId = ci.departure OR :cityId = ci.arrival OR cic.id = :cityId') // Vérifier si la ville est dans les départ, arrivée ou villes intermédiaires
-            ->setParameter('userId', $userId)
-            ->setParameter('cityId', $cityId)
-            ->getQuery()
-            ->getResult()
-            ;    
-       }
+        // les villes intermédiaires
+        ->join('ci.cities', 'cic') 
+        ->where('ci.user = :userId')
+        // je vérifie si la ville est dans dans departure, arrival, ou la collection citites
+        ->andWhere(':cityId = ci.departure OR :cityId = ci.arrival OR cic.id = :cityId') // Vérifier si la ville est dans les départ, arrivée ou villes intermédiaires
+        ->setParameter('userId', $userId)
+        ->setParameter('cityId', $cityId)
+        ->getQuery()
+        ->getResult()
+        ;    
+    }
 
 
-//     public function getItinerariesByPlaceAndUser($placeId, $userId)
-// {
-//     $entityManager = $this->getEntityManager();
-//     $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
-
-//     return $this->createQueryBuilder('ci')
-//         ->join('ci.cities', 'cic')
-//         ->leftJoin('ci.customItineraryPlaceCities', 'cipc') // Join with the CustomItineraryPlaceCity entity
-//         ->leftJoin('cipc.place', 'p') // Join with the Place entity through CustomItineraryPlaceCity
-//         ->where('ci.user = :userId')
-//         ->andWhere(':cityId = ci.departure OR :cityId = ci.arrival OR cic.id = :cityId')
-//         ->andWhere('p.id IS NULL OR p.id != :placeId') // Exclude itineraries that already contain the place
-//         ->setParameter('userId', $userId)
-//         ->setParameter('cityId', $cityId)
-//         ->setParameter('placeId', $placeId)
-//         ->getQuery()
-//         ->getResult()
-//     ;
-// }
-
-
-    // public function getItinerariesByPlaceAndUser($placeId, $userId)
-    // {
-    //     $entityManager = $this->getEntityManager();
-    //     $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
-    
-    //     return $this->createQueryBuilder('ci')
-    //         ->join('ci.cities', 'cic')
-    //         ->leftJoin('ci.places', 'p') // Join with the places collection
-    //         ->where('ci.user = :userId')
-    //         ->andWhere(':cityId = ci.departure OR :cityId = ci.arrival OR cic.id = :cityId')
-    //         ->andWhere('p.id IS NULL OR p.id != :placeId') // Exclude itineraries that already contain the place
-    //         ->setParameter('userId', $userId)
-    //         ->setParameter('cityId', $cityId)
-    //         ->setParameter('placeId', $placeId)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
-
-//     public function getItinerariesByPlaceAndUser($placeId, $userId)
-// {
-//     $entityManager = $this->getEntityManager();
-//     $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
-
-//     return $this->createQueryBuilder('ci')
-//         ->join('ci.cities', 'cic')
-//         ->leftJoin('ci.customItineraryPlaceCities', 'cipc') // Join with the CustomItineraryPlaceCity entity
-//         ->leftJoin('cipc.place', 'p') // Join with the Place entity through CustomItineraryPlaceCity
-//         ->where('ci.user = :userId')
-//         ->andWhere(':cityId = ci.departure OR :cityId = ci.arrival OR cic.id = :cityId')
-//         ->andWhere('p.id IS NULL OR p.id != :placeId') // Exclude itineraries that already contain the place
-//         ->setParameter('userId', $userId)
-//         ->setParameter('cityId', $cityId)
-//         ->setParameter('placeId', $placeId)
-//         ->getQuery()
-//         ->getResult()
-//     ;
-// }
 
     
 
@@ -153,22 +120,22 @@ class CustomItineraryRepository extends ServiceEntityRepository
 
 
 
-       public function findItinerariesByPlaceAndUser($placeId, $userId)
-        {
-            $entityManager = $this->getEntityManager();
-            $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
+    //    public function findItinerariesByPlaceAndUser($placeId, $userId)
+    //     {
+    //         $entityManager = $this->getEntityManager();
+    //         $cityId = $entityManager->getRepository(Place::class)->find($placeId)->getCity()->getId();
 
-            return $this->createQueryBuilder('ci')
-                ->select('ci')
-                ->leftJoin('ci.cities', 'cic')
-                // ->join('cic.id', 'c')
-                ->join('cic.places', 'p')
-                ->where('ci.user = :userId')
-                ->andWhere('p.id != :placeId OR cic.id IS NULL')
-                ->setParameter('userId', $userId)
-                ->setParameter('placeId', $placeId)
-                ->getQuery()
-                ->getResult();
-        }
+    //         return $this->createQueryBuilder('ci')
+    //             ->select('ci')
+    //             ->leftJoin('ci.cities', 'cic')
+    //             // ->join('cic.id', 'c')
+    //             ->join('cic.places', 'p')
+    //             ->where('ci.user = :userId')
+    //             ->andWhere('p.id != :placeId OR cic.id IS NULL')
+    //             ->setParameter('userId', $userId)
+    //             ->setParameter('placeId', $placeId)
+    //             ->getQuery()
+    //             ->getResult();
+    //     }
 
     }
