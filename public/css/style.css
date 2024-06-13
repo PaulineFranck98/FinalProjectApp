@@ -1771,7 +1771,7 @@ button#custom_itinerary_valider{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    height:45vh;
+    height: 45vh;
 }
 
 .itineraries-container{
