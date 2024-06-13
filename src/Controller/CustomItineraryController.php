@@ -150,6 +150,14 @@ class CustomItineraryController extends AbstractController
 
     }
 
+
+    public function showPublicItineraries(){
+        
+    }
+
+
+
+
     #[Route('/favorite/{id}', name: 'toggle_favorite', methods:['POST'])]
     public function toggleFavorite(EntityManagerInterface $entityManager, FavoriteRepository $favoriteRepository, CustomItinerary $itinerary) : JsonResponse
     {
@@ -176,36 +184,6 @@ class CustomItineraryController extends AbstractController
 
     }
 
-    // #[Route('/favorite/{id}', name: 'add_favorite', methods: ['POST'])]
-    // public function addFavorite(EntityManagerInterface $entityManager, CustomItinerary $customItinerary): JsonResponse
-    // {
-    //     $user = $this->getUser();
-
-    //     $favorite = new Favorite();
-    //     $favorite->setUser($user);
-    //     $favorite->setCustomItinerary($customItinerary);
-
-    //     $entityManager->persist($favorite);
-    //     $entityManager->flush();
-
-    //     return $this->json(['success' => true]);
-    // }
-
-    // #[Route('/favorite/{id}', name: 'remove_favorite', methods: ['DELETE'])]
-    // public function removeFavorite(EntityManagerInterface $entityManager, Favorite $favorite): JsonResponse
-    // {
-    //     $user = $this->getUser();
-
-    //     if ($favorite->getUser() !== $user) {
-    //         throw $this->createAccessDeniedException();
-    //     }
-
-    //     $entityManager->remove($favorite);
-    //     $entityManager->flush();
-
-    //     return $this->json(['success' => true]);
-    // }
-
-
+    
 
 }
