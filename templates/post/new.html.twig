@@ -1,31 +1,36 @@
 {% extends 'base.html.twig' %}
-
+{% block meta_description %}
+    Créer ou modifier un post en lien avec un lieu
+{% endblock %}
 {% block title %}
-    {% if edit %}
+    {% if app.request.attributes.get('_route') == 'edit_post' %}
         Editer le post
     {% else %}
-        Nouveau post
-        {% endif %}
+        Créer un post 
+    {% endif %}
 {% endblock %}
 
 {% block body %}
-<main>
-    <section>
-    <h1>Ajouter un post</h1>
+    <main>
+        <section class="general-form">
+            <div class="form-container">
+                {% if app.request.attributes.get('_route') == 'edit_post' %}
+                    <h1>Editer le post</h1>
+                {% else %}
+                    <h1>Créer un nouveau post</h1>
+                {% endif %}
+                
 
+                {{ form_start(formAddPost) }}
 
-    {{ form_start(formAddPost) }}
+                {{ form_row(formAddPost.title) }}
+                {{ form_row(formAddPost.content) }}
+                {{ form_row(formAddPost.image) }}
 
-    {{ form_row(formAddPost.title) }}
-    {{ form_row(formAddPost.content) }}
-    {{ form_row(formAddPost.image) }}
-
-    {{ form_row(formAddPost.valider) }}
-    
-    {{ form_end(formAddPost) }}
-    </section>
-
-    {# {% do formAddPost.place.setRendered %}  #}
-
-</main>
+                {{ form_row(formAddPost.valider) }}
+                
+                {{ form_end(formAddPost) }}
+            </div>
+        </section>
+    </main>
 {% endblock %}

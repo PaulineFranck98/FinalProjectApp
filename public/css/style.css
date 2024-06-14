@@ -492,8 +492,14 @@ nav span{
     background-size: cover;
     background-attachment: fixed;
     background-position-y: bottom;
-    
+    position: relative;
+}
 
+.see-all a{
+    position: absolute;
+    right: 2%;
+    bottom:1%;
+    color: white;
 }
 
 #last-posts{
@@ -585,10 +591,10 @@ nav span{
 .username-pic-itinerary{
     display: flex;
     background-color: var(--white-color);
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 1rem;
     border-radius: var(--sm-border-radius);
-    width: 58%;
-    gap:4px;
+    width: 74%;
+    gap:14px;
     align-items: center;
     font-size:1.1em;
 
@@ -601,9 +607,9 @@ nav span{
 
 .itinerary-stork-div{
     background-color: var(--white-color);
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
     border-radius: var(--sm-border-radius);
-    width: 38%;
+    width: 23%;
     position:relative;
 }
 
@@ -1970,10 +1976,11 @@ form[name="search_itinerary"] input{
 .favorite-button {
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 .favorite-button i {
-    font-size: 1.4em;
+    font-size: 1.8em;
     color: var(--light-red);
 }
 
@@ -2007,7 +2014,7 @@ form[name="search_itinerary"] input{
 
 /* ============================LOGIN FORM================================= */
 
-.login-form{
+.general-form{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2018,7 +2025,7 @@ form[name="search_itinerary"] input{
     background-position-y: 62%;
 }
 
-.login-form a {
+.general-form a {
     color: black;
 }
 

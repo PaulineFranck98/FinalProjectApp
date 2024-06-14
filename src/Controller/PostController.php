@@ -84,7 +84,7 @@ class PostController extends AbstractController
         }
 
 
-    #[Route('/post/new/{placeId}', name: 'new_post_place')]
+    #[Route('forum/post/new/{placeId}', name: 'new_post_place')]
     public function addPostByPlaceId(Post $post, Request $request, EntityManagerInterface $entityManager, PlaceRepository $placeRepository, $placeId, SluggerInterface $slugger): Response
     {
         $post = new Post();
@@ -144,7 +144,7 @@ class PostController extends AbstractController
             'formAddPost' => $form,
             'postId' => $post->getId(),
 
-            'placeSelect' => false
+            // 'placeSelect' => false
         ]);
     }
     
@@ -195,7 +195,7 @@ class PostController extends AbstractController
  
          return $this->render('post/new.html.twig', [
              'formAddPost' => $form,
-             'placeSelect' => false,
+            //  'placeSelect' => false,
              'edit' => $post->getId()
          ]);
         }
