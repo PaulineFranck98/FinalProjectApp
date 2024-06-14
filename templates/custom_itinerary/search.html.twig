@@ -33,9 +33,21 @@
                                         <p>{{ itinerary.user }} &#129384;</p>
                                     </div>
                                     <div class="itinerary-stork-div">
-                                        <figure class="itinerary-stork">
-                                            <img src="img-source/itinerary-stork-detail.webp" alt="Icône représentant une cigogne en vol">
-                                        </figure>
+                                        {% set isFavorite = false %}
+                                        {% for favorite in app.user.favorites %}
+                                            {% if favorite.customItinerary == itinerary %}
+                                                {% set isFavorite = true %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        <button class="favorite-button" data-itinerary="{{ itinerary.id }}" data-favorite="{{ favorite.id ?? '' }}">
+                                            
+                                            {% if isFavorite %}
+                                                <i class="fa-solid fa-heart"></i>
+                                            {% else %}
+                                                <i class="fa-regular fa-heart"></i>
+                                            {% endif %}
+                                            
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="itinerary-text-content">
@@ -57,21 +69,7 @@
                                             {% endif %}
                                         </p>
                                     </div>
-                                    {% set isFavorite = false %}
-                                    {% for favorite in app.user.favorites %}
-                                        {% if favorite.customItinerary == itinerary %}
-                                            {% set isFavorite = true %}
-                                        {% endif %}
-                                    {% endfor %}
-                                    <button class="favorite-button" data-itinerary="{{ itinerary.id }}" data-favorite="{{ favorite.id ?? '' }}">
-                                        
-                                        {% if isFavorite %}
-                                            <i class="fa-solid fa-heart"></i>
-                                        {% else %}
-                                            <i class="fa-regular fa-heart"></i>
-                                        {% endif %}
-                                        
-                                    </button>
+                                  
                                 </div>
                             </div>
                         {% endfor %}

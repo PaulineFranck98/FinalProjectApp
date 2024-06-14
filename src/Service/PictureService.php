@@ -12,12 +12,14 @@ class PictureService
     // Je définis une propriété $params
     private $params;
 
-    // je définis le constructeur de la classe avec en argument l'objet ParameterBagInterface que j'assigne à la propriété $params
+    // je définis le constructeur de la classe avec en argument :
+    // l'objet ParameterBagInterface que j'assigne à la propriété $params
     public function __construct(ParameterBagInterface $params)
     {
         $this->params = $params;
     }
-    // Je définis une méthode nommée add() avec en argument l'objet UploadedFile et un argument optionnel de type string, avec une valeur par défaut de chaîne vide
+    // Je définis une méthode nommée add() avec en premier argument l'objet UploadedFile 
+    // Deuxième argument optionnel de type string, avec une valeur par défaut de chaîne vide
     public function add(UploadedFile $picture, ?string $folder = '')
     {
         // Je génère un nouveau nom de fichier unique en utilisant md5(), uniqid() et rand()
@@ -57,14 +59,14 @@ class PictureService
 
         // Je vérifie si le chemin d'accès existe déjà en utilisant la méthode file_exists()
         if(!file_exists($path)){ 
-            // Si il n'existe pas, j'utilise la méthode mkdir() pour créer un nouveau répertoire avec les permissions associées
+            // J'utilise la méthode mkdir() pour créer un nouveau répertoire avec les permissions associées
             // 0755 : pour les permissions
             // $recursive = true --> si pas de parent, alors va tout créer : fait l'arborescence complète
             mkdir($path, 0755, true);
         }
 
-        // J'utilise la fonction imagewebp() pour enregistrer l'image dans le chemin d'accès spécifié au format webp
-        // J'utilise le nom de fichier unique généré 
+        // J'utilise la fonction imagewebp() pour enregistrer l'image dans le chemin d'accès
+        //  spécifié au format webp et j'utilise le nom de fichier unique généré 
         imagewebp($picture_source, $path . '/' .  $file);
 
         // Je déplace le fichier vers le chemin d'accès spécifié
@@ -75,14 +77,12 @@ class PictureService
 
     }
 
-    // Je définis une méthode nommée delete(), avec en argument le nom du fichier et un argument optionnel de type string avec une valeur par défaut de chaîne vide
+    // Je définis une méthode nommée delete(), avec en premier argument le nom du fichier
+    // Deuxième argument optionnel de type string avec une valeur par défaut de chaîne vide
     // On prend par défaut le file, le folder sera vide par défaut
     public function delete(string $file, ?string $folder = '')
     {   
-        // Je ne veux pas supprimer le fichier par défaut
-        // if($file !== 'default.webp'){
-
-        // J'initialise $success à false pour dire si ça a fonctionné ou non
+        // J'initialise $success à false pour dire préciser ça a fonctionné ou non
         $success = false;
         $path = $this->params->get('images_directory') . $folder;
 
@@ -98,7 +98,6 @@ class PictureService
         }
         // return true si le unlink a fonctionné 
         return $success;
-    // }
         
     } 
 }
