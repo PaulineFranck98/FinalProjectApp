@@ -60,6 +60,8 @@ nav{
     z-index: 10;
     padding: 0.3rem;
     top:0;
+    backdrop-filter: blur(15rem);
+    background-color: #faf7e838;
     transition: top 0.3s;
     transition-delay: 0.3s;
 }
@@ -76,17 +78,33 @@ nav a{
     /* text-decoration: none; */
     color: black;
     font-size: 1.4rem;
-    font-weight: 300;
-    text-transform: uppercase;
+    font-weight: 400;
+    /* text-transform: uppercase; */
 }
 
 nav span{
-    color: #a90126;
+    /* color: #a90126; */
+    color: #c24e46;
 }
 
 .top{
     padding-top:3rem;
 }
+
+#arrow-to-top{
+    position: fixed;
+    bottom: 1%;
+    right: 3%;
+    font-size: 3em;
+    color: var(--light-red);
+    transition: all 0.3s ease;
+}
+
+.hidden-arrow{
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 /* ---- apparition progressive -------- */
 
 /* Initial state */
@@ -607,7 +625,7 @@ nav span{
 
 .itinerary-stork-div{
     background-color: var(--white-color);
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.4rem;
     border-radius: var(--sm-border-radius);
     width: 23%;
     position:relative;
@@ -1815,6 +1833,7 @@ button#custom_itinerary_valider{
 
 .post-home-container{
     height:100%;
+    min-width:400px;
 }
 
 
@@ -1830,7 +1849,7 @@ button#custom_itinerary_valider{
 .posts-home-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 35px;
     width:91%;
     margin:auto;
     /* height:45vh; */
@@ -2032,20 +2051,21 @@ form[name="search_itinerary"] input{
 .form-container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     background-color: var(--white-background);
     border-radius: var(--lg-border-radius);
-    height:60%;
-    /* width:35%; */
+    /* height:60%; */
     width:30%;
     min-width:fit-content;
-    padding:1%;
+    padding:1.5% 1% 2%;
+    position: relative;
 }
 
-.form-container form{
+/* .form-container form{
     width:100%;
     margin: auto;
     padding:2%;
-}
+} */
 
 .form-container form label{
     display: block;
@@ -2055,7 +2075,8 @@ form[name="search_itinerary"] input{
     border-color:transparent;
     outline: none;
     width:100%;
-    padding: 2% 0;
+    padding: 2% ;
+    margin-bottom: 0.8rem;
     border-radius : 8px;
 }
 
@@ -2066,6 +2087,7 @@ form[name="search_itinerary"] input{
 .form-titles h1{
     font-size: 1.9em;
     font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
 .form-titles h2{
@@ -2082,6 +2104,17 @@ form[name="search_itinerary"] input{
 .form-container > div{
     width:80%;
     margin: 0 auto;
+}
+
+.form-stork{
+    position:absolute;
+    width: 11%;
+    right: 15%;
+    top: 17%;
+}
+
+.semi-bold{
+    font-weight: 600;
 }
 
 /* ---- Register Form ----- */

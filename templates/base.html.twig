@@ -42,9 +42,21 @@
             </nav>
         </header>
         {% block body %}{% endblock %}
+        <footer>
+            <a href="#" id="arrow-to-top" class="hidden-arrow"><i class="fa-solid fa-circle-arrow-up"></i></a>
+        </footer>
         <script>
 
             const navbar = document.getElementById('nav');
+            const arrow = document.getElementById('arrow-to-top');
+            // console.log(arrow);
+            window.addEventListener('scroll',() => {
+                if(window.scrollY > 100){
+                    arrow.classList.remove('hidden-arrow')
+                } else if(window.scrollY < 100){
+                    arrow.classList.add('hidden-arrow')
+                }
+            })
          
             let lastScrollValue = 0;
 
@@ -59,6 +71,8 @@
                 }
                 lastScrollValue = top;
             });
+
+            
 
         </script>
         <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
