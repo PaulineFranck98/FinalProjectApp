@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau post{% endblock %}
+{% block title %}
+    {% if edit %}
+        Editer le post
+    {% else %}
+        Nouveau post
+        {% endif %}
+{% endblock %}
 
 {% block body %}
 <main>
@@ -13,10 +19,7 @@
     {{ form_row(formAddPost.title) }}
     {{ form_row(formAddPost.content) }}
     {{ form_row(formAddPost.image) }}
-    {% if placeSelect == true %}
-        {{ form_row(formAddPost.place) }}
-    {% endif %}
-    
+
     {{ form_row(formAddPost.valider) }}
     
     {{ form_end(formAddPost) }}

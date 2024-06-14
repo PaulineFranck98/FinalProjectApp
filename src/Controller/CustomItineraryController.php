@@ -194,8 +194,8 @@ class CustomItineraryController extends AbstractController
 
             $itineraries = $itineraryRepository->search($departure, $arrival, $duration);
         } else {
-            $itineraries = $itineraryRepository->findBy([],['isPublic' => true]);
-            // $itineraries = $itineraryRepository->findAll();
+            // $itineraries = $itineraryRepository->findBy([],['isPublic' => true]);
+            $itineraries = $itineraryRepository->findAll();
         }
 
         return $this->render('custom_itinerary/search.html.twig', [
