@@ -896,12 +896,13 @@ nav span{
 
 /* ---------- SHARE EXPERIENCE --------------- */
 #share-experience{
-    height:75vh;
+    height:70vh;
     display:flex;
     position: relative;
     margin-top:5rem;
     margin-bottom: 3rem;
-    background: var(--white-background-light);
+    /* background: var(--white-background-light); */
+    background: #ffffffc4;
     border-radius: var(--lg-border-radius);
     padding:2rem;
 }
@@ -909,7 +910,7 @@ nav span{
 #share-experience article {
     width:60%;
     height:90%;
-    padding-top:5rem;
+    /* padding-top:5rem; */
     /* text-align: center; */
 }
 
@@ -936,7 +937,7 @@ nav span{
 
 .share-message h3:last-of-type{
     top:42%;
-    left:44%;
+    left:41%;
     font-weight: 500;
 }
 
@@ -990,6 +991,17 @@ nav span{
     height: 35%; 
 }
 
+#share-experience .text-socials{
+    width: 85%;
+    margin: auto;
+    text-align: left;
+    margin-top: -3rem; 
+}
+
+.text-socials p{
+    margin-bottom: 0.5rem;
+    line-height: 1.5em;
+}
 
 .standing-stork,
 .straight-stork {
@@ -1007,8 +1019,8 @@ nav span{
 
 
 .straight-stork{
-    width:6%;
-    /* top:8%;*/
+    width:6.5%;
+    top:7.9%;
     bottom:75.5%; 
     left:8%;
 }
@@ -1018,7 +1030,7 @@ nav span{
     display: flex;
     justify-content: center;
     gap: 3rem;
-    margin-top: 6rem;
+    margin-top: 2rem;
 }
 
 .socials i {
