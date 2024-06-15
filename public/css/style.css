@@ -434,8 +434,8 @@ nav span{
     margin-top: 1.2rem;
     background-color: #ffffffc2;
     /* align-items: start; */
-    justify-content: flex-start;
-    padding: 0.7rem 0.5rem 0.8rem;
+    justify-content: center;
+    padding: 1.5rem 0.5rem;
     /* margin: auto; */
     /* padding: 0.5rem 2rem 1rem 0.5rem; */
     /* background-color: white; */
@@ -446,7 +446,7 @@ nav span{
 .p-home{
     font-size: 1.15em;
     margin: 0 auto;
-    text-align: justify;
+    text-align: left;
     display: flex;
     gap: 10px;
     /* width: 80%; */
@@ -459,7 +459,7 @@ nav span{
  .border-home{
     border-bottom: 1px solid #ff6a6070;
     width: 40%;
-    margin: 0 auto;
+    margin: auto;
 } 
 
 
@@ -683,8 +683,8 @@ nav span{
 .side-illustration-companion figure {
     position: absolute;
  
-    bottom:5%; 
-    width:90%;
+    bottom:0%; 
+    width:85%;
 }
 
 .side-illustration-itinerary,
@@ -696,7 +696,8 @@ nav span{
 
 .side-illustration-itinerary figure{
     position:absolute;
-    bottom:-5%;
+    bottom:0%;
+    width: 90%;
 }
 
 /* .side-illustration .theme {
@@ -709,7 +710,7 @@ nav span{
 /* ================================   JOIN COMMUNITY SECTION   ================================ */
 
 #join-community {
-    height:250vh;
+    height:200vh;
     padding : 4rem 0;
     border-radius: var(--lg-border-radius);
 }
