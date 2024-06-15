@@ -896,15 +896,16 @@ nav span{
 
 /* ---------- SHARE EXPERIENCE --------------- */
 #share-experience{
-    height:70vh;
+    height:68vh;
     display:flex;
     position: relative;
     margin-top:5rem;
     margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
     /* background: var(--white-background-light); */
     background: #ffffffc4;
     border-radius: var(--lg-border-radius);
-    padding:2rem;
+    padding:2rem 3rem 2.5rem;
 }
 
 #share-experience article {
@@ -917,28 +918,45 @@ nav span{
 
 .share-message{
     position:relative;
-    height:50%;
-    margin-top:8rem;
+    height:90%;
+    margin-top:4rem;
 }
 
-.share-message h3:first-of-type,
-.share-message h3:last-of-type{
+/* .speech-stork-container{
+    position: relative;
+} */
+
+.share-message p{
     position:absolute;
     z-index:2;
+    /* width: 57%; */
+    
     
 }
 
-.share-message h3:first-of-type{
-    top:-2%;
-    left:14%;
-    font-weight: 600;
+.share-message p:first-of-type{
+    top: 4.5%;
+    left: 9%;
+    width: 57%;
+    /* font-weight: 600; */
+    /* width: 50%; */
 }
 
 
-.share-message h3:last-of-type{
-    top:42%;
+.share-message p:nth-of-type(2){
+    top:35%;
+    left:39%;
+    width: 54%;
+    /* font-weight: 500; */
+}
+
+.share-message p:last-of-type{
+    top:67%;
+    width: 55%;
+    left:11%;
+    /* top:42%;
     left:41%;
-    font-weight: 500;
+    font-weight: 500; */
 }
 
 .share-message figure{
@@ -948,15 +966,21 @@ nav span{
 
 
 .share-message figure:first-of-type{
-    top:-12%;
+    top:2.1%;
     left:8%;
-    width:50%;    
+    width:60%;    
+}
+
+.share-message figure:nth-last-of-type(2){
+    top:33%;
+    left:37%;
+    width:58%;
 }
 
 .share-message figure:last-of-type{
-    top:31%;
-    left:39%;
-    width:50%;
+    top: 64%;
+    left: 9%;
+    width:60%;
 }
 
 #share-experience aside{
@@ -1011,16 +1035,16 @@ nav span{
 }
 
 .standing-stork{
-    width: 15%;
+    width: 14.3%;
     right: 19.5%;
-    bottom: 66%;
+    top:14.8%;
 }
 
 
 
 .straight-stork{
-    width:6.5%;
-    top:7.9%;
+    width:6%;
+    top:5.5%;
     bottom:75.5%; 
     left:8%;
 }
@@ -1030,11 +1054,28 @@ nav span{
     display: flex;
     justify-content: center;
     gap: 3rem;
-    margin-top: 2rem;
+    position: relative;
+    /* margin-top: 9rem; */
 }
 
 .socials i {
-    font-size: 2rem;
+    font-size: 2.2em;
+}
+
+.curly-arrow-share{
+    position:absolute;
+    right:13%;
+    bottom:75%;
+    rotate: 16deg;
+}
+
+.hopla-share{
+    position: absolute;
+    /* right: -6%; */
+    top: -46%;
+    left: 5%;
+    width: 22%;
+    rotate: -16deg;
 }
 
 
