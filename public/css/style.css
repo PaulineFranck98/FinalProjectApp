@@ -916,7 +916,8 @@ nav span{
 }
 
 .share-message p:first-of-type{
-    top: 4.5%;
+    line-height:1.9em;
+    top: 6%;
     left: 9%;
     width: 57%;
     /* font-weight: 600; */
@@ -925,7 +926,8 @@ nav span{
 
 
 .share-message p:nth-of-type(2){
-    top:35%;
+    line-height:1.8em;
+    top:37%;
     left:39%;
     width: 54%;
     /* font-weight: 500; */
@@ -973,27 +975,28 @@ nav span{
     position:relative;
     width:30%;
     height:30%;
-    background:#ffffff99;
+    /* background:#ffffff99; */
     border-radius: var(--lg-border-radius);
 }
 
 #share-experience aside figure:first-of-type{
-    left: 58%;
-    top: 13%;
-    width:40%;
+    left: 54%;
+    top: 7%;
+    width:41%;
 }
 
 #share-experience aside figure:nth-of-type(2){
-    left:17%;
+    left:9%;
     top:4%;
     height:40%;
-    width:36%;
+    width:40%;
 }
 
 #share-experience aside figure:last-of-type{
-    left: 58%;
-    bottom: 14%;
-    height: 35%; 
+    left: 49%;
+    bottom: 12%;
+    width:47%;
+    /* height: 35%;  */
 }
 
 #share-experience .text-socials{
@@ -1059,12 +1062,12 @@ nav span{
 
 .hopla-share{
     position: absolute;
-    /* right: -6%; */
-    top: -46%;
-    left: 5%;
-    width: 22%;
+    right: 28%;
+    top: 11%;
+    /* left: 5%; */
+    width: 17%;
     rotate: -16deg;
-    visibility: visible;
+    /* visibility: visible; */
 }
 
 
