@@ -435,7 +435,7 @@ nav span{
     background-color: #ffffffc2;
     /* align-items: start; */
     justify-content: center;
-    padding: 1.5rem 0.5rem;
+    padding: 0.5rem;
     /* margin: auto; */
     /* padding: 0.5rem 2rem 1rem 0.5rem; */
     /* background-color: white; */
@@ -444,7 +444,7 @@ nav span{
 
  
 .p-home{
-    font-size: 1.15em;
+    font-size: 1.2em;
     margin: 0 auto;
     text-align: left;
     display: flex;
@@ -453,11 +453,12 @@ nav span{
     /* background-color: #ffffffc2; */
     padding: 1rem 1.5rem 1rem 0.5rem;
     border-radius: 0.5rem;
+    line-height:1.9em;
 
 }
 
  .border-home{
-    border-bottom: 1px solid #ff6a6070;
+    border-bottom: 1px solid #6a6a6a70;
     width: 40%;
     margin: auto;
 } 
@@ -726,7 +727,9 @@ nav span{
     font-size: 2rem;
 }
 
-
+#join-community h2 span{
+    color: var(--red-color);
+}
 
 
 #join-community article{
@@ -819,14 +822,17 @@ nav span{
     left: 72%;  
 }
 
-.create-itineraries,
-.publish-posts,
-.reviews-users{
+.create-itineraries p,
+.publish-posts p,
+.reviews-users p{
     /* text-align: left; */
     /* display: flex;
     flex-direction: column; */
     /* width:50%; */
-    text-align: justify;
+    text-align: left;
+    font-size: 1.1em;
+    line-height: 1.7em;
+    padding: 0 1rem;
 }
 
 .create-itineraries,
@@ -843,10 +849,11 @@ nav span{
 } */
 
 #join-community h3{
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.8rem;
     display: flex;
     align-items: center;
     gap:10px;
+    font-size:1.35em;
 }
 
 #join-community .top h3,
