@@ -1479,18 +1479,39 @@ input[type="radio"]:hover + label > figure > img{
 }
 
 .new-itinerary-form h1{
-    padding-top:3%;
+    padding-top: 1.5rem;
     position:fixed;
-    left:34%;
+    left:38%;
+    z-index:2;
 }
+
+.new-itinerary-form h1 span{
+    color:var(--light-red);
+}
+
+.new-itinerary-form{
+    background: linear-gradient(#ffffff69, #ffffff69), url(/img-source/bcg-presentation-vignes.webp);
+    /* height: 100%; */
+    background-size: cover;
+    padding: 5rem 2rem 2rem;
+    height: 100vh;
+    background-position-y: 87%;
+}
+
 #map-itinerary{
     height:70vh;
     width: 25vw;
     border-radius:1rem;
     position: fixed;
-    top: 20%;
-    right: 22%;
+    top: 13%;
+    right: 16%;
     
+}
+
+#custom_itinerary_intermediate_cities{
+    max-height:5.55vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 
@@ -1507,28 +1528,44 @@ button#custom_itinerary_valider
 }
 
 .itinerary-form{
-    padding:1%;
-    width:20vw;
-    position:absolute;
-    top: 15%;
+    padding: 1%;
+    width: 20vw;
+    position: fixed;
+    top: 14%;
+    right: 57%;
 
 }
 
 #itinerary-form{
-    margin: 0 auto;
-    width: 65%;
-    height: 100vh;
+    margin: 0rem auto;
+    width: 73%;
+    height: 100%;
+    /* background: url(/img-source/bcg-presentation-vignes.webp); */
+    /* background-size: cover; */
+    background: #fffffff5;
+    backdrop-filter: blur(6px);
+    border-radius: 1rem ;
+    position: relative;
+}
+
+.flying-stork-new-itinerary{
+    position: absolute;
+    left: 4%;
+    width: 9%;
+    top: 3%;
 }
 
 .itinerary-form label,
 .itinerary-form p{
     display:block;
-    font-size:1.2em;
+    font-size:1.1em;
+    margin-bottom:0.1rem;
 }
 
 .itinerary-form p{
-    text-align: center;
+    /* text-align: center; */
     margin-bottom:3%;
+    font-weight: 600;
 }
 
 .itinerary-form ul{
@@ -1547,13 +1584,37 @@ button#custom_itinerary_valider
 
 }
 
+.itinerary-form select {
+    font-size: 1em;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+    font-family: 'Poppins';
+    border-color: #39393978;
+    cursor: pointer;
+    margin: 0.25rem;
+}
+
+
+
 .itinerary-form ul li:hover{
     background-color: #ffffff;
 }
 
 button.add_city_button{
-    cursor:pointer;
-    font-size:1em;
+    cursor: pointer;
+    font-size: 1em;
+    font-size: 1em;
+    padding: 0.3rem;
+    background: white;
+    border-radius: 0.4rem;
+    font-family: 'Poppins';
+    border: 1px solid #ffa5b078;
+    transition: all 0.3s ease;
+}
+
+button.add_city_button:hover{
+    color:white;
+    background: var(--light-red);
 }
 
 
@@ -1566,6 +1627,23 @@ button#custom_itinerary_valider{
     margin-top:8%;
 }
 
+/* .add-intermediate  b{
+    font-weight: 600;
+} */
+
+.delete_city_button{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.delete_city_button i{
+    padding: 0.59rem;
+    background: none;
+    border: none;
+    font-size:1.2em;
+    color: var(--light-red);
+}
 
 /* -------------City detail------------------------------------------------------------------------ */
  .img-city-detail{

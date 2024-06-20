@@ -142,7 +142,7 @@ $(document).ready(function() {
         // Je définis le contenu de cet élément grâce à la fonction html(), native jQuery
         newCityDiv.html(newCityWidget);
 
-        var deleteButton = $('<button type="button" class="delete_city_button">Supprimer</button>');
+        var deleteButton = $('<button type="button" class="delete_city_button"><i class="fa-solid fa-circle-minus"></i></button>');
         newCityDiv.append(deleteButton);
 
         // Je crée une nouvelle liste <ul> pour les suggestions de communes et je rends leur id unique grâce à l'index (counter)

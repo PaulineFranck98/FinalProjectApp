@@ -7,9 +7,11 @@
 {% endblock %}
 {% block body %}
     <main class="new-itinerary-form">
-        <h1>Créer un nouvel itinéraire</h1>
+        <h1>Créer un nouvel <span>itinéraire</span></h1>
         <section id="itinerary-form">
-            
+             <figure class="flying-stork-new-itinerary">
+                    <img src="/img-source/flying-stork.webp" alt="Icône représentant une cigogne en vol">
+              </figure>
             <div class="itinerary-form">
 
                 {{ form_start(formAddItinerary) }}
@@ -75,19 +77,22 @@
             <div id="map-itinerary"></div>    
         </section>    
 
-        {% block javascripts %}
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
-        {# <script src="{{ asset('bundles/tomselect/dist/js/tom-select.complete.min.js') }}"></script> #}
-            <script src="{{ asset('js/itinerary.js')}}"></script>
-        <script>
+
+    </main>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    {# <script src="{{ asset('bundles/tomselect/dist/js/tom-select.complete.min.js') }}"></script> #}
+        <script src="{{ asset('js/itinerary.js')}}"></script>
+    <script>
     //         const departureSelect = new TomSelect('#custom_itinerary_departure select', {
     //         create: false,
     //         sortField: {
@@ -95,37 +100,33 @@
     //             direction: 'asc'
     // }
     // });
-//     plugins: ['dropdown_input'],
-//     // render: {
-//     //     option: function(data, escape) {
-//     //         return '<div>' + escape(data.text) + '</div>';
-//     //     },
-//     //     item: function(data, escape) {
-//     //         return '<div>' + escape(data.text) + '</div>';
-//     //     }
-//     // }
-// });
-	// const departureSelect = new TomSelect("#custom_itinerary_departure",{
-	// 	plugins: ['remove_button'],
-	// 	create: true,
-	// 	// onItemAdd:function(){
-	// 	// 	this.setTextboxValue('');
-	// 	// 	this.refreshOptions();
-	// 	// },
-	// 	render:{
-	// 		option:function(data,escape){
-	// 			return '<div class="d-flex"><span>' + escape(data.value) + '</span><span class="ms-auto text-muted">' + escape(data.date) + '</span></div>';
-	// 		},
-	// 		item:function(data,escape){
-	// 			return '<div>' + escape(data.value) + '</div>';
-	// 		}
-	// 	}
-	// });
-	
+    //     plugins: ['dropdown_input'],
+    //     // render: {
+    //     //     option: function(data, escape) {
+    //     //         return '<div>' + escape(data.text) + '</div>';
+    //     //     },
+    //     //     item: function(data, escape) {
+    //     //         return '<div>' + escape(data.text) + '</div>';
+    //     //     }
+    //     // }
+    // });
+    // const departureSelect = new TomSelect("#custom_itinerary_departure",{
+    // 	plugins: ['remove_button'],
+    // 	create: true,
+    // 	// onItemAdd:function(){
+    // 	// 	this.setTextboxValue('');
+    // 	// 	this.refreshOptions();
+    // 	// },
+    // 	render:{
+    // 		option:function(data,escape){
+    // 			return '<div class="d-flex"><span>' + escape(data.value) + '</span><span class="ms-auto text-muted">' + escape(data.date) + '</span></div>';
+    // 		},
+    // 		item:function(data,escape){
+    // 			return '<div>' + escape(data.value) + '</div>';
+    // 		}
+    // 	}
+    // });
 
-        </script>
-        {% endblock %}
 
-    </main>
-
+    </script>
 {% endblock %}
