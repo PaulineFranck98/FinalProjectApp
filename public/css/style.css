@@ -1834,29 +1834,47 @@ button#custom_itinerary_valider{
     line-height: 2.7em;
     margin-top: 3rem;
     font-size: 1.1em;
+    padding: 0 5rem;
+    width:50%;
 }
 
 
 .itinerary-title{
     text-align: center;
     font-size: 1.5em;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
+    padding-top:1.5rem;
+}
+
+.itinerary-title span{
+    color:var(--light-red);
+}
+
+.inter-cities-container{
+    background: #80808014;
+    padding: 0.7rem 0.6rem;
 }
 
 .inter-cities{
     margin-left:3rem;
+    overflow-y: scroll;
+    max-height: 34vh;
+    scrollbar-width: none;
 }
 
 .bold{
-    font-weight:500;
-    margin-top:2rem;
-    margin-bottom:-0.8rem;
-    font-size:1.2em;
+    font-weight: 500;
+    margin-bottom: -0.8rem;
+    font-size: 1.1em;
+    background: white;
+    padding-top: -0.5rem;
+    border-radius: 0.3rem;
+    padding-left: 0.5rem;
 }
 
 .title{
     font-size:1.1em;
-    margin-top:2rem;
+    margin-top:1.2rem;
     margin-bottom:-0.8rem;
 }
 

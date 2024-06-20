@@ -16,8 +16,8 @@
 
 {{ itinerary.arrival}}, {{ arrivalPlacesCount}}
 {{ itinerary.departure.id}}  #}
-<main class="top">
-    <section id="show-itinerary">
+<main class="new-itinerary-form">
+    <section id="itinerary-form">
         {# {{ itinerary.name}} #}
         {# <h1>"{{ itineraryDatas.name}}"</h1> #}
         <p class="itinerary-title">Votre itinéraire de <b><span>{{ itinerary.departure }}</span></b> à <b>{{ itinerary.arrival }}</b></p>
@@ -36,7 +36,7 @@
                 {# <p> {{ itinerary.place}} </p>
                 <p> {{ itinerary.customItinerary.departure  }}</p> #}
 
-                {% if itinerary.city is same as itinerary.customItinerary.departure  %}  
+                {% if itinerary.city == itinerary.customItinerary.departure  %}  
                  <p>  {{ itinerary.place}}</p>
                     
                 {% endif %}   
@@ -57,7 +57,7 @@
                 {# <p> {{ itinerary.place}} </p>
                 <p> {{ itinerary.customItinerary.departure  }}</p> #}
 
-                {% if itinerary.city is same as itinerary.customItinerary.arrival  %}  
+                {% if itinerary.city == itinerary.customItinerary.arrival  %}  
                  <p>  {{ itinerary.place}}</p>
                     
                 {% endif %}   
@@ -65,28 +65,29 @@
                 {% endfor %}
                 </p>
             </p>
+            <div class="inter-cities-container">
+                <p class="bold">Villes qui composent votre itinéraire<p>
+                <div class="inter-cities">
+                    {% for city in itinerary.cities %}
+                    
 
-            <p class="bold">Villes qui composent votre itinéraire<p>
-            <div class="inter-cities">
-                {% for city in itinerary.cities %}
-                  
-
-                    <p class="title">
-                        <i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;
-                        <b><a href="{{ path('show_city', {'id': city.id}) }}">{{city.cityName}}</a></b>
-                    </p>
-                    <p>
-                        <a href="{{ path('show_city', {'id': city.id}) }}"><i class="fa-solid fa-arrow-right-long"></i>
-                        {% if cityPlacesCount == 1 %}
-                            {{ cityPlacesCount }} lieu à découvrir dans cette ville
-                        {% else %}
-                            {{ cityPlacesCount }} lieux à découvrir dans cette ville
-                        {% endif %}</a>
-                    </p>
-                    {% for place in city.customItineraryPlaceCities %}
-                        {{place.place.name}}
+                        <p class="title">
+                            <i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;
+                            <b><a href="{{ path('show_city', {'id': city.id}) }}">{{city.cityName}}</a></b>
+                        </p>
+                        <p>
+                            <a href="{{ path('show_city', {'id': city.id}) }}"><i class="fa-solid fa-arrow-right-long"></i>
+                            {% if cityPlacesCount == 1 %}
+                                {{ cityPlacesCount }} lieu à découvrir dans cette ville
+                            {% else %}
+                                {{ cityPlacesCount }} lieux à découvrir dans cette ville
+                            {% endif %}</a>
+                        </p>
+                        {% for place in city.customItineraryPlaceCities %}
+                            {{place.place.name}}
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                </div>
             </div>
             <a href="{{ path('edit_itinerary', {'id': itinerary.id}) }}">Modifier mon itinéraire</a>
         </div>
@@ -96,14 +97,15 @@
         <div id="map-itinerary"></div>
     </section>
 </main>
-    {% block javascripts %}
-      
-        <script> const itineraryData = JSON.parse("{{ itineraryData|e('js') }}") || [];</script>
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-                crossorigin=""></script>
-        <script src="{{ asset('js/customItinerary.js')}}"></script>
-        
-    {% endblock %}
+ 
 
+{% endblock %}
+{% block javascripts %}
+    
+    <script> const itineraryData = JSON.parse("{{ itineraryData|e('js') }}") || [];</script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="{{ asset('js/customItinerary.js')}}"></script>
+    
 {% endblock %}
