@@ -21,11 +21,11 @@
         {# {{ itinerary.name}} #}
         {# <h1>"{{ itineraryDatas.name}}"</h1> #}
         <p class="itinerary-title">Votre itinéraire de <b><span>{{ itinerary.departure }}</span></b> à <b>{{ itinerary.arrival }}</b></p>
-        <p>"{{ itinerary.name}}"</p>
+        <p><span class="quote">«</span>{{ itinerary.name}}<span class="quote">»</span</p>
         <div class="aside-cities">
             <p class="title"><i class="fa-solid fa-location-dot" style="color: #9569FA;"></i>&nbsp;Ville de départ : <b><a href="{{ path('show_city', {'id': itinerary.departure.id}) }}">{{ itinerary.departure }}</a></b></p>
             <p>
-                <a href="{{ path('show_city', {'id': itinerary.departure.id}) }}"><i class="fa-solid fa-arrow-right-long"></i>
+                <a class="city-href" href="{{ path('show_city', {'id': itinerary.departure.id}) }}"><i class="fa-solid fa-arrow-right-long"></i>
                 {% if departurePlacesCount == 1 %}
                     {{ departurePlacesCount }} lieu à découvrir dans cette ville
                 {% else %}
@@ -46,7 +46,7 @@
             </p>
             <p class="title"><i class="fa-solid fa-location-dot" style="color: #3F71EA;"></i>&nbsp;Ville d'arrivée : <b><a href="{{ path('show_city', {'id': itinerary.arrival.id}) }}">{{ itinerary.arrival }}</a></b></p>
             <p>
-                <a href="{{ path('show_city', {'id': itinerary.arrival.id }) }}"><i class="fa-solid fa-arrow-right-long"></i> 
+                <a class="city-href" href="{{ path('show_city', {'id': itinerary.arrival.id }) }}"><i class="fa-solid fa-arrow-right-long"></i> 
                     {% if arrivalPlacesCount == 1 %}
                         {{ arrivalPlacesCount }} lieu à découvrir dans cette ville
                     {% else %}
@@ -76,7 +76,7 @@
                             <b><a href="{{ path('show_city', {'id': city.id}) }}">{{city.cityName}}</a></b>
                         </p>
                         <p>
-                            <a href="{{ path('show_city', {'id': city.id}) }}"><i class="fa-solid fa-arrow-right-long"></i>
+                            <a class="city-href" href="{{ path('show_city', {'id': city.id}) }}"><i class="fa-solid fa-arrow-right-long"></i>
                             {% if cityPlacesCount == 1 %}
                                 {{ cityPlacesCount }} lieu à découvrir dans cette ville
                             {% else %}
@@ -84,7 +84,7 @@
                             {% endif %}</a>
                         </p>
                         {% for place in city.customItineraryPlaceCities %}
-                            {{place.place.name}}
+                          <p>  {{place.place.name}} </p>
                         {% endfor %}
                     {% endfor %}
                 </div>
