@@ -1881,6 +1881,9 @@ button#custom_itinerary_valider{
 .inter-cities-container{
     background: #80808014;
     padding: 0.7rem 0.6rem;
+    overflow-y: scroll;
+    max-height: 27vh;
+    scrollbar-width: none;
 }
 
 .inter-cities{
@@ -1888,6 +1891,10 @@ button#custom_itinerary_valider{
     overflow-y: scroll;
     max-height: 34vh;
     scrollbar-width: none;
+}
+
+.edit-itinerary{
+    margin: 3rem 0 0 5rem;
 }
 
 .bold{

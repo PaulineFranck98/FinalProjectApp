@@ -33,14 +33,11 @@
                 {% endif %}</a>
                 
                 {% for itinerary in itinerary.customItineraryPlaceCities %}
-                {# <p> {{ itinerary.place}} </p>
-                <p> {{ itinerary.customItinerary.departure  }}</p> #}
 
                 {% if itinerary.city == itinerary.customItinerary.departure  %}  
-                 <p>  {{ itinerary.place}}</p>
+                 <p> <a  href="{{ path('show_place', {'id': itinerary.place.id}) }}"> {{ itinerary.place}}</a></p>
                     
                 {% endif %}   
-                {# <p>  {{ itinerary.city}} </p> #}
                 {% endfor %}
                 </p>
             </p>
@@ -58,7 +55,7 @@
                 <p> {{ itinerary.customItinerary.departure  }}</p> #}
 
                 {% if itinerary.city == itinerary.customItinerary.arrival  %}  
-                 <p>  {{ itinerary.place}}</p>
+                 <p> <a  href="{{ path('show_place', {'id': itinerary.place.id}) }}">  {{ itinerary.place}}</a></p>
                     
                 {% endif %}   
                 {# <p>  {{ itinerary.city}} </p> #}
@@ -84,17 +81,17 @@
                             {% endif %}</a>
                         </p>
                         {% for place in city.customItineraryPlaceCities %}
-                          <p>  {{place.place.name}} </p>
+                          <p> <a  href="{{ path('show_place', {'id': place.place.id}) }}">{{place.place.name}}</a></p>
                         {% endfor %}
                     {% endfor %}
                 </div>
             </div>
-            <a href="{{ path('edit_itinerary', {'id': itinerary.id}) }}">Modifier mon itinéraire</a>
         </div>
         {# {% for place in city.customItineraryPlaceCities %}
             {{ place.placeName}}
         {% endfor %} #}
         <div id="map-itinerary"></div>
+        <p class="edit-itinerary"> <a  href="{{ path('edit_itinerary', {'id': itinerary.id}) }}"><i class="fa-solid fa-pencil"></i> Modifier mon itinéraire</a></p>
     </section>
 </main>
  
