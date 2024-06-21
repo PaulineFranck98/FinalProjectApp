@@ -42,7 +42,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const hotelIcon = new L.icon({
     iconUrl: "/images/marker-hotel.webp",
     // Je définis la largeur et la hauteur de l'icône
-    iconSize: [32,40],
+    iconSize: [60,60],
     // Je définis le point d'ancrage de l'icône
     iconAnchor: [16,40],
     // Je définis le point d'ancrage du popup
@@ -52,7 +52,7 @@ const hotelIcon = new L.icon({
 const restaurantIcon = new L.icon({
     iconUrl: "/images/marker-restaurant.webp",
     // Je définis la largeur et la hauteur de l'icône
-    iconSize: [32,40],
+    iconSize: [60,60],
     // Je définis le point d'ancrage de l'icône
     iconAnchor: [16,40],
     // Je définis le point d'ancrage du popup
@@ -62,7 +62,7 @@ const restaurantIcon = new L.icon({
 const hotelRestaurantIcon = new L.icon({
     iconUrl: "/images/marker-activity.webp",
     // Je définis la largeur et la hauteur de l'icône
-    iconSize: [32,40],
+    iconSize: [60,60],
     // Je définis le point d'ancrage de l'icône
     iconAnchor: [16,40],
     // Je définis le point d'ancrage du popup
@@ -72,7 +72,7 @@ const hotelRestaurantIcon = new L.icon({
 const activityIcon = new L.icon({
     iconUrl: "/images/marker-activity.webp",
     // Je définis la largeur et la hauteur de l'icône
-    iconSize: [32,40],
+    iconSize: [60,60],
     // Je définis le point d'ancrage de l'icône
     iconAnchor: [16,40],
     // Je définis le point d'ancrage du popup

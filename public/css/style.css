@@ -1842,10 +1842,15 @@ button#custom_itinerary_valider{
     transition: all 0.3s ease-in-out;
 }
 
+.itinerary-href{
+    transition: all 0.3s ease-in-out
+}
+
 .city-href i{
     font-weight:600 !important;
 }
 
+.itinerary-href:hover,
 .city-href:hover{
     color:white;
     /* background-color: var(--light-red); */
@@ -1895,6 +1900,16 @@ button#custom_itinerary_valider{
 
 .edit-itinerary{
     margin: 3rem 0 0 5rem;
+}
+
+.itinerary-ul{
+    position: absolute;
+    top: 12%;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size:0.9em;
+    line-height: 2.2em;
 }
 
 .bold{
@@ -2421,8 +2436,14 @@ form[name="search_itinerary"] input{
     padding:4%;
     transition: var(--transition-500);
     background: #f7f7f7;
+    height:12vh;
     border-radius: 0 0 0.5rem 0.5rem;
 
+}
+
+.show-posts-place{
+    width: 45%;
+    text-align: center;
 }
 
 #add-place-itinerary{
@@ -2464,6 +2485,10 @@ form[name="search_itinerary"] input{
     height: fit-content;
     padding: 2%;
     border-radius: var(--sm-border-radius);
+  }
+
+  .show-place-infos p{
+    margin: 0.5rem 0;
   }
 
   .show-place-main{

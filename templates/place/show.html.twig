@@ -119,6 +119,14 @@
                 </div>
             </div>
         </section>   
+        <div class="itinerary-ul">
+            <p>Accès à vos itinéraires :</p>
+            <ul>
+            {% for itinerary in app.user.CustomItineraries %}
+            <li><a class="itinerary-href" href="{{ path('show_itinerary', {'id' : itinerary.id})}}"><i class="fa-solid fa-arrow-right-long"></i> {{ itinerary.name}}</a></li>
+            {% endfor %}
+            <ul>
+        </div>
 
          {# <p>Notes et commentaires :</p>
             
@@ -142,13 +150,14 @@
             <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>
              ------------------------------------ 
             <a href="{{ path('new_rating', {'placeId': place.id})}}">Noter ce lieu</a>
-            <a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a>
-            <a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a> #}
+            <a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a>#}
+            <p class="show-posts-place"><a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a></p>
         
     </main>
     {# {{dump(place.images)}} #}
     
     
+{% endblock %}
     {% block javascripts %}
        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -185,4 +194,3 @@
         {# <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> #}
         {# <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script> #}
     {% endblock %}
-{% endblock %}

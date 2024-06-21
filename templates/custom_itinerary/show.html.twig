@@ -93,6 +93,14 @@
         <div id="map-itinerary"></div>
         <p class="edit-itinerary"> <a  href="{{ path('edit_itinerary', {'id': itinerary.id}) }}"><i class="fa-solid fa-pencil"></i> Modifier mon itinéraire</a></p>
     </section>
+    <div class="itinerary-ul">
+        <p>Accès à vos itinéraires :</p>
+        <ul>
+        {% for itinerary in app.user.CustomItineraries %}
+           <li><a class="itinerary-href" href="{{ path('show_itinerary', {'id' : itinerary.id})}}"><i class="fa-solid fa-arrow-right-long"></i> {{ itinerary.name}}</a></li>
+        {% endfor %}
+        <ul>
+    </div>
 </main>
  
 

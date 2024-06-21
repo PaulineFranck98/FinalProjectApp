@@ -38,8 +38,10 @@
                 </aside>    
             <div id="map"></div>
             </section>    
+            <p><a href="{{ path('new_itinerary')}}">Créer un itinéraire</a></p>
         </div>
     </main>
+{% endblock %}
     {% block javascripts %}
         <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
         <script>window.placesData = JSON.parse("{{ placesData|e('js') }}") || [];</script>
@@ -48,4 +50,3 @@
                 crossorigin=""></script>
         <script src="{{ asset('js/map.js')}}"></script>
     {% endblock %}
-{% endblock %}
