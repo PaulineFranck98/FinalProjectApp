@@ -144,7 +144,6 @@ class PostController extends AbstractController
             'formAddPost' => $form,
             'postId' => $post->getId(),
 
-            // 'placeSelect' => false
         ]);
     }
     
