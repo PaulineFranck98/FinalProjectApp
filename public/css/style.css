@@ -2904,28 +2904,190 @@ form[name="search_itinerary"] input{
 
     #how-it-works h2{
         font-size:1.4rem;
+        margin-bottom:3rem;
+    }
+
+    #how-it-works h3{
+        font-size:1.1em;
+    }
+
+    #article2 h3{
+        font-size:0.95em;
+        gap:0.5rem;
+    }
+
+    .number{
+        font-size:1.6em;
     }
 
     #how-it-works {
-        height:165vh;
+        height:275vh;
+        padding:1rem;
+        display: flex;
+        flex-direction: column;
     }
 
     #how-it-works article {
+        /* flex-direction: column-reverse; */
+        justify-content: space-between;
+        height:80vh;
+    }
+
+    #article1,
+    #article3{
         flex-direction: column-reverse;
     }
 
+    #article2{
+        flex-direction: column;
+    }
+
+    /* #article3{
+
+    } */
+
     .right-block{
         width:100%;
+        height:45%;
     }
 
     .right-block-paragraphs{
-        height:85%;
+        height:90%;
     }
 
     .p-home{
         line-height: 1.4em;
     }
 
+    .side-illustration-itinerary, 
+    .side-illustration-companion, 
+    .side-illustration-theme {
+        /* position: relative; */
+        width: 100%;
+        height:50vh;
+    }
+
+    .side-illustration-itinerary figure {
+        top: 4%;
+        width:90%;
+        left:4%;
+    }
+
+    .side-illustration-theme figure {
+        /* bottom: 6%; */
+        width: 85%;
+        left: 1%;
+        top: 8%;
+    }
+
+    .side-illustration-companion figure {
+        /* bottom: 1%; */
+        width: 76%;
+        right: 16%;
+        top:7%;
+    }
+
+    #how-it-works .looking-down {
+        width: 14%;
+        top: -18.5%;
+        right: 8%;
+    }
+
+    .standing-stork-up {
+        width: 16%;
+        top: -20%;
+        left: 2%;
+    }
+
+    .bcg-how-it-works{
+        padding-bottom:3rem;
+    }
+
+    #join-community h2{
+        font-size: 1.2em;
+        margin:1rem 0;
+    }
+
+    #join-community{
+        padding-top:2rem;
+        width:95%;
+        height:195vh;
+    }
+
+    #blur-bcg{
+        width:100%;
+        height:43vh;
+        margin-bottom:1.5rem;
+    }
+
+    .top{
+        right:0;
+    }
+
+    .middle{
+       left:0; 
+    }
+
+    #join-community p{
+        font-size: 0.85em;
+        line-height: 1.5em;
+        margin-bottom:-0.8rem;
+        padding: 0 0.5rem;
+        /* text-align: justify; */
+    }
+
+    #join-community h3{
+        font-size:1em;
+        gap:0;
+        margin-bottom: 0.8rem;
+    }
+
+    #itinerary-phone {
+        top: 1200%;
+        width: 69%;
+        left: 105%;
+    }
+
+    #reviews-phone {
+        width: 120%;
+        left: -20%;
+        top: 1300%;
+    }
+
+    #blur-bcg.top{
+        height:45vh;
+    }
+
+    #blur-bcg.bottom,
+    #blur-bcg.middle{
+        height:47vh;
+    }
+   
+
+    .middle p:last-of-type{
+        width:64%;
+        margin-left:7.7rem;
+    }
+
+    .top p:last-of-type{
+        width:75%;
+    }
+
+    .bottom p:last-of-type{
+        width:60%;
+    }
+
+    #share-posts {
+        top: 1300%;
+        width: 105%;
+        left: 73%;
+    }
+
+
+
+    /* .bottom{
+
+    } */
 
 }
 
