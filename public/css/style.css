@@ -449,6 +449,7 @@ nav span{
     text-align: left;
     display: flex;
     gap: 10px;
+    font-weight: 500;
     /* width: 80%; */
     /* background-color: #ffffffc2; */
     padding: 1rem 1.5rem 1rem 0.5rem;
