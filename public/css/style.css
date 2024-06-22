@@ -783,7 +783,8 @@ nav span{
 }
 
 .bcg-join-community{
-    background : linear-gradient(#ffffff, #ffffffbd, #ffffff), url(/img-source/bcg-test0.webp);
+    /* background : linear-gradient(#ffffff, #ffffffbd, #ffffff), url(/img-source/bcg-test0.webp); */
+    background : linear-gradient(#ffffff, #ffffff8c, #ffffff8c), url(/img-source/bcg-test0.webp);
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
@@ -2537,17 +2538,394 @@ form[name="search_itinerary"] input{
 /* ----------------------END SHOW PLACE---------------------- */
 
 /* Breakpoint : Tablette */
-/* @media (max-width: 1024px) and (min-width: 769px) 
-{
-    .posts-container{
-        grid-template-columns: 1fr 1fr;
-    } 
-} */
+@media (max-width: 769px) 
+{   
+
+    .main-picture-bcg{
+        height:100vh;
+        background: linear-gradient(#00000000, #00000036), url(/img-source/bcg-presentation-vignes-medium.jpg);
+        background-position-x: 47%;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .flying-stork {
+        position: absolute;
+        width: 16%;
+        top: 14%;
+        left: 13%;
+    }
+
+    .presentation{
+        height:100%;
+    }
+
+    #presentation h1{
+        font-size: 5.8em;
+        margin-top:5%;
+        line-height: 8rem;
+    }
+
+    .home-btn{
+        margin-top:5rem;
+        margin-bottom:2rem;
+    }
+
+    #choice{
+        width:100%;
+        height:75vh;
+    }
+    
+    .choice-theme-container{
+        width:100%;
+    }
+
+    .choice-companion-container{
+        width:85%;
+        padding: 1rem 1rem;
+        margin:2rem auto;
+    }
+
+    #choice .swiper {
+        width:100%;
+    }
+
+    #choice .swiper-wrapper {
+        gap:0;
+    }
+
+    #how-it-works{
+        width:96%;
+        height:135vh;
+        padding: 1rem 1.5rem;
+    }
+
+    #how-it-works article {
+        height:40vh;
+    }
+
+    #how-it-works h3{
+        font-size:1.2em;
+        gap:1rem;
+        padding:1rem;
+        height:16%;
+    }
+
+    #how-it-works > h2 {
+        margin: 1rem 0 4rem;
+        font-size: 2rem;
+    }
+
+    .p-home{
+        font-size:0.95em;
+        line-height:1.7em;
+        padding:0.5rem;
+        font-weight: 500;
+    }
+
+    .side-illustration-theme figure {
+        bottom: 6%;
+        width: 128%;
+        left: -17%;
+    }
+
+    .side-illustration-companion figure {
+        bottom: 1%;
+        width: 114%;
+        right: -1%;
+    }
+
+    .side-illustration-itinerary figure {
+        bottom: -6%;
+        width: 124%;
+        left: -8%;
+    }
+
+    .right-block{
+        width:60%;
+        height: 100%;
+    }
+
+    #how-it-works .looking-down{
+        width:15%;
+        top:-13.2%;
+    }
+
+    .standing-stork-up{
+        width:18%;
+        top:-15%;
+    }
+
+    .number{
+        font-size: 2.3rem;
+    }
+
+    .right-block-paragraphs {
+        height:60%;
+        padding:0.8rem 0.5rem;
+        margin-top:1rem;
+    }
+
+    #join-community{
+        width:90%;
+        height:160vh;
+        padding-top:3rem;
+    }
+
+    #join-community p{
+        font-size: 1em;
+        line-height: 1.6em;
+        /* text-align: justify; */
+    }
+
+    #join-community h2{
+        font-size:1.8rem;
+        margin: 1rem 0 2rem;
+    }
+
+    #join-community h3{
+        font-size:1.15em;
+    }
+    
+    #blur-bcg{
+        width:59%;
+        height: 38vh;
+        margin-bottom: 3rem;
+    }
+
+    #itinerary-phone{
+        top:100%;
+        width:78%;
+        left:97%;
+
+    }
+
+    .create-itineraries p{
+        width:100%;
+    }
+
+    .middle{
+        left:43%;
+    }
+    
+    .middle p {
+        margin-left: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .middle h3{
+        justify-content: end;
+        margin: 0.5rem 8rem 2rem 0;
+    }
+
+    #reviews-phone{
+        width:138%;
+        left:-20%;
+        top:15%;
+    }
+
+    .bottom p{
+        width:100%;
+    }
+
+    .top{
+        right:2%;
+    }
+
+    #share-posts {
+        top: 170%;
+        width: 105%;
+        left: 79%;
+    }
+
+    .bottom h3{
+        margin:0.5rem 0 2rem;
+    }
+
+    #share-experience{
+        width:95%;
+        margin:1rem auto 2rem;
+        height:51vh;
+        padding: 2rem 3rem 0.5rem;
+    }
+
+    .share-message{
+        height:90%;
+        margin-top: 1.5rem;
+    }
+
+    .share-message figure:first-of-type {
+        top: 3.5%;
+        left: -8%;
+        width: 100%;
+    }
+
+    .share-message figure:nth-last-of-type(2) {
+        top: 35%;
+        left: 14%;
+        width: 96%;
+    }
+
+    .share-message figure:last-of-type {
+        top: 66%;
+        left: -8%;
+        width: 96%;
+    }
+
+    .share-message p {
+        line-height: 1.7em;
+    }
+
+    .share-message p:first-of-type {
+        top: 6%;
+        left: -6%;
+        width: 97%;
+    }
+
+    .share-message p:nth-of-type(2) {
+        top: 39%;
+        left: 17%;
+        width: 90%;
+    }
+
+    .share-message p:last-of-type {
+        top: 67%;
+        width: 90%;
+        left: -4%;
+    }
+
+    .straight-stork {
+        width: 7.5%;
+        top: 3.2%;
+        left: 8%;
+    }
+
+    .standing-stork {
+        width: 17%;
+        right: 19.5%;
+        top: 21.7%;
+    }
+
+    #share-experience aside figure:first-of-type {
+        left: 22%;
+        top: 1%;
+        width: 48%;
+    }
+
+    #share-experience aside figure:nth-of-type(2) {
+        left: 63%;
+        top: 3%;
+        height: 40%;
+        width: 41%;
+    }
+
+    #share-experience aside figure:last-of-type {
+        left: 20%;
+        bottom: 11%;
+        width: 53%;
+    }
+
+    .hopla-share{
+        top:41%;
+        right:22%;
+    }
+
+    
+}   
+
+
 /* Breakpoint : Smartphone */
-/* @media (max-width: 768px)
+@media (max-width: 400px)
 {
-    .posts-container{
-        grid-template-columns: 1fr;
-    } 
-} */
+    #presentation h1{
+        font-size: 3.8em;
+        line-height: 4.5rem;
+        margin-top:20%;
+        font-weight: 500;
+    }
+
+    #presentation h1 span{
+        font-weight: 600;
+    }
+
+    .main-picture-bcg{
+        background:linear-gradient(#0000001c, #00000036), url(/img-source/bcg-presentation-vignes-medium.jpg);
+        background-position-x: 39% ;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .flying-stork{
+        width: 23%;
+        top:14%;
+        left:7%;
+    }
+
+    nav{
+        display: none;
+    }
+
+    .bcg-choice{
+        padding-top:2rem;
+    }
+
+    #choice{
+        padding: 0rem 0.5rem 0rem;
+    }
+
+    #choice h2{
+        font-size: 1.2em;
+    }
+
+    .choice-companion-container{
+        margin:1rem auto;
+        width:100%;
+        padding:0.5rem;
+
+    }
+
+    .choice-theme-container{
+        padding: 0.5rem;
+    }
+
+    #choice .swiper{
+        width:45%;
+        padding:0 !important;
+    }
+
+    .choice-companion-container h2{
+        margin-bottom:0.8rem;
+    }
+
+    .go-btn{
+        padding:0.4rem 1.5rem;
+        font-size:1.5rem;
+    }
+
+    #how-it-works h2{
+        font-size:1.4rem;
+    }
+
+    #how-it-works {
+        height:165vh;
+    }
+
+    #how-it-works article {
+        flex-direction: column-reverse;
+    }
+
+    .right-block{
+        width:100%;
+    }
+
+    .right-block-paragraphs{
+        height:85%;
+    }
+
+    .p-home{
+        line-height: 1.4em;
+    }
+
+
+}
 

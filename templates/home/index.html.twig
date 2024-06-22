@@ -319,10 +319,17 @@
                     <article>
                         <!-- small text explanation-->
                      
-                        <figure id="itinerary-phone" class="div-hidden div-from-right">
+                        {# <figure id="itinerary-phone" class="div-hidden div-from-right">
                             <img src="img-source/phone-itinerary6.webp" alt="Description deuxième avantage">
                         </figure>
-                        
+                         #}
+                         <figure id="itinerary-phone" class="div-hidden div-from-right">
+                            <picture>
+                                <source media="(max-width: 769px)" srcset="img-source/phone-itinerary6.png">
+                                <source media="(min-width: 770px)" srcset="img-source/phone-itinerary6.webp">
+                                <img src="img-source/phone-itinerary6.webp" alt="Description deuxième avantage">
+                            </picture>
+                        </figure>
                     </article>
                     <div id="blur-bcg" class="top">
                         <div class="create-itineraries">
@@ -338,8 +345,15 @@
                         {# 
                         <!-- small text explanation-->
                         #}
-                        <figure id="reviews-phone"  class="div-hidden div-from-left">
+                        {# <figure id="reviews-phone"  class="div-hidden div-from-left">
                             <img src="img-source/phone-review-pic.webp" alt="Description premier avantage">
+                        </figure> #}
+                          <figure id="reviews-phone" class="div-hidden div-from-left">
+                            <picture>
+                                <source media="(max-width: 769px)" srcset="img-source/new-phone-itinerary-medium.webp">
+                                <source media="(min-width: 770px)" srcset="img-source/new-phone-itinerary-large.webp">
+                                <img src="img-source/new-phone-itinerary-large.webp" alt="Description deuxième avantage">
+                            </picture>
                         </figure>
                         
                     </article>
@@ -357,8 +371,15 @@
                         {# 
                         <!-- small text explanation-->
                          #}
-                        <figure id="share-posts"  class="div-hidden div-from-right">
+                        {# <figure id="share-posts"  class="div-hidden div-from-right">
                             <img src="img-source/share-posts.webp" alt="Description troisième avantage">
+                        </figure> #}
+                         <figure id="share-posts" class="div-hidden div-from-right">
+                            <picture>
+                                <source media="(max-width: 769px)" srcset="img-source/share-post-medium.webp">
+                                <source media="(min-width: 770px)" srcset="img-source/share-posts.webp">
+                                <img src="img-source/share-posts.webp" alt="Description deuxième avantage">
+                            </picture>
                         </figure>
                     </article>
                     <div id="blur-bcg" class="bottom">
@@ -488,9 +509,17 @@
                     
             document.addEventListener('DOMContentLoaded', function(){
                 const swiper = new Swiper('.swiper', {
-                        loop: true,
-                        slidesPerView: 4,
-                        });
+                    loop: true,
+                    // slidesPerView: 4,
+                    breakpoints:{
+                        400:{
+                            slidesPerView:1
+                        },
+                        1024:{
+                            slidesPerView: 4
+                        }
+                    }
+                });
             });
         </script>
        
