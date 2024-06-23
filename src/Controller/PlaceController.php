@@ -236,17 +236,19 @@ public function new(Place $place, Request $request, EntityManagerInterface $enti
 
 
     #[Route('/place/image/{id}/delete', name:'delete_image', methods:['DELETE'])]
+    
     public function deleteImg(Image $image, Request $request, EntityManagerInterface $entityManager, PictureService $pictureService): JsonResponse
     {
-        // On récupère le contenu de la requête
-        // Le contenu sera en json donc on utilise json_decode et true pour faire un tableau associatif
+        // Je récupère le contenu de la requête qui sera en json
+        // J'utilise donc json_decode et true pour faire un tableau associatif
         $data = json_decode($request->getContent(), true);
 
-        // On récupère le token dans $data, et on vérifie s'il est valide --> le nom du token doit être le même que celui du data-token
-        // On le compare au token qui est dans $data et on l'envoie sous le nom '_token'
+        // Je récupère le token dans $data, et je vérifie s'il est valide
+        // Le nom du token doit être le même que celui du data-token
+        // Je le compare au token qui est dans $data et je l'envoie sous le nom '_token'
         if($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])){
 
-            // Le token csrf est valide : on récupère le nom de l'image
+            // Le token csrf est valide : je récupère le nom de l'image
             $name = $image->getName();
 
             // On supprime l'image : on encapsule dans un if car va retourner un booléen

@@ -7,7 +7,7 @@
             integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
             crossorigin=""/>
     {% endblock %}
-    <main>
+    <main class="index-map-container">
         <div class="places-wrapper">
             <section id="display-places">
                 <aside> 
@@ -37,8 +37,11 @@
                     </div>
                 </aside>    
             <div id="map"></div>
+             <figure class="stork-index-map">
+                    <img src="img-source/flying-stork.webp" alt="Illustration représentant une cigogne regardant en l'air">
+            </figure>
+            <p class="index-create-itinerary"><a href="{{ path('new_itinerary')}}"><i class="fa-solid fa-arrow-right-long"></i>&nbsp; Créer mon itinéraire</a></p>
             </section>    
-            <p><a href="{{ path('new_itinerary')}}">Créer un itinéraire</a></p>
         </div>
     </main>
 {% endblock %}

@@ -336,7 +336,6 @@ nav span{
 }
 
 .bcg-choice{
-    /* background:#d5bf86; */
     width:100%;
     padding-top:4rem;
     background-color: #e4e4e461;
@@ -1556,6 +1555,7 @@ input[type="radio"]:hover + label > figure > img{
     font-family: 'Poppins';
 }
 
+
 .new-place-form{
     /* background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp); */
     /* background: linear-gradient(#ffffffa8, #ffffffa8), url(/img-source/bcg-test0.webp); */
@@ -1582,6 +1582,7 @@ input[type="radio"]:hover + label > figure > img{
     color:var(--light-red);
 }
 
+
 .new-itinerary-form{
     background: linear-gradient(#ffffff69, #ffffff69), url(/img-source/bcg-presentation-vignes.webp);
     /* height: 100%; */
@@ -1590,6 +1591,9 @@ input[type="radio"]:hover + label > figure > img{
     height: 100vh;
     background-position-y: 87%;
 }
+
+
+
 
 #map-itinerary{
     height:70vh;

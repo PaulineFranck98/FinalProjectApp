@@ -1,24 +1,25 @@
-nav{
+/* nav{
     position: relative;
-}
+} */
 
 #map{
     position: relative;
-    height:90%;
-    width:38%;
+    height:95%;
+    width:29vw;
     border-radius: 1rem;
     /* z-index: 0; */
 }
 
 #display-places{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
+    /* align-items: center; */
+    justify-content: space-around;
+    /* gap: 4rem; */
     height: 100%;
-    width: 80vw;
+    width: 70vw;
     margin: auto;
-    /* padding-top: 4rem; */
+    padding: 4rem 3rem 2rem;
+    position: relative;
 }
 
 .place-infos-container{
@@ -29,10 +30,10 @@ nav{
 }
 
 .places-wrapper{
-    background: #a5a5a526;
+    background: #ffffffd9;
     height: 90vh;
     margin: auto;
-    width: 80vw;
+    width: 70vw;
     border-radius: 1rem
 
 }
@@ -41,9 +42,9 @@ aside{
     overflow-y: scroll;
     scrollbar-width: none;
     scroll-snap-type: y mandatory;
-    height: 90%;
-    width: 32%;
-    /* box-shadow: 2px 0 7px 1px rgb(73 73 73 / 25%); */
+    height: 80%;
+    width: 26vw;
+    box-shadow: inset 0px -17px 7px 1px #49494952; 
     padding: 1rem;
     background-color: #7f7f7f54;
     border-radius: 1rem;
@@ -86,4 +87,37 @@ aside{
     /* width: 75%;
     border-bottom: 1px solid #00000038; */
     margin: 0.8rem auto; 
+}
+
+.index-map-container{
+    /* background: linear-gradient(#ffffff69, #ffffff69), url(/img-source/bcg-test0.webp); */
+    background: linear-gradient(#ffffff69, #ffffff69), url(/img-source/bcg-presentation-vignes.webp);
+    /* height: 100%; */
+    background-size: cover;
+    padding: 5rem 2rem 2rem;
+    height: 100vh;
+    background-position-y: 87%;
+}
+
+.index-create-itinerary{
+    position: absolute;
+    bottom: 10%;
+    left: 7%;
+    border-radius: 0.5rem;
+    background: var(--red-color);
+    padding: 0.5rem 0.8rem;
+}
+
+.index-create-itinerary a{
+    color: white;
+    font-size: 1.35em;
+    font-weight: 500;
+}
+
+.stork-index-map{
+    position: absolute;
+    width: 8%;
+    bottom: 3%;
+    left: 35%;
+
 }
