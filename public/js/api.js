@@ -129,7 +129,7 @@ inputAdresse.addEventListener('input', () => {
                 data.features.forEach( feature => { 
                 // Pour chaque adresse, je crée un élément li qui contient le nom et la ville de l'adresse
                 const listItem = document.createElement('li');
-                listItem.textContent = feature.properties.name + ' ' + feature.properties.city;
+                listItem.textContent = feature.properties.name;
 
                 // J'ajoute un écouteur d'événement  sur l'élément li qui se déclenchera au click  
                 listItem.addEventListener('click', () => {
@@ -162,6 +162,17 @@ inputAdresse.addEventListener('input', () => {
 // Je déclare une variable marker pour stocker le marqueur sur la carte
 let marker;
 
+const iconPosition = new L.icon({
+    iconUrl: "/images/marker-new-place.webp",
+    // Je définis la largeur et la hauteur de l'icône
+    iconSize: [50,50],
+    // Je définis le point d'ancrage de l'icône
+    iconAnchor: [16,40],
+    // Je définis le point d'ancrage du popup
+    popupAnchor:[0,-39]
+});
+
+
     // Je crée une nouvelle instance de carte Leaflet et je la stocke dans la constante mapNew
     const mapNew = L.map('map-new').setView([47.9458, 7.3572], 9);
 
@@ -190,7 +201,7 @@ let marker;
     const position = [selectedLatitude, selectedLongitude];
  
     // Je crée un nouveau marqueur avec les coordonnées de la variable position 
-    marker =  new L.marker(position);
+    marker =  new L.marker(position, {icon: iconPosition });
 
     // J'ajoute le marqueur à la carte via une layer 
     mapNew.addLayer(marker);

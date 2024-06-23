@@ -113,7 +113,7 @@ class PlaceType extends AbstractType
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('themes', EntityType::class, [
-                'label' => 'A quel thème appartient ce lieu ? (plusieurs thèmes peuvent être sélectionnés)',
+                'label' => 'A quel thème appartient ce lieu ?',
                 // defines the entity class to use, here : the entity Theme
                 'class' => Theme::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -124,7 +124,7 @@ class PlaceType extends AbstractType
             ])
              // EntityType is a field that's designed to load options from a Doctrine entity
             ->add('companions', EntityType::class, [
-                'label' => 'Quelle situation correspond le plus à ce lieu ? (plusieurs situations peuvent être sélectionnées)',
+                'label' => 'Quelle situation correspond le plus à ce lieu ?',
                 // defines the entity class to use, here : the entity Companion
                 'class' => Companion::class,
                 // I define the entity property to be used as the label for each choice in the list, here : name
@@ -134,7 +134,7 @@ class PlaceType extends AbstractType
                 'expanded' => true,
             ])
             ->add('images', FileType::class, [
-                'label' => false,
+                'label' => 'Ajoutez des images',
                 'multiple' => true,
                 // ne va pas vérifier si j'ai l'équivalent dans mon entité
                 'mapped' => false,
