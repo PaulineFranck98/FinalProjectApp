@@ -1633,16 +1633,139 @@ button#custom_itinerary_valider
 
 }
 
+
 #itinerary-form{
     margin: 0rem auto;
     width: 73%;
     height: 100%;
-    /* background: url(/img-source/bcg-presentation-vignes.webp); */
-    /* background-size: cover; */
     background: #fffffff5;
     backdrop-filter: blur(6px);
     border-radius: 1rem ;
     position: relative;
+}
+
+
+#detail-post{
+    margin: 0rem auto;
+    width: 60vw;
+    height: 100%;
+    background: #fffffff5;
+    backdrop-filter: blur(6px);
+    border-radius: 1rem ;
+    position: relative;
+    padding-top:2rem
+}
+
+#detail-post h1{
+    text-align: center;
+}
+
+.bcg-post-detail{
+    background: linear-gradient(#ffffff69, #ffffff69), url(/img-source/bcg-presentation-vignes.webp);
+    /* height: 100%; */
+    background-size: cover;
+    padding: 5rem 2rem 2rem;
+    height: 100vh;
+    background-position-y: 87%;
+}
+
+
+.detail-post-figure{
+ width:25vw;
+}
+
+.detail-post-figure img{
+    border-radius: var(--sm-border-radius);
+    height:100%;
+}
+
+.detail-post-content{
+    width:29vw;
+    padding: 2rem;
+    background: #80808017;
+    height:100%;
+    border-radius: var(--sm-border-radius);
+}
+
+
+.detail-post-content-text{
+    /* margin-top: 1rem; */
+    display: flex;
+    justify-content: start;
+    gap: 3rem;
+}
+
+.detail-post-content-text a {
+    color: black;
+}
+
+.post-comments-detail{
+    background: #dddddd;
+    padding: 0.5rem 0.5rem 0.7rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.detail-post-figure-container{
+
+}
+
+.comment-content-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.detail-post-small-container i,
+.comment-content-links i {
+    color: var(--red-color);
+}
+
+.detail-post-small-container > div,
+.comment-content-links > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-user-detail-pic{
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding-left:0.2rem;
+}
+
+.comment-user-detail-pic figure{
+    width:30px;
+}
+
+.comment-user-detail-pic img{
+    border-radius: 0.5rem;
+    height:100%;
+}
+
+.comment-user-detail{
+
+}
+
+.detail-post-small-container{
+    background: white;
+    padding: 1rem 0.5rem;
+    border-radius: var(--sm-border-radius);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+}
+
+ 
+
+.detail-post-container{
+    display: flex;
+    padding: 2rem;
+    justify-content: space-around;
+    height:80vh;
 }
 
 .flying-stork-new-itinerary{

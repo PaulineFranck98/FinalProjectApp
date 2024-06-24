@@ -1,40 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau post{% endblock %}
+{% block title %}Détail du post{% endblock %}
 
 {% block body %}
-<main class="top">
+<main class="bcg-post-detail">
     <section id="detail-post">
-        <div>
-            <h1>{{post.title}}</h1>
-            <p>
-                <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
-            </p>
-            <p>
-                <a href="{{ path('show_city', {'id': post.place.city.id}) }}">{{post.place.city}}</a>
-            </p>
-            <p>{{post.content}}</p>
-        </div>
-        <figure>
-            <img src="{{ asset('uploads/'~ post.image)}}">
-        </figure>
-        <div>
-            <small>{{post.user}}</small>
-            <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
-        </div>
-        <a href="{{ path('edit_post', {'id': post.id}) }}">Modifier le post</a>
-        <div>
-            
-            {% for comment in post.commentaries %}
-               <p>{{ comment.content}}</p>
-               <p>{{ comment.user}}, le {{comment.creationDate | date("d/m/Y, H:i")}}</p>
-                <figure>
-                    <img src="{{ asset('uploads/'~ comment.user.profilePicture)}}">
+        <h1>« {{ post.title }} »</h1>
+        <div class="detail-post-container">
+            <div class="detail-post-content">
+                <div class="detail-post-content-text">
+                    <div class="profile-post-detail-container">
+                        <figure class="user-profile-pic-sm-circle">
+                            <img src="{{ asset('uploads/'~ post.user.profilePicture)}}">
+                        </figure>
+                        <div>
+                            <p>{{ post.user }}</p>
+                            <small>{{post.creationDate | date("d/m/Y, H:i")}}</small>
+                        </div>
+                    </div>
+                    <div>
+                        <p>
+                            <a href="{{ path('show_place', {'id': post.place.id}) }}"><i class="fa-solid fa-location-dot" style="color: #fb463a;"></i>&nbsp;{{post.place}}</a>
+                        </p>
+                        <p>
+                            <a href="{{ path('show_city', {'id': post.place.city.id}) }}"><i class="fa-solid fa-map-pin"></i>&nbsp;{{post.place.city}}</a>
+                        </p>
+                    </div>
+                </div>
+                {# <div class="detail-post-content-text"> #}
+                        
+                <div class="detail-post-small-container">
+                    <p>{{post.content}}</p>
+                    <div>
+                        <small><a href="{{ path('edit_post', {'id': post.id}) }}"><i class="fa-solid fa-pencil"></i></a></small>
+                        <small><a href="{{ path('edit_post', {'id': post.id}) }}"><i class="fa-regular fa-trash-can"></i></a></small>
+                    </div>
+                </div>
+                {# </div> #}
+                <div class="post-comments-detail">
+                    {% if post.commentaries %}
+                        {% for comment in post.commentaries %}
+                            <div class="comment-user-detail">
+                                <div class="comment-user-detail-pic">
+                                    <figure>
+                                        <img src="{{ asset('uploads/'~ comment.user.profilePicture)}}">
+                                    </figure>
+                                    <p>{{ comment.user}}, <small> le {{comment.creationDate | date("d/m/Y, H:i")}}</small></p>
+                                </div>
+                                <div class="comment-content-links">
+                                    <p>{{ comment.content}}</p>
+                                    <div>
+                                        <small><a href="{{ path('edit_commentary', {'id': comment.id, 'postId': post.id }) }}"><i class="fa-solid fa-pencil"></i></a></small>
+                                        <small><a href="{{ path('delete_commentary', {'id': comment.id, 'postId': post.id }) }}"><i class="fa-regular fa-trash-can"></i></a></small>
+                                    </div>
+                                </div>
+                            </div>    
+                        {% endfor %}
+                    {% else %}
+                        <p>Pas de réponse pour le moment ... Répondez à ce post !</p>
+                    {% endif %}
+                    
+                </div>
+            </div>
+
+            {# <div class="detail-post-figure-container"> #}
+                <figure class="detail-post-figure">
+                    <img src="{{ asset('uploads/'~ post.image)}}">
                 </figure>
-                <a href="{{ path('edit_commentary', {'id': comment.id, 'postId': post.id }) }}">Modifier le commentaire</a>
-                <a href="{{ path('delete_commentary', {'id': comment.id, 'postId': post.id }) }}">Supprimer le commentaire</a>
-            {% endfor %}
-        </div>
+            {# </div>   #}
+        
+        </div>     
+        
+        
+        
+        
     </section>
     <a href="{{ path('new_commentary', {'postId': post.id})}}">Répondre</a>
 </main>
