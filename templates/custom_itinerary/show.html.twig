@@ -3,23 +3,10 @@
 {% block title %}Détail de l'itinéraire personnalisé{% endblock %}
 
 {% block body %}
-{# {{ dump(itinerary.customItineraryPlaceCities)}} #}
 
-{# {% for itinerary in itinerary.customItineraryPlaceCities %}
-    {{itinerary.place}}
-{% endfor %} #}
-
-{# {% for city in itinerary.cities %}
-   {{cityPlacesCount}}, {{ city.cityName}}
-{% endfor %}
-{{ dump(arrivalPlacesCount)}}
-
-{{ itinerary.arrival}}, {{ arrivalPlacesCount}}
-{{ itinerary.departure.id}}  #}
 <main class="new-itinerary-form">
     <section id="itinerary-form">
-        {# {{ itinerary.name}} #}
-        {# <h1>"{{ itineraryDatas.name}}"</h1> #}
+  
         <p class="itinerary-title">Votre itinéraire de <b><span>{{ itinerary.departure }}</span></b> à <b>{{ itinerary.arrival }}</b></p>
         <p><span class="quote">«</span>{{ itinerary.name}}<span class="quote">»</span</p>
         <div class="aside-cities">

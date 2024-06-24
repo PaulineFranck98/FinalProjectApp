@@ -178,7 +178,7 @@ class SecurityController extends AbstractController
             )
         );
 
-        $defaultProfilePicture = "/images/default.webp";
+        $defaultProfilePicture = "default.webp";
 
         $user->setProfilePicture($defaultProfilePicture);
 
