@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -156,6 +157,37 @@ class SecurityController extends AbstractController
     {
         
         return $this->render('security/itineraries.html.twig');
+    }
+
+
+    #[Route(path: '/anonimyze', name: 'anonymize_user', methods:['POST'])]
+    public function anonymizeUser(UserInterface $user , Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
+    {
+        $user = $this->getUser();
+
+        $user->setUsername('anonyme');
+
+        $user->setEmail('email@anonymize.com');
+
+        $defaultPassword = 'default_password';
+
+        $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                $user,
+                $defaultPassword
+            )
+        );
+
+        $defaultProfilePicture = "/images/default.webp";
+
+        $user->setProfilePicture($defaultProfilePicture);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $request->getSession()->invalidate();
+
+        return $this->json(['success' => true]);
     }
 
 }

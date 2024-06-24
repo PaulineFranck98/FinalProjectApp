@@ -30,11 +30,33 @@
                     <fieldset class="security-links">
                         <legend>Espace Sécurité</legend>
                         <p><a href="{{ path('edit_password', {'id' : app.user.id}) }}"><i class="fa-solid fa-key"></i>&nbsp;Modifier mot de passe</a>
-                        <p><a href="#"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;Supprimer le compte</a>
+                        <p><button id="deleteAccountButton"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;Supprimer le compte</button>
                     </fieldset>
                 </div>
             </section>
         </section>
     </div>
 </main>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+    document.getElementById('deleteAccountButton').addEventListener('click', function(e) {
+    e.preventDefault();
+    if (confirm('Êtes-vous sûr de vouloir supprimer votre compte?')) {
+        // If the user confirms, you can make the AJAX request here
+        // For example, using fetch:
+        fetch('/anonimyze', {
+            method: 'POST',
+            // You can add any data you need to send to the server here
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server here
+            window.location.href = '/home';
+        });
+    }
+});
+    </script>
+     
 {% endblock %}
