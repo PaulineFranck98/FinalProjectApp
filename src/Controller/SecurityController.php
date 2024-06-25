@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\EditPasswordFormType;
 use App\Form\UserModificationType;
 use App\Form\ChangePasswordFormType;
+use App\Repository\PlaceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -188,6 +189,17 @@ class SecurityController extends AbstractController
         $request->getSession()->invalidate();
 
         return $this->json(['success' => true]);
+    }
+
+    #[Route('/admin/unverified', name:'unverified_places')]
+    public function unverifiedPlaces(PlaceRepository $placeRepository) : Response
+    {
+        $unverifiedPlaces = $placeRepository->findBy(['isVerified' => false]);
+        
+        return $this->render('security/unverified.html.twig', [
+            'unverifiedPlaces' => $unverifiedPlaces
+        ]);
+
     }
 
 }

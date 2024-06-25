@@ -150,8 +150,10 @@
                     <div class="rating-content-links">
                         <p>{{ rating.comment }}</p>
                         <div>
+                            {% if app.user == rating.user %}
                             <small><a href=""><i class="fa-solid fa-pencil"></i></a></small>
                             <small><a href="{{ path('delete_rating', {'id': rating.id}) }}"><i class="fa-regular fa-trash-can"></i></a></small>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

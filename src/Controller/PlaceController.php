@@ -24,6 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\DependencyInjection\SecurityExtension;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class PlaceController extends AbstractController
@@ -39,7 +40,7 @@ class PlaceController extends AbstractController
 
 // Je définis la route pour l'ajout d'un nouveau lieu
 #[Route('/place/new', name:'new_place')]
-public function new(Place $place, Request $request, EntityManagerInterface $entityManager, PictureService $pictureService, CityRepository $cityRepository): Response
+public function new(Place $place, Request $request, EntityManagerInterface $entityManager, PictureService $pictureService, CityRepository $cityRepository, Security $security): Response
 {
     // Je crée un nouvel objet Place que je stocke dans la variable $place
     $place = new Place();
@@ -110,6 +111,13 @@ public function new(Place $place, Request $request, EntityManagerInterface $enti
     
         // Je récupère les données du formulaire pour l'objet Place
         $place = $form->getData();
+
+        if($security->isGranted('ROLE_ADMIN')){
+            $place->setIsVerified(true);
+
+        }else {
+            $place->setIsVerified(false);
+        }
 
         // J'ajoute l'objet Place à l'EntityManager pour qu'il soit persisté en base de données
         $entityManager->persist($place);

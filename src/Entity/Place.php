@@ -49,7 +49,7 @@ class Place
     private ?float $longitude = null;
 
     #[ORM\Column]
-    private ?bool $isVerified = true;
+    private ?bool $isVerified = null;
 
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'place')]
     private Collection $posts;

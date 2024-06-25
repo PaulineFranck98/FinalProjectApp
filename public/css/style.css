@@ -1358,6 +1358,13 @@ input[type="radio"]:hover + label > figure > img{
     height: 21%;
 }
 
+#profile-container td {
+    padding: 0.5rem;
+}
+#profile-container th{
+    padding: 0.5rem 1rem;
+}
+
 .security-links{
     color: var(--red-color);
     border-color: var(--red-color);
