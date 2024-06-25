@@ -25,7 +25,9 @@ class CommentaryType extends AbstractType
         // I define the type of each field in the form to specify the type of data expected 
         $builder
             // TextareaType renders a textarea HTML element
-            ->add('content', TextareaType::class)
+            ->add('content', TextareaType::class, [
+                'label' => false,
+            ])
             ->add('valider', SubmitType::class)
             // ->add('creationDate', null, [
             //     'widget' => 'single_text',

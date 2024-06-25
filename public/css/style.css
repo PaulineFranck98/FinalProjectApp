@@ -1710,6 +1710,45 @@ button#custom_itinerary_valider
 
 }
 
+
+#add-comment-by-post{
+    background: none;
+    border: none;
+    font-family: 'Poppins';
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--red-color);
+    cursor: pointer;
+}
+
+#add-comment-by-post-form{
+    display: none;
+}
+
+#add-comment-by-post-form textarea{
+    resize: none;
+    height: 4rem;
+    width: 100%;
+    border-radius: var(--sm-border-radius);
+    border: none;
+    font-family: 'Poppins';
+}
+
+#add-comment-by-post-form.hidden-form-container{
+    display: block !important;
+    padding:0.5rem 0;
+}
+
+#commentary_valider{
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--sm-border-radius);
+    border: none;
+    font-family: 'Poppins';
+    font-size: 1em;
+    cursor: pointer;
+    margin-top:0.8rem;
+}
+
 .comment-content-links{
     display: flex;
     justify-content: space-between;

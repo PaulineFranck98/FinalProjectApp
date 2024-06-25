@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Entity\Commentary;
+use App\Form\CommentaryType;
 use App\Repository\PostRepository;
 use App\Repository\PlaceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -200,12 +202,52 @@ class PostController extends AbstractController
         }
 
 
+        // #[Route('/post/{id}', name: 'show_post')]
+        // // retrieve the 'post' corresponding to the id thanks to paramconverter tool
+        // public function show(Post $post) : Response {
+        //     //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
+        //     return $this->render('post/show.html.twig', [
+        //         'post' => $post
+        //     ]);
+        // }
+
         #[Route('/post/{id}', name: 'show_post')]
         // retrieve the 'post' corresponding to the id thanks to paramconverter tool
-        public function show(Post $post) : Response {
+        public function show(Post $post, Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository) : Response {
+            
+        $commentary = new Commentary();
+
+        // $post = $postRepository->findOneBy(['id'=> $postId]);
+
+        $form = $this->createForm(CommentaryType::class, $commentary);
+        
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $commentary->setCreationDate(new \DateTime());
+
+            $user = $this->getUser();
+
+            $commentary->setUser($user);
+
+            $commentary->setPost($post);
+        
+            $commentary = $form->getData();
+
+            // dd($commentary);
+            $entityManager->persist($commentary);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('show_post', ['id' => $post->getId()]);
+        }
+            
+            
             //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
             return $this->render('post/show.html.twig', [
-                'post' => $post
+                'post' => $post,
+                'formAddCommentary' => $form,
             ]);
         }
         

@@ -38,7 +38,7 @@
                 </div>
                 {# </div> #}
                 <div class="post-comments-detail">
-                    {% if post.commentaries %}
+                    {% if post.commentaries|length > 0 %}
                         {% for comment in post.commentaries %}
                             <div class="comment-user-detail">
                                 <div class="comment-user-detail-pic">
@@ -57,8 +57,19 @@
                             </div>    
                         {% endfor %}
                     {% else %}
-                        <p>Pas de réponse pour le moment ... Répondez à ce post !</p>
+                        <p>Pas de réponse pour le moment ... <button id="add-comment-by-post">Répondez</button> à ce post !</p>
                     {% endif %}
+
+                    <div id="add-comment-by-post-form" >
+
+                        {{ form_start(formAddCommentary) }}
+
+                        {{ form_row(formAddCommentary.content) }}
+
+                        {{ form_row(formAddCommentary.valider) }}
+
+                        {{ form_end(formAddCommentary) }}
+                    </div>
                     
                 </div>
             </div>
@@ -70,11 +81,18 @@
             {# </div>   #}
         
         </div>     
-        
-        
-        
-        
+    
     </section>
     <a href="{{ path('new_commentary', {'postId': post.id})}}">Répondre</a>
 </main>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        const addCommentBtn = document.getElementById('add-comment-by-post');
+        const addCommentForm = document.getElementById('add-comment-by-post-form');
+
+        addCommentBtn.addEventListener('click', () => {
+            addCommentForm.classList.toggle('hidden-form-container')
+        });
+    </script>
+  {% endblock %}
