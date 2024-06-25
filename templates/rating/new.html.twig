@@ -9,19 +9,22 @@
     <!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme CSS files as mentioned below (and change the theme property of the plugin) -->
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />  
     {% endblock %}
-    <main>
+    <main class="new-itinerary-form">
         <section>
-        <h1>Ajouter une note</h1>
+            
+            <div class="new-rating-form">
+                <h2>Noter le lieu</h2>
+                <div>
+                {{ form_start(formAddRating) }}
 
-
-        {{ form_start(formAddRating) }}
-
-        {{ form_row(formAddRating.rating) }}
-        {{ form_row(formAddRating.comment) }}
-        
-        {{ form_row(formAddRating.valider) }}
-        
-        {{ form_end(formAddRating) }}
+                {{ form_row(formAddRating.rating) }}
+                {{ form_row(formAddRating.comment) }}
+                
+                {{ form_row(formAddRating.valider) }}
+                
+                {{ form_end(formAddRating) }}
+                </div>
+            </div>
         </section>
     </main>
 

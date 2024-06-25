@@ -127,12 +127,17 @@
             {% endfor %}
             <ul>
         </div>
-
-         {# <p>Notes et commentaires :</p>
-            
+        <div class="show-place-links-new">
+          <p class="show-posts-place"><a href="{{ path('find_posts_place', {'placeId': place.id})}}"> Voir les posts de ce lieu</a></p>
+          <p class="show-posts-place"><a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a></p>
+          <p class="show-posts-place"><a href="{{ path('new_rating', {'placeId': place.id})}}">Noter ce lieu</a></p>
+        </div>
+        <div class="rating-comments-container">
+            <p>Notes et commentaires :</p>
+            <div class="rating-comments">
                 {% for rating in place.ratings %}
                 <div>
-                    <div>
+                    <div class="rating-profile-container">
                         <figure class="rating-profile">
                             <img src="{{ '/uploads/'~ rating.user.profilePicture}}">
                         </figure>
@@ -142,16 +147,23 @@
                             <div>{{ rating.rating|stars|raw}}</div>
                         </div>
                     </div>
-                    <p>{{ rating.comment }}</p>
+                    <div class="rating-content-links">
+                        <p>{{ rating.comment }}</p>
+                        <div>
+                            <small><a href=""><i class="fa-solid fa-pencil"></i></a></small>
+                            <small><a href="{{ path('delete_rating', {'id': rating.id}) }}"><i class="fa-regular fa-trash-can"></i></a></small>
+                        </div>
+                    </div>
                 </div>
-                {% endfor %}  #}
+                {% endfor %}
+            </div>
+        <div>
             {# A modifier pour réserver à l'Admin #}
             {# <a href="{{ path('edit_place', {'id' : place.id})}}">Modifier ce lieu</a>
-            <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>
-             ------------------------------------ 
-            <a href="{{ path('new_rating', {'placeId': place.id})}}">Noter ce lieu</a>
-            <a href="{{ path('new_post_place', {'placeId': place.id})}}">Publier un post</a>#}
-            <p class="show-posts-place"><a href="{{ path('find_posts_place', {'placeId': place.id})}}">Voir les posts de ce lieu</a></p>
+            <a href="{{ path('delete_place', {'id' : place.id})}}">Supprimer ce lieu</a>#}
+          
+           
+          
         
     </main>
     {# {{dump(place.images)}} #}

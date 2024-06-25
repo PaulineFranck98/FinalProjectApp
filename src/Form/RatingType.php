@@ -34,11 +34,13 @@ class RatingType extends AbstractType
                     'data-step' => 1,
                     'data-size' => 'sm',
                 ],
+                'label' => false,
             ])
             //the rating is mandatory, but the associated comment is optional
             ->add('comment', TextareaType::class, [
                 // I set 'required' to 'false' to make it optional
                 'required' => false,
+                'label' => false
             ])
     
             ->add('valider', SubmitType::class)

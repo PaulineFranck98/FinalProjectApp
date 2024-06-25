@@ -57,9 +57,9 @@
                             </div>    
                         {% endfor %}
                     {% else %}
-                        <p>Pas de réponse pour le moment ... <button id="add-comment-by-post">Répondez</button> à ce post !</p>
+                        <p>Pas de réponse pour le moment ... </p>
                     {% endif %}
-
+                        <button id="add-comment-by-post">Répondez</button> à ce post !
                     <div id="add-comment-by-post-form" >
 
                         {{ form_start(formAddCommentary) }}
@@ -83,7 +83,7 @@
         </div>     
     
     </section>
-    <a href="{{ path('new_commentary', {'postId': post.id})}}">Répondre</a>
+    {# <a href="{{ path('new_commentary', {'postId': post.id})}}">Répondre</a> #}
 </main>
 {% endblock %}
 {% block javascripts %}
