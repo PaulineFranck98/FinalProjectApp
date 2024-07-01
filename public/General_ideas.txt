@@ -2,3 +2,4 @@ General ideas :
 *pages with suggestions : 'activities to make with your children', 'best places to visit if you like gastronomy, aso..'
 *profil : change bcg, add informations
 *homepage : add 3 last places to discover for login users
+*admin validation
