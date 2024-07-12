@@ -738,13 +738,7 @@ nav span{
     background-position-y: 59%;
     box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
     background-size: cover;
-    background-attachment: fixed;
-
-    /* background: linear-gradient(#fdffcae3, #fdffca63, #fdffcae3), url(/img-source/bcg-test0.webp);
-    background-position-y: 54%;
-    box-shadow: inset 0 1rem 2rem rgb(0 0 0 / 27%);
-    background-size: cover;
-    background-attachment: fixed; */
+    background-attachment: fixed;/
 }
 
 #reviews-phone{
