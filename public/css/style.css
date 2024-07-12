@@ -1179,7 +1179,7 @@ input[type="radio"]:hover + label > figure > img{
     top: 65.2%;
     right: 5.5%;
     width: 6%;
-    /* filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));  */
+    
 }
 
 .travel-stork img{
