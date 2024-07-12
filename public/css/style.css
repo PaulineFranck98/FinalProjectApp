@@ -672,10 +672,7 @@ nav span{
 }
 
 
-/* #join-community  div {
-    height:47%;
-    position: relative;
-} */
+
 
 #join-community h2{
     margin: 1rem 0 3rem;
@@ -693,9 +690,7 @@ nav span{
     margin: 1rem;
     position: relative;
     width: 56%;
-    /* height: 70%; */
-    /* left: -10%; */
-    /* top: 9%; */
+   
 }
 
 #blur-bcg{
