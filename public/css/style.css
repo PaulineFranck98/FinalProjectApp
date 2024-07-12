@@ -357,8 +357,7 @@ nav span{
 #how-it-works h3{
    font-size: 1.5em;
    font-weight: 600;
-   /* margin-top:-5rem; */
-   /* color:white; */
+  
    display: flex;
    align-items: center;
    justify-content: left;
