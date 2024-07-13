@@ -1524,8 +1524,7 @@ input[type="radio"]:hover + label > figure > img{
 
 
 .new-place-form{
-    /* background : linear-gradient(#ffffff, #ffffff7a, #ffffff), url(/img-source/map-background.webp); */
-    /* background: linear-gradient(#ffffffa8, #ffffffa8), url(/img-source/bcg-test0.webp); */
+
     background: linear-gradient(#ffffff69, #ffffff69), url(/img-source/bcg-presentation-vignes.webp);
     background-position-y: 88%;
     background-size: cover;
