@@ -1256,10 +1256,7 @@ input[type="radio"]:hover + label > figure > img{
     border-bottom: transparent;
 }
 
-/* .active {
-    background-color: #80808080;
-    border-radius: var(--lg-border-radius);
-} */
+
 
 #profile-container{
     width: 60vw;
