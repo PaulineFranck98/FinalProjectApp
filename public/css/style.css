@@ -1748,14 +1748,7 @@ textarea#post_content,
     font-family: 'Poppins';
 }
 
-/* textarea#post_content{
-    resize: none;
-    height: 4rem;
-    width: 100%;
-    border-radius: var(--sm-border-radius);
-    border: none;
-    font-family: 'Poppins';
-} */
+
 
 #add-comment-by-post-form.hidden-form-container{
     display: block !important;
