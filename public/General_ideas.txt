@@ -4,3 +4,4 @@ General ideas :
 *homepage : add 3 last places to discover for login users
 *admin validation
 *see the google doc 
+*add weather
