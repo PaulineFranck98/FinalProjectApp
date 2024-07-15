@@ -2557,11 +2557,7 @@ form[name="search_itinerary"] input{
     position: relative;
 }
 
-/* .form-container form{
-    width:100%;
-    margin: auto;
-    padding:2%;
-} */
+
 
 .form-container form label{
     display: block;
