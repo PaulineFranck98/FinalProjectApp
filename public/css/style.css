@@ -2143,7 +2143,6 @@ button#custom_itinerary_valider{
 .city-href:hover{
     color:white;
     /* background-color: var(--light-red); */
-    /* text-decoration: none; */
     color: var(--red-color);
     transform: scale(1.02);
 }
