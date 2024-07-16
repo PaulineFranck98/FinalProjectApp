@@ -69,8 +69,13 @@
                         <div>
                             <img src="{{ asset(asset('images/place/') ~ image.name) }}" alt="Image" width="150">
                             {# avec data-token je vérifie que le delete vient bien de mon formulaire #}
+                            
                             {# génère un token de sécurité qui va me permettre dans le controller de vérifier que le formulaire est bien valide #}
-                            <a href="{{ path('delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete'~ image.id) }}">Supprimer</a>
+                            <a href="{{ path('delete_image', {id: image.id}) }}" 
+                               data-delete 
+                               data-token="{{ csrf_token('delete'~ image.id) }}">
+                               Supprimer
+                            </a>
                         </div>
                     {% endfor %}
                 {% endif %}
