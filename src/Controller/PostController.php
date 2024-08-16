@@ -213,7 +213,7 @@ class PostController extends AbstractController
 
         #[Route('/post/{id}', name: 'show_post')]
         // retrieve the 'post' corresponding to the id thanks to paramconverter tool
-        public function show(Post $post, Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository) : Response {
+        public function show(Post $post, Request $request, EntityManagerInterface $entityManager) : Response {
             
         $commentary = new Commentary();
 
