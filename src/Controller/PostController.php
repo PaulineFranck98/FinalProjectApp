@@ -217,7 +217,6 @@ class PostController extends AbstractController
             
         $commentary = new Commentary();
 
-        // $post = $postRepository->findOneBy(['id'=> $postId]);
 
         $form = $this->createForm(CommentaryType::class, $commentary);
         
