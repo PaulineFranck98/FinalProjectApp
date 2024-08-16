@@ -202,15 +202,6 @@ class PostController extends AbstractController
         }
 
 
-        // #[Route('/post/{id}', name: 'show_post')]
-        // // retrieve the 'post' corresponding to the id thanks to paramconverter tool
-        // public function show(Post $post) : Response {
-        //     //I then pass the retrieved 'post' object to the 'show.html.twig' view in the 'post' folder
-        //     return $this->render('post/show.html.twig', [
-        //         'post' => $post
-        //     ]);
-        // }
-
         #[Route('/post/{id}', name: 'show_post')]
         // retrieve the 'post' corresponding to the id thanks to paramconverter tool
         public function show(Post $post, Request $request, EntityManagerInterface $entityManager) : Response {
